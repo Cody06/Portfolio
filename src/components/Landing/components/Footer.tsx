@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Footer = () => {
     const linkButtons = [
         {
@@ -20,7 +22,7 @@ const Footer = () => {
             <h1 className="text-xl font-bold">Get in touch</h1>
             <p>Montreal, QC, Canada</p>
             {linkButtons.map((button) => (
-                <a
+                <Link
                     key={button.href}
                     href={button.href}
                     target="_blank"
@@ -29,7 +31,7 @@ const Footer = () => {
                     className="border-b border-transparent hover:border-orange-100"
                 >
                     {button.label}
-                </a>
+                </Link>
             ))}
         </footer>
     );
