@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Button from '../../ui/Button';
 
 const ProjectsCollection = () => {
@@ -55,11 +56,18 @@ const ProjectsCollection = () => {
                             hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                     >
                         <div className="relative max-w-max m-auto">
-                            <img src={'/assets/laptop.png'} alt="Laptop image" />
+                            <Image
+                                src={'/assets/laptop.png'}
+                                width={520}
+                                height={300}
+                                alt="Laptop image"
+                            />
 
                             <div className="absolute top-2 w-full px-[10.19%]">
-                                <img
+                                <Image
                                     src={`/assets/thumbnails/${project.thumbnail}`}
+                                    width={414}
+                                    height={267}
                                     alt={`thumbnail ${project.thumbnail}`}
                                     className="rounded-t-lg"
                                 />
