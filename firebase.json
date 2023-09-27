@@ -1,18 +1,19 @@
 {
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "emulators": {
     "hosting": {
-        "source": ".",
-        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-        "frameworksBackend": {
-            "region": "us-east1"
-        }
+      "port": 5033
     },
-    "emulators": {
-        "hosting": {
-            "port": 5033
-        },
-        "ui": {
-            "enabled": true
-        },
-        "singleProjectMode": true
-    }
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
 }
