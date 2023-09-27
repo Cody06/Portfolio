@@ -1,3 +1,167 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --typewriter-speed: 2s;
+    --typewriter-delay: 1s;
+    --typewriter-duration: calc(var(--typewriter-speed) + var(--typewriter-delay));
+    --title-num-of-chars: 19;
+    --caret-blink-speed: 530ms;
+    --dot-delay: 3500ms; /* have the dot drop right after the last character was typed */
+    --fade-in-speed: 3s;
+}
+
+html {
+    scroll-behavior: smooth; /* used when redirecting to an element */
+}
+
+.animate-navbar {
+    animation: move_top_to_position 1s;
+}
+
+@keyframes move_top_to_position {
+    from {
+        top: -3.125rem;
+    }
+    to {
+        top: 0;
+    }
+}
+
+.multi-line-type {
+    color: #0000;
+    /* 1st linear-gradinet -> caret, 2nd linear-gradient -> text */
+    background:
+        linear-gradient(-90deg, theme('colors.orange.100') 5px, #0000 0) 10px 0,
+        linear-gradient(black 0 0) 0 0;
+    background-size: calc(var(--title-num-of-chars) * 1ch) 200%;
+    -webkit-background-clip: padding-box, text;
+    background-clip: padding-box, text;
+    background-repeat: no-repeat;
+    animation:
+        blink var(--caret-blink-speed) infinite steps(1),
+        type calc(var(--title-num-of-chars) * 200ms) steps(var(--title-num-of-chars)) forwards;
+}
+@keyframes blink {
+    50% {
+        background-position:
+            0 -100%,
+            0 0;
+    }
+}
+@keyframes type {
+    from {
+        background-size: 0 200%;
+    }
+}
+
+.animate-drop {
+    position: relative;
+    opacity: 0;
+    animation: dot_drop 2s var(--dot-delay) forwards;
+}
+
+@keyframes dot_drop {
+    from {
+        top: -150px;
+    }
+    to {
+        top: 0px;
+        opacity: 100%;
+    }
+}
+
+.animate-fade-in-up {
+    opacity: 0%;
+    transform: translateY(3rem);
+    animation: fade_in_up var(--fade-in-speed) var(--typewriter-duration) forwards;
+}
+
+@keyframes fade_in_up {
+    to {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    opacity: 0%; /* keep it hidden */
+    animation: fade_in var(--fade-in-speed) var(--typewriter-duration) forwards;
+}
+
+@keyframes fade_in {
+    to {
+        opacity: 100%;
+    }
+}
+
+.animate-slide-left-to-right a {
+    /* Needed for animations */
+    position: relative;
+    opacity: 0%;
+}
+
+/* Animate each link at a different speed */
+.animate-slide-left-to-right a:nth-child(1) {
+    animation: slide_left_to_right 2s var(--typewriter-duration) forwards;
+}
+
+.animate-slide-left-to-right a:nth-child(2) {
+    animation: slide_left_to_right 1s var(--typewriter-duration) forwards;
+}
+
+@keyframes slide_left_to_right {
+    0% {
+        left: -12.5rem;
+    }
+    40% {
+        opacity: 100%;
+    }
+    100% {
+        left: 0px;
+        opacity: 100%;
+    }
+}
+
+/* We cannot use multiple animations for the same element, even if one is only for hover,
+   therefore anchor tag has one animaiton and img another */
+.animate-logo {
+    position: relative;
+}
+
+.animate-logo:hover {
+    /* Apply orange filter to image */
+    filter: invert(57%) sepia(72%) saturate(1781%) hue-rotate(3deg) brightness(110%) contrast(104%);
+    animation: up_down 200ms;
+}
+
+@keyframes up_down {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: -5px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+.animate-slide-rigth-to-left {
+    opacity: 0;
+    animation: slide_right_to_left 1s var(--typewriter-duration) forwards;
+}
+
+@keyframes slide_right_to_left {
+    0% {
+        right: -12.5rem;
+    }
+    40% {
+        opacity: 100%;
+    }
+    100% {
+        right: 0px;
+        opacity: 100%;
+    }
+}
