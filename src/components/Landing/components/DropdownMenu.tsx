@@ -26,7 +26,7 @@ const DropdownMenu: React.FC<Props> = ({ buttonsList }) => {
     const dropdown = (
         <ul
             ref={nodeRef}
-            className="absolute -right-3 bg-grey-100 p-3 space-y-2 rounded-b-md shadow-lg"
+            className="absolute -right-3 bg-primary-120 p-3 space-y-2 rounded-b-md shadow-lg"
         >
             {buttonsList.map((button) => (
                 <li key={button.id}>

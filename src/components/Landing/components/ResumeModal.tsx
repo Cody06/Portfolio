@@ -24,7 +24,7 @@ const ResumeModal: React.FC<Props> = ({ isOpen, requestClose }) => {
             <div className="w-full max-w-[1400px] p-4 bg-white md:rounded-3xl">
                 <button
                     className="float-right mb-2 w-6 rounded-full border
-                            hover:bg-orange-100 hover:border-orange-100"
+                            hover:bg-secondary-100 hover:border-secondary-100"
                     onClick={requestClose}
                 >
                     <FontAwesomeIcon icon={['fas', 'xmark']} />

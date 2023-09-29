@@ -9,13 +9,15 @@ interface Props {
 
 const Button: React.FC<Props> = ({ name, onClick, disabled = false, kind = 'primary' }) => {
     const kindStyle = {
-        primary:
-            'text-white bg-grey-100 hover:text-grey-100 hover:bg-orange-100 active:bg-orange-80',
-        secondary:
-            'border border-orange-100 hover:text-white hover:bg-orange-100 active:bg-orange-80',
+        primary: `text-white bg-primary-120
+            hover:text-primary-120 hover:bg-secondary-100
+            active:bg-secondary-110`,
+        secondary: `border border-secondary-100
+            hover:text-white hover:bg-secondary-100
+            active:bg-secondary-110 active:border-secondary-110`,
     };
 
-    const disabledStyle = 'text-grey-80 bg-grey-20';
+    const disabledStyle = 'text-grey-100 bg-grey-90';
 
     return (
         <button

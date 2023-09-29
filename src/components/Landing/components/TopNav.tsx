@@ -32,9 +32,9 @@ const TopNav: React.FC<Props> = ({ openResumeModal }) => {
     ];
 
     return (
-        <nav className="fixed w-full mb-[3.125rem] z-10 px-4 py-3 bg-grey-100 shadow-lg animate-navbar">
+        <nav className="fixed w-full mb-[3.125rem] z-10 px-4 py-3 bg-primary-120 shadow-lg animate-navbar">
             <div className="flex justify-between max-w-[1400px] m-auto">
-                <div className="text-orange-100 hover:animate-bounce">&lt; cody &gt;</div>
+                <div className="text-secondary-100 hover:animate-bounce">&lt; cody &gt;</div>
 
                 {/* Phone and Tablet */}
                 <div className="lg:hidden">
@@ -48,7 +48,7 @@ const TopNav: React.FC<Props> = ({ openResumeModal }) => {
                             <li key={button.id}>
                                 <button
                                     className="text-white
-                                        border-b-2 border-transparent hover:border-orange-100"
+                                        border-b-2 border-transparent hover:border-secondary-100"
                                     onClick={button.onClick}
                                 >
                                     {button.name}

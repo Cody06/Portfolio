@@ -54,7 +54,7 @@ const Header = () => {
             <div className="flex flex-col items-center gap-y-5 mb-6">
                 <h1 className="text-3xl md:text-5xl text-center">
                     <span className="font-bold font-mono multi-line-type">Software Developer</span>
-                    <span className="text-orange-100 animate-drop">.</span>
+                    <span className="text-secondary-100 animate-drop">.</span>
                 </h1>
                 <h2 className="text-center max-w-[35rem] animate-fade-in-up">{secondHeader}</h2>
             </div>
