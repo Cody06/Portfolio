@@ -9,15 +9,21 @@ const config: Config = {
     theme: {
         colors: {
             transparent: 'transparent',
-            // TODO: higher number should be a darker color
-            grey: {
-                100: '#353A40',
-                80: '#6C757D',
-                20: '#F0F0F0',
+            primary: {
+                120: '#2E3338',
+                110: '#454D54',
+                100: '#5C6670',
+                90: '#73808C',
+                80: '#E3E6E8',
             },
-            orange: {
-                100: '#F2AA4C',
-                80: '#774709',
+            secondary: {
+                110: '#774709',
+                100: '#F1A541',
+            },
+            grey: {
+                110: '#5F666D',
+                100: '#778088',
+                90: '#F2F2F2',
             },
             black: '#000000',
             white: '#FFFFFF',
