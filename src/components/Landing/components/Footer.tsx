@@ -17,7 +17,7 @@ const Footer = () => {
     return (
         <footer
             id="contact"
-            className="flex flex-col gap-y-4 items-center text-grey-80 mb-10 animate-fade-in"
+            className="flex flex-col gap-y-4 items-center text-primary-100 mb-10 animate-fade-in"
         >
             <h1 className="text-xl font-bold">Get in touch</h1>
             <p>Montreal, QC, Canada</p>
@@ -28,7 +28,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     title={button.title}
-                    className="border-b border-transparent hover:border-orange-100"
+                    className="border-b border-transparent hover:border-secondary-100"
                 >
                     {button.label}
                 </Link>

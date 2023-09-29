@@ -33,7 +33,7 @@ html {
     color: #0000;
     /* 1st linear-gradinet -> caret, 2nd linear-gradient -> text */
     background:
-        linear-gradient(-90deg, theme('colors.orange.100') 5px, #0000 0) 10px 0,
+        linear-gradient(-90deg, theme('colors.secondary.100') 5px, #0000 0) 10px 0,
         linear-gradient(black 0 0) 0 0;
     background-size: calc(var(--title-num-of-chars) * 1ch) 200%;
     -webkit-background-clip: padding-box, text;

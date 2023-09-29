@@ -47,7 +47,9 @@ const ProjectsCollection = () => {
 
     return (
         <main id="projects-collection" className="mb-10 animate-fade-in">
-            <h1 className="text-2xl font-bold text-center text-grey-80 uppercase mb-4">Projects</h1>
+            <h1 className="text-2xl font-bold text-center text-primary-100 uppercase mb-4">
+                Projects
+            </h1>
             <div className="flex flex-col gap-y-10">
                 {projects.map((project) => (
                     <div
@@ -82,7 +84,7 @@ const ProjectsCollection = () => {
                                 {project.tools.map((tool) => (
                                     <div
                                         key={tool}
-                                        className="p-1 w-max rounded-md text-sm text-grey-80 bg-grey-20"
+                                        className="p-1 w-max rounded-md text-sm text-primary-100 bg-primary-80"
                                     >
                                         {tool}
                                     </div>
