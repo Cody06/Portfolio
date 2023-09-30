@@ -4,7 +4,7 @@ import Header from './components/Header';
 import ProjectsCollection from './components/ProjectsCollection';
 import Footer from './components/Footer';
 import ResumeModal from './components/ResumeModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const LandingPage = () => {
     const [isOpen, setIsOpen] = useState(false);
