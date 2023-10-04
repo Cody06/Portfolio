@@ -11,7 +11,6 @@ interface Props {
 
 interface ModalComponent extends React.FC<Props> {
     Body: typeof ModalBody;
-    Header: typeof ModalHeader;
 }
 
 const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
@@ -35,6 +34,5 @@ const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
 };
 
 Modal.Body = ModalBody;
-Modal.Header = ModalHeader;
 
 export default Modal;
