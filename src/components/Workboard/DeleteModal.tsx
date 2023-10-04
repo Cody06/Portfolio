@@ -1,33 +1,27 @@
+import { ItemToDelete } from './types';
 import Modal from '../Modal';
 import ModalBody from '../Modal/ModalBody';
 
 interface Props {
-    colId: string;
     isOpen: boolean;
-    title: string;
-    onDeleteColumn: (id: string) => void;
+    item: ItemToDelete;
+    onDeleteItem: (item: ItemToDelete) => void;
     requestClose: () => void;
 }
 
-const DeleteColumnModal: React.FC<Props> = ({
-    colId,
-    isOpen,
-    title,
-    onDeleteColumn,
-    requestClose,
-}) => (
-    <Modal isOpen={isOpen} title="Delete column" requestClose={requestClose}>
+const DeleteModal: React.FC<Props> = ({ isOpen, item, onDeleteItem, requestClose }) => (
+    <Modal isOpen={isOpen} title={`Delete ${item.kind}`} requestClose={requestClose}>
         <ModalBody>
             <h1 className="mb-5">
                 Are you sure you want to delete: <br />
-                <strong>{title}</strong>
+                <strong>{item.text}</strong>
             </h1>
             <div className="flex gap-x-4">
                 <button
                     className="w-1/2 p-1 text-white bg-error-100 border border-error-100 rounded-md
                         hover:brightness-75"
                     onClick={() => {
-                        onDeleteColumn(colId);
+                        onDeleteItem(item);
                         requestClose();
                     }}
                 >
@@ -44,4 +38,4 @@ const DeleteColumnModal: React.FC<Props> = ({
     </Modal>
 );
 
-export default DeleteColumnModal;
+export default DeleteModal;
