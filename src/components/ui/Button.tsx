@@ -1,13 +1,23 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
-    name: string;
-    onClick: () => void;
+    label: string;
     disabled?: boolean;
+    href?: string;
     kind?: 'primary' | 'secondary';
+    type?: 'button' | 'link';
+    onClick?: () => void;
 }
 
-const Button: React.FC<Props> = ({ name, onClick, disabled = false, kind = 'primary' }) => {
+const Button: React.FC<Props> = ({
+    label,
+    onClick,
+    disabled = false,
+    href,
+    kind = 'primary',
+    type = 'button',
+}) => {
     const kindStyle = {
         primary: `text-white bg-primary-120
             hover:text-primary-120 hover:bg-secondary-100
@@ -19,17 +29,38 @@ const Button: React.FC<Props> = ({ name, onClick, disabled = false, kind = 'prim
 
     const disabledStyle = 'text-grey-100 bg-grey-90';
 
-    return (
+    // Need isBrnDisabled arg for when we want to disable if it's a link and no href
+    const ButtonElement = (isBtnDisabled: boolean) => (
         <button
             className={`p-3 rounded-3xl shadow-lg active:shadow-none ease-in duration-200 ${
-                disabled ? disabledStyle : kindStyle[kind]
+                isBtnDisabled ? disabledStyle : kindStyle[kind]
             }`}
             disabled={disabled}
             onClick={onClick}
         >
-            {name}
+            {label}
         </button>
     );
+
+    const LinkElement = href ? (
+        <Link
+            href={href}
+            className={`p-3 rounded-3xl shadow-lg active:shadow-none ease-in duration-200 ${kindStyle[kind]}`}
+        >
+            {label}
+        </Link>
+    ) : (
+        ButtonElement(true)
+    );
+
+    switch (type) {
+        case 'button':
+            return ButtonElement(disabled);
+        case 'link':
+            return LinkElement;
+        default:
+            return ButtonElement(disabled);
+    }
 };
 
 export default Button;
