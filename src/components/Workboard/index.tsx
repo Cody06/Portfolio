@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Column from './Column';
 import CreateColumnModal from './CreateColumnModal';
 import getUniqueId from '@/utils/getUniqueId';
-import DeleteColumnModal from './DeleteColumnModal';
 
 export type CardData = {
     id: string;
@@ -18,8 +17,7 @@ export type ColumnData = {
 };
 
 const Workboard = () => {
-    const [showCreateColumnModal, setShowCreateColumnModal] = useState(false);
-    const [showDeleteColumnModal, setShowDeleteColumnModal] = useState(false);
+    const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
     const [columns, setColumns] = useState<ColumnData[]>([]);
 
     const handleCreateColumn = (colTitle: string) => {
@@ -27,7 +25,22 @@ const Workboard = () => {
         setColumns((oldCols) => [...oldCols, { id: randomId, title: colTitle, cards: [] }]);
     };
 
-    const handleDeleteColumn = (id: string) => alert(`Deleting col: ${id}`);
+    const handleDeleteColumn = (colId: string) =>
+        setColumns(columns.filter((col) => col.id !== colId));
+
+    const handleEditColumn = (colId: string, newColTitle: string) => {
+        const updatedColumns = columns.map((col) => {
+            if (col.id === colId) {
+                return {
+                    ...col,
+                    title: newColTitle,
+                };
+            } else {
+                return col;
+            }
+        });
+        setColumns(updatedColumns);
+    };
 
     const handleCreateCard = (colId: string, newCardText: string) => {
         const nextCard = {
@@ -59,28 +72,27 @@ const Workboard = () => {
 
             <div className="flex gap-2 items-start flex-wrap p-4">
                 {columns.map((column) => (
-                    <Column key={column.id} column={column} onCreateCard={handleCreateCard} />
+                    <Column
+                        key={column.id}
+                        column={column}
+                        onCreateCard={handleCreateCard}
+                        onDeleteColumn={handleDeleteColumn}
+                        onEditColumn={handleEditColumn}
+                    />
                 ))}
                 <button
                     className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
                         hover:text-secondary-100"
-                    onClick={() => setShowCreateColumnModal(true)}
+                    onClick={() => setIsCreateColumnModalOpen(true)}
                 >
                     + Add column
                 </button>
             </div>
 
             <CreateColumnModal
-                isOpen={showCreateColumnModal}
+                isOpen={isCreateColumnModalOpen}
                 onCreateColumn={handleCreateColumn}
-                requestClose={() => setShowCreateColumnModal(false)}
-            />
-            <DeleteColumnModal
-                colId="TBD"
-                isOpen={showDeleteColumnModal}
-                title="TBD"
-                onDeleteColumn={handleDeleteColumn}
-                requestClose={() => setShowDeleteColumnModal(false)}
+                requestClose={() => setIsCreateColumnModalOpen(false)}
             />
         </div>
     );
