@@ -10,7 +10,7 @@ const ProjectsCollection = () => {
             tools: ['React', 'TypeScript'],
             description: `Workboard is a project managing application. Users can create project boards with different columns
                 and move their tasks between them.`,
-            link: 'TBD',
+            href: '/workboard',
             thumbnail: 'workboard.png',
         },
         {
@@ -20,7 +20,7 @@ const ProjectsCollection = () => {
             tools: ['React', 'TypeScript'],
             description: `This platform allows users to create posts and follow other users. An implementation of the "like"
                 button is also present.`,
-            link: 'TBD',
+            href: '',
             thumbnail: 'social.png',
         },
         {
@@ -30,7 +30,7 @@ const ProjectsCollection = () => {
             tools: ['React', 'TypeScript'],
             description: `This is an e-commerce platform where users can post items for auction and bid on posted ones. A comment
                 section is also implemented.`,
-            link: 'TBD',
+            href: '',
             thumbnail: 'commerce.png',
         },
         {
@@ -40,7 +40,7 @@ const ProjectsCollection = () => {
             tools: ['React', 'TypeScript'],
             description: `This is an email client where users can send, receive and archive emails through a built-in API.
                 The application focuses on User Interfaces where everything runs on one html page.`,
-            link: 'TBD',
+            href: '',
             thumbnail: 'email.png',
         },
     ];
@@ -50,6 +50,7 @@ const ProjectsCollection = () => {
             <h1 className="text-2xl font-bold text-center text-primary-100 uppercase mb-4">
                 Projects
             </h1>
+
             <div className="flex flex-col gap-y-10">
                 {projects.map((project) => (
                     <div
@@ -92,17 +93,18 @@ const ProjectsCollection = () => {
                             </div>
                             <p className="mb-6 md:mb-8">{project.description}</p>
 
-                            <div className="flex justify-center gap-x-5">
+                            <div className="flex justify-center items-center gap-x-5">
                                 <Button
-                                    name="Preview"
+                                    label="Preview"
                                     disabled
                                     onClick={() => console.log(`Open modal ${project.name}`)}
                                 />
                                 <Button
-                                    name={`Visit ${project.name.split(' ')[0]}`}
+                                    label={`Visit ${project.name.split(' ')[0]}`}
+                                    type="link"
                                     kind="secondary"
                                     disabled={project.id !== 1}
-                                    onClick={() => console.log(`Go to page ${project.link}`)}
+                                    href={project.href}
                                 />
                             </div>
                         </div>
