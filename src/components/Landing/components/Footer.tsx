@@ -17,9 +17,9 @@ const Footer = () => {
     return (
         <footer
             id="contact"
-            className="flex flex-col gap-y-4 items-center pb-10 text-primary-100 animate-fade-in"
+            className="flex flex-col gap-y-4 items-center pt-16 pb-10 text-primary-100"
         >
-            <h1 className="text-xl font-bold">Get in touch</h1>
+            <h4 className="text-xl font-bold">Get in touch</h4>
             <p>Montreal, QC, Canada</p>
             {linkButtons.map((button) => (
                 <Link

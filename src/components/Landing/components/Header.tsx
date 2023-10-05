@@ -6,16 +6,14 @@ const Header = () => {
         'JavaScript',
         'TypeScript',
         'React',
+        'Next.js',
         'Python',
-        'Node.js',
         'Django',
         'HTML',
         'CSS',
         'Tailwind',
         'SQL',
-    ];
-
-    const techList = technologies.join(' | ');
+    ].join(' | ');
 
     const headlineParagraph = `Hello! 😃 I'm a software developer who enjoys creating fullstack web applications in Python and JavaScript.
         \n I have started with Java and C during my bachelor in Information Systems at McGill University and switched to TypeScript in a professional environment.
@@ -57,7 +55,7 @@ const Header = () => {
                     <span className="font-bold font-mono multi-line-type">Software Developer</span>
                     <span className="text-secondary-100 animate-drop">.</span>
                 </h1>
-                <h2 className="text-center max-w-[35rem] animate-fade-in-up">{techList}</h2>
+                <h2 className="text-center max-w-[35rem] animate-fade-in-up">{technologies}</h2>
             </div>
 
             <div className="flex justify-evenly">
