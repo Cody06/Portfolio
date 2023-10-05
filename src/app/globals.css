@@ -20,6 +20,17 @@ html {
     max-width: 87.5rem;
 }
 
+.border-bottom-gradient {
+    border-bottom: 0.125rem solid;
+    border-image: linear-gradient(
+            to right,
+            theme('colors.white') 30%,
+            theme('colors.primary.100'),
+            theme('colors.white') 70%
+        )
+        10;
+}
+
 .animate-navbar {
     animation: move_top_to_position 1s;
 }
