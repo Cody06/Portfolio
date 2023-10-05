@@ -1,6 +1,6 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu';
-import { Button } from './types';
+import { Button } from '../types';
 
 interface Props {
     openResumeModal: () => void;
