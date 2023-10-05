@@ -5,28 +5,28 @@ import React, { useState } from 'react';
 import { ColumnData, ItemToDelete } from './types';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
-import CardsList from './CardsList';
+import Card from './Card';
 
 interface Props {
     column: ColumnData;
-    onCreateCard: (colId: string, newCardText: string) => void;
-    onEditColumn: (colId: string, newColTitle: string) => void;
+    onCreateCard: (colId: string, cardText: string) => void;
+    onEditCard: (cardId: string, cardText: string) => void;
+    onEditColumn: (colId: string, colTitle: string) => void;
     setItemToDelete: React.Dispatch<React.SetStateAction<ItemToDelete | undefined>>;
 }
 
-const Column: React.FC<Props> = ({ column, onCreateCard, onEditColumn, setItemToDelete }) => {
-    const [showCreateCard, setShowCreateCard] = useState(false);
+const Column: React.FC<Props> = ({
+    column,
+    onCreateCard,
+    onEditCard,
+    onEditColumn,
+    setItemToDelete,
+}) => {
+    const [colTitle, setColTitle] = useState(column.title);
+    const [isEditCardShown, setIsEditCardShown] = useState(false);
     const [newCardText, setNewCardText] = useState('');
+    const [showCreateCard, setShowCreateCard] = useState(false);
     const [showEditCol, setShowEditCol] = useState(false);
-    const [newColTitle, setNewColTitle] = useState(column.title);
-
-    const handleCardChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) =>
-        setNewCardText(ev.target.value);
-
-    const clearAndCloseTextInput = () => {
-        setNewCardText('');
-        setShowCreateCard(false);
-    };
 
     const disabled = newCardText.length === 0;
 
@@ -41,8 +41,16 @@ const Column: React.FC<Props> = ({ column, onCreateCard, onEditColumn, setItemTo
         },
     ];
 
+    const handleCardChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) =>
+        setNewCardText(ev.target.value);
+
+    const clearAndCloseTextInput = () => {
+        setNewCardText('');
+        setShowCreateCard(false);
+    };
+
     const handleColChange = (ev: React.ChangeEvent<HTMLInputElement>) =>
-        setNewColTitle(ev.target.value);
+        setColTitle(ev.target.value);
 
     return (
         <div className="bg-grey-90 w-[300px] rounded-lg">
@@ -53,15 +61,15 @@ const Column: React.FC<Props> = ({ column, onCreateCard, onEditColumn, setItemTo
                             autoFocus
                             className="bg-white w-[240px]"
                             type="text"
-                            value={newColTitle}
+                            value={colTitle}
                             onChange={handleColChange}
                         />
                         <button
                             className="text-grey-100 hover:text-[#007bff]"
                             onClick={() => {
-                                onEditColumn(column.id, newColTitle);
+                                onEditColumn(column.id, colTitle);
                                 setShowEditCol(false);
-                                setNewColTitle(column.title);
+                                setColTitle(column.title);
                             }}
                         >
                             <FontAwesomeIcon icon={faCheck} />
@@ -69,7 +77,7 @@ const Column: React.FC<Props> = ({ column, onCreateCard, onEditColumn, setItemTo
                         <button
                             className="text-grey-100 hover:text-secondary-100"
                             onClick={() => {
-                                setNewColTitle(column.title);
+                                setColTitle(column.title);
                                 setShowEditCol(false);
                             }}
                         >
@@ -84,39 +92,52 @@ const Column: React.FC<Props> = ({ column, onCreateCard, onEditColumn, setItemTo
                 )}
             </div>
             <div className="flex flex-col gap-y-2 p-1 min-h-[80px]">
-                <CardsList cards={column.cards} setItemToDelete={setItemToDelete} />
-                {showCreateCard && <NewCardInput value={newCardText} onChange={handleCardChange} />}
+                {column.cards.map((card) => (
+                    <Card
+                        key={card.id}
+                        card={card}
+                        onEditCard={onEditCard}
+                        setIsEditCardShown={setIsEditCardShown}
+                        setItemToDelete={setItemToDelete}
+                    />
+                ))}
+
                 {showCreateCard ? (
-                    <div className="flex gap-x-2">
-                        <button
-                            className={`w-1/2  rounded-md 
+                    <>
+                        <NewCardInput value={newCardText} onChange={handleCardChange} />
+                        <div className="flex gap-x-2">
+                            <button
+                                className={`w-1/2 rounded-md 
                                     ${
                                         disabled
                                             ? 'text-grey-100 bg-grey-90'
                                             : 'text-white bg-[#007bff] hover:brightness-75'
                                     }`}
-                            disabled={disabled}
-                            onClick={() => {
-                                onCreateCard(column.id, newCardText);
-                                clearAndCloseTextInput();
-                            }}
-                        >
-                            Add
-                        </button>
-                        <button
-                            className="w-1/2 text-white bg-secondary-100 rounded-md hover:brightness-75"
-                            onClick={clearAndCloseTextInput}
-                        >
-                            Cancel
-                        </button>
-                    </div>
+                                disabled={disabled}
+                                onClick={() => {
+                                    onCreateCard(column.id, newCardText);
+                                    clearAndCloseTextInput();
+                                }}
+                            >
+                                Add
+                            </button>
+                            <button
+                                className="w-1/2 text-white bg-secondary-100 rounded-md hover:brightness-75"
+                                onClick={clearAndCloseTextInput}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </>
                 ) : (
-                    <button
-                        onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="text-primary-110 mt-auto hover:text-[#007bff]"
-                    >
-                        + Add card
-                    </button>
+                    !isEditCardShown && (
+                        <button
+                            onClick={() => setShowCreateCard(!showCreateCard)}
+                            className="text-primary-110 mt-auto hover:text-[#007bff]"
+                        >
+                            + Add card
+                        </button>
+                    )
                 )}
             </div>
         </div>
