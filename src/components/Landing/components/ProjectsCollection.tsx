@@ -46,7 +46,7 @@ const ProjectsCollection = () => {
     ];
 
     return (
-        <main id="projects-collection" className="mb-10 animate-fade-in">
+        <main id="projects-collection" className="pt-16 pb-10 animate-fade-in">
             <h1 className="text-2xl font-bold text-center text-primary-100 uppercase mb-4">
                 Projects
             </h1>

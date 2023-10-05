@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 const LandingPage = () => (
     <>
         <TopNav />
-        <div className="content-max-width m-auto px-4 pt-24 overscroll-y-containt">
+        <div className="content-max-width m-auto px-4 pt-24">
             <Header />
             <ProjectsCollection />
             <Footer />

@@ -15,10 +15,11 @@ const Header = () => {
         'SQL',
     ];
 
-    const secondHeader = technologies.join(' | ');
+    const techList = technologies.join(' | ');
 
-    const headlineText = `Hello! 😃 I'm a software developer who enjoys creating fullstack web applications in Python and JavaScript. I have started with Java and C during my bachelor in Information Systems at McGill University and switched to TypeScript in a professional environment.
-    \n With a diverse background, I am eager to tackle any technical project!`;
+    const headlineParagraph = `Hello! 😃 I'm a software developer who enjoys creating fullstack web applications in Python and JavaScript.
+        \n I have started with Java and C during my bachelor in Information Systems at McGill University and switched to TypeScript in a professional environment.
+        \n With a diverse background, I am eager to tackle any technical project!`;
 
     const linkButtons = [
         {
@@ -50,19 +51,19 @@ const Header = () => {
     ];
 
     return (
-        <header className="mb-4">
-            <div className="flex flex-col items-center gap-y-5 mb-6">
+        <header>
+            <div className="flex flex-col items-center gap-y-5 pb-14">
                 <h1 className="text-3xl md:text-5xl text-center">
                     <span className="font-bold font-mono multi-line-type">Software Developer</span>
                     <span className="text-secondary-100 animate-drop">.</span>
                 </h1>
-                <h2 className="text-center max-w-[35rem] animate-fade-in-up">{secondHeader}</h2>
+                <h2 className="text-center max-w-[35rem] animate-fade-in-up">{techList}</h2>
             </div>
 
             <div className="flex justify-evenly">
-                <div className="p-5 md:basis-2/3">
+                <div className="md:basis-2/3">
                     <p className="mb-4 animate-fade-in" style={{ whiteSpace: 'pre-line' }}>
-                        {headlineText}
+                        {headlineParagraph}
                     </p>
                     <div className="flex gap-x-5 animate-slide-left-to-right">
                         {linkButtons.map((button) => (
