@@ -16,6 +16,10 @@ html {
     scroll-behavior: smooth; /* used when redirecting to an element */
 }
 
+.content-max-width {
+    max-width: 87.5rem;
+}
+
 .animate-navbar {
     animation: move_top_to_position 1s;
 }

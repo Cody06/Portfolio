@@ -12,7 +12,7 @@ const LandingPage = () => {
     return (
         <>
             <TopNav openResumeModal={() => setIsOpen(true)} />
-            <div className="max-w-[1400px] m-auto px-4 pt-24 overscroll-y-containt">
+            <div className="content-max-width m-auto px-4 pt-24 overscroll-y-containt">
                 <Header />
                 <ProjectsCollection />
                 <Footer />
