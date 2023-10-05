@@ -60,8 +60,9 @@ html {
     background-clip: padding-box, text;
     background-repeat: no-repeat;
     animation:
-        blink var(--caret-blink-speed) infinite steps(1),
-        type var(--typewriter-duration) steps(var(--title-num-of-chars)) forwards;
+    /* TODO: add blink animaiton 1s before starting to type (typewriter-delay) and then remove it */
+        /* blink var(--caret-blink-speed) infinite steps(1), */ type
+        var(--typewriter-duration) steps(var(--title-num-of-chars)) forwards;
 }
 @keyframes blink {
     50% {
