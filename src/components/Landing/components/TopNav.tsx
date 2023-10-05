@@ -2,11 +2,7 @@ import React from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../types';
 
-interface Props {
-    openResumeModal: () => void;
-}
-
-const TopNav: React.FC<Props> = ({ openResumeModal }) => {
+const TopNav: React.FC = () => {
     const buttonsList: Button[] = [
         {
             id: 'projects',
@@ -15,11 +11,6 @@ const TopNav: React.FC<Props> = ({ openResumeModal }) => {
                 const element = document.getElementById('projects-collection');
                 if (element) element.scrollIntoView();
             },
-        },
-        {
-            id: 'resume',
-            name: 'Resume',
-            onClick: openResumeModal,
         },
         {
             id: 'contact',
