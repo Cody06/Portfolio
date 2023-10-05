@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Button from '../../ui/Button';
+import SectionHeader from './SectionHeader';
 
 const ProjectsCollection = () => {
     const projects = [
@@ -33,23 +34,23 @@ const ProjectsCollection = () => {
             href: '',
             thumbnail: 'commerce.png',
         },
-        {
-            id: 4,
-            name: 'Email Client',
-            year: 2023,
-            tools: ['React', 'TypeScript'],
-            description: `This is an email client where users can send, receive and archive emails through a built-in API.
-                The application focuses on User Interfaces where everything runs on one html page.`,
-            href: '',
-            thumbnail: 'email.png',
-        },
+        // TODO: Reconsider implementation
+        // {
+        //     id: 4,
+        //     name: 'Email Client',
+        //     year: 2023,
+        //     tools: ['React', 'TypeScript'],
+        //     description: `This is an email client where users can send, receive and archive emails through a built-in API.
+        //         The application focuses on User Interfaces where everything runs on one html page.`,
+        //     href: '',
+        //     thumbnail: 'email.png',
+        // },
     ];
 
     return (
-        <main id="projects-collection" className="mb-10 animate-fade-in">
-            <h1 className="text-2xl font-bold text-center text-primary-100 uppercase mb-4">
-                Projects
-            </h1>
+        // Use padding-top to see the title when onClick scrollIntoView
+        <main id="projects-collection" className="pt-16 animate-fade-in">
+            <SectionHeader title="Projects" />
 
             <div className="flex flex-col gap-y-10">
                 {projects.map((project) => (
@@ -78,9 +79,9 @@ const ProjectsCollection = () => {
                         </div>
 
                         <div className="pt-4 md:pt-0 md:w-2/3">
-                            <h2 className="mb-4 text-2xl text-center font-medium">
+                            <h3 className="mb-4 text-2xl text-center font-medium">
                                 {project.name}
-                            </h2>
+                            </h3>
                             <div className="flex gap-x-2 justify-center mb-6 md:mb-8">
                                 {project.tools.map((tool) => (
                                     <div

@@ -3,24 +3,20 @@ import TopNav from './components/TopNav';
 import Header from './components/Header';
 import ProjectsCollection from './components/ProjectsCollection';
 import Footer from './components/Footer';
-import ResumeModal from './components/ResumeModal';
-import { useState } from 'react';
+import WorkExperience from './components/WorkExperience';
+import Certifications from './components/Certifications';
 
-const LandingPage = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <>
-            <TopNav openResumeModal={() => setIsOpen(true)} />
-            <div className="max-w-[1400px] m-auto px-4 pt-24 overscroll-y-containt">
-                <Header />
-                <ProjectsCollection />
-                <Footer />
-            </div>
-
-            <ResumeModal isOpen={isOpen} requestClose={() => setIsOpen(false)} />
-        </>
-    );
-};
+const LandingPage = () => (
+    <>
+        <TopNav />
+        <div className="content-max-width m-auto px-4 pt-24 select-none">
+            <Header />
+            <ProjectsCollection />
+            <WorkExperience />
+            <Certifications />
+            <Footer />
+        </div>
+    </>
+);
 
 export default LandingPage;
