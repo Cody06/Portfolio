@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 :root {
-    --typewriter-speed: 2s;
-    --typewriter-delay: 1s;
-    --typewriter-duration: calc(var(--typewriter-speed) + var(--typewriter-delay));
-    --title-num-of-chars: 19;
+    --animation-speed-fast: 1s;
+    --animation-speed-normal: 2s;
     --caret-blink-speed: 530ms;
-    --dot-delay: 3500ms; /* have the dot drop right after the last character was typed */
-    --fade-in-speed: 3s;
+
+    --title-num-of-chars: 19;
+    --speed-per-char: 100ms;
+    --typewriter-duration: calc(var(--title-num-of-chars) * var(--speed-per-char)); /* 1,900ms */
+
+    --typewriter-delay: 1s;
+    --total-typewriter-duration: calc(
+        var(--typewriter-duration) + var(--typewriter-delay)
+    ); /* 1900ms + 1s = 2,900ms */
 }
 
 html {
@@ -56,7 +61,7 @@ html {
     background-repeat: no-repeat;
     animation:
         blink var(--caret-blink-speed) infinite steps(1),
-        type calc(var(--title-num-of-chars) * 200ms) steps(var(--title-num-of-chars)) forwards;
+        type var(--typewriter-duration) steps(var(--title-num-of-chars)) forwards;
 }
 @keyframes blink {
     50% {
@@ -74,7 +79,7 @@ html {
 .animate-drop {
     position: relative;
     opacity: 0;
-    animation: dot_drop 2s var(--dot-delay) forwards;
+    animation: dot_drop var(--animation-speed-normal) var(--typewriter-duration) forwards;
 }
 
 @keyframes dot_drop {
@@ -90,7 +95,7 @@ html {
 .animate-fade-in-up {
     opacity: 0%;
     transform: translateY(3rem);
-    animation: fade_in_up var(--fade-in-speed) var(--typewriter-duration) forwards;
+    animation: fade_in_up var(--animation-speed-normal) var(--total-typewriter-duration) forwards;
 }
 
 @keyframes fade_in_up {
@@ -102,7 +107,7 @@ html {
 
 .animate-fade-in {
     opacity: 0%; /* keep it hidden */
-    animation: fade_in var(--fade-in-speed) var(--typewriter-duration) forwards;
+    animation: fade_in var(--animation-speed-normal) var(--total-typewriter-duration) forwards;
 }
 
 @keyframes fade_in {
@@ -119,11 +124,13 @@ html {
 
 /* Animate each link at a different speed */
 .animate-slide-left-to-right a:nth-child(1) {
-    animation: slide_left_to_right 2s var(--typewriter-duration) forwards;
+    animation: slide_left_to_right var(--animation-speed-normal) var(--total-typewriter-duration)
+        forwards;
 }
 
 .animate-slide-left-to-right a:nth-child(2) {
-    animation: slide_left_to_right 1s var(--typewriter-duration) forwards;
+    animation: slide_left_to_right var(--animation-speed-fast) var(--total-typewriter-duration)
+        forwards;
 }
 
 @keyframes slide_left_to_right {
@@ -135,6 +142,25 @@ html {
     }
     100% {
         left: 0px;
+        opacity: 100%;
+    }
+}
+
+.animate-slide-rigth-to-left {
+    opacity: 0;
+    animation: slide_right_to_left var(--animation-speed-fast) var(--total-typewriter-duration)
+        forwards;
+}
+
+@keyframes slide_right_to_left {
+    0% {
+        right: -12.5rem;
+    }
+    40% {
+        opacity: 100%;
+    }
+    100% {
+        right: 0px;
         opacity: 100%;
     }
 }
@@ -160,23 +186,5 @@ html {
     }
     100% {
         top: 0px;
-    }
-}
-
-.animate-slide-rigth-to-left {
-    opacity: 0;
-    animation: slide_right_to_left 1s var(--typewriter-duration) forwards;
-}
-
-@keyframes slide_right_to_left {
-    0% {
-        right: -12.5rem;
-    }
-    40% {
-        opacity: 100%;
-    }
-    100% {
-        right: 0px;
-        opacity: 100%;
     }
 }
