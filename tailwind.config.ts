@@ -25,6 +25,10 @@ const config: Config = {
                 100: '#778088',
                 90: '#F2F2F2',
             },
+            error: {
+                110: '#990000',
+                100: '#FF0000',
+            },
             black: '#000000',
             white: '#FFFFFF',
         },

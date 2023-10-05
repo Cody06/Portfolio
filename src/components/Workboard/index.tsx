@@ -4,22 +4,12 @@ import { useState } from 'react';
 import Column from './Column';
 import CreateColumnModal from './CreateColumnModal';
 import getUniqueId from '@/utils/getUniqueId';
-import DeleteColumnModal from './DeleteColumnModal';
-
-export type CardData = {
-    id: string;
-    text: string;
-};
-
-export type ColumnData = {
-    id: string;
-    title: string;
-    cards: CardData[];
-};
+import DeleteModal from './DeleteModal';
+import { ColumnData, ItemToDelete } from './types';
 
 const Workboard = () => {
-    const [showCreateColumnModal, setShowCreateColumnModal] = useState(false);
-    const [showDeleteColumnModal, setShowDeleteColumnModal] = useState(false);
+    const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState<ItemToDelete>();
     const [columns, setColumns] = useState<ColumnData[]>([]);
 
     const handleCreateColumn = (colTitle: string) => {
@@ -27,62 +17,124 @@ const Workboard = () => {
         setColumns((oldCols) => [...oldCols, { id: randomId, title: colTitle, cards: [] }]);
     };
 
-    const handleDeleteColumn = (id: string) => alert(`Deleting col: ${id}`);
-
-    const handleCreateCard = (colId: string, newCardText: string) => {
+    const handleCreateCard = (colId: string, cardText: string) => {
         const nextCard = {
-            id: `card-${getUniqueId(newCardText)}`,
-            text: newCardText,
+            id: `card-${getUniqueId(cardText)}`,
+            text: cardText,
         };
 
-        const updatedColumns = columns.map((col) => {
-            if (col.id === colId) {
+        setColumns(
+            columns.map((col) => {
+                if (col.id === colId) {
+                    return {
+                        ...col,
+                        cards: [...col.cards, nextCard],
+                    };
+                } else {
+                    return col;
+                }
+            }),
+        );
+    };
+
+    const handleDeleteColumn = (colId: string) =>
+        setColumns(columns.filter((col) => col.id !== colId));
+
+    const handleDeleteCard = (cardId: string) => {
+        setColumns(
+            columns.map((col) => {
                 return {
                     ...col,
-                    cards: [...col.cards, nextCard],
+                    cards: col.cards.filter((card) => card.id !== cardId),
                 };
-            } else {
-                return col;
-            }
-        });
-        setColumns(updatedColumns);
+            }),
+        );
+    };
+
+    const handleDeleteItem = (item: ItemToDelete) => {
+        if (item.kind === 'card') handleDeleteCard(item.id);
+        if (item.kind === 'column') handleDeleteColumn(item.id);
+    };
+
+    const handleEditColumn = (colId: string, colTitle: string) => {
+        setColumns(
+            columns.map((col) => {
+                if (col.id === colId) {
+                    return {
+                        ...col,
+                        title: colTitle,
+                    };
+                } else {
+                    return col;
+                }
+            }),
+        );
+    };
+
+    const handleEditCard = (cardId: string, cardText: string) => {
+        setColumns(
+            columns.map((col) => {
+                return {
+                    ...col,
+                    cards: col.cards.map((card) => {
+                        if (card.id === cardId) {
+                            return {
+                                ...card,
+                                text: cardText,
+                            };
+                        } else {
+                            return card;
+                        }
+                    }),
+                };
+            }),
+        );
     };
 
     return (
-        <div className="fixed inset-0 bg-[#0079BF]">
-            <nav className="flex justify-between p-4 text-white bg-[#094C72]">
-                <span className="font-bold">Workboard</span>
-                <Link href="/" className="hover:text-secondary-100">
-                    Back to Portfolio
-                </Link>
-            </nav>
+        <>
+            <div className="fixed inset-0 bg-[#0079BF]">
+                <nav className="flex justify-between p-4 text-white bg-[#094C72]">
+                    <span className="font-bold">Workboard</span>
+                    <Link href="/" className="hover:text-secondary-100">
+                        Back to Portfolio
+                    </Link>
+                </nav>
 
-            <div className="flex gap-2 items-start flex-wrap p-4">
-                {columns.map((column) => (
-                    <Column key={column.id} column={column} onCreateCard={handleCreateCard} />
-                ))}
-                <button
-                    className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
-                        hover:text-secondary-100"
-                    onClick={() => setShowCreateColumnModal(true)}
-                >
-                    + Add column
-                </button>
+                <div className="flex gap-2 items-start flex-wrap p-4">
+                    {columns.map((column) => (
+                        <Column
+                            key={column.id}
+                            column={column}
+                            onCreateCard={handleCreateCard}
+                            onEditCard={handleEditCard}
+                            onEditColumn={handleEditColumn}
+                            setItemToDelete={setItemToDelete}
+                        />
+                    ))}
+                    <button
+                        className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
+                            hover:text-secondary-100"
+                        onClick={() => setIsCreateColumnModalOpen(true)}
+                    >
+                        + Add column
+                    </button>
+                </div>
             </div>
-
             <CreateColumnModal
-                isOpen={showCreateColumnModal}
+                isOpen={isCreateColumnModalOpen}
                 onCreateColumn={handleCreateColumn}
-                requestClose={() => setShowCreateColumnModal(false)}
+                requestClose={() => setIsCreateColumnModalOpen(false)}
             />
-            <DeleteColumnModal
-                colId="TBD"
-                isOpen={showDeleteColumnModal}
-                title="TBD"
-                onDeleteColumn={handleDeleteColumn}
-                requestClose={() => setShowDeleteColumnModal(false)}
-            />
-        </div>
+            {itemToDelete && (
+                <DeleteModal
+                    isOpen={!!itemToDelete}
+                    item={itemToDelete}
+                    onDeleteItem={handleDeleteItem}
+                    requestClose={() => setItemToDelete(undefined)}
+                />
+            )}
+        </>
     );
 };
 
