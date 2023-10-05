@@ -1,29 +1,33 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu';
-import { Button } from '../types';
+import { Button } from '../../types';
 
 const TopNav: React.FC = () => {
     const buttonsList: Button[] = [
         {
-            id: 'projects',
+            id: 'projects-collection',
             name: 'Projects',
-            onClick: () => {
-                const element = document.getElementById('projects-collection');
-                if (element) element.scrollIntoView();
-            },
+            onClick: () => document.getElementById('projects-collection')?.scrollIntoView(),
+        },
+        {
+            id: 'work-experience',
+            name: 'Experience',
+            onClick: () => document.getElementById('work-experience')?.scrollIntoView(),
+        },
+        {
+            id: 'certifications',
+            name: 'Certifications',
+            onClick: () => document.getElementById('certifications')?.scrollIntoView(),
         },
         {
             id: 'contact',
             name: 'Contact',
-            onClick: () => {
-                const element = document.getElementById('contact');
-                if (element) element.scrollIntoView();
-            },
+            onClick: () => document.getElementById('contact')?.scrollIntoView(),
         },
     ];
 
     return (
-        <nav className="fixed z-10 w-full px-4 py-3 bg-primary-120 shadow-lg animate-navbar">
+        <nav className="fixed z-10 w-full px-4 py-3 bg-primary-120 shadow-lg animate-navbar select-none">
             <div className="flex justify-between content-max-width m-auto">
                 <div className="text-secondary-100 hover:animate-bounce">&lt; cody &gt;</div>
 
