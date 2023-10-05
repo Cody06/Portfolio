@@ -36,7 +36,7 @@ const Certifications = () => {
     ];
 
     return (
-        <section id="certifications">
+        <section id="certifications" className="pt-16">
             <SectionHeader title="Certifications" />
             <div className="md:grid grid-cols-2 gap-4 select-text">
                 {certifications.map((certificate) => (

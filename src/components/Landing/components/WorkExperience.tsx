@@ -13,7 +13,7 @@ const WorkExperience = () => {
     ];
 
     return (
-        <section id="work-experience">
+        <section id="work-experience" className="pt-16">
             <SectionHeader title="Experience" />
             {experiences.map((experience) => (
                 <div
