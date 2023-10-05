@@ -17,44 +17,10 @@ const Workboard = () => {
         setColumns((oldCols) => [...oldCols, { id: randomId, title: colTitle, cards: [] }]);
     };
 
-    const handleDeleteCard = (cardId: string) => {
-        setColumns(
-            columns.map((col) => {
-                return {
-                    ...col,
-                    cards: col.cards.filter((card) => card.id !== cardId),
-                };
-            }),
-        );
-    };
-
-    const handleDeleteColumn = (colId: string) =>
-        setColumns(columns.filter((col) => col.id !== colId));
-
-    const handleDeleteItem = (item: ItemToDelete) => {
-        if (item.kind === 'card') handleDeleteCard(item.id);
-        if (item.kind === 'column') handleDeleteColumn(item.id);
-    };
-
-    const handleEditColumn = (colId: string, newColTitle: string) => {
-        setColumns(
-            columns.map((col) => {
-                if (col.id === colId) {
-                    return {
-                        ...col,
-                        title: newColTitle,
-                    };
-                } else {
-                    return col;
-                }
-            }),
-        );
-    };
-
-    const handleCreateCard = (colId: string, newCardText: string) => {
+    const handleCreateCard = (colId: string, cardText: string) => {
         const nextCard = {
-            id: `card-${getUniqueId(newCardText)}`,
-            text: newCardText,
+            id: `card-${getUniqueId(cardText)}`,
+            text: cardText,
         };
 
         setColumns(
@@ -67,6 +33,60 @@ const Workboard = () => {
                 } else {
                     return col;
                 }
+            }),
+        );
+    };
+
+    const handleDeleteColumn = (colId: string) =>
+        setColumns(columns.filter((col) => col.id !== colId));
+
+    const handleDeleteCard = (cardId: string) => {
+        setColumns(
+            columns.map((col) => {
+                return {
+                    ...col,
+                    cards: col.cards.filter((card) => card.id !== cardId),
+                };
+            }),
+        );
+    };
+
+    const handleDeleteItem = (item: ItemToDelete) => {
+        if (item.kind === 'card') handleDeleteCard(item.id);
+        if (item.kind === 'column') handleDeleteColumn(item.id);
+    };
+
+    const handleEditColumn = (colId: string, colTitle: string) => {
+        setColumns(
+            columns.map((col) => {
+                if (col.id === colId) {
+                    return {
+                        ...col,
+                        title: colTitle,
+                    };
+                } else {
+                    return col;
+                }
+            }),
+        );
+    };
+
+    const handleEditCard = (cardId: string, cardText: string) => {
+        setColumns(
+            columns.map((col) => {
+                return {
+                    ...col,
+                    cards: col.cards.map((card) => {
+                        if (card.id === cardId) {
+                            return {
+                                ...card,
+                                text: cardText,
+                            };
+                        } else {
+                            return card;
+                        }
+                    }),
+                };
             }),
         );
     };
@@ -87,8 +107,9 @@ const Workboard = () => {
                             key={column.id}
                             column={column}
                             onCreateCard={handleCreateCard}
-                            setItemToDelete={setItemToDelete}
+                            onEditCard={handleEditCard}
                             onEditColumn={handleEditColumn}
+                            setItemToDelete={setItemToDelete}
                         />
                     ))}
                     <button
