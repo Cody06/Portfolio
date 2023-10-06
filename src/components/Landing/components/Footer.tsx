@@ -17,7 +17,7 @@ const Footer = () => {
     return (
         <footer
             id="contact"
-            className="flex flex-col gap-y-4 items-center pt-16 pb-10 text-primary-100"
+            className="flex flex-col gap-y-4 items-center pt-16 pb-10 text-grey-100"
         >
             <h4 className="text-xl font-bold">Get in touch</h4>
             <p>Montreal, QC, Canada</p>
@@ -28,7 +28,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     title={button.title}
-                    className="border-b border-transparent hover:border-secondary-100"
+                    className="border-b border-transparent hover:border-orange-100"
                 >
                     {button.label}
                 </Link>

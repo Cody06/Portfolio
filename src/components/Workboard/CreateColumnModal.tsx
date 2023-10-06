@@ -31,7 +31,7 @@ const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClo
                             ${
                                 disabled
                                     ? 'text-grey-100 bg-grey-90'
-                                    : 'text-white bg-[#007bff] hover:brightness-75 active:brightness-50'
+                                    : 'text-white bg-blue-100b hover:brightness-90 active:brightness-75'
                             } `}
                         disabled={disabled}
                         onClick={() => {

@@ -19,12 +19,12 @@ const Button: React.FC<Props> = ({
     type = 'button',
 }) => {
     const kindStyle = {
-        primary: `text-white bg-primary-120
-            hover:text-primary-120 hover:bg-secondary-100
-            active:bg-secondary-110`,
-        secondary: `border border-secondary-100
-            hover:text-white hover:bg-secondary-100
-            active:bg-secondary-110 active:border-secondary-110`,
+        primary: `text-white bg-grey-120
+            hover:text-grey-120 hover:bg-orange-100
+            active:brightness-75`,
+        secondary: `border border-orange-100
+            hover:text-white hover:bg-orange-100
+            active:brightness-75`,
     };
 
     const disabledStyle = 'text-grey-100 bg-grey-90';

@@ -54,7 +54,7 @@ const Column: React.FC<Props> = ({
 
     return (
         <div className="bg-grey-90 w-[300px] rounded-lg">
-            <div className="flex justify-between p-2 bg-primary-80 rounded-t-lg">
+            <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
                 {showEditCol ? (
                     <div className="flex gap-x-2">
                         <input
@@ -65,7 +65,7 @@ const Column: React.FC<Props> = ({
                             onChange={handleColChange}
                         />
                         <button
-                            className="text-grey-100 hover:text-[#007bff]"
+                            className="text-grey-100 hover:text-blue-100b"
                             onClick={() => {
                                 onEditColumn(column.id, colTitle);
                                 setShowEditCol(false);
@@ -75,7 +75,7 @@ const Column: React.FC<Props> = ({
                             <FontAwesomeIcon icon={faCheck} />
                         </button>
                         <button
-                            className="text-grey-100 hover:text-secondary-100"
+                            className="text-grey-100 hover:text-orange-100"
                             onClick={() => {
                                 setColTitle(column.title);
                                 setShowEditCol(false);
@@ -111,7 +111,7 @@ const Column: React.FC<Props> = ({
                                     ${
                                         disabled
                                             ? 'text-grey-100 bg-grey-90'
-                                            : 'text-white bg-[#007bff] hover:brightness-75'
+                                            : 'text-white bg-blue-100b hover:brightness-90'
                                     }`}
                                 disabled={disabled}
                                 onClick={() => {
@@ -122,7 +122,7 @@ const Column: React.FC<Props> = ({
                                 Add
                             </button>
                             <button
-                                className="w-1/2 text-white bg-secondary-100 rounded-md hover:brightness-75"
+                                className="w-1/2 text-white bg-orange-100 rounded-md hover:brightness-90"
                                 onClick={clearAndCloseTextInput}
                             >
                                 Cancel
@@ -133,7 +133,7 @@ const Column: React.FC<Props> = ({
                     !isEditCardShown && (
                         <button
                             onClick={() => setShowCreateCard(!showCreateCard)}
-                            className="text-primary-110 mt-auto hover:text-[#007bff]"
+                            className="text-grey-110 mt-auto hover:text-blue-100b"
                         >
                             + Add card
                         </button>

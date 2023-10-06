@@ -10,7 +10,7 @@ const ModalHeader: React.FC<Props> = ({ title, requestClose }) => (
     <div className="flex justify-between mb-4">
         {title}
         <button onClick={requestClose}>
-            <FontAwesomeIcon icon={faXmark} className="hover:text-secondary-100" />
+            <FontAwesomeIcon icon={faXmark} className="hover:text-orange-100" />
         </button>
     </div>
 );

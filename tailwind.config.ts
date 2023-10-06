@@ -9,26 +9,24 @@ const config: Config = {
     theme: {
         colors: {
             transparent: 'transparent',
-            primary: {
-                120: '#2E3338',
-                110: '#454D54',
-                100: '#5C6670',
-                90: '#73808C',
-                80: '#E3E6E8',
-            },
-            secondary: {
-                110: '#774709',
-                100: '#F1A541',
+            // https://colorhunt.co/palette/1b262c0f4c753282b8bbe1fa
+            blue: {
+                110: '#0F4C75',
+                '100b': '#007bff',
+                100: '#3282B8',
+                90: '#BBE1FA',
             },
             grey: {
+                120: '#2F3337',
                 110: '#5F666D',
                 100: '#778088',
                 90: '#F2F2F2',
             },
-            error: {
-                110: '#990000',
-                100: '#FF0000',
+            orange: {
+                110: '#774709',
+                100: '#F1A541',
             },
+            red: '#990000',
             black: '#000000',
             white: '#FFFFFF',
         },

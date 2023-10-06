@@ -3,7 +3,7 @@ interface Props {
 }
 
 const SectionHeader: React.FC<Props> = ({ title }) => (
-    <h2 className="text-2xl font-bold text-center text-primary-100 uppercase border-bottom-gradient">
+    <h2 className="text-2xl font-bold text-center text-grey-100 uppercase border-bottom-gradient">
         {title}
     </h2>
 );

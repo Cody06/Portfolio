@@ -1,6 +1,6 @@
 const Logo = () => {
     const parallelogramShape =
-        'bg-secondary-100 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
+        'bg-orange-100 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
 
     const topLayer = <div className={`absolute left-9 bg-opacity-80 ${parallelogramShape}`} />;
 
