@@ -9,6 +9,12 @@ const config: Config = {
     theme: {
         colors: {
             transparent: 'transparent',
+            // https://colorhunt.co/palette/1b262c0f4c753282b8bbe1fa
+            blue: {
+                110: '#0F4C75',
+                100: '#3282B8',
+                90: '#BBE1FA',
+            },
             grey: {
                 120: '#2F3337',
                 110: '#5F666D',
