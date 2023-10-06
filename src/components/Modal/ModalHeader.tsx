@@ -7,10 +7,13 @@ interface Props {
 }
 
 const ModalHeader: React.FC<Props> = ({ title, requestClose }) => (
-    <div className="flex justify-between mb-4">
+    <div className="flex justify-between items-center font-bold mb-4">
         {title}
-        <button onClick={requestClose}>
-            <FontAwesomeIcon icon={faXmark} className="hover:text-orange-100" />
+        <button
+            className="w-8 h-8 rounded-full hover:bg-grey-100 hover:bg-opacity-20"
+            onClick={requestClose}
+        >
+            <FontAwesomeIcon icon={faXmark} />
         </button>
     </div>
 );
