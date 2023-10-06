@@ -93,8 +93,8 @@ const Workboard = () => {
 
     return (
         <>
-            <div className="fixed inset-0 bg-[#0079BF]">
-                <nav className="flex justify-between p-4 text-white bg-[#094C72]">
+            <div className="fixed inset-0 bg-blue-100">
+                <nav className="flex justify-between p-4 text-white bg-blue-110">
                     <span className="font-bold">Workboard</span>
                     <Link href="/" className="hover:text-orange-100">
                         Back to Portfolio

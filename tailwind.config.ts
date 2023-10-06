@@ -12,6 +12,7 @@ const config: Config = {
             // https://colorhunt.co/palette/1b262c0f4c753282b8bbe1fa
             blue: {
                 110: '#0F4C75',
+                '100b': '#007bff',
                 100: '#3282B8',
                 90: '#BBE1FA',
             },

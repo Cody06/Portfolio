@@ -65,7 +65,7 @@ const Column: React.FC<Props> = ({
                             onChange={handleColChange}
                         />
                         <button
-                            className="text-grey-100 hover:text-[#007bff]"
+                            className="text-grey-100 hover:text-blue-100b"
                             onClick={() => {
                                 onEditColumn(column.id, colTitle);
                                 setShowEditCol(false);
@@ -111,7 +111,7 @@ const Column: React.FC<Props> = ({
                                     ${
                                         disabled
                                             ? 'text-grey-100 bg-grey-90'
-                                            : 'text-white bg-[#007bff] hover:brightness-90'
+                                            : 'text-white bg-blue-100b hover:brightness-90'
                                     }`}
                                 disabled={disabled}
                                 onClick={() => {
@@ -133,7 +133,7 @@ const Column: React.FC<Props> = ({
                     !isEditCardShown && (
                         <button
                             onClick={() => setShowCreateCard(!showCreateCard)}
-                            className="text-grey-110 mt-auto hover:text-[#007bff]"
+                            className="text-grey-110 mt-auto hover:text-blue-100b"
                         >
                             + Add card
                         </button>

@@ -28,7 +28,7 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
     const DropdownList = (
         <ul className="absolute right-0 w-max bg-white rounded-b-md rounded-tl-md shadow-md">
             {buttonsList.map((btn) => (
-                <li key={btn.label} className="p-2 hover:text-[#007bff] hover:bg-grey-90">
+                <li key={btn.label} className="p-2 hover:text-blue-100b hover:bg-grey-90">
                     <button className="text-left w-full" onClick={btn.onClick}>
                         {btn.label}
                     </button>
@@ -39,7 +39,7 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
     return (
         <div ref={nodeRef}>
             <button
-                className="text-grey-100 hover:text-[#007bff]"
+                className="text-grey-100 hover:text-blue-100b"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <FontAwesomeIcon icon={faEllipsis} />
