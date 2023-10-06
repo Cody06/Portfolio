@@ -54,7 +54,7 @@ const Column: React.FC<Props> = ({
 
     return (
         <div className="bg-grey-90 w-[300px] rounded-lg">
-            <div className="flex justify-between p-2 bg-primary-80 rounded-t-lg">
+            <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
                 {showEditCol ? (
                     <div className="flex gap-x-2">
                         <input
@@ -133,7 +133,7 @@ const Column: React.FC<Props> = ({
                     !isEditCardShown && (
                         <button
                             onClick={() => setShowCreateCard(!showCreateCard)}
-                            className="text-primary-110 mt-auto hover:text-[#007bff]"
+                            className="text-grey-110 mt-auto hover:text-[#007bff]"
                         >
                             + Add card
                         </button>

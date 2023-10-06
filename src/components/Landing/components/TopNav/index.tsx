@@ -27,7 +27,7 @@ const TopNav: React.FC = () => {
     ];
 
     return (
-        <nav className="fixed z-10 w-full px-4 py-3 bg-primary-120 shadow-lg animate-navbar select-none">
+        <nav className="fixed z-10 w-full px-4 py-3 bg-grey-120 shadow-lg animate-navbar select-none">
             <div className="flex justify-between content-max-width m-auto">
                 <div className="text-secondary-100 hover:animate-bounce">&lt; cody &gt;</div>
 

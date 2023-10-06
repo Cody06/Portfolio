@@ -86,7 +86,7 @@ const ProjectsCollection = () => {
                                 {project.tools.map((tool) => (
                                     <div
                                         key={tool}
-                                        className="p-1 w-max rounded-md text-sm text-primary-100 bg-primary-80"
+                                        className="p-1 w-max rounded-md text-sm text-grey-110 bg-grey-90"
                                     >
                                         {tool}
                                     </div>

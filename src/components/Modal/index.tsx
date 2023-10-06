@@ -25,7 +25,7 @@ const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
 
     return isOpen ? (
         <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-            <div className="content-max-width h-max p-5 bg-primary-80 rounded-2xl">
+            <div className="content-max-width h-max p-5 bg-grey-90 rounded-2xl">
                 <ModalHeader title={title} requestClose={requestClose} />
                 <ModalBody>{children}</ModalBody>
             </div>

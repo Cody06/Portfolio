@@ -19,8 +19,8 @@ const Button: React.FC<Props> = ({
     type = 'button',
 }) => {
     const kindStyle = {
-        primary: `text-white bg-primary-120
-            hover:text-primary-120 hover:bg-secondary-100
+        primary: `text-white bg-grey-120
+            hover:text-grey-120 hover:bg-secondary-100
             active:bg-secondary-110`,
         secondary: `border border-secondary-100
             hover:text-white hover:bg-secondary-100
