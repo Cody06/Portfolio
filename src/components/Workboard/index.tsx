@@ -96,7 +96,7 @@ const Workboard = () => {
             <div className="fixed inset-0 bg-[#0079BF]">
                 <nav className="flex justify-between p-4 text-white bg-[#094C72]">
                     <span className="font-bold">Workboard</span>
-                    <Link href="/" className="hover:text-secondary-100">
+                    <Link href="/" className="hover:text-orange-100">
                         Back to Portfolio
                     </Link>
                 </nav>
@@ -114,7 +114,7 @@ const Workboard = () => {
                     ))}
                     <button
                         className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
-                            hover:text-secondary-100"
+                            hover:text-orange-100"
                         onClick={() => setIsCreateColumnModalOpen(true)}
                     >
                         + Add column

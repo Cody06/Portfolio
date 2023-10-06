@@ -75,7 +75,7 @@ const Column: React.FC<Props> = ({
                             <FontAwesomeIcon icon={faCheck} />
                         </button>
                         <button
-                            className="text-grey-100 hover:text-secondary-100"
+                            className="text-grey-100 hover:text-orange-100"
                             onClick={() => {
                                 setColTitle(column.title);
                                 setShowEditCol(false);
@@ -111,7 +111,7 @@ const Column: React.FC<Props> = ({
                                     ${
                                         disabled
                                             ? 'text-grey-100 bg-grey-90'
-                                            : 'text-white bg-[#007bff] hover:brightness-75'
+                                            : 'text-white bg-[#007bff] hover:brightness-90'
                                     }`}
                                 disabled={disabled}
                                 onClick={() => {
@@ -122,7 +122,7 @@ const Column: React.FC<Props> = ({
                                 Add
                             </button>
                             <button
-                                className="w-1/2 text-white bg-secondary-100 rounded-md hover:brightness-75"
+                                className="w-1/2 text-white bg-orange-100 rounded-md hover:brightness-90"
                                 onClick={clearAndCloseTextInput}
                             >
                                 Cancel

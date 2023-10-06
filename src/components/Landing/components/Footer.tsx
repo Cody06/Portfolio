@@ -28,7 +28,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     title={button.title}
-                    className="border-b border-transparent hover:border-secondary-100"
+                    className="border-b border-transparent hover:border-orange-100"
                 >
                     {button.label}
                 </Link>

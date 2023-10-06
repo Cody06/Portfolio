@@ -36,7 +36,7 @@ const Card: React.FC<Props> = ({ card, onEditCard, setIsEditCardShown, setItemTo
             <NewCardInput value={updatedCardText} onChange={handleUpdateText} />
             <div className="flex gap-x-2">
                 <button
-                    className="w-1/2 text-white bg-[#007bff] hover:brightness-75 rounded-md"
+                    className="w-1/2 text-white bg-[#007bff] hover:brightness-90 rounded-md"
                     onClick={() => {
                         onEditCard(card.id, updatedCardText);
                         setShowEditCard(false);
@@ -46,7 +46,7 @@ const Card: React.FC<Props> = ({ card, onEditCard, setIsEditCardShown, setItemTo
                     Save
                 </button>
                 <button
-                    className="w-1/2 text-white bg-secondary-100 hover:brightness-75 rounded-md"
+                    className="w-1/2 text-white bg-orange-100 hover:brightness-90 rounded-md"
                     onClick={() => {
                         setShowEditCard(false);
                         setIsEditCardShown(false);

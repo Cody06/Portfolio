@@ -19,7 +19,7 @@ const DeleteModal: React.FC<Props> = ({ isOpen, item, onDeleteItem, requestClose
             <div className="flex gap-x-4">
                 <button
                     className="w-1/2 p-1 text-white bg-error-100 border border-error-100 rounded-md
-                        hover:brightness-75"
+                        hover:brightness-90 active:brightness-75"
                     onClick={() => {
                         onDeleteItem(item);
                         requestClose();
@@ -28,7 +28,7 @@ const DeleteModal: React.FC<Props> = ({ isOpen, item, onDeleteItem, requestClose
                     Yes, delete
                 </button>
                 <button
-                    className="w-1/2 p-1 border rounded-md hover:text-secondary-100"
+                    className="w-1/2 p-1 border rounded-md hover:text-orange-100"
                     onClick={requestClose}
                 >
                     Cancel

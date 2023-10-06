@@ -9,15 +9,15 @@ const config: Config = {
     theme: {
         colors: {
             transparent: 'transparent',
-            secondary: {
-                110: '#774709',
-                100: '#F1A541',
-            },
             grey: {
                 120: '#2F3337',
                 110: '#5F666D',
                 100: '#778088',
                 90: '#F2F2F2',
+            },
+            orange: {
+                110: '#774709',
+                100: '#F1A541',
             },
             error: {
                 110: '#990000',
