@@ -99,7 +99,7 @@ const Workboard = () => {
         <>
             <nav className="flex justify-between p-4 text-white bg-blue-110">
                 <span className="font-bold">Workboard</span>
-                <Link href="/" className="hover:text-orange-100">
+                <Link href="/" className="hover:text-orange-100" scroll={false}>
                     Back to Portfolio
                 </Link>
             </nav>
