@@ -39,7 +39,7 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
     return (
         <div ref={nodeRef}>
             <button
-                className="text-grey-100 hover:text-blue-100b"
+                className="w-8 h-8 text-grey-100 hover:text-blue-100b"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <FontAwesomeIcon icon={faEllipsis} />
