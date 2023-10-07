@@ -1,6 +1,6 @@
-import { ItemToDelete } from './types';
-import Modal from '../Modal';
-import ModalBody from '../Modal/ModalBody';
+import { ItemToDelete } from '../types';
+import Modal from '@/components/Modal';
+import ModalBody from '@/components/Modal/ModalBody';
 
 interface Props {
     isOpen: boolean;

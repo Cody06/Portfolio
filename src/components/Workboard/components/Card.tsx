@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CardData, ItemToDelete } from './types';
+import { CardData, ItemToDelete } from '../types';
 import Dropdown from './Dropdown';
 
 interface Props {

@@ -1,10 +1,10 @@
 'use client';
-import Link from 'next/link';
 import { useState } from 'react';
-import Column from './Column';
-import CreateColumnModal from './CreateColumnModal';
+import Link from 'next/link';
+import Column from './components/Column';
+import CreateColumnModal from './components/CreateColumnModal';
+import DeleteModal from './components/DeleteModal';
 import getUniqueId from '@/utils/getUniqueId';
-import DeleteModal from './DeleteModal';
 import { ColumnData, ItemToDelete } from './types';
 
 const Workboard = () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '../Modal';
-import ModalBody from '../Modal/ModalBody';
+import Modal from '@/components/Modal';
+import ModalBody from '@/components/Modal/ModalBody';
 
 interface Props {
     isOpen: boolean;

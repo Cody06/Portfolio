@@ -1,10 +1,10 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useRef, useState } from 'react';
-import { ColumnData, ItemToDelete } from './types';
+import { ColumnData, ItemToDelete } from '../types';
+import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
-import Card from './Card';
 
 interface Props {
     column: ColumnData;
