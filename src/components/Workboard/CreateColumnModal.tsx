@@ -4,26 +4,31 @@ import ModalBody from '../Modal/ModalBody';
 
 interface Props {
     isOpen: boolean;
-    onCreateColumn: (colName: string) => void;
+    onCreateColumn: (colTitle: string) => void;
     requestClose: () => void;
 }
 
 const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClose }) => {
-    const [colName, setColName] = useState('');
+    const [title, setTitle] = useState('');
+    const disabled = title.length === 0;
 
-    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setColName(ev.target.value);
+    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value);
 
-    const disabled = colName.length === 0;
+    const clearInputAndClose = () => {
+        setTitle('');
+        requestClose();
+    };
 
     return (
-        <Modal isOpen={isOpen} title="Add a column" requestClose={requestClose}>
+        <Modal isOpen={isOpen} title="Add a column" requestClose={clearInputAndClose}>
             <ModalBody>
                 <div className="flex flex-col items-center gap-y-4">
                     <input
+                        autoFocus
                         type="text"
                         className="p-2 rounded-md"
                         placeholder="Enter a column title"
-                        value={colName}
+                        value={title}
                         onChange={handleChange}
                     />
                     <button
@@ -35,9 +40,8 @@ const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClo
                             } `}
                         disabled={disabled}
                         onClick={() => {
-                            onCreateColumn(colName);
-                            setColName('');
-                            requestClose();
+                            onCreateColumn(title);
+                            clearInputAndClose();
                         }}
                     >
                         Create column
