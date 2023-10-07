@@ -6,18 +6,10 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ showAnimation }) => {
-    const technologies = [
-        'JavaScript',
-        'TypeScript',
-        'React',
-        'Next.js',
-        'Python',
-        'Django',
-        'HTML',
-        'CSS',
-        'Tailwind',
-        'SQL',
-    ].join(' | ');
+    const technologies = ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Python', 'Django'].join(
+        ' | ',
+    );
+    const secondaryTechnologies = ['HTML', 'CSS', 'Tailwind', 'SQL'].join(' | ');
 
     const headlineParagraph = `Hello! 😃 I'm a software developer who enjoys creating fullstack web applications in Python and JavaScript.
         \n I have started with Java and C during my bachelor in Information Systems at McGill University and switched to TypeScript in a professional environment.
@@ -61,11 +53,14 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
                     </span>
                     <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>.</span>
                 </h1>
-                <h2
-                    className={`text-center max-w-[35rem] ${showAnimation && 'animate-fade-in-up'}`}
+                <div
+                    className={`text-center max-w-[20rem] md:max-w-[32rem] ${
+                        showAnimation && 'animate-fade-in-up'
+                    }`}
                 >
-                    {technologies}
-                </h2>
+                    <h2>{technologies}</h2>
+                    <h2>{secondaryTechnologies}</h2>
+                </div>
             </div>
 
             <div className="flex justify-evenly">
