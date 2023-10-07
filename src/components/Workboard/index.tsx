@@ -117,7 +117,7 @@ const Workboard = () => {
                     />
                 ))}
                 <button
-                    className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
+                    className="text-white min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg 
                             hover:bg-blue-110 hover:border-solid"
                     onClick={() => setIsCreateColumnModalOpen(true)}
                 >
