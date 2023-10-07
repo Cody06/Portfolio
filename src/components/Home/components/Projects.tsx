@@ -68,6 +68,7 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
                                 src={'/assets/laptop.png'}
                                 width={520}
                                 height={300}
+                                priority
                                 alt="Laptop image"
                             />
 
