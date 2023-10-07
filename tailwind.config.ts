@@ -26,7 +26,7 @@ const config: Config = {
                 110: '#774709',
                 100: '#F1A541',
             },
-            red: '#990000',
+            red: '#D80032',
             black: '#000000',
             white: '#FFFFFF',
         },

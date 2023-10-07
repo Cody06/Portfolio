@@ -1,10 +1,10 @@
 'use client';
-import Link from 'next/link';
 import { useState } from 'react';
-import Column from './Column';
-import CreateColumnModal from './CreateColumnModal';
+import Link from 'next/link';
+import Column from './components/Column';
+import CreateColumnModal from './components/CreateColumnModal';
+import DeleteModal from './components/DeleteModal';
 import getUniqueId from '@/utils/getUniqueId';
-import DeleteModal from './DeleteModal';
 import { ColumnData, ItemToDelete } from './types';
 
 const Workboard = () => {
@@ -107,6 +107,7 @@ const Workboard = () => {
                             key={column.id}
                             column={column}
                             onCreateCard={handleCreateCard}
+                            onDeleteCard={handleDeleteItem}
                             onEditCard={handleEditCard}
                             onEditColumn={handleEditColumn}
                             setItemToDelete={setItemToDelete}
@@ -114,7 +115,7 @@ const Workboard = () => {
                     ))}
                     <button
                         className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
-                            hover:text-orange-100"
+                            hover:bg-blue-110 hover:border-solid"
                         onClick={() => setIsCreateColumnModalOpen(true)}
                     >
                         + Add column
@@ -126,7 +127,7 @@ const Workboard = () => {
                 onCreateColumn={handleCreateColumn}
                 requestClose={() => setIsCreateColumnModalOpen(false)}
             />
-            {itemToDelete && (
+            {!!itemToDelete && (
                 <DeleteModal
                     isOpen={!!itemToDelete}
                     item={itemToDelete}

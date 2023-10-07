@@ -1,6 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
 
 type Button = {
     label: string;
