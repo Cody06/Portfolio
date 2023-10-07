@@ -1,4 +1,8 @@
-const Logo = () => {
+interface Props {
+    showAnimation: boolean;
+}
+
+const Logo: React.FC<Props> = ({ showAnimation }) => {
     const parallelogramShape =
         'bg-orange-100 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
 
@@ -13,7 +17,11 @@ const Logo = () => {
     );
 
     return (
-        <div className="relative w-[10.5rem] h-[10rem] animate-slide-rigth-to-left">
+        <div
+            className={`relative w-[10.5rem] h-[10rem] ${
+                showAnimation && 'animate-slide-rigth-to-left'
+            }`}
+        >
             {topLayer}
             {middleLayer}
             {bottomLayer}

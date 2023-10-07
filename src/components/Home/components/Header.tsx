@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import Logo from '../../ui/Logo';
 
-const Header = () => {
+interface Props {
+    showAnimation: boolean;
+}
+
+const Header: React.FC<Props> = ({ showAnimation }) => {
     const technologies = [
         'JavaScript',
         'TypeScript',
@@ -52,15 +56,24 @@ const Header = () => {
         <header>
             <div className="flex flex-col items-center gap-y-5 pb-14">
                 <h1 className="text-3xl md:text-5xl text-center">
-                    <span className="font-bold font-mono multi-line-type">Software Developer</span>
-                    <span className="text-orange-100 animate-drop">.</span>
+                    <span className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}>
+                        Software Developer
+                    </span>
+                    <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>.</span>
                 </h1>
-                <h2 className="text-center max-w-[35rem] animate-fade-in-up">{technologies}</h2>
+                <h2
+                    className={`text-center max-w-[35rem] ${showAnimation && 'animate-fade-in-up'}`}
+                >
+                    {technologies}
+                </h2>
             </div>
 
             <div className="flex justify-evenly">
                 <div className="md:basis-2/3">
-                    <p className="mb-4 animate-fade-in" style={{ whiteSpace: 'pre-line' }}>
+                    <p
+                        className={`mb-4 ${showAnimation && 'animate-fade-in'}`}
+                        style={{ whiteSpace: 'pre-line' }}
+                    >
                         {headlineParagraph}
                     </p>
                     <div className="flex gap-x-5 animate-slide-left-to-right">
@@ -79,7 +92,7 @@ const Header = () => {
                 </div>
 
                 <div className="hidden md:block">
-                    <Logo />
+                    <Logo showAnimation={showAnimation} />
                 </div>
             </div>
         </header>

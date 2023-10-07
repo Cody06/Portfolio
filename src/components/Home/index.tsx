@@ -1,23 +1,25 @@
 'use client';
-import TopNav from './components/TopNav';
-import Header from './components/Header';
-import ProjectsCollection from './components/ProjectsCollection';
-import Footer from './components/Footer';
-import WorkExperience from './components/WorkExperience';
-import Certifications from './components/Certifications';
 import { useEffect } from 'react';
+import Certifications from './components/Certifications';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Projects from './components/Projects';
+import TopNav from './components/TopNav';
+import WorkExperience from './components/WorkExperience';
 
 const Home = () => {
     useEffect(() => {
         document.body.className = '';
+        sessionStorage.setItem('viewed_animations', '1');
     }, []);
 
+    const viewedAnimations = sessionStorage.getItem('viewed_animations');
     return (
         <>
             <TopNav />
             <div className="content-max-width m-auto px-4 pt-24 select-none">
-                <Header />
-                <ProjectsCollection />
+                <Header showAnimation={!viewedAnimations} />
+                <Projects showAnimation={!viewedAnimations} />
                 <WorkExperience />
                 <Certifications />
                 <Footer />
