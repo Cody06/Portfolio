@@ -32,11 +32,9 @@ const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClo
                         onChange={handleChange}
                     />
                     <button
-                        className={`w-max p-2 rounded-md
+                        className={`w-max p-2 text-white bg-blue-100b rounded-md
                             ${
-                                disabled
-                                    ? 'text-grey-100 bg-grey-90'
-                                    : 'text-white bg-blue-100b hover:brightness-90 active:brightness-75'
+                                disabled ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
                             } `}
                         disabled={disabled}
                         onClick={() => {
