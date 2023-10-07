@@ -1,66 +1,62 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CardData, ItemToDelete } from './types';
 import Dropdown from './Dropdown';
-import NewCardInput from './NewCardInput';
 
 interface Props {
     card: CardData;
     onEditCard: (cardId: string, cardText: string) => void;
-    setIsEditCardShown: React.Dispatch<React.SetStateAction<boolean>>;
-    setItemToDelete: React.Dispatch<React.SetStateAction<ItemToDelete | undefined>>;
+    onDeleteCard: (item: ItemToDelete) => void;
+    setItemToDelete: (item: ItemToDelete) => void;
 }
 
-const Card: React.FC<Props> = ({ card, onEditCard, setIsEditCardShown, setItemToDelete }) => {
-    const [showEditCard, setShowEditCard] = useState(false);
-    const [updatedCardText, setUpdatedCardText] = useState(card.text);
+const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, setItemToDelete }) => {
+    const [text, setText] = useState(card.text);
+    const nodeRef = useRef<HTMLDivElement>(null);
 
-    const cardExtraButtons = [
-        {
-            label: 'Edit',
-            onClick: () => {
-                setShowEditCard(true);
-                setIsEditCardShown(true);
-            },
-        },
+    const extraButtons = [
         {
             label: 'Delete',
-            onClick: () => setItemToDelete({ id: card.id, kind: 'card', text: card.text }),
+            onClick: () => setItemToDelete({ id: card.id, kind: 'card', text: text }),
         },
     ];
 
-    const handleUpdateText = (ev: React.ChangeEvent<HTMLTextAreaElement>) =>
-        setUpdatedCardText(ev.target.value);
+    const handleChange = (ev: React.ChangeEvent<HTMLDivElement>) => {
+        setText(ev.target.innerHTML);
+    };
 
-    return showEditCard ? (
-        <>
-            <NewCardInput value={updatedCardText} onChange={handleUpdateText} />
-            <div className="flex gap-x-2">
-                <button
-                    className="w-1/2 text-white bg-blue-100b hover:brightness-90 rounded-md"
-                    onClick={() => {
-                        onEditCard(card.id, updatedCardText);
-                        setShowEditCard(false);
-                        setIsEditCardShown(false);
-                    }}
-                >
-                    Save
-                </button>
-                <button
-                    className="w-1/2 text-white bg-orange-100 hover:brightness-90 rounded-md"
-                    onClick={() => {
-                        setShowEditCard(false);
-                        setIsEditCardShown(false);
-                        setUpdatedCardText(card.text);
-                    }}
-                >
-                    Cancel
-                </button>
+    const saveOrDelete = () => {
+        if (text.length === 0) {
+            onDeleteCard({ id: card.id, kind: 'card' });
+        } else {
+            onEditCard(card.id, text);
+        }
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (nodeRef.current && !nodeRef.current.contains(event.target)) {
+                return saveOrDelete();
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside, true);
+        return () => document.removeEventListener('click', handleClickOutside, true);
+    });
+
+    return (
+        <div ref={nodeRef} className="group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md">
+            <div
+                className="w-full p-2"
+                contentEditable
+                suppressContentEditableWarning
+                onInput={handleChange}
+            >
+                {/* Use the prop and NOT the text state value */}
+                {card.text}
             </div>
-        </>
-    ) : (
-        <div className="flex gap-x-1 p-2 max-h-44 bg-white rounded-md shadow-md">
-            <p className="w-full overflow-auto">{card.text}</p>
-            <Dropdown buttonsList={cardExtraButtons} />
+            <div className="hidden group-hover:block">
+                <Dropdown buttonsList={extraButtons} />
+            </div>
         </div>
     );
 };
