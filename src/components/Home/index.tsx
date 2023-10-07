@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import WorkExperience from './components/WorkExperience';
 import Certifications from './components/Certifications';
 
-const LandingPage = () => (
+const Home = () => (
     <>
         <TopNav />
         <div className="content-max-width m-auto px-4 pt-24 select-none">
@@ -19,4 +19,4 @@ const LandingPage = () => (
     </>
 );
 
-export default LandingPage;
+export default Home;
