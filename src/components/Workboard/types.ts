@@ -12,5 +12,5 @@ export type ColumnData = {
 export type ItemToDelete = {
     id: string;
     kind: 'card' | 'column';
-    text: string;
+    text?: string;
 };
