@@ -8,12 +8,14 @@ import TopNav from './components/TopNav';
 import WorkExperience from './components/WorkExperience';
 
 const Home = () => {
+    // TODO: Enable through session storage
+    const viewedAnimations = false;
     useEffect(() => {
         document.body.className = '';
-        sessionStorage.setItem('viewed_animations', '1');
+        // sessionStorage.setItem('viewed_animations', '1');
     }, []);
 
-    const viewedAnimations = sessionStorage.getItem('viewed_animations');
+    // const viewedAnimations = sessionStorage.getItem('viewed_animations');
     return (
         <>
             <TopNav />
