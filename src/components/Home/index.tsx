@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Certifications from './components/Certifications';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -8,14 +8,21 @@ import TopNav from './components/TopNav';
 import WorkExperience from './components/WorkExperience';
 
 const Home = () => {
-    // TODO: Enable through session storage
-    const viewedAnimations = false;
+    const [loading, setLoading] = useState(true);
+    const [viewedAnimations, setViewedAnimations] = useState(false);
+
     useEffect(() => {
         document.body.className = '';
-        // sessionStorage.setItem('viewed_animations', '1');
-    }, []);
+        setViewedAnimations(!!sessionStorage.getItem('viewed_animations'));
 
-    // const viewedAnimations = sessionStorage.getItem('viewed_animations');
+        if (!viewedAnimations) {
+            sessionStorage.setItem('viewed_animations', '1');
+        }
+        setLoading(false);
+    }, [viewedAnimations]);
+
+    if (loading) return null;
+
     return (
         <>
             <TopNav />
