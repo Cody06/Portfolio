@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Column from './components/Column';
 import CreateColumnModal from './components/CreateColumnModal';
@@ -11,6 +11,10 @@ const Workboard = () => {
     const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<ItemToDelete>();
     const [columns, setColumns] = useState<ColumnData[]>([]);
+
+    useEffect(() => {
+        document.body.className = 'bg-blue-100';
+    }, []);
 
     const handleCreateColumn = (colTitle: string) => {
         const randomId = `col-${getUniqueId(colTitle)}`;
@@ -93,34 +97,32 @@ const Workboard = () => {
 
     return (
         <>
-            <div className="fixed inset-0 bg-blue-100">
-                <nav className="flex justify-between p-4 text-white bg-blue-110">
-                    <span className="font-bold">Workboard</span>
-                    <Link href="/" className="hover:text-orange-100">
-                        Back to Portfolio
-                    </Link>
-                </nav>
+            <nav className="flex justify-between p-4 text-white bg-blue-110">
+                <span className="font-bold">Workboard</span>
+                <Link href="/" className="hover:text-orange-100" scroll={false}>
+                    Back to Portfolio
+                </Link>
+            </nav>
 
-                <div className="flex gap-2 items-start flex-wrap p-4">
-                    {columns.map((column) => (
-                        <Column
-                            key={column.id}
-                            column={column}
-                            onCreateCard={handleCreateCard}
-                            onDeleteCard={handleDeleteItem}
-                            onEditCard={handleEditCard}
-                            onEditColumn={handleEditColumn}
-                            setItemToDelete={setItemToDelete}
-                        />
-                    ))}
-                    <button
-                        className="text-white min-w-[300px] h-[80px] border border-dashed rounded-lg 
+            <div className="flex gap-2 items-start flex-wrap p-4">
+                {columns.map((column) => (
+                    <Column
+                        key={column.id}
+                        column={column}
+                        onCreateCard={handleCreateCard}
+                        onDeleteCard={handleDeleteItem}
+                        onEditCard={handleEditCard}
+                        onEditColumn={handleEditColumn}
+                        setItemToDelete={setItemToDelete}
+                    />
+                ))}
+                <button
+                    className="text-white min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg 
                             hover:bg-blue-110 hover:border-solid"
-                        onClick={() => setIsCreateColumnModalOpen(true)}
-                    >
-                        + Add column
-                    </button>
-                </div>
+                    onClick={() => setIsCreateColumnModalOpen(true)}
+                >
+                    + Add column
+                </button>
             </div>
             <CreateColumnModal
                 isOpen={isCreateColumnModalOpen}

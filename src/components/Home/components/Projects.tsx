@@ -2,7 +2,11 @@ import Image from 'next/image';
 import Button from '../../ui/Button';
 import SectionHeader from './SectionHeader';
 
-const ProjectsCollection = () => {
+interface Props {
+    showAnimation: boolean;
+}
+
+const Projects: React.FC<Props> = ({ showAnimation }) => {
     const projects = [
         {
             id: 1,
@@ -49,7 +53,7 @@ const ProjectsCollection = () => {
 
     return (
         // Use padding-top to see the title when onClick scrollIntoView
-        <main id="projects-collection" className="pt-16 animate-fade-in">
+        <main id="projects-collection" className={`pt-16 ${showAnimation && 'animate-fade-in'}`}>
             <SectionHeader title="Projects" />
 
             <div className="flex flex-col gap-y-10">
@@ -64,6 +68,7 @@ const ProjectsCollection = () => {
                                 src={'/assets/laptop.png'}
                                 width={520}
                                 height={300}
+                                priority
                                 alt="Laptop image"
                             />
 
@@ -116,4 +121,4 @@ const ProjectsCollection = () => {
     );
 };
 
-export default ProjectsCollection;
+export default Projects;

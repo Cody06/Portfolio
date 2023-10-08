@@ -57,13 +57,13 @@ const Column: React.FC<Props> = ({
     });
 
     return (
-        <div className="bg-grey-90 w-[300px] rounded-lg">
+        <div className="bg-grey-90 w-[18.75rem] rounded-lg">
             <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
                 {showEditCol ? (
                     <div ref={colTitleRef} className="flex gap-x-2">
                         <input
                             autoFocus
-                            className="bg-white w-[240px]"
+                            className="bg-white w-[15rem]"
                             type="text"
                             value={colTitle}
                             onChange={handleChange}
@@ -86,7 +86,7 @@ const Column: React.FC<Props> = ({
                     </>
                 )}
             </div>
-            <div className="flex flex-col gap-y-2 p-1 min-h-[80px]">
+            <div className="flex flex-col gap-y-2 p-1 min-h-[5rem]">
                 {column.cards.map((card) => (
                     <Card
                         key={card.id}
