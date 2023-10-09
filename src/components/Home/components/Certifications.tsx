@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import SectionHeader from './SectionHeader';
+import Link from 'next/link';
 
 const Certifications = () => {
     const certifications = [
@@ -17,6 +18,7 @@ const Certifications = () => {
             issuer: 'HarvardX',
             date: 'Issued Nov 2021',
             skills: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQL', 'Git'],
+            href: 'https://www.edx.org/certificates/professional-certificate/harvardx-computer-science-for-web-programming',
         },
         {
             id: 2,
@@ -32,6 +34,7 @@ const Certifications = () => {
             issuer: 'HarvardX',
             date: 'Issued Nov 2021',
             skills: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQL', 'Git'],
+            href: 'https://www.edx.org/learn/web-development/harvard-university-cs50-s-web-programming-with-python-and-javascript',
         },
     ];
 
@@ -40,8 +43,11 @@ const Certifications = () => {
             <SectionHeader title="Certifications" />
             <div className="md:grid grid-cols-2 gap-4 select-text">
                 {certifications.map((certificate) => (
-                    <div
+                    <Link
                         key={certificate.id}
+                        href={certificate.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="flex flex-row justify-between gap-x-2 px-5 py-10 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                     >
                         <div className="flex flex-col">
@@ -54,7 +60,7 @@ const Certifications = () => {
                             </span>
                         </div>
                         <div>{certificate.icon}</div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>
