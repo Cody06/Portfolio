@@ -33,13 +33,13 @@ const Home = () => {
     return (
         <>
             <TopNav showAnimation={!state.viewedAnimations} />
-            <div className="content-max-width m-auto px-4 pt-24 select-none">
+            <div className="content-max-width m-auto px-4 select-none">
                 <Header showAnimation={!state.viewedAnimations} />
                 <Projects showAnimation={!state.viewedAnimations} />
                 <WorkExperience />
                 <Certifications />
-                <Footer />
             </div>
+            <Footer />
         </>
     );
 };
