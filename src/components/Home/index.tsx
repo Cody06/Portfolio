@@ -30,7 +30,7 @@ const Home = () => {
 
     return (
         <>
-            <TopNav />
+            <TopNav showAnimation={!state.viewedAnimations} />
             <div className="content-max-width m-auto px-4 pt-24 select-none">
                 <Header showAnimation={!state.viewedAnimations} />
                 <Projects showAnimation={!state.viewedAnimations} />
