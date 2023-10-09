@@ -8,31 +8,38 @@ import TopNav from './components/TopNav';
 import WorkExperience from './components/WorkExperience';
 
 const Home = () => {
-    const [loading, setLoading] = useState(true);
-    const [viewedAnimations, setViewedAnimations] = useState(false);
+    const [state, setState] = useState({
+        loading: true,
+        viewedAnimations: false,
+    });
 
     useEffect(() => {
         document.body.className = '';
-        setViewedAnimations(!!sessionStorage.getItem('viewed_animations'));
-
-        if (!viewedAnimations) {
+        const sessionItem = !!sessionStorage.getItem('viewed_animations');
+        if (!sessionItem) {
             sessionStorage.setItem('viewed_animations', '1');
         }
-        setLoading(false);
-    }, [viewedAnimations]);
 
-    if (loading) return null;
+        setState({ loading: false, viewedAnimations: sessionItem });
+
+        // Run effect only once (on componentDidMount) - only first render matters
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // This is a fake loading to wait until the state updates
+    // because first render depends on the value in sessionStorage
+    if (state.loading) return;
 
     return (
         <>
-            <TopNav />
-            <div className="content-max-width m-auto px-4 pt-24 select-none">
-                <Header showAnimation={!viewedAnimations} />
-                <Projects showAnimation={!viewedAnimations} />
+            <TopNav showAnimation={!state.viewedAnimations} />
+            <div className="content-max-width m-auto px-4 select-none">
+                <Header showAnimation={!state.viewedAnimations} />
+                <Projects showAnimation={!state.viewedAnimations} />
                 <WorkExperience />
                 <Certifications />
-                <Footer />
             </div>
+            <Footer />
         </>
     );
 };

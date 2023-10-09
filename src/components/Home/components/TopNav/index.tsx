@@ -2,7 +2,11 @@ import React from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
 
-const TopNav: React.FC = () => {
+interface Props {
+    showAnimation: boolean;
+}
+
+const TopNav: React.FC<Props> = ({ showAnimation }) => {
     const buttonsList: Button[] = [
         {
             id: 'projects-collection',
@@ -27,9 +31,18 @@ const TopNav: React.FC = () => {
     ];
 
     return (
-        <nav className="fixed z-10 w-full px-4 py-3 bg-grey-120 shadow-lg animate-navbar select-none">
+        <nav
+            className={`fixed z-10 w-full px-4 py-3 bg-grey-120 shadow-lg select-none ${
+                showAnimation && 'animate-navbar'
+            }`}
+        >
             <div className="flex justify-between content-max-width m-auto">
-                <div className="text-orange-100 hover:animate-bounce">&lt; cody &gt;</div>
+                <button
+                    className="text-orange-100 hover:animate-bounce"
+                    onClick={() => document.getElementById('header')?.scrollIntoView()}
+                >
+                    &lt; cody &gt;
+                </button>
 
                 {/* Phone and Tablet */}
                 <div className="lg:hidden">
@@ -42,8 +55,7 @@ const TopNav: React.FC = () => {
                         {buttonsList.map((button) => (
                             <li key={button.id}>
                                 <button
-                                    className="text-white
-                                        border-b-2 border-transparent hover:border-orange-100"
+                                    className="text-white hover:text-orange-100"
                                     onClick={button.onClick}
                                 >
                                     {button.name}

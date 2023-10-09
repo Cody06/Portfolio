@@ -100,11 +100,12 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
                             <p className="mb-6 md:mb-8">{project.description}</p>
 
                             <div className="flex justify-center items-center gap-x-5">
-                                <Button
+                                {/* TODO: Enable after getting screenshots of project */}
+                                {/* <Button
                                     label="Preview"
                                     disabled
                                     onClick={() => console.log(`Open modal ${project.name}`)}
-                                />
+                                /> */}
                                 <Button
                                     label={`Visit ${project.name.split(' ')[0]}`}
                                     type="link"
