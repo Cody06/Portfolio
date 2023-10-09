@@ -26,6 +26,8 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // This is a fake loading to wait until the state updates
+    // because first render depends on the value in sessionStorage
     if (state.loading) return;
 
     return (
