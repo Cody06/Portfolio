@@ -117,23 +117,6 @@ html {
     }
 }
 
-.animate-slide-left-to-right a {
-    /* Needed for animations */
-    position: relative;
-    opacity: 0%;
-}
-
-/* Animate each link at a different speed */
-.animate-slide-left-to-right a:nth-child(1) {
-    animation: slide_left_to_right var(--animation-speed-normal) var(--total-typewriter-duration)
-        forwards;
-}
-
-.animate-slide-left-to-right a:nth-child(2) {
-    animation: slide_left_to_right var(--animation-speed-fast) var(--total-typewriter-duration)
-        forwards;
-}
-
 @keyframes slide_left_to_right {
     0% {
         left: -12.5rem;
