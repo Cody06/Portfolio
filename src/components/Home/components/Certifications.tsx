@@ -51,9 +51,9 @@ const Certifications = () => {
                         className="flex flex-row justify-between gap-x-2 px-5 py-10 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                     >
                         <div className="flex flex-col">
-                            <h4 className="font-bold">{certificate.title}</h4>
+                            <h3 className="font-bold">{certificate.title}</h3>
                             <span>{certificate.issuer}</span>
-                            <span className="text-grey-100">{certificate.date}</span>
+                            <span className="text-grey-110">{certificate.date}</span>
                             <span>
                                 <strong>Skills: </strong>
                                 {certificate.skills.join(' \u00B7 ')}
