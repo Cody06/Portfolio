@@ -20,10 +20,10 @@ const WorkExperience = () => {
                     key={experience.id}
                     className="px-5 py-10 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                 >
-                    <h4 className="flex justify-between font-bold">
+                    <h3 className="flex justify-between font-bold">
                         {experience.position}
-                        <span className="text-grey-100">{experience.date}</span>
-                    </h4>
+                        <span className="text-grey-110">{experience.date}</span>
+                    </h3>
                     <span>{experience.company}</span>
                 </div>
             ))}

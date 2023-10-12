@@ -44,6 +44,7 @@ const DropdownMenu: React.FC<Props> = ({ buttonsList }) => {
     return (
         <div ref={nodeRef}>
             <button
+                aria-label="Dropdown menu"
                 onClick={() => {
                     setOpen(!isOpen);
                 }}
