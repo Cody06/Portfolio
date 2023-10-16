@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { CardData, ItemToDelete } from '../types';
-import Dropdown from './Dropdown';
 
 interface Props {
     card: CardData;
@@ -10,41 +9,46 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, setItemToDelete }) => {
+    const [isFocused, setIsFocused] = useState(false);
     const [text, setText] = useState(card.text);
-    const nodeRef = useRef<HTMLDivElement>(null);
-
-    const extraButtons = [
-        {
-            label: 'Delete',
-            onClick: () => setItemToDelete({ id: card.id, kind: 'card', text: text }),
-        },
-    ];
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleChange = (ev: React.ChangeEvent<HTMLDivElement>) => {
         setText(ev.target.innerHTML);
     };
 
-    const saveOrDelete = () => {
+    const handleClickOutside = () => {
+        // Apply changes only to the focused card
+        if (!isFocused) return;
+
         if (text.length === 0) {
             onDeleteCard({ id: card.id, kind: 'card' });
         } else {
             onEditCard(card.id, text);
         }
+        setIsFocused(false);
     };
 
     useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (nodeRef.current && !nodeRef.current.contains(event.target)) {
-                return saveOrDelete();
+        const onOutsideClick = (event: any) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                handleClickOutside();
             }
         };
 
-        document.addEventListener('click', handleClickOutside, true);
-        return () => document.removeEventListener('click', handleClickOutside, true);
+        document.addEventListener('click', onOutsideClick, true);
+
+        return () => {
+            document.removeEventListener('click', onOutsideClick, true);
+        };
     });
 
     return (
-        <div ref={nodeRef} className="group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md">
+        <div
+            ref={ref}
+            className="group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md"
+            onFocus={() => setIsFocused(true)}
+        >
             <div
                 className="w-full p-2"
                 contentEditable
@@ -53,9 +57,6 @@ const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, setItemToDelete
             >
                 {/* Use the prop and NOT the text state value */}
                 {card.text}
-            </div>
-            <div className="hidden group-hover:block">
-                <Dropdown buttonsList={extraButtons} />
             </div>
         </div>
     );
