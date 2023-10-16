@@ -14,7 +14,9 @@ const Workboard = () => {
 
     useEffect(() => {
         document.body.className = 'bg-blue-100';
-        setColumns(JSON.parse(localStorage.getItem('columns') ?? ''));
+
+        const savedColumns = localStorage.getItem('columns');
+        if (savedColumns) setColumns(JSON.parse(savedColumns));
     }, []);
 
     const saveColumns = (cols: ColumnData[]) => {
