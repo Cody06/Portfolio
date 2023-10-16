@@ -14,25 +14,33 @@ const Workboard = () => {
 
     useEffect(() => {
         document.body.className = 'bg-blue-100';
+
+        const savedColumns = localStorage.getItem('columns');
+        if (savedColumns) setColumns(JSON.parse(savedColumns));
     }, []);
+
+    const saveColumns = (cols: ColumnData[]) => {
+        setColumns(cols);
+        localStorage.setItem('columns', JSON.stringify(cols));
+    };
 
     const handleCreateColumn = (colTitle: string) => {
         const randomId = `col-${getUniqueId(colTitle)}`;
-        setColumns((oldCols) => [...oldCols, { id: randomId, title: colTitle, cards: [] }]);
+        saveColumns([...columns, { id: randomId, title: colTitle, cards: [] }]);
     };
 
     const handleCreateCard = (colId: string, cardText: string) => {
-        const nextCard = {
+        const newCard = {
             id: `card-${getUniqueId(cardText)}`,
             text: cardText,
         };
 
-        setColumns(
+        saveColumns(
             columns.map((col) => {
                 if (col.id === colId) {
                     return {
                         ...col,
-                        cards: [...col.cards, nextCard],
+                        cards: [...col.cards, newCard],
                     };
                 } else {
                     return col;
@@ -42,10 +50,10 @@ const Workboard = () => {
     };
 
     const handleDeleteColumn = (colId: string) =>
-        setColumns(columns.filter((col) => col.id !== colId));
+        saveColumns(columns.filter((col) => col.id !== colId));
 
     const handleDeleteCard = (cardId: string) => {
-        setColumns(
+        saveColumns(
             columns.map((col) => {
                 return {
                     ...col,
@@ -61,7 +69,7 @@ const Workboard = () => {
     };
 
     const handleEditColumn = (colId: string, colTitle: string) => {
-        setColumns(
+        saveColumns(
             columns.map((col) => {
                 if (col.id === colId) {
                     return {
@@ -76,7 +84,7 @@ const Workboard = () => {
     };
 
     const handleEditCard = (cardId: string, cardText: string) => {
-        setColumns(
+        saveColumns(
             columns.map((col) => {
                 return {
                     ...col,
