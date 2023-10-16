@@ -12,16 +12,19 @@ interface Props {
 
 const Dropdown: React.FC<Props> = ({ buttonsList }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const nodeRef = useRef<HTMLDivElement>(null);
-
-    const handleClickOutside = (event: any) => {
-        if (nodeRef.current && !nodeRef.current.contains(event.target)) {
-            return setIsOpen(false);
-        }
-    };
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside, true);
+        const handleClickOutside = (event: any) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('click', handleClickOutside, true);
+        }
+
         return () => document.removeEventListener('click', handleClickOutside, true);
     });
 
@@ -37,7 +40,7 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
         </ul>
     );
     return (
-        <div ref={nodeRef}>
+        <div ref={ref}>
             <button
                 className="w-8 h-8 text-grey-100 hover:text-blue-100b"
                 onClick={() => setIsOpen(!isOpen)}
