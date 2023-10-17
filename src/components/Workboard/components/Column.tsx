@@ -57,7 +57,7 @@ const Column: React.FC<Props> = ({
                     />
                 ) : (
                     <>
-                        <span className="font-bold my-auto">{column.title}</span>
+                        <span className="font-bold my-auto overflow-hidden">{column.title}</span>
                         <Dropdown buttonsList={colExtraButtons} />
                     </>
                 )}
