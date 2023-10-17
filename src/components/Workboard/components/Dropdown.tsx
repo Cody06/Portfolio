@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 type Button = {
     label: string;
@@ -12,21 +13,7 @@ interface Props {
 
 const Dropdown: React.FC<Props> = ({ buttonsList }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener('click', handleClickOutside, true);
-        }
-
-        return () => document.removeEventListener('click', handleClickOutside, true);
-    });
+    const ref = useOutsideClick(() => setIsOpen(false));
 
     const DropdownList = (
         <ul className="absolute right-0 w-max bg-white rounded-b-md rounded-tl-md shadow-md">
@@ -39,6 +26,7 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
             ))}
         </ul>
     );
+
     return (
         <div ref={ref}>
             <button
