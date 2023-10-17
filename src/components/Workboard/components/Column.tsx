@@ -62,7 +62,8 @@ const Column: React.FC<Props> = ({
                     </>
                 )}
             </div>
-            <div className="flex flex-col gap-y-2 p-1 min-h-[5rem]">
+
+            <div className="container flex flex-col gap-y-2 min-h-[5rem] p-1">
                 {column.cards.map((card) => (
                     <Card
                         key={card.id}
@@ -71,7 +72,9 @@ const Column: React.FC<Props> = ({
                         onDeleteCard={onDeleteCard}
                     />
                 ))}
+            </div>
 
+            <div className="text-center p-1">
                 {showCreateCard ? (
                     <NewCardInput
                         columnId={column.id}
@@ -81,7 +84,7 @@ const Column: React.FC<Props> = ({
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="w-max mx-auto p-1 text-grey-110 mt-auto hover:text-blue-100b"
+                        className="p-1 text-grey-110 mt-auto hover:text-blue-100b"
                     >
                         + Add card
                     </button>
