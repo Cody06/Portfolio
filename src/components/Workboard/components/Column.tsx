@@ -1,6 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import { ColumnData, ItemToDelete } from '../types';
 import Card from './Card';
 import Dropdown from './Dropdown';
@@ -26,7 +24,6 @@ const Column: React.FC<Props> = ({
     const [colTitle, setColTitle] = useState(column.title);
     const [showCreateCard, setShowCreateCard] = useState(false);
     const [showEditCol, setShowEditCol] = useState(false);
-    const colTitleRef = useRef<HTMLDivElement>(null);
 
     const colExtraButtons = [
         {
@@ -41,44 +38,23 @@ const Column: React.FC<Props> = ({
 
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setColTitle(ev.target.value);
 
-    const cancelEditColumn = () => {
-        setColTitle(column.title);
+    const handleClickOutside = () => {
+        onEditColumn(column.id, colTitle);
         setShowEditCol(false);
     };
-
-    useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (colTitleRef.current && !colTitleRef.current.contains(event.target)) {
-                return cancelEditColumn();
-            }
-        };
-        document.addEventListener('click', handleClickOutside, true);
-        return () => document.removeEventListener('click', handleClickOutside, true);
-    });
 
     return (
         <div className="bg-grey-90 w-[18.75rem] rounded-lg">
             <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
                 {showEditCol ? (
-                    <div ref={colTitleRef} className="flex gap-x-2">
-                        <input
-                            autoFocus
-                            className="bg-white w-[15rem]"
-                            type="text"
-                            value={colTitle}
-                            onChange={handleChange}
-                        />
-                        <button
-                            className="w-8 h-8 text-grey-100 rounded-full
-                                hover:text-blue-100b hover:bg-grey-100 hover:bg-opacity-20"
-                            onClick={() => {
-                                onEditColumn(column.id, colTitle);
-                                setShowEditCol(false);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={faCheck} />
-                        </button>
-                    </div>
+                    <input
+                        autoFocus
+                        className="bg-white w-full p-1"
+                        type="text"
+                        value={colTitle}
+                        onBlur={handleClickOutside}
+                        onChange={handleChange}
+                    />
                 ) : (
                     <>
                         <span className="font-bold my-auto">{column.title}</span>
@@ -93,7 +69,6 @@ const Column: React.FC<Props> = ({
                         card={card}
                         onEditCard={onEditCard}
                         onDeleteCard={onDeleteCard}
-                        setItemToDelete={setItemToDelete}
                     />
                 ))}
 
