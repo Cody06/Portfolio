@@ -63,7 +63,12 @@ const Column: React.FC<Props> = ({
                 )}
             </div>
 
-            <div className="container flex flex-col gap-y-2 min-h-[5rem] p-1">
+            <div
+                id={column.id}
+                className={`container flex flex-col gap-y-2 p-1 ${
+                    !showCreateCard && 'min-h-[1rem]'
+                }`}
+            >
                 {column.cards.map((card) => (
                     <Card
                         key={card.id}
