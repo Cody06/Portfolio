@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ColumnData, ItemToDelete } from '../types';
+import React, { useEffect, useState } from 'react';
+import { CardData, ColumnData, DropColumn, ItemToDelete } from '../types';
 import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
@@ -8,8 +8,10 @@ interface Props {
     column: ColumnData;
     onCreateCard: (colId: string, cardText: string) => void;
     onDeleteCard: (item: ItemToDelete) => void;
+    onDrop: (card: CardData) => void;
     onEditCard: (cardId: string, cardText: string) => void;
     onEditColumn: (colId: string, colTitle: string) => void;
+    setDropCol: React.Dispatch<React.SetStateAction<DropColumn>>;
     setItemToDelete: React.Dispatch<React.SetStateAction<ItemToDelete | undefined>>;
 }
 
@@ -17,13 +19,16 @@ const Column: React.FC<Props> = ({
     column,
     onCreateCard,
     onDeleteCard,
+    onDrop,
     onEditCard,
     onEditColumn,
+    setDropCol,
     setItemToDelete,
 }) => {
     const [colTitle, setColTitle] = useState(column.title);
     const [showCreateCard, setShowCreateCard] = useState(false);
     const [showEditCol, setShowEditCol] = useState(false);
+    const [container, setContainer] = useState<Element | null>();
 
     const colExtraButtons = [
         {
@@ -41,6 +46,39 @@ const Column: React.FC<Props> = ({
     const handleClickOutside = () => {
         onEditColumn(column.id, colTitle);
         setShowEditCol(false);
+    };
+
+    useEffect(() => {
+        setContainer(document.querySelector(`#${column.id}`));
+    }, []);
+
+    const handleDragOver = (ev: any) => {
+        if (!container) return;
+        ev.preventDefault();
+        const nextCard = getDragAfterElement(container, ev.clientY);
+        setDropCol({ newColId: column.id, nextCardId: nextCard?.id });
+    };
+
+    const getDragAfterElement = (container: any, mousePosY: number) => {
+        const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+        return draggableElements.reduce(
+            (closest, containerChild) => {
+                const boundingBox = containerChild.getBoundingClientRect();
+                const offset = mousePosY - boundingBox.top - boundingBox.height / 2;
+                const aboveElementHoveringOver = offset < 0;
+                const aboveClosestElement = offset > closest.offset;
+
+                if (aboveElementHoveringOver && aboveClosestElement) {
+                    return { offset: offset, element: containerChild };
+                } else {
+                    return closest;
+                }
+            },
+            {
+                offset: Number.NEGATIVE_INFINITY,
+            },
+        ).element;
     };
 
     return (
@@ -65,9 +103,8 @@ const Column: React.FC<Props> = ({
 
             <div
                 id={column.id}
-                className={`container flex flex-col gap-y-2 p-1 ${
-                    !showCreateCard && 'min-h-[1rem]'
-                }`}
+                className={`flex flex-col gap-y-2 p-1 ${!showCreateCard && 'min-h-[1rem]'}`}
+                onDragOver={handleDragOver}
             >
                 {column.cards.map((card) => (
                     <Card
@@ -75,6 +112,7 @@ const Column: React.FC<Props> = ({
                         card={card}
                         onEditCard={onEditCard}
                         onDeleteCard={onDeleteCard}
+                        onDrop={onDrop}
                     />
                 ))}
             </div>
