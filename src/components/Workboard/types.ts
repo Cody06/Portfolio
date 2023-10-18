@@ -14,3 +14,8 @@ export type ItemToDelete = {
     kind: 'card' | 'column';
     text?: string;
 };
+
+export type DropColumn = {
+    newColId?: string;
+    nextCardId?: string;
+};
