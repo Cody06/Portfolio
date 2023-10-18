@@ -5,10 +5,12 @@ interface Props {
     card: CardData;
     onEditCard: (cardId: string, cardText: string) => void;
     onDeleteCard: (item: ItemToDelete) => void;
+    onDrop: (card: CardData) => void;
 }
 
-const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard }) => {
+const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, onDrop }) => {
     const [text, setText] = useState(card.text);
+    const [isDragging, setIsDragging] = useState(false);
 
     const handleChange = (ev: React.ChangeEvent<HTMLDivElement>) => {
         setText(ev.target.innerHTML);
@@ -25,8 +27,15 @@ const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard }) => {
     return (
         <div
             id={card.id}
-            className="draggable group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md"
+            className={`draggable group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md ${
+                isDragging && 'opacity-20 dragging'
+            }`}
             draggable
+            onDragStart={() => setIsDragging(true)}
+            onDragEnd={() => {
+                setIsDragging(false);
+                onDrop(card);
+            }}
             onBlur={handleClickOutside}
         >
             <div
