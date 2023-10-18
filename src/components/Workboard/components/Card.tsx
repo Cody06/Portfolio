@@ -24,6 +24,7 @@ const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard }) => {
 
     return (
         <div
+            id={card.id}
             className="draggable group flex gap-x-1 max-h-44 bg-white rounded-md shadow-md"
             draggable
             onBlur={handleClickOutside}
