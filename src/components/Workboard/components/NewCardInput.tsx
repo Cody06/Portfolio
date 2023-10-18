@@ -21,7 +21,7 @@ const NewCardInput: React.FC<Props> = ({ columnId, onCreateCard, setShowCreateCa
         <>
             <textarea
                 autoFocus
-                className="p-2 rounded-md shadow-md"
+                className="w-full p-2 rounded-md shadow-md mb-1"
                 placeholder="Type here..."
                 value={text}
                 onChange={handleChange}

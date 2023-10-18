@@ -19,6 +19,60 @@ const Workboard = () => {
         if (savedColumns) setColumns(JSON.parse(savedColumns));
     }, []);
 
+    useEffect(() => {
+        const draggables = document.querySelectorAll('.draggable');
+        const containers = document.querySelectorAll('.container');
+
+        draggables.forEach((draggable) => {
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging');
+                draggable.classList.add('opacity-20');
+            });
+
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging');
+                draggable.classList.remove('opacity-20');
+            });
+        });
+
+        containers.forEach((container) => {
+            container.addEventListener('dragover', (ev: any) => {
+                ev.preventDefault(); // prevent the do not allow symbol
+                const currentDraggable = document.querySelector('.dragging');
+                const afterElement = getDragAfterElement(container, ev.clientY);
+
+                if (!currentDraggable) return;
+                if (afterElement == null) {
+                    container.appendChild(currentDraggable);
+                } else {
+                    container.insertBefore(currentDraggable, afterElement);
+                }
+            });
+        });
+
+        const getDragAfterElement = (container: any, mouseY: number) => {
+            const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+            return draggableElements.reduce(
+                (closest, containerChild) => {
+                    const boundingBox = containerChild.getBoundingClientRect();
+                    const offset = mouseY - boundingBox.top - boundingBox.height / 2;
+                    const aboveElementHoveringOver = offset < 0;
+                    const aboveClosestElement = offset > closest.offset;
+
+                    if (aboveElementHoveringOver && aboveClosestElement) {
+                        return { offset: offset, element: containerChild };
+                    } else {
+                        return closest;
+                    }
+                },
+                {
+                    offset: Number.NEGATIVE_INFINITY,
+                },
+            ).element;
+        };
+    }, [columns]);
+
     const saveColumns = (cols: ColumnData[]) => {
         setColumns(cols);
         localStorage.setItem('columns', JSON.stringify(cols));
