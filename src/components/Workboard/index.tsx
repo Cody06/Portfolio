@@ -5,12 +5,16 @@ import Column from './components/Column';
 import CreateColumnModal from './components/CreateColumnModal';
 import DeleteModal from './components/DeleteModal';
 import getUniqueId from '@/utils/getUniqueId';
-import { ColumnData, ItemToDelete } from './types';
+import { CardData, ColumnData, DropColumn, ItemToDelete } from './types';
 
 const Workboard = () => {
     const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<ItemToDelete>();
     const [columns, setColumns] = useState<ColumnData[]>([]);
+    const [dropCol, setDropCol] = useState<DropColumn>({
+        newColId: undefined,
+        nextCardId: undefined,
+    });
 
     useEffect(() => {
         document.body.className = 'bg-blue-100';
@@ -18,60 +22,6 @@ const Workboard = () => {
         const savedColumns = localStorage.getItem('columns');
         if (savedColumns) setColumns(JSON.parse(savedColumns));
     }, []);
-
-    useEffect(() => {
-        const draggables = document.querySelectorAll('.draggable');
-        const containers = document.querySelectorAll('.container');
-
-        draggables.forEach((draggable) => {
-            draggable.addEventListener('dragstart', () => {
-                draggable.classList.add('dragging');
-                draggable.classList.add('opacity-20');
-            });
-
-            draggable.addEventListener('dragend', () => {
-                draggable.classList.remove('dragging');
-                draggable.classList.remove('opacity-20');
-            });
-        });
-
-        containers.forEach((container) => {
-            container.addEventListener('dragover', (ev: any) => {
-                ev.preventDefault(); // prevent the do not allow symbol
-                const currentDraggable = document.querySelector('.dragging');
-                const afterElement = getDragAfterElement(container, ev.clientY);
-
-                if (!currentDraggable) return;
-                if (afterElement == null) {
-                    container.appendChild(currentDraggable);
-                } else {
-                    container.insertBefore(currentDraggable, afterElement);
-                }
-            });
-        });
-
-        const getDragAfterElement = (container: any, mouseY: number) => {
-            const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
-
-            return draggableElements.reduce(
-                (closest, containerChild) => {
-                    const boundingBox = containerChild.getBoundingClientRect();
-                    const offset = mouseY - boundingBox.top - boundingBox.height / 2;
-                    const aboveElementHoveringOver = offset < 0;
-                    const aboveClosestElement = offset > closest.offset;
-
-                    if (aboveElementHoveringOver && aboveClosestElement) {
-                        return { offset: offset, element: containerChild };
-                    } else {
-                        return closest;
-                    }
-                },
-                {
-                    offset: Number.NEGATIVE_INFINITY,
-                },
-            ).element;
-        };
-    }, [columns]);
 
     const saveColumns = (cols: ColumnData[]) => {
         setColumns(cols);
@@ -157,6 +107,62 @@ const Workboard = () => {
         );
     };
 
+    const insertBeforeAnotherCard = (dropCard: CardData) => {
+        saveColumns(
+            columns
+                .map((oldCol) => {
+                    return {
+                        ...oldCol,
+                        cards: oldCol.cards.filter((card) => card.id !== dropCard.id),
+                    };
+                })
+                .map((col) => {
+                    if (col.id === dropCol.newColId) {
+                        const nextCardIndex = col.cards.findIndex(
+                            (card) => card.id === dropCol.nextCardId,
+                        );
+
+                        return {
+                            ...col,
+                            cards: col.cards.toSpliced(nextCardIndex, 0, dropCard),
+                        };
+                    } else {
+                        return col;
+                    }
+                }),
+        );
+    };
+
+    const addToEndOfColumn = (dropCard: CardData) => {
+        saveColumns(
+            columns
+                .map((oldCol) => {
+                    return {
+                        ...oldCol,
+                        cards: oldCol.cards.filter((card) => card.id !== dropCard.id),
+                    };
+                })
+                .map((col) => {
+                    if (col.id === dropCol.newColId) {
+                        return {
+                            ...col,
+                            cards: [...col.cards, dropCard],
+                        };
+                    } else {
+                        return col;
+                    }
+                }),
+        );
+    };
+
+    const handleDrop = (dropCard: CardData) => {
+        if (dropCol.nextCardId) {
+            insertBeforeAnotherCard(dropCard);
+        } else {
+            addToEndOfColumn(dropCard);
+        }
+    };
+
     return (
         <>
             <nav className="flex justify-between p-4 text-white bg-blue-110">
@@ -173,8 +179,10 @@ const Workboard = () => {
                         column={column}
                         onCreateCard={handleCreateCard}
                         onDeleteCard={handleDeleteItem}
+                        onDrop={handleDrop}
                         onEditCard={handleEditCard}
                         onEditColumn={handleEditColumn}
+                        setDropCol={setDropCol}
                         setItemToDelete={setItemToDelete}
                     />
                 ))}
