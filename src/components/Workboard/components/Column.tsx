@@ -103,7 +103,7 @@ const Column: React.FC<Props> = ({
 
             <div
                 id={column.id}
-                className={`flex flex-col gap-y-2 p-1 ${!showCreateCard && 'min-h-[1rem]'}`}
+                className={`flex flex-col gap-y-2 p-1 ${!showCreateCard && 'min-h-[2.5rem]'}`}
                 onDragOver={handleDragOver}
             >
                 {column.cards.map((card) => (
