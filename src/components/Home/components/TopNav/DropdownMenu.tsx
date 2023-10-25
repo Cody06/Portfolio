@@ -32,12 +32,7 @@ const DropdownMenu: React.FC<Props> = ({ buttonsList }) => {
 
     return (
         <div ref={ref}>
-            <button
-                aria-label="Dropdown menu"
-                onClick={() => {
-                    setIsOpen(!isOpen);
-                }}
-            >
+            <button aria-label="Dropdown menu" onClick={() => setIsOpen(!isOpen)}>
                 <FontAwesomeIcon icon={faBars} className="text-white" />
             </button>
             <div className="relative">{isOpen && DropdownList}</div>
