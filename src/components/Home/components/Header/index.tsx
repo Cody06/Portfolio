@@ -18,33 +18,35 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
     return (
         <header id="header">
             <TopNav showAnimation={showAnimation} />
-            <div className="flex flex-col items-center gap-y-5 pt-24 pb-14">
-                <h1 className="text-3xl md:text-5xl text-center">
-                    <span className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}>
-                        Software Developer
-                    </span>
-                    <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>.</span>
-                </h1>
-                <div
-                    className={`text-center max-w-[20rem] md:max-w-[32rem] ${
-                        showAnimation && 'animate-fade-in-up'
-                    }`}
-                >
-                    <h2>{technologies}</h2>
-                    <h2>{secondaryTechnologies}</h2>
+            <div className="content-max-width mx-auto px-4 border">
+                <div className="flex flex-col items-center gap-y-5 pt-24 pb-14">
+                    <h1 className="text-3xl md:text-5xl text-center">
+                        <span className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}>
+                            Software Developer
+                        </span>
+                        <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>.</span>
+                    </h1>
+                    <div
+                        className={`text-center max-w-[20rem] md:max-w-[32rem] ${
+                            showAnimation && 'animate-fade-in-up'
+                        }`}
+                    >
+                        <h2>{technologies}</h2>
+                        <h2>{secondaryTechnologies}</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex justify-evenly">
-                <p
-                    className={`md:basis-2/3 mb-4 ${showAnimation && 'animate-fade-in'}`}
-                    style={{ whiteSpace: 'pre-line' }}
-                >
-                    {headlineParagraph}
-                </p>
+                <div className="flex justify-around">
+                    <p
+                        className={`md:basis-2/3 mb-4 ${showAnimation && 'animate-fade-in'}`}
+                        style={{ whiteSpace: 'pre-line' }}
+                    >
+                        {headlineParagraph}
+                    </p>
 
-                <div className="hidden md:block">
-                    <Logo showAnimation={showAnimation} />
+                    <div className="hidden md:block">
+                        <Logo showAnimation={showAnimation} />
+                    </div>
                 </div>
             </div>
         </header>
