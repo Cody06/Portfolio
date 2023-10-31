@@ -4,7 +4,6 @@ import Certifications from './components/Certifications';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Projects from './components/Projects';
-import TopNav from './components/TopNav';
 import WorkExperience from './components/WorkExperience';
 
 const Home = () => {
@@ -32,13 +31,12 @@ const Home = () => {
 
     return (
         <>
-            <TopNav showAnimation={!state.viewedAnimations} />
-            <div className="content-max-width m-auto px-4 select-none">
-                <Header showAnimation={!state.viewedAnimations} />
+            <Header showAnimation={!state.viewedAnimations} />
+            <main className="content-max-width mx-auto px-4 select-none">
                 <Projects showAnimation={!state.viewedAnimations} />
                 <WorkExperience />
                 <Certifications />
-            </div>
+            </main>
             <Footer />
         </>
     );

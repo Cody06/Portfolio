@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Logo from '../../ui/Logo';
+import Logo from '@/components/ui/Logo';
+import TopNav from './TopNav';
 
 interface Props {
     showAnimation: boolean;
@@ -16,8 +16,9 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
         \n With a diverse background, I am eager to tackle any technical project!`;
 
     return (
-        <header id="header" className="pt-24">
-            <div className="flex flex-col items-center gap-y-5 pb-14">
+        <header id="header">
+            <TopNav showAnimation={showAnimation} />
+            <div className="flex flex-col items-center gap-y-5 pt-24 pb-14">
                 <h1 className="text-3xl md:text-5xl text-center">
                     <span className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}>
                         Software Developer
