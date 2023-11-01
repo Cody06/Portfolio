@@ -21,10 +21,14 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
             <div className="content-max-width mx-auto px-4">
                 <div className="flex flex-col items-center gap-y-5 pt-24 pb-14">
                     <h1 className="text-3xl md:text-5xl text-center">
-                        <span className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}>
+                        <span
+                            className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}
+                        >
                             Software Developer
                         </span>
-                        <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>.</span>
+                        <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>
+                            .
+                        </span>
                     </h1>
                     <div
                         className={`text-center max-w-[20rem] md:max-w-[32rem] ${
