@@ -1,5 +1,3 @@
-'use client';
-
 interface Props {
     user: string;
 }
@@ -31,7 +29,7 @@ const Nav: React.FC<Props> = ({ user }) => {
     ];
 
     return (
-        <nav className="p-6 rounded-xl shadow-lg w-max">
+        <nav className="p-6 rounded-xl shadow-lg w-max whitespace-nowrap h-max">
             <ul className="flex flex-col gap-y-4">
                 {buttons.map((button) => (
                     <li
