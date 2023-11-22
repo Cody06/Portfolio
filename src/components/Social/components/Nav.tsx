@@ -3,8 +3,6 @@ interface Props {
 }
 
 const Nav: React.FC<Props> = ({ user }) => {
-    console.log('Nav');
-
     const buttons = [
         {
             id: 'home',
