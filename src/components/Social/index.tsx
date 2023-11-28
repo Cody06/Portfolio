@@ -1,9 +1,10 @@
 'use client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useState } from 'react';
 import Link from 'next/link';
 import Nav from './components/Nav';
-import { useState } from 'react';
+import NewPostInput from './components/NewPostInput';
 
 const Social = () => {
     // TODO: Add user Id from login
@@ -27,6 +28,19 @@ const Social = () => {
     ];
 
     const [posts, setPosts] = useState(initialPosts);
+
+    const savePost = (newPost: string) => {
+        setPosts([
+            {
+                id: `${userId}-${Date.now().toString()}`,
+                date: new Date().toDateString(),
+                creator: userId,
+                content: newPost,
+                likes: [],
+            },
+            ...posts,
+        ]);
+    };
 
     const toggleLike = (postId: string) => {
         setPosts(
@@ -70,18 +84,7 @@ const Social = () => {
                 <div className="max-w-[100rem] mx-auto">
                     <h1 className="text-lg text-center mb-4">All Posts</h1>
 
-                    <div
-                        className="flex flex-col gap-y-4 mb-4 p-2
-                        border border-grey-100 rounded-xl"
-                    >
-                        <textarea
-                            className="p-2 border border-grey-100 rounded-lg"
-                            placeholder="What is happening?!"
-                        />
-                        <button className="w-max m-auto p-2 text-white bg-blue-100 rounded-lg hover:bg-opacity-80">
-                            Post
-                        </button>
-                    </div>
+                    <NewPostInput savePost={savePost} />
 
                     <div className="space-y-4">
                         {posts.map((post) => (
