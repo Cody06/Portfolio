@@ -25,7 +25,7 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
             tools: ['React', 'TypeScript'],
             description: `This platform allows users to create posts and follow other users. An implementation of the "like"
                 button is also present.`,
-            href: '',
+            href: '/social',
             thumbnail: 'social.png',
         },
         {
@@ -38,17 +38,6 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
             href: '',
             thumbnail: 'commerce.png',
         },
-        // TODO: Reconsider implementation
-        // {
-        //     id: 4,
-        //     name: 'Email Client',
-        //     year: 2023,
-        //     tools: ['React', 'TypeScript'],
-        //     description: `This is an email client where users can send, receive and archive emails through a built-in API.
-        //         The application focuses on User Interfaces where everything runs on one html page.`,
-        //     href: '',
-        //     thumbnail: 'email.png',
-        // },
     ];
 
     return (
