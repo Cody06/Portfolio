@@ -39,7 +39,7 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
 
     const Dropdown = (
         <Link
-            className="absolute p-2 w-full bg-white rounded-b-lg shadow-lg
+            className="absolute p-2 overflow w-[5rem] md:w-full bg-white rounded-b-lg shadow-lg
                 hover:bg-grey-90 hover:cursor-pointer"
             href="/"
         >
@@ -48,8 +48,9 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
     );
 
     return (
-        <nav className="p-6 rounded-xl shadow-lg w-max whitespace-nowrap h-max">
-            <ul className="flex flex-col gap-y-4">
+        // TODO: Move into a dropdown for mobile
+        <nav className="p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
+            <ul className="flex flex-row md:flex-col gap-y-4">
                 {buttons.map((button) => (
                     <li ref={ref} key={button.id}>
                         <button
