@@ -31,7 +31,7 @@ const Social = () => {
                 </div>
             </div>
 
-            <div className="flex p-4 gap-x-4 max-w-[70rem] mx-auto">
+            <div className="flex flex-col md:flex-row p-4 gap-x-4 max-w-[70rem] mx-auto">
                 <Nav user="guest" setSelectedView={setSelectedView} />
 
                 {views[selectedView]}

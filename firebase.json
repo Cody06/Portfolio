@@ -6,6 +6,10 @@
             {
                 "source": "/workboard",
                 "destination": "/workboard.html"
+            },
+            {
+                "source": "/social",
+                "destination": "/social.html"
             }
         ]
     },
