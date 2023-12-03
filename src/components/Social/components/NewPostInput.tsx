@@ -21,7 +21,10 @@ const NewPostInput: React.FC<Props> = ({ savePost }) => {
                 onChange={(e) => setNewPost(e.target.value)}
             />
             <button
-                className="w-max m-auto p-2 text-white bg-blue-100 rounded-lg hover:bg-opacity-80"
+                className={`w-max m-auto p-2 text-white bg-blue-100 rounded-lg ${
+                    !newPost ? 'opacity-25' : 'hover:bg-opacity-80'
+                }`}
+                disabled={!newPost}
                 onClick={() => {
                     savePost(newPost);
                     setNewPost('');
