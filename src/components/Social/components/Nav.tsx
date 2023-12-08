@@ -56,7 +56,7 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
 
     return (
         // TODO: Move into a dropdown for mobile
-        <nav className="p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
+        <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
             <ul className="flex flex-row md:flex-col gap-y-3">
                 {buttons.map((button) => (
                     <li ref={ref} key={button.id}>
@@ -67,7 +67,7 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
                             onClick={button.onClick}
                         >
                             <span className="text-grey-100 mr-3">{button.icon}</span>
-                            {button.name}
+                            <span className="hidden md:inline">{button.name}</span>
                         </button>
                         {button.id === 'more' && (
                             <div className="relative">{isOpen && Dropdown}</div>
