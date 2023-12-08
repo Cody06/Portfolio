@@ -7,16 +7,31 @@ interface Props {
 }
 
 const OwnProfile: React.FC<Props> = ({ userId, userPosts }) => {
+    // Pass this as a prop
+    const data = {
+        numOfFollowers: 0,
+        numOfFollowing: 0,
+    };
+
     return (
         <div className="max-1-[1000rem] mx-auto">
-            <div className="space-x-4">
-                <span>0 Following</span>
-                <span>0 Followers</span>
+            <h1 className="text-2xl text-center font-bold mb-4">{userId}&apos;s posts</h1>
+            <div className="flex justify-center gap-x-5 text-sm text-center">
+                <div>
+                    <p>{data.numOfFollowers}</p>
+                    <p>following</p>
+                </div>
+                <div>
+                    <p>{data.numOfFollowing}</p>
+                    <p>following</p>
+                </div>
             </div>
-            <h1 className="text-lg text-center mb-4">{userId}&apos;s posts</h1>
-            {userPosts.map((post) => (
-                <PostContainer key={post.id} post={post} />
-            ))}
+
+            <section className="min-w-[24rem]">
+                {userPosts.map((post) => (
+                    <PostContainer key={post.id} post={post} />
+                ))}
+            </section>
         </div>
     );
 };
