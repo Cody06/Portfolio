@@ -31,7 +31,7 @@ const Social = () => {
             id: '3',
             date: new Date('2023-12-02').toDateString(),
             creator: 'guest',
-            content: 'Looking forward to see what everyone has to share!',
+            content: 'This is my first post',
             likes: [],
         },
     ];
@@ -94,8 +94,8 @@ const Social = () => {
     return (
         <>
             <div className="bg-blue-100">
-                <div className="flex justify-between p-4 text-white max-w-[70rem] mx-auto">
-                    <span className="font-bold">Social</span>
+                <div className="flex justify-between p-2 text-white max-w-[70rem] mx-auto">
+                    <span className="text-2xl font-bold">Social</span>
                     <Link href="/" className="hover:text-orange-100">
                         Back to Portfolio
                     </Link>

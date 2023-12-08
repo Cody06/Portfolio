@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faHouse, faUser, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
@@ -9,27 +11,32 @@ interface Props {
 }
 
 const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
-    console.log('Rendering Nav');
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
     const buttons = [
         {
             id: 'home',
+            icon: <FontAwesomeIcon icon={faHouse} className="w-4" />,
             name: 'All Posts',
             onClick: () => setSelectedView('allPosts'),
         },
         {
-            id: 'following',
-            name: 'Following',
-            onClick: () => setSelectedView('following'),
-        },
-        {
             id: 'profile',
+            icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
             name: `Profile: ${user}`,
             onClick: () => setSelectedView('ownProfile'),
         },
         {
+            id: 'following',
+            icon: <FontAwesomeIcon icon={faUserGroup} className="w-4" />,
+            name: 'Following',
+            onClick: () => setSelectedView('following'),
+        },
+        {
             id: 'more',
+            icon: (
+                <FontAwesomeIcon icon={faCaretDown} className={`w-4 ${isOpen && 'rotate-180'}`} />
+            ),
             name: 'More',
             onClick: () => {
                 setIsOpen(!isOpen);
@@ -49,8 +56,8 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
 
     return (
         // TODO: Move into a dropdown for mobile
-        <nav className="p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
-            <ul className="flex flex-row md:flex-col gap-y-4">
+        <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
+            <ul className="flex flex-row md:flex-col gap-y-3">
                 {buttons.map((button) => (
                     <li ref={ref} key={button.id}>
                         <button
@@ -59,7 +66,8 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
                                 ${button.id === 'more' && isOpen && 'bg-grey-100 bg-opacity-20'}`}
                             onClick={button.onClick}
                         >
-                            {button.name}
+                            <span className="text-grey-100 mr-3">{button.icon}</span>
+                            <span className="hidden md:inline">{button.name}</span>
                         </button>
                         {button.id === 'more' && (
                             <div className="relative">{isOpen && Dropdown}</div>
