@@ -6,11 +6,12 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Views } from '../types';
 
 interface Props {
-    user: string;
+    loggedUserId: string;
+    setSelectedUser: Dispatch<SetStateAction<string>>;
     setSelectedView: Dispatch<SetStateAction<Views>>;
 }
 
-const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
+const Nav: React.FC<Props> = ({ loggedUserId, setSelectedUser, setSelectedView }) => {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
     const buttons = [
@@ -23,8 +24,11 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
         {
             id: 'profile',
             icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
-            name: `Profile: ${user}`,
-            onClick: () => setSelectedView('ownProfile'),
+            name: `Profile: ${loggedUserId}`,
+            onClick: () => {
+                setSelectedUser(loggedUserId);
+                setSelectedView('profile');
+            },
         },
         {
             id: 'following',

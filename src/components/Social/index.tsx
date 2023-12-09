@@ -6,11 +6,11 @@ import Nav from './components/Nav';
 import AllPosts from './components/AllPosts';
 import Following from './components/Following';
 import { Post, Views } from './types';
-import OwnProfile from './components/OwnProfile';
+import Profile from './components/Profile';
 
 const Social = () => {
     // TODO: Add user Id from login
-    const userId = 'guest';
+    const loggedUserId = 'guest';
 
     const initialPosts: Post[] = [
         {
@@ -37,16 +37,15 @@ const Social = () => {
     ];
 
     const [selectedView, setSelectedView] = useState<Views>('allPosts');
+    const [selectedUser, setSelectedUser] = useState(loggedUserId);
     const [posts, setPosts] = useState(initialPosts);
-
-    const userPosts = posts.filter((post) => post.creator === userId);
 
     const savePost = (newPost: string) => {
         setPosts([
             {
-                id: `${userId}-${Date.now().toString()}`,
+                id: `${loggedUserId}-${Date.now().toString()}`,
                 date: new Date().toDateString(),
-                creator: userId,
+                creator: loggedUserId,
                 content: newPost,
                 likes: [],
             },
@@ -58,17 +57,17 @@ const Social = () => {
         setPosts(
             posts.map((post) => {
                 if (post.id === postId) {
-                    const userAlreadyLikedPost = post.likes.includes(userId);
+                    const userAlreadyLikedPost = post.likes.includes(loggedUserId);
 
                     if (userAlreadyLikedPost) {
                         return {
                             ...post,
-                            likes: post.likes.filter((likedUserId) => likedUserId !== userId),
+                            likes: post.likes.filter((likedUserId) => likedUserId !== loggedUserId),
                         };
                     } else {
                         return {
                             ...post,
-                            likes: [...post.likes, userId],
+                            likes: [...post.likes, loggedUserId],
                         };
                     }
                 } else {
@@ -78,17 +77,31 @@ const Social = () => {
         );
     };
 
+    const showSelectedUserProfile = (selectedUserId: string) => {
+        setSelectedUser(selectedUserId);
+        setSelectedView('profile');
+    };
+
+    const getSelectedUserPosts = (user: string) => posts.filter((post) => post.creator === user);
+
     const views = {
         allPosts: (
             <AllPosts
-                userId={userId}
+                loggedUserId={loggedUserId}
                 allPosts={posts}
                 savePost={savePost}
+                showSelectedUserProfile={showSelectedUserProfile}
                 toggleLike={toggleLike}
             />
         ),
         following: <Following />,
-        ownProfile: <OwnProfile userId={userId} userPosts={userPosts} />,
+        profile: (
+            <Profile
+                selectedUserId={selectedUser}
+                userPosts={getSelectedUserPosts(selectedUser)}
+                toggleLike={toggleLike}
+            />
+        ),
     };
 
     return (
@@ -103,7 +116,11 @@ const Social = () => {
             </div>
 
             <div className="flex flex-col md:flex-row p-4 gap-x-4 max-w-[70rem] mx-auto">
-                <Nav user="guest" setSelectedView={setSelectedView} />
+                <Nav
+                    loggedUserId="guest"
+                    setSelectedUser={setSelectedUser}
+                    setSelectedView={setSelectedView}
+                />
 
                 {views[selectedView]}
             </div>
