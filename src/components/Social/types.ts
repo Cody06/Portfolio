@@ -1,4 +1,4 @@
-export type Views = 'allPosts' | 'following' | 'ownProfile';
+export type Views = 'allPosts' | 'following' | 'profile';
 
 export type Post = {
     id: string;

@@ -2,11 +2,12 @@ import { Post } from '../types';
 import PostContainer from './PostContainer';
 
 interface Props {
-    userId: string;
+    selectedUserId: string;
     userPosts: Post[];
+    toggleLike: (postId: string) => void;
 }
 
-const OwnProfile: React.FC<Props> = ({ userId, userPosts }) => {
+const Profile: React.FC<Props> = ({ selectedUserId, userPosts, toggleLike }) => {
     // Pass this as a prop
     const data = {
         numOfFollowers: 0,
@@ -15,7 +16,8 @@ const OwnProfile: React.FC<Props> = ({ userId, userPosts }) => {
 
     return (
         <div className="max-1-[1000rem] mx-auto">
-            <h1 className="text-2xl text-center font-bold mb-4">{userId}&apos;s posts</h1>
+            <h1 className="text-2xl text-center font-bold mb-4">{selectedUserId}&apos;s posts</h1>
+            {/* Add the follow or unfollow button */}
             <div className="flex justify-center gap-x-5 text-sm text-center">
                 <div>
                     <p>{data.numOfFollowers}</p>
@@ -29,11 +31,16 @@ const OwnProfile: React.FC<Props> = ({ userId, userPosts }) => {
 
             <section className="min-w-[24rem]">
                 {userPosts.map((post) => (
-                    <PostContainer key={post.id} post={post} />
+                    <PostContainer
+                        key={post.id}
+                        post={post}
+                        loggedUserId={selectedUserId}
+                        toggleLike={toggleLike}
+                    />
                 ))}
             </section>
         </div>
     );
 };
 
-export default OwnProfile;
+export default Profile;
