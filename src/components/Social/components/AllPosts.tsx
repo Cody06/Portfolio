@@ -18,12 +18,12 @@ const AllPosts: React.FC<Props> = ({
     toggleLike,
 }) => {
     return (
-        <div className="max-w-[100rem] mx-auto">
+        <main className="max-w-[100rem] mx-auto">
             <h1 className="text-lg text-center mb-4">All Posts</h1>
 
             <NewPostInput savePost={savePost} />
 
-            <div className="space-y-4">
+            <section className="space-y-4">
                 {allPosts.map((post) => (
                     <PostContainer
                         key={post.id}
@@ -33,8 +33,8 @@ const AllPosts: React.FC<Props> = ({
                         toggleLike={toggleLike}
                     />
                 ))}
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 
