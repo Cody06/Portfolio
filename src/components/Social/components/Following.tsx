@@ -1,3 +1,43 @@
-const Following = () => <div>This is the list of the posts from people you follow</div>;
+import { Post } from '../types';
+import PostContainer from './PostContainer';
+
+interface Props {
+    followingPosts: Post[];
+    loggedUserId: string;
+    showSelectedUserProfile: (selectedUserId: string) => void;
+    toggleLike: (postId: string) => void;
+}
+
+const Following: React.FC<Props> = ({
+    followingPosts,
+    loggedUserId,
+    showSelectedUserProfile,
+    toggleLike,
+}) => {
+    if (followingPosts.length === 0) {
+        return (
+            <div className="mx-auto text-center text-2xl font-bold">
+                You are not following anyone.
+            </div>
+        );
+    }
+
+    return (
+        <main className="max-w-[1000rem] mx-auto">
+            <h1 className="text-center text-2xl font-bold mb-5">Following</h1>
+            <section>
+                {followingPosts.map((post) => (
+                    <PostContainer
+                        key={post.id}
+                        post={post}
+                        loggedUserId={loggedUserId}
+                        showSelectedUserProfile={showSelectedUserProfile}
+                        toggleLike={toggleLike}
+                    />
+                ))}
+            </section>
+        </main>
+    );
+};
 
 export default Following;
