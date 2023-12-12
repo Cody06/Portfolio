@@ -15,7 +15,7 @@ const PostContainer: React.FC<Props> = ({
     showSelectedUserProfile,
     toggleLike,
 }) => (
-    <div className="space-y-4 p-4 rounded-xl shadow-md">
+    <div className="min-w-[20rem] space-y-4 p-4 rounded-xl shadow-md">
         <div className="flex justify-between">
             {post.creator !== loggedUserId && showSelectedUserProfile ? (
                 <button
@@ -32,6 +32,7 @@ const PostContainer: React.FC<Props> = ({
         <p>{post.content}</p>
         <button
             className="text-grey-100 space-x-2 hover:text-red"
+            title="Like"
             onClick={() => toggleLike(post.id)}
         >
             <FontAwesomeIcon icon={faHeart} />

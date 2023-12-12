@@ -59,7 +59,6 @@ const Nav: React.FC<Props> = ({ loggedUserId, setSelectedUser, setSelectedView }
     );
 
     return (
-        // TODO: Move into a dropdown for mobile
         <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
             <ul className="flex flex-row md:flex-col gap-y-3">
                 {buttons.map((button) => (
