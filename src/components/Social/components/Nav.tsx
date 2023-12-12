@@ -6,11 +6,12 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Views } from '../types';
 
 interface Props {
-    user: string;
+    loggedUserId: string;
+    setSelectedUser: Dispatch<SetStateAction<string>>;
     setSelectedView: Dispatch<SetStateAction<Views>>;
 }
 
-const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
+const Nav: React.FC<Props> = ({ loggedUserId, setSelectedUser, setSelectedView }) => {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
     const buttons = [
@@ -23,8 +24,11 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
         {
             id: 'profile',
             icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
-            name: `Profile: ${user}`,
-            onClick: () => setSelectedView('ownProfile'),
+            name: `Profile: ${loggedUserId}`,
+            onClick: () => {
+                setSelectedUser(loggedUserId);
+                setSelectedView('profile');
+            },
         },
         {
             id: 'following',
@@ -55,7 +59,6 @@ const Nav: React.FC<Props> = ({ user, setSelectedView }) => {
     );
 
     return (
-        // TODO: Move into a dropdown for mobile
         <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
             <ul className="flex flex-row md:flex-col gap-y-3">
                 {buttons.map((button) => (
