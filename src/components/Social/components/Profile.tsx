@@ -1,27 +1,62 @@
-import { Post } from '../types';
+import { FollowingAndFollowers, Post } from '../types';
 import PostContainer from './PostContainer';
 
 interface Props {
+    followingAndFollowers: FollowingAndFollowers;
+    loggedUserId: string;
     selectedUserId: string;
     userPosts: Post[];
     toggleLike: (postId: string) => void;
+    followUser: (followingUserId: string) => void;
+    unfollowUser: (followingUserId: string) => void;
 }
 
-const Profile: React.FC<Props> = ({ selectedUserId, userPosts, toggleLike }) => {
-    // Pass this as a prop
+const Profile: React.FC<Props> = ({
+    followingAndFollowers,
+    loggedUserId,
+    selectedUserId,
+    userPosts,
+    toggleLike,
+    followUser,
+    unfollowUser,
+}) => {
+    const isLoggedUserProfile = loggedUserId === selectedUserId;
+
     const data = {
-        numOfFollowers: 0,
-        numOfFollowing: 0,
+        numOfFollowers: followingAndFollowers[selectedUserId].followers.length,
+        numOfFollowing: followingAndFollowers[selectedUserId].following.length,
     };
 
+    const isSelectedUserFollowed =
+        followingAndFollowers[loggedUserId].following.includes(selectedUserId);
+
     return (
-        <div className="max-1-[1000rem] mx-auto">
-            <h1 className="text-2xl text-center font-bold mb-4">{selectedUserId}&apos;s posts</h1>
-            {/* Add the follow or unfollow button */}
-            <div className="flex justify-center gap-x-5 text-sm text-center">
+        <main className="max-w-[1000rem] mx-auto">
+            <div className="text-center space-x-4 mb-3">
+                <h1 className="inline text-2xl font-bold mb-4">{selectedUserId}&apos;s posts</h1>
+                {!isLoggedUserProfile &&
+                    (isSelectedUserFollowed ? (
+                        <button
+                            className="text-sm p-1 rounded-md bg-grey-90 shadow-md"
+                            title={`Unfollow ${selectedUserId}`}
+                            onClick={() => unfollowUser(selectedUserId)}
+                        >
+                            Unfollow
+                        </button>
+                    ) : (
+                        <button
+                            className="text-sm p-1 rounded-md bg-blue-100 text-white shadow-md"
+                            title={`Follow ${selectedUserId}`}
+                            onClick={() => followUser(selectedUserId)}
+                        >
+                            Follow
+                        </button>
+                    ))}
+            </div>
+            <div className="flex justify-center gap-x-5 text-sm text-center mb-4">
                 <div>
                     <p>{data.numOfFollowers}</p>
-                    <p>following</p>
+                    <p>followers</p>
                 </div>
                 <div>
                     <p>{data.numOfFollowing}</p>
@@ -39,7 +74,7 @@ const Profile: React.FC<Props> = ({ selectedUserId, userPosts, toggleLike }) => 
                     />
                 ))}
             </section>
-        </div>
+        </main>
     );
 };
 
