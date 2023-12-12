@@ -31,7 +31,7 @@ const Profile: React.FC<Props> = ({
         followingAndFollowers[loggedUserId].following.includes(selectedUserId);
 
     return (
-        <main className="max-w-[1000rem] mx-auto">
+        <main>
             <div className="text-center space-x-4 mb-3">
                 <h1 className="inline text-2xl font-bold mb-4">{selectedUserId}&apos;s posts</h1>
                 {!isLoggedUserProfile &&

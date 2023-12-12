@@ -18,7 +18,7 @@ const AllPosts: React.FC<Props> = ({
     toggleLike,
 }) => {
     return (
-        <main className="max-w-[100rem] mx-auto">
+        <main>
             <h1 className="text-lg text-center mb-4">All Posts</h1>
 
             <NewPostInput savePost={savePost} />

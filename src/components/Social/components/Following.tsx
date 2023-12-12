@@ -23,7 +23,7 @@ const Following: React.FC<Props> = ({
     }
 
     return (
-        <main className="max-w-[1000rem] mx-auto">
+        <main>
             <h1 className="text-center text-2xl font-bold mb-5">Following</h1>
             <section>
                 {followingPosts.map((post) => (
