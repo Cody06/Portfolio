@@ -192,7 +192,7 @@ const Social = () => {
                 </div>
             </header>
 
-            <div className="flex flex-col md:flex-row p-4 gap-x-4 max-w-[70rem] mx-auto">
+            <div className="flex flex-col md:flex-row p-4 gap-x-40 max-w-[70rem] mx-auto">
                 <Nav
                     loggedUserId={loggedUserId}
                     setSelectedUser={setSelectedUser}

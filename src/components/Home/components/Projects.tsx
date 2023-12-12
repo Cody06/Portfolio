@@ -60,15 +60,21 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
                                 priority
                                 alt="Laptop image"
                             />
-
-                            <div className="absolute top-2 w-full px-[10.19%]">
-                                <Image
-                                    src={`/assets/thumbnails/${project.thumbnail}`}
-                                    width={414}
-                                    height={267}
-                                    alt={`thumbnail ${project.thumbnail}`}
-                                    className="rounded-t-lg"
-                                />
+                            <div className="absolute top-2 w-full h-full px-[10.19%]">
+                                {/* TODO: Remove when this project gets a thumbnail */}
+                                {project.id === 3 ? (
+                                    <div className="text-center pt-[30%] bg-white h-[87%] rounded-t-lg">
+                                        Coming soon
+                                    </div>
+                                ) : (
+                                    <Image
+                                        src={`/assets/thumbnails/${project.thumbnail}`}
+                                        width={414}
+                                        height={267}
+                                        alt={`thumbnail ${project.thumbnail}`}
+                                        className="rounded-t-lg"
+                                    />
+                                )}
                             </div>
                         </div>
 
