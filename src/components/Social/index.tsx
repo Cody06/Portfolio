@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Nav from './components/Nav';
 import AllPosts from './components/AllPosts';
 import Following from './components/Following';
-import { Post, Views } from './types';
+import { FollowingAndFollowers, Post, Views } from './types';
 import Profile from './components/Profile';
 
 const Social = () => {
@@ -22,13 +22,20 @@ const Social = () => {
         },
         {
             id: '2',
-            date: new Date('2023-10-12').toDateString(),
+            date: new Date('2023-10-15').toDateString(),
             creator: 'cody',
             content: 'Looking forward to see what everyone has to share!',
             likes: [],
         },
         {
             id: '3',
+            date: new Date('2023-10-16').toDateString(),
+            creator: 'elon',
+            content: 'Launching new rocket',
+            likes: [],
+        },
+        {
+            id: '4',
             date: new Date('2023-12-02').toDateString(),
             creator: 'guest',
             content: 'This is my first post',
@@ -36,9 +43,63 @@ const Social = () => {
         },
     ];
 
+    const initialFollowingAndFollowers: FollowingAndFollowers = {
+        [loggedUserId]: {
+            followers: [],
+            following: ['cody'],
+        },
+        cody: {
+            followers: ['guest'],
+            following: [],
+        },
+        elon: {
+            followers: [],
+            following: [],
+        },
+    };
+
     const [selectedView, setSelectedView] = useState<Views>('allPosts');
     const [selectedUser, setSelectedUser] = useState(loggedUserId);
-    const [posts, setPosts] = useState(initialPosts);
+    const [posts, setPosts] = useState(initialPosts.reverse());
+    const [followingAndFollowers, setFollowingAndFollowers] = useState(
+        initialFollowingAndFollowers,
+    );
+
+    const followUser = (followingUserId: string) => {
+        // Add followingUser to loggedUser's following list
+        // Add loggedUser to followingUser's followers list
+        setFollowingAndFollowers({
+            ...followingAndFollowers,
+            [loggedUserId]: {
+                followers: [...followingAndFollowers[loggedUserId].followers],
+                following: [...followingAndFollowers[loggedUserId].following, followingUserId],
+            },
+            [followingUserId]: {
+                followers: [...followingAndFollowers[followingUserId].followers, loggedUserId],
+                following: [...followingAndFollowers[followingUserId].following],
+            },
+        });
+    };
+
+    const unfollowUser = (followingUserId: string) => {
+        // Remove followingUser from loggedUser's following list
+        // Remove loggedUser from followingUser's followers list
+        setFollowingAndFollowers({
+            ...followingAndFollowers,
+            [loggedUserId]: {
+                followers: [...followingAndFollowers[loggedUserId].followers],
+                following: followingAndFollowers[loggedUserId].following.filter(
+                    (existingUser) => existingUser !== followingUserId,
+                ),
+            },
+            [followingUserId]: {
+                followers: followingAndFollowers[followingUserId].followers.filter(
+                    (existingUser) => existingUser !== loggedUserId,
+                ),
+                following: [...followingAndFollowers[followingUserId].following],
+            },
+        });
+    };
 
     const savePost = (newPost: string) => {
         setPosts([
@@ -84,40 +145,56 @@ const Social = () => {
 
     const getSelectedUserPosts = (user: string) => posts.filter((post) => post.creator === user);
 
+    const getFollowingPosts = () =>
+        posts.filter((post) =>
+            followingAndFollowers[loggedUserId].following.includes(post.creator),
+        );
+
     const views = {
         allPosts: (
             <AllPosts
-                loggedUserId={loggedUserId}
                 allPosts={posts}
+                loggedUserId={loggedUserId}
                 savePost={savePost}
                 showSelectedUserProfile={showSelectedUserProfile}
                 toggleLike={toggleLike}
             />
         ),
-        following: <Following />,
+        following: (
+            <Following
+                followingPosts={getFollowingPosts()}
+                loggedUserId={loggedUserId}
+                showSelectedUserProfile={showSelectedUserProfile}
+                toggleLike={toggleLike}
+            />
+        ),
         profile: (
             <Profile
+                followingAndFollowers={followingAndFollowers}
+                loggedUserId={loggedUserId}
                 selectedUserId={selectedUser}
                 userPosts={getSelectedUserPosts(selectedUser)}
                 toggleLike={toggleLike}
+                followUser={followUser}
+                unfollowUser={unfollowUser}
             />
         ),
     };
 
     return (
         <>
-            <div className="bg-blue-100">
+            <header className="bg-blue-100">
                 <div className="flex justify-between p-2 text-white max-w-[70rem] mx-auto">
                     <span className="text-2xl font-bold">Social</span>
                     <Link href="/" className="hover:text-orange-100">
                         Back to Portfolio
                     </Link>
                 </div>
-            </div>
+            </header>
 
             <div className="flex flex-col md:flex-row p-4 gap-x-4 max-w-[70rem] mx-auto">
                 <Nav
-                    loggedUserId="guest"
+                    loggedUserId={loggedUserId}
                     setSelectedUser={setSelectedUser}
                     setSelectedView={setSelectedView}
                 />

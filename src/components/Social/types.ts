@@ -7,3 +7,10 @@ export type Post = {
     content: string;
     likes: string[];
 };
+
+export type FollowingAndFollowers = {
+    [user: string]: {
+        following: string[];
+        followers: string[];
+    };
+};
