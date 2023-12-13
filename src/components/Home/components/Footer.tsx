@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import { faSquareGithub } from '@fortawesome/free-brands-svg-icons';
+import { faCircleArrowUp, faEnvelope, faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
+import usePageBottom from '@/hooks/usePageBottom';
 
 const Footer = () => {
+    const reachedBottom = usePageBottom();
     const linkButtons = [
         {
             href: 'mailto:cody.miu@gmail.com',
@@ -67,6 +67,14 @@ const Footer = () => {
                     <span>2023</span>
                 </span>
             </div>
+            {reachedBottom && (
+                <button
+                    className="fixed text-orange-100 text-[3rem] bottom-5 right-8"
+                    onClick={() => document.getElementById('header')?.scrollIntoView()}
+                >
+                    <FontAwesomeIcon icon={faCircleArrowUp} />
+                </button>
+            )}
         </footer>
     );
 };
