@@ -95,16 +95,10 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
                             <p className="mb-6 md:mb-8">{project.description}</p>
 
                             <div className="flex justify-center items-center gap-x-5">
-                                {/* TODO: Enable after getting screenshots of project */}
-                                {/* <Button
-                                    label="Preview"
-                                    disabled
-                                    onClick={() => console.log(`Open modal ${project.name}`)}
-                                /> */}
                                 <Button
                                     label={`Visit ${project.name.split(' ')[0]}`}
                                     type="link"
-                                    kind="secondary"
+                                    kind="primary"
                                     disabled={project.id !== 1}
                                     href={project.href}
                                 />
