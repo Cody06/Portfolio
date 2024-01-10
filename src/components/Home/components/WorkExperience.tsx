@@ -3,12 +3,22 @@ import SectionHeader from './SectionHeader';
 const WorkExperience = () => {
     const experiences = [
         {
+            id: 0,
+            position: 'Software Developer',
+            company: 'Freelance',
+            companyLogo: null,
+            date: 'Aug 2023 - Present',
+            description:
+                'Design and build web applications using JavaScript, TypeScript, React, HTML, CSS and Tailwind.',
+        },
+        {
             id: 1,
-            position: 'Full Stack Developer',
-            company: 'moozoom',
+            position: 'Full-Stack Developer',
+            company: 'Moozoom',
             companyLogo: null,
             date: 'Jan 2022 - Present',
-            description: '',
+            description:
+                'Moozoom is a social emotional learning (SEL) platform that provides interactive videos and activities that allow children to improve their mental and emotional well-being.',
         },
     ];
 
@@ -25,6 +35,7 @@ const WorkExperience = () => {
                         <span className="text-grey-110">{experience.date}</span>
                     </h3>
                     <span>{experience.company}</span>
+                    <p className="mt-4">{experience.description}</p>
                 </div>
             ))}
         </section>
