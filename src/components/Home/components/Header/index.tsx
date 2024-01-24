@@ -11,15 +11,15 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
     );
     const secondaryTechnologies = ['HTML', 'CSS', 'Tailwind', 'SQL'].join(' | ');
 
-    const headlineParagraph = `Hello! 😃 I'm a software developer who enjoys creating fullstack web applications in Python and JavaScript.
-        \n I have started with Java and C during my bachelor in Information Systems at McGill University and switched to TypeScript in a professional environment.
-        \n With a diverse background, I am eager to tackle any technical project!`;
+    const headlineParagraph = `This is where code meets creativity and innovation comes to life.
+        \n My name is Cody and I am a passionate software developer with expertise in creating digital solutions that leave a lasting impact.
+        \n Welcome to my Digital Playground!`;
 
     return (
         <header id="header">
             <TopNav showAnimation={showAnimation} />
             <div className="content-max-width mx-auto px-4">
-                <div className="flex flex-col items-center gap-y-5 pt-24 pb-14">
+                <div className="flex flex-col items-center gap-y-5 pt-40">
                     <h1 className="text-3xl md:text-5xl text-center">
                         <span
                             className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}
@@ -42,7 +42,7 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
 
                 <div className="flex justify-around">
                     <p
-                        className={`md:basis-2/3 mb-4 ${showAnimation && 'animate-fade-in'}`}
+                        className={`md:basis-2/3 mt-20 mb-4 ${showAnimation && 'animate-fade-in'}`}
                         style={{ whiteSpace: 'pre-line' }}
                     >
                         {headlineParagraph}
