@@ -42,7 +42,7 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
 
     return (
         // Use padding-top to see the title when onClick scrollIntoView
-        <section id="projects-collection" className={`pt-16 ${showAnimation && 'animate-fade-in'}`}>
+        <section id="projects-collection" className={`pt-20 ${showAnimation && 'animate-fade-in'}`}>
             <SectionHeader title="Projects" />
 
             <div className="flex flex-col gap-y-10">
