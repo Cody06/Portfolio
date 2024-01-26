@@ -16,7 +16,7 @@ const WorkExperience = () => {
             position: 'Full-Stack Developer',
             company: 'Moozoom',
             companyLogo: null,
-            date: 'Jan 2022 - Present',
+            date: 'Jan 2022 - Sep 2023',
             description:
                 'Moozoom is a social emotional learning (SEL) platform that provides interactive videos and activities that allow children to improve their mental and emotional well-being.',
         },
