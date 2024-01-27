@@ -29,7 +29,7 @@ const Button: React.FC<Props> = ({
 
     const disabledStyle = 'text-grey-100 bg-grey-90';
 
-    // Need isBrnDisabled arg for when we want to disable if it's a link and no href
+    // Need isBtnDisabled arg for when we want to disable if it's a link and no href
     const ButtonElement = (isBtnDisabled: boolean) => (
         <button
             className={`p-3 rounded-3xl shadow-lg active:shadow-none ease-in duration-200 ${
