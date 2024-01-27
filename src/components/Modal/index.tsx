@@ -1,6 +1,7 @@
+import useOutsideClick from '@/hooks/useOutsideClick';
 import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface Props {
     children: React.ReactNode;
@@ -14,6 +15,7 @@ interface ModalComponent extends React.FC<Props> {
 }
 
 const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
+    const ref = useOutsideClick(() => fadeOut());
     // Prevent scroll
     useEffect(() => {
         if (isOpen) {
@@ -24,7 +26,7 @@ const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
     }, [isOpen]);
 
     const fadeOut = () => {
-        const modal = document.getElementById('modal-container');
+        const modal = document.getElementById('modal-background');
         if (modal) modal.style.animation = 'modal_fade_out 200ms';
         setTimeout(() => {
             if (modal) {
@@ -37,11 +39,11 @@ const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
 
     return isOpen ? (
         <div
-            id="modal-container"
+            id="modal-background"
             className="fixed inset-0 z-50 flex justify-center pt-10 md:pt-0 md:items-center
                 bg-black bg-opacity-50 animate-modal-fade-in"
         >
-            <div className="content-max-width h-max p-5 bg-grey-90 rounded-2xl">
+            <div ref={ref} className="content-max-width h-max p-5 bg-grey-90 rounded-2xl">
                 <ModalHeader title={title} requestClose={fadeOut} />
                 <ModalBody>{children}</ModalBody>
             </div>
