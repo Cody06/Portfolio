@@ -1,3 +1,4 @@
+import Image from 'next/image';
 /*
  TODO:
  - Create store-front page
@@ -28,7 +29,7 @@ const ECommerce = () => {
             publicationDate: 2008,
             price: 40.0,
             rating: 4.7,
-            images: [],
+            images: ['clean-code.jpg'],
         },
         {
             id: 2,
@@ -38,7 +39,7 @@ const ECommerce = () => {
             publicationDate: 2019,
             price: 40.0,
             rating: 4.7,
-            images: [],
+            images: ['pragmatic-programmer.jpg'],
         },
         {
             id: 3,
@@ -48,7 +49,7 @@ const ECommerce = () => {
             publicationDate: 2006,
             price: 15.0,
             rating: 4.6,
-            images: [],
+            images: ['debugging.jpg'],
         },
         {
             id: 4,
@@ -58,17 +59,17 @@ const ECommerce = () => {
             publicationDate: 2011,
             price: 20.0,
             rating: 4.7,
-            images: [],
+            images: ['html-and-css.jpg'],
         },
         {
             id: 5,
             title: 'Responsive Web Design with HTML5 and CSS: Develop future-proof responsive websites using the latest HTML5 and CSS techniques',
             author: 'Ben Frain',
-            edition: '3rd',
+            edition: '4th',
             publicationDate: 2020,
             price: 35.0,
             rating: 4.5,
-            images: [],
+            images: ['responsive-web-design.jpg'],
         },
         {
             id: 6,
@@ -78,7 +79,7 @@ const ECommerce = () => {
             publicationDate: 2017,
             price: 40.0,
             rating: 4.6,
-            images: [],
+            images: ['css-the-definitive-guide.jpg'],
         },
     ];
 
@@ -86,6 +87,14 @@ const ECommerce = () => {
         <div>
             {books.map((book) => (
                 <div key={book.id} className="border">
+                    {book.images[0] && (
+                        <Image
+                            src={`/assets/books/${book.images[0]}`}
+                            width={200}
+                            height={300}
+                            alt="Book cover image"
+                        />
+                    )}
                     <h2>{book.title}</h2>
                     <span>by {book.author}</span>
                     <p>rating: {book.rating}</p>
