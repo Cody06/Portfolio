@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 /*
  TODO:
@@ -83,25 +84,52 @@ const ECommerce = () => {
         },
     ];
 
+    const viewBookPage = (id: number) => console.log('view book page:', id);
+
     return (
-        <div>
+        <div className="flex flex-wrap gap-4">
             {books.map((book) => (
-                <div key={book.id} className="border">
+                <article
+                    key={book.id}
+                    className="flex flex-col w-[300px] p-2 items-center border border-grey-90"
+                >
                     {book.images[0] && (
-                        <Image
-                            src={`/assets/books/${book.images[0]}`}
-                            width={200}
-                            height={300}
-                            alt="Book cover image"
-                        />
+                        <button className="bg-grey-100 mb-2" onClick={() => viewBookPage(book.id)}>
+                            <Image
+                                src={`/assets/books/${book.images[0]}`}
+                                width={200}
+                                height={300}
+                                alt="Book cover image"
+                            />
+                        </button>
                     )}
-                    <h2>{book.title}</h2>
-                    <span>by {book.author}</span>
-                    <p>rating: {book.rating}</p>
-                    <p>${book.price}</p>
-                    <button>View</button>
-                    <button>Add to Cart</button>
-                </div>
+
+                    <section className="flex flex-col items-center gap-y-2 mb-2">
+                        <button
+                            className="font-bold hover:text-orange-100"
+                            onClick={() => viewBookPage(book.id)}
+                        >
+                            {book.title}
+                        </button>
+                        <span className="text-grey-110 text-sm">by {book.author}</span>
+                        {/* @TODO: Add reviews section */}
+                        <button
+                            className="text-blue-110"
+                            onClick={() => console.log('view reviews')}
+                        >
+                            {book.rating} / 5
+                        </button>
+                        <p className="font-bold">${book.price}</p>
+                    </section>
+
+                    <button
+                        className="mt-auto px-4 py-2 w-max bg-orange-100 rounded-xl
+                                                hover:brightness-90 active:brightness-75"
+                        onClick={() => console.log('Add to cart:', book.id)}
+                    >
+                        Add to Cart
+                    </button>
+                </article>
             ))}
         </div>
     );
