@@ -7,7 +7,7 @@ import NewCardInput from './NewCardInput';
 interface Props {
     column: ColumnData;
     onCreateCard: (colId: string, cardText: string) => void;
-    onDeleteCard: (item: ItemToDelete) => void;
+    onDeleteCard: (cardId: string) => void;
     onDrop: (card: CardData) => void;
     onEditCard: (cardId: string, cardText: string) => void;
     onEditColumn: (colId: string, colTitle: string) => void;

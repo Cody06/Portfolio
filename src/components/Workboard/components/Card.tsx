@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { CardData, ItemToDelete } from '../types';
+import { CardData } from '../types';
 
 interface Props {
     card: CardData;
     onEditCard: (cardId: string, cardText: string) => void;
-    onDeleteCard: (item: ItemToDelete) => void;
+    onDeleteCard: (cardId: string) => void;
     onDrop: (card: CardData) => void;
 }
 
@@ -18,7 +18,7 @@ const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, onDrop }) => {
 
     const handleClickOutside = () => {
         if (text.length === 0) {
-            onDeleteCard({ id: card.id, kind: 'card' });
+            onDeleteCard(card.id);
         } else {
             onEditCard(card.id, text);
         }

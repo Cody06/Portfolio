@@ -68,7 +68,6 @@ const Workboard = () => {
     };
 
     const handleDeleteItem = (item: ItemToDelete) => {
-        if (item.kind === 'card') handleDeleteCard(item.id);
         if (item.kind === 'column') handleDeleteColumn(item.id);
     };
 
@@ -178,7 +177,7 @@ const Workboard = () => {
                         key={column.id}
                         column={column}
                         onCreateCard={handleCreateCard}
-                        onDeleteCard={handleDeleteItem}
+                        onDeleteCard={handleDeleteCard}
                         onDrop={handleDrop}
                         onEditCard={handleEditCard}
                         onEditColumn={handleEditColumn}
