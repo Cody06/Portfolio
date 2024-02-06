@@ -10,7 +10,6 @@ interface Props {
 }
 
 const DeleteColumnModal: React.FC<Props> = ({ isOpen, col, onDeleteCol, requestClose }) => {
-    console.log('Delete Modal isOpen: ', isOpen);
     if (!col) return;
 
     return (
