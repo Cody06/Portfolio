@@ -32,7 +32,7 @@ const TopNav: React.FC<Props> = ({ showAnimation }) => {
 
     return (
         <nav
-            className={`fixed z-10 w-full px-4 py-3 bg-grey-120 shadow-lg select-none ${
+            className={`fixed z-10 w-full p-4 bg-grey-120 shadow-lg select-none ${
                 showAnimation && 'animate-navbar'
             }`}
         >

@@ -19,7 +19,7 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
         <header id="header">
             <TopNav showAnimation={showAnimation} />
             <div className="content-max-width mx-auto px-4">
-                <div className="flex flex-col items-center gap-y-5 pt-40">
+                <div className="flex flex-col items-center gap-y-5 pt-48">
                     <h1 className="text-3xl md:text-5xl text-center">
                         <span
                             className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}

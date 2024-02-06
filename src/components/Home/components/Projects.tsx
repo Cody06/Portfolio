@@ -49,7 +49,8 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className="flex flex-col md:flex-row md:gap-x-8 lg:gap-x-16 px-5 py-10 rounded-lg shadow-lg
+                        className="flex flex-col md:flex-row md:gap-x-8 lg:gap-x-16 px-5 py-10
+                            bg-white rounded-lg shadow-lg
                             hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                     >
                         <div className="relative max-w-max m-auto">

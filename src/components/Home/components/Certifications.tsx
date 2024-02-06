@@ -74,7 +74,8 @@ const Certifications = () => {
                         href={certificate.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex flex-row gap-x-6 px-5 py-10 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
+                        className="flex flex-row gap-x-6 px-5 py-10 bg-white rounded-lg shadow-lg
+                            hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
                     >
                         <div>{certificate.icon}</div>
                         <div className="flex flex-col">
