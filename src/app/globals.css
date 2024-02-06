@@ -29,9 +29,9 @@ html {
     border-bottom: 0.125rem solid;
     border-image: linear-gradient(
             to right,
-            theme('colors.white') 30%,
+            transparent 30%,
             theme('colors.grey.100'),
-            theme('colors.white') 70%
+            transparent 70%
         )
         10;
 }
