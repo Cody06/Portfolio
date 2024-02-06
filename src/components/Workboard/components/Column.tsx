@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CardData, ColumnData, DropColumn, ItemToDelete } from '../types';
+import { CardData, ColumnData, DropColumn, ColToDelete } from '../types';
 import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
@@ -12,7 +12,8 @@ interface Props {
     onEditCard: (cardId: string, cardText: string) => void;
     onEditColumn: (colId: string, colTitle: string) => void;
     setDropCol: React.Dispatch<React.SetStateAction<DropColumn>>;
-    setItemToDelete: React.Dispatch<React.SetStateAction<ItemToDelete | undefined>>;
+    setColToDelete: React.Dispatch<React.SetStateAction<ColToDelete | undefined>>;
+    setIsDeleteColumnModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Column: React.FC<Props> = ({
@@ -23,7 +24,8 @@ const Column: React.FC<Props> = ({
     onEditCard,
     onEditColumn,
     setDropCol,
-    setItemToDelete,
+    setColToDelete,
+    setIsDeleteColumnModalOpen,
 }) => {
     const [colTitle, setColTitle] = useState(column.title);
     const [showCreateCard, setShowCreateCard] = useState(false);
@@ -37,7 +39,10 @@ const Column: React.FC<Props> = ({
         },
         {
             label: 'Delete column',
-            onClick: () => setItemToDelete({ id: column.id, kind: 'column', text: column.title }),
+            onClick: () => {
+                setColToDelete({ id: column.id, text: column.title });
+                setIsDeleteColumnModalOpen(true);
+            },
         },
     ];
 

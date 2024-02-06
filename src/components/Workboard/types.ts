@@ -9,10 +9,9 @@ export type ColumnData = {
     cards: CardData[];
 };
 
-export type ItemToDelete = {
+export type ColToDelete = {
     id: string;
-    kind: 'card' | 'column';
-    text?: string;
+    text: string;
 };
 
 export type DropColumn = {

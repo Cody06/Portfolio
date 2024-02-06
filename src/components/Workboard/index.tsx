@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Column from './components/Column';
 import CreateColumnModal from './components/CreateColumnModal';
-import DeleteModal from './components/DeleteModal';
+import DeleteColumnModal from './components/DeleteColumnModal';
 import getUniqueId from '@/utils/getUniqueId';
-import { CardData, ColumnData, DropColumn, ItemToDelete } from './types';
+import { CardData, ColumnData, DropColumn, ColToDelete } from './types';
 
 const Workboard = () => {
     const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
-    const [itemToDelete, setItemToDelete] = useState<ItemToDelete>();
+    const [isDeleteColumnModalOpen, setIsDeleteColumnModalOpen] = useState(false);
+    const [colToDelete, setColToDelete] = useState<ColToDelete>();
     const [columns, setColumns] = useState<ColumnData[]>([]);
     const [dropCol, setDropCol] = useState<DropColumn>({
         newColId: undefined,
@@ -65,10 +66,6 @@ const Workboard = () => {
                 };
             }),
         );
-    };
-
-    const handleDeleteItem = (item: ItemToDelete) => {
-        if (item.kind === 'column') handleDeleteColumn(item.id);
     };
 
     const handleEditColumn = (colId: string, colTitle: string) => {
@@ -182,7 +179,8 @@ const Workboard = () => {
                         onEditCard={handleEditCard}
                         onEditColumn={handleEditColumn}
                         setDropCol={setDropCol}
-                        setItemToDelete={setItemToDelete}
+                        setColToDelete={setColToDelete}
+                        setIsDeleteColumnModalOpen={setIsDeleteColumnModalOpen}
                     />
                 ))}
                 <button
@@ -193,19 +191,19 @@ const Workboard = () => {
                     + Add column
                 </button>
             </div>
+
             <CreateColumnModal
                 isOpen={isCreateColumnModalOpen}
                 onCreateColumn={handleCreateColumn}
                 requestClose={() => setIsCreateColumnModalOpen(false)}
             />
-            {!!itemToDelete && (
-                <DeleteModal
-                    isOpen={!!itemToDelete}
-                    item={itemToDelete}
-                    onDeleteItem={handleDeleteItem}
-                    requestClose={() => setItemToDelete(undefined)}
-                />
-            )}
+
+            <DeleteColumnModal
+                isOpen={isDeleteColumnModalOpen}
+                col={colToDelete}
+                onDeleteCol={handleDeleteColumn}
+                requestClose={() => setIsDeleteColumnModalOpen(false)}
+            />
         </>
     );
 };
