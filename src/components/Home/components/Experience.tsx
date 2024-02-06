@@ -1,6 +1,6 @@
 import SectionHeader from './SectionHeader';
 
-const WorkExperience = () => {
+const Experience = () => {
     const experiences = [
         {
             id: 0,
@@ -25,21 +25,25 @@ const WorkExperience = () => {
     return (
         <section id="work-experience" className="pt-16">
             <SectionHeader title="Experience" />
-            {experiences.map((experience) => (
-                <div
-                    key={experience.id}
-                    className="px-5 py-10 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
-                >
-                    <h3 className="flex justify-between font-bold">
-                        {experience.position}
-                        <span className="text-grey-110">{experience.date}</span>
-                    </h3>
-                    <span>{experience.company}</span>
-                    <p className="mt-4">{experience.description}</p>
-                </div>
-            ))}
+
+            <div className="flex flex-col gap-y-10">
+                {experiences.map((experience) => (
+                    <div
+                        key={experience.id}
+                        className="px-5 py-10 bg-white rounded-lg shadow-lg
+                            hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
+                    >
+                        <h3 className="flex justify-between font-bold">
+                            {experience.position}
+                            <span className="text-grey-110">{experience.date}</span>
+                        </h3>
+                        <span>{experience.company}</span>
+                        <p className="mt-4">{experience.description}</p>
+                    </div>
+                ))}
+            </div>
         </section>
     );
 };
 
-export default WorkExperience;
+export default Experience;

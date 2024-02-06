@@ -4,7 +4,7 @@ import Certifications from './components/Certifications';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Projects from './components/Projects';
-import WorkExperience from './components/WorkExperience';
+import Experience from './components/Experience';
 
 const Home = () => {
     const [state, setState] = useState({
@@ -32,11 +32,13 @@ const Home = () => {
     return (
         <>
             <Header showAnimation={!state.viewedAnimations} />
-            <main className="content-max-width mx-auto px-4 select-none">
-                <Projects showAnimation={!state.viewedAnimations} />
-                <WorkExperience />
-                <Certifications />
-            </main>
+            <div className="bg-gradient-to-b from-white to-grey-20">
+                <main className="content-max-width mx-auto pb-16 px-4 select-none">
+                    <Projects showAnimation={!state.viewedAnimations} />
+                    <Experience />
+                    <Certifications />
+                </main>
+            </div>
             <Footer />
         </>
     );

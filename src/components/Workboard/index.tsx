@@ -168,7 +168,7 @@ const Workboard = () => {
                 </Link>
             </nav>
 
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-2 flex-wrap p-4">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-x-2 gap-y-6 flex-wrap p-4">
                 {columns.map((column) => (
                     <Column
                         key={column.id}

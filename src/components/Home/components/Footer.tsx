@@ -41,7 +41,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer id="contact" className="pt-16">
+        <footer id="contact">
             <div className="flex flex-col gap-y-4 items-center py-10 text-white bg-grey-120">
                 <h4 className="text-xl font-bold">Get in touch</h4>
                 <div className="flex flex-col gap-y-4">

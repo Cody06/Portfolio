@@ -19,7 +19,7 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
         <header id="header">
             <TopNav showAnimation={showAnimation} />
             <div className="content-max-width mx-auto px-4">
-                <div className="flex flex-col items-center gap-y-5 pt-40">
+                <div className="flex flex-col items-center gap-y-5 pt-32 md:pt-52">
                     <h1 className="text-3xl md:text-5xl text-center">
                         <span
                             className={`font-bold font-mono ${showAnimation && 'multi-line-type'}`}
@@ -35,20 +35,22 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
                             showAnimation && 'animate-fade-in-up'
                         }`}
                     >
-                        <h2>{technologies}</h2>
-                        <h2>{secondaryTechnologies}</h2>
+                        <h2 className="text-grey-100">{technologies}</h2>
+                        <h2 className="text-grey-100">{secondaryTechnologies}</h2>
                     </div>
                 </div>
 
                 <div className="flex justify-around">
                     <p
-                        className={`md:basis-2/3 mt-20 mb-4 ${showAnimation && 'animate-fade-in'}`}
+                        className={`md:basis-2/3 mt-14 md:mt-32 mb-4 ${
+                            showAnimation && 'animate-fade-in'
+                        }`}
                         style={{ whiteSpace: 'pre-line' }}
                     >
                         {headlineParagraph}
                     </p>
 
-                    <div className="hidden md:block">
+                    <div className="hidden md:block pt-4">
                         <Logo showAnimation={showAnimation} />
                     </div>
                 </div>
