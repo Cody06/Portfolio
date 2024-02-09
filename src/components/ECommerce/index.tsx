@@ -8,7 +8,6 @@ import Cart from './components/Cart';
 /*
  - Sort by price, max, min, author A-Z, Z-A
  - Add search bar
- - Create cart page
 */
 
 // TODO: find a way to get the keys from the crated object
@@ -16,10 +15,14 @@ type Views = 'store' | 'cart';
 
 const ECommerce = () => {
     const [selectedView, setSelectedView] = useState<Views>('store');
-    const [itemsInCart, setItemsInCart] = useState();
+    const [itemsInCart, setItemsInCart] = useState<Array<number>>([]);
+
+    const handleAddToCart = (id: number) => {
+        setItemsInCart([...itemsInCart, id]);
+    };
 
     const views = {
-        store: <Store />,
+        store: <Store onAddToCart={handleAddToCart} />,
         cart: <Cart itemsInCart={itemsInCart} />,
     };
 
@@ -36,11 +39,17 @@ const ECommerce = () => {
                     </button>
                 </div>
                 <div>
-                    <button onClick={() => setSelectedView('cart')} title="View cart">
-                        <FontAwesomeIcon
-                            icon={faCartShopping}
-                            className="fa-lg mr-4 hover:text-orange-100"
-                        />
+                    <button
+                        className="relative hover:text-orange-100"
+                        onClick={() => setSelectedView('cart')}
+                        title="View cart"
+                    >
+                        <FontAwesomeIcon icon={faCartShopping} className="fa-lg mr-4" />
+                        {itemsInCart.length > 0 && (
+                            <div className="absolute -top-2 right-2 text-sm text-white bg-red px-1 rounded-full">
+                                {itemsInCart.length}
+                            </div>
+                        )}
                     </button>
                     <Link href="/" className="hover:text-orange-100">
                         Back to Portfolio

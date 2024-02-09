@@ -1,5 +1,5 @@
 interface Props {
-    itemsInCart?: string[];
+    itemsInCart?: number[];
 }
 
 const Cart: React.FC<Props> = ({ itemsInCart }) => (

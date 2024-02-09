@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import books from '../books';
 
-const Store = () => {
+interface Props {
+    onAddToCart: (id: number) => void;
+}
+
+const Store: React.FC<Props> = ({ onAddToCart }) => {
     const viewBookPage = (id: number) => console.log('view book page:', id);
 
     return (
@@ -43,7 +47,7 @@ const Store = () => {
                     <button
                         className="mt-auto px-4 py-2 w-max bg-orange-100 rounded-xl
                                                     hover:brightness-90 active:brightness-75"
-                        onClick={() => console.log('Add to cart:', book.id)}
+                        onClick={() => onAddToCart(book.id)}
                     >
                         Add to Cart
                     </button>
