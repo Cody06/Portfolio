@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Store from './components/Store';
 import Cart from './components/Cart';
+import { Book } from './types';
 /*
  - Sort by price, max, min, author A-Z, Z-A
  - Add search bar
@@ -15,15 +16,19 @@ type Views = 'store' | 'cart';
 
 const ECommerce = () => {
     const [selectedView, setSelectedView] = useState<Views>('store');
-    const [itemsInCart, setItemsInCart] = useState<Array<number>>([]);
+    const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
 
-    const handleAddToCart = (id: number) => {
-        setItemsInCart([...itemsInCart, id]);
+    const handleAddToCart = (item: Book) => {
+        setItemsInCart([...itemsInCart, item]);
+    };
+
+    const handleRemoveFromCart = (id: number) => {
+        setItemsInCart(itemsInCart.filter((item) => item.id != id));
     };
 
     const views = {
         store: <Store onAddToCart={handleAddToCart} />,
-        cart: <Cart itemsInCart={itemsInCart} />,
+        cart: <Cart onDeleteItem={handleRemoveFromCart} itemsInCart={itemsInCart} />,
     };
 
     return (
@@ -47,7 +52,7 @@ const ECommerce = () => {
                         <FontAwesomeIcon icon={faCartShopping} className="fa-lg mr-4" />
                         {itemsInCart.length > 0 && (
                             <div className="absolute -top-2 right-2 text-sm text-white bg-red px-1 rounded-full">
-                                {itemsInCart.length}
+                                {itemsInCart.length >= 100 ? '99+' : itemsInCart.length}
                             </div>
                         )}
                     </button>
