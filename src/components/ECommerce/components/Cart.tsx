@@ -1,11 +1,13 @@
-import { Book } from '../types';
+import { Dispatch, SetStateAction } from 'react';
+import { Book, Views } from '../types';
 
 interface Props {
     onDeleteItem: (id: number) => void;
+    setSelectedView: Dispatch<SetStateAction<Views>>;
     itemsInCart?: Book[];
 }
 
-const Cart: React.FC<Props> = ({ onDeleteItem, itemsInCart }) => {
+const Cart: React.FC<Props> = ({ onDeleteItem, setSelectedView, itemsInCart }) => {
     let initialValue = 0;
     const total = itemsInCart?.reduce(
         (accumulator, item) => accumulator + item.price,
@@ -51,7 +53,7 @@ const Cart: React.FC<Props> = ({ onDeleteItem, itemsInCart }) => {
                     <button
                         className="px-4 py-2 bg-orange-100 rounded-xl
                                     hover:brightness-90 active:brightness-75"
-                        onClick={() => console.log('show modal for checkout info')}
+                        onClick={() => setSelectedView('checkout')}
                     >
                         Proceed to Checkout
                     </button>

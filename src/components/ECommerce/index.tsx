@@ -3,16 +3,14 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useState } from 'react';
-import Store from './components/Store';
 import Cart from './components/Cart';
-import { Book } from './types';
+import Checkout from './components/Checkout';
+import Store from './components/Store';
+import { Book, Views } from './types';
 /*
  - Sort by price, max, min, author A-Z, Z-A
  - Add search bar
 */
-
-// TODO: find a way to get the keys from the crated object
-type Views = 'store' | 'cart';
 
 const ECommerce = () => {
     const [selectedView, setSelectedView] = useState<Views>('store');
@@ -28,7 +26,14 @@ const ECommerce = () => {
 
     const views = {
         store: <Store onAddToCart={handleAddToCart} />,
-        cart: <Cart onDeleteItem={handleRemoveFromCart} itemsInCart={itemsInCart} />,
+        cart: (
+            <Cart
+                onDeleteItem={handleRemoveFromCart}
+                setSelectedView={setSelectedView}
+                itemsInCart={itemsInCart}
+            />
+        ),
+        checkout: <Checkout />,
     };
 
     return (

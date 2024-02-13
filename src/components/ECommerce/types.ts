@@ -8,3 +8,5 @@ export type Book = {
     rating: number;
     images: string[];
 };
+
+export type Views = 'cart' | 'checkout' | 'store';
