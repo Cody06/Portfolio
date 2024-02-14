@@ -5,7 +5,6 @@ import PostContainer from './PostContainer';
 interface Props {
     allPosts: Post[];
     loggedUserId: string;
-    onEditPost: (postId: string, editedContent: string) => void;
     savePost: (newPost: string) => void;
     showSelectedUserProfile: (selectedUserId: string) => void;
     toggleLike: (postId: string) => void;
@@ -14,7 +13,6 @@ interface Props {
 const AllPosts: React.FC<Props> = ({
     allPosts,
     loggedUserId,
-    onEditPost,
     savePost,
     showSelectedUserProfile,
     toggleLike,
@@ -31,7 +29,6 @@ const AllPosts: React.FC<Props> = ({
                         key={post.id}
                         post={post}
                         loggedUserId={loggedUserId}
-                        onEditPost={onEditPost}
                         showSelectedUserProfile={showSelectedUserProfile}
                         toggleLike={toggleLike}
                     />
