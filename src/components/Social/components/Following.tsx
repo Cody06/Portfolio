@@ -6,6 +6,7 @@ interface Props {
     loggedUserId: string;
     showSelectedUserProfile: (selectedUserId: string) => void;
     toggleLike: (postId: string) => void;
+    onEditPost: (postId: string, editedContent: string) => void;
 }
 
 const Following: React.FC<Props> = ({
@@ -13,6 +14,7 @@ const Following: React.FC<Props> = ({
     loggedUserId,
     showSelectedUserProfile,
     toggleLike,
+    onEditPost,
 }) => {
     if (followingPosts.length === 0) {
         return (
@@ -33,6 +35,7 @@ const Following: React.FC<Props> = ({
                         loggedUserId={loggedUserId}
                         showSelectedUserProfile={showSelectedUserProfile}
                         toggleLike={toggleLike}
+                        onEditPost={onEditPost}
                     />
                 ))}
             </section>

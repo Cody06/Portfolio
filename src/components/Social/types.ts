@@ -5,6 +5,7 @@ export type Post = {
     date: string;
     creator: string;
     content: string;
+    edited: boolean;
     likes: string[];
 };
 
