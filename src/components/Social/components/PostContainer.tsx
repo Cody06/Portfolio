@@ -7,7 +7,8 @@ interface Props {
     post: Post;
     loggedUserId: string;
     toggleLike: (postId: string) => void;
-    onEditPost: (postId: string, editedContent: string) => void;
+    onEditPost?: (postId: string, editedContent: string) => void;
+    onOpenDeletePostModal?: (postId: string) => void;
     showSelectedUserProfile?: (selectedUserId: string) => void;
 }
 
@@ -15,12 +16,12 @@ const PostContainer: React.FC<Props> = ({
     post,
     loggedUserId,
     onEditPost,
+    onOpenDeletePostModal,
     showSelectedUserProfile,
     toggleLike,
 }) => {
     const [editingPost, setEditingPost] = useState(false);
     const [editedContent, setEditedContent] = useState(post.content);
-    console.log('Render post container');
     const isCreatorOfPost = post.creator === loggedUserId;
 
     return (
@@ -47,7 +48,7 @@ const PostContainer: React.FC<Props> = ({
                 </span>
             </div>
 
-            {editingPost ? (
+            {editingPost && onEditPost ? (
                 <>
                     <textarea
                         className="w-full border"
@@ -89,15 +90,22 @@ const PostContainer: React.FC<Props> = ({
                         </button>
                         {isCreatorOfPost && (
                             <>
-                                <button
-                                    className="hover:text-blue-110"
-                                    onClick={() => setEditingPost(true)}
-                                >
-                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                </button>
-                                <button className="hover:text-blue-110">
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </button>
+                                {onEditPost && (
+                                    <button
+                                        className="hover:text-blue-110"
+                                        onClick={() => setEditingPost(true)}
+                                    >
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                    </button>
+                                )}
+                                {onOpenDeletePostModal && (
+                                    <button
+                                        className="hover:text-blue-110"
+                                        onClick={() => onOpenDeletePostModal(post.id)}
+                                    >
+                                        <FontAwesomeIcon icon={faTrashCan} />
+                                    </button>
+                                )}
                             </>
                         )}
                     </div>

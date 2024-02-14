@@ -143,6 +143,10 @@ const Social = () => {
         );
     };
 
+    const handleDeletePost = (postId: string) => {
+        setPosts(posts.filter((post) => post.id !== postId));
+    };
+
     const handleEditPost = (postId: string, editedContent: string) => {
         setPosts(
             posts.map((post) => {
@@ -176,7 +180,6 @@ const Social = () => {
             <AllPosts
                 allPosts={posts}
                 loggedUserId={loggedUserId}
-                onEditPost={handleEditPost}
                 savePost={savePost}
                 showSelectedUserProfile={showSelectedUserProfile}
                 toggleLike={toggleLike}
@@ -186,7 +189,6 @@ const Social = () => {
             <Following
                 followingPosts={getFollowingPosts()}
                 loggedUserId={loggedUserId}
-                onEditPost={handleEditPost}
                 showSelectedUserProfile={showSelectedUserProfile}
                 toggleLike={toggleLike}
             />
@@ -196,6 +198,7 @@ const Social = () => {
                 followingAndFollowers={followingAndFollowers}
                 loggedUserId={loggedUserId}
                 selectedUserId={selectedUser}
+                onDeletePost={handleDeletePost}
                 onEditPost={handleEditPost}
                 userPosts={getSelectedUserPosts(selectedUser)}
                 toggleLike={toggleLike}
