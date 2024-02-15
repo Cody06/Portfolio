@@ -1,18 +1,16 @@
-import { Post } from '../types';
 import PostContainer from './PostContainer';
+import { Post } from '../types';
 
 interface Props {
     followingPosts: Post[];
-    loggedUserId: string;
-    showSelectedUserProfile: (selectedUserId: string) => void;
-    toggleLike: (postId: string) => void;
+    onShowSelectedUserProfile: (selectedUserId: string) => void;
+    onToggleLike: (postId: string) => void;
 }
 
 const Following: React.FC<Props> = ({
     followingPosts,
-    loggedUserId,
-    showSelectedUserProfile,
-    toggleLike,
+    onShowSelectedUserProfile,
+    onToggleLike,
 }) => {
     if (followingPosts.length === 0) {
         return (
@@ -30,9 +28,8 @@ const Following: React.FC<Props> = ({
                     <PostContainer
                         key={post.id}
                         post={post}
-                        loggedUserId={loggedUserId}
-                        showSelectedUserProfile={showSelectedUserProfile}
-                        toggleLike={toggleLike}
+                        onShowSelectedUserProfile={onShowSelectedUserProfile}
+                        onToggleLike={onToggleLike}
                     />
                 ))}
             </section>

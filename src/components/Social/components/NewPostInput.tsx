@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { MAX_POST_LENGTH } from '..';
 
 interface Props {
-    savePost: (newPost: string) => void;
+    onCreatePost: (newPost: string) => void;
 }
 
-const NewPostInput: React.FC<Props> = ({ savePost }) => {
+const NewPostInput: React.FC<Props> = ({ onCreatePost }) => {
     // Created this component to optimize re-rendering on every keystroke
     const [newPost, setNewPost] = useState('');
 
@@ -16,7 +17,7 @@ const NewPostInput: React.FC<Props> = ({ savePost }) => {
             <textarea
                 className="p-2 border border-grey-100 rounded-lg"
                 placeholder="What is happening?!"
-                maxLength={150}
+                maxLength={MAX_POST_LENGTH}
                 value={newPost}
                 onChange={(e) => setNewPost(e.target.value)}
             />
@@ -26,7 +27,7 @@ const NewPostInput: React.FC<Props> = ({ savePost }) => {
                 }`}
                 disabled={!newPost}
                 onClick={() => {
-                    savePost(newPost);
+                    onCreatePost(newPost);
                     setNewPost('');
                 }}
             >
