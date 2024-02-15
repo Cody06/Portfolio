@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Nav from './components/Nav';
+
 import AllPosts from './components/AllPosts';
 import Following from './components/Following';
-import { FollowingAndFollowers, Post, Views } from './types';
+import Nav from './components/Nav';
 import Profile from './components/Profile';
+import { FollowingAndFollowers, Post, Views } from './types';
 
 const Social = () => {
     // TODO: Add user Id from login
@@ -69,7 +70,7 @@ const Social = () => {
         initialFollowingAndFollowers,
     );
 
-    const followUser = (followingUserId: string) => {
+    const handleFollowUser = (followingUserId: string) => {
         // Add followingUser to loggedUser's following list
         // Add loggedUser to followingUser's followers list
         setFollowingAndFollowers({
@@ -85,7 +86,7 @@ const Social = () => {
         });
     };
 
-    const unfollowUser = (followingUserId: string) => {
+    const handleUnfollowUser = (followingUserId: string) => {
         // Remove followingUser from loggedUser's following list
         // Remove loggedUser from followingUser's followers list
         setFollowingAndFollowers({
@@ -105,7 +106,7 @@ const Social = () => {
         });
     };
 
-    const savePost = (newPost: string) => {
+    const handleCreatePost = (newPost: string) => {
         setPosts([
             {
                 id: `${loggedUserId}-${Date.now().toString()}`,
@@ -119,7 +120,7 @@ const Social = () => {
         ]);
     };
 
-    const toggleLike = (postId: string) => {
+    const handleToggleLike = (postId: string) => {
         setPosts(
             posts.map((post) => {
                 if (post.id === postId) {
@@ -163,7 +164,7 @@ const Social = () => {
         );
     };
 
-    const showSelectedUserProfile = (selectedUserId: string) => {
+    const handleShowSelectedUserProfile = (selectedUserId: string) => {
         setSelectedUser(selectedUserId);
         setSelectedView('profile');
     };
@@ -180,17 +181,17 @@ const Social = () => {
             <AllPosts
                 allPosts={posts}
                 loggedUserId={loggedUserId}
-                savePost={savePost}
-                showSelectedUserProfile={showSelectedUserProfile}
-                toggleLike={toggleLike}
+                onCreatePost={handleCreatePost}
+                onShowSelectedUserProfile={handleShowSelectedUserProfile}
+                onToggleLike={handleToggleLike}
             />
         ),
         following: (
             <Following
                 followingPosts={getFollowingPosts()}
                 loggedUserId={loggedUserId}
-                showSelectedUserProfile={showSelectedUserProfile}
-                toggleLike={toggleLike}
+                onShowSelectedUserProfile={handleShowSelectedUserProfile}
+                onToggleLike={handleToggleLike}
             />
         ),
         profile: (
@@ -198,12 +199,12 @@ const Social = () => {
                 followingAndFollowers={followingAndFollowers}
                 loggedUserId={loggedUserId}
                 selectedUserId={selectedUser}
+                userPosts={getSelectedUserPosts(selectedUser)}
                 onDeletePost={handleDeletePost}
                 onEditPost={handleEditPost}
-                userPosts={getSelectedUserPosts(selectedUser)}
-                toggleLike={toggleLike}
-                followUser={followUser}
-                unfollowUser={unfollowUser}
+                onFollowUser={handleFollowUser}
+                onToggleLike={handleToggleLike}
+                onUnfollowUser={handleUnfollowUser}
             />
         ),
     };

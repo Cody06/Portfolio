@@ -1,24 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import { Post } from '../types';
 import { useState } from 'react';
+import { Post } from '../types';
 
 interface Props {
-    post: Post;
     loggedUserId: string;
-    toggleLike: (postId: string) => void;
+    post: Post;
+    onToggleLike: (postId: string) => void;
     onEditPost?: (postId: string, editedContent: string) => void;
     onOpenDeletePostModal?: (postId: string) => void;
-    showSelectedUserProfile?: (selectedUserId: string) => void;
+    onShowSelectedUserProfile?: (selectedUserId: string) => void;
 }
 
 const PostContainer: React.FC<Props> = ({
-    post,
     loggedUserId,
+    post,
+    onToggleLike,
     onEditPost,
     onOpenDeletePostModal,
-    showSelectedUserProfile,
-    toggleLike,
+    onShowSelectedUserProfile,
 }) => {
     const [editingPost, setEditingPost] = useState(false);
     const [editedContent, setEditedContent] = useState(post.content);
@@ -27,10 +27,10 @@ const PostContainer: React.FC<Props> = ({
     return (
         <div className="min-w-[20rem] space-y-4 p-4 rounded-xl shadow-md">
             <div className="flex justify-between">
-                {!isCreatorOfPost && showSelectedUserProfile ? (
+                {!isCreatorOfPost && onShowSelectedUserProfile ? (
                     <button
                         className="font-bold text-blue-100 hover:text-blue-110"
-                        onClick={() => showSelectedUserProfile(post.creator)}
+                        onClick={() => onShowSelectedUserProfile(post.creator)}
                     >
                         {post.creator}
                     </button>
@@ -52,6 +52,8 @@ const PostContainer: React.FC<Props> = ({
                 <>
                     <textarea
                         className="w-full border"
+                        // TODO: move in a global variable
+                        maxLength={150}
                         value={editedContent}
                         onChange={(e) => setEditedContent(e.target.value)}
                     />
@@ -83,7 +85,7 @@ const PostContainer: React.FC<Props> = ({
                         <button
                             className="space-x-2 hover:text-red"
                             title="Like"
-                            onClick={() => toggleLike(post.id)}
+                            onClick={() => onToggleLike(post.id)}
                         >
                             <FontAwesomeIcon icon={faHeart} />
                             <span>{post.likes.length}</span>

@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { FollowingAndFollowers, Post } from '../types';
+
 import DeletePostModal from './DeletePostModal';
 import PostContainer from './PostContainer';
+import { FollowingAndFollowers, Post } from '../types';
 
 interface Props {
     followingAndFollowers: FollowingAndFollowers;
     loggedUserId: string;
     selectedUserId: string;
     userPosts: Post[];
-    toggleLike: (postId: string) => void;
     onDeletePost: (postId: string) => void;
     onEditPost: (postId: string, editedContent: string) => void;
-    followUser: (followingUserId: string) => void;
-    unfollowUser: (followingUserId: string) => void;
+    onFollowUser: (followingUserId: string) => void;
+    onToggleLike: (postId: string) => void;
+    onUnfollowUser: (followingUserId: string) => void;
 }
 
 const Profile: React.FC<Props> = ({
@@ -20,11 +21,11 @@ const Profile: React.FC<Props> = ({
     loggedUserId,
     selectedUserId,
     userPosts,
-    toggleLike,
     onDeletePost,
     onEditPost,
-    followUser,
-    unfollowUser,
+    onFollowUser,
+    onToggleLike,
+    onUnfollowUser,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [postToDelete, setPostToDelete] = useState<string | null>(null);
@@ -61,7 +62,7 @@ const Profile: React.FC<Props> = ({
                             <button
                                 className="text-sm p-1 rounded-md bg-grey-90 shadow-md"
                                 title={`Unfollow ${selectedUserId}`}
-                                onClick={() => unfollowUser(selectedUserId)}
+                                onClick={() => onUnfollowUser(selectedUserId)}
                             >
                                 Unfollow
                             </button>
@@ -69,7 +70,7 @@ const Profile: React.FC<Props> = ({
                             <button
                                 className="text-sm p-1 rounded-md bg-blue-100 text-white shadow-md"
                                 title={`Follow ${selectedUserId}`}
-                                onClick={() => followUser(selectedUserId)}
+                                onClick={() => onFollowUser(selectedUserId)}
                             >
                                 Follow
                             </button>
@@ -92,7 +93,7 @@ const Profile: React.FC<Props> = ({
                             key={post.id}
                             post={post}
                             loggedUserId={selectedUserId}
-                            toggleLike={toggleLike}
+                            onToggleLike={onToggleLike}
                             onOpenDeletePostModal={openModal}
                             onEditPost={onEditPost}
                         />

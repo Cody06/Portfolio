@@ -1,36 +1,36 @@
 import NewPostInput from './NewPostInput';
-import { Post } from '../types';
 import PostContainer from './PostContainer';
+import { Post } from '../types';
 
 interface Props {
     allPosts: Post[];
     loggedUserId: string;
-    savePost: (newPost: string) => void;
-    showSelectedUserProfile: (selectedUserId: string) => void;
-    toggleLike: (postId: string) => void;
+    onCreatePost: (newPost: string) => void;
+    onShowSelectedUserProfile: (selectedUserId: string) => void;
+    onToggleLike: (postId: string) => void;
 }
 
 const AllPosts: React.FC<Props> = ({
     allPosts,
     loggedUserId,
-    savePost,
-    showSelectedUserProfile,
-    toggleLike,
+    onCreatePost,
+    onShowSelectedUserProfile,
+    onToggleLike,
 }) => {
     return (
         <main>
             <h1 className="text-lg text-center mb-4">All Posts</h1>
 
-            <NewPostInput savePost={savePost} />
+            <NewPostInput onCreatePost={onCreatePost} />
 
             <section className="space-y-4">
                 {allPosts.map((post) => (
                     <PostContainer
                         key={post.id}
-                        post={post}
                         loggedUserId={loggedUserId}
-                        showSelectedUserProfile={showSelectedUserProfile}
-                        toggleLike={toggleLike}
+                        post={post}
+                        onShowSelectedUserProfile={onShowSelectedUserProfile}
+                        onToggleLike={onToggleLike}
                     />
                 ))}
             </section>
