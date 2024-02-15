@@ -4,14 +4,14 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Views } from '../types';
+import { loggedUserId } from '../data';
 
 interface Props {
-    loggedUserId: string;
     setSelectedUser: Dispatch<SetStateAction<string>>;
     setSelectedView: Dispatch<SetStateAction<Views>>;
 }
 
-const Nav: React.FC<Props> = ({ loggedUserId, setSelectedUser, setSelectedView }) => {
+const Nav: React.FC<Props> = ({ setSelectedUser, setSelectedView }) => {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
     const buttons = [

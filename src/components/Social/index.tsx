@@ -7,12 +7,13 @@ import AllPosts from './components/AllPosts';
 import Following from './components/Following';
 import Nav from './components/Nav';
 import Profile from './components/Profile';
-import { FollowingAndFollowers, Post, Views } from './types';
+import { Post, Views } from './types';
+import { initialFollowingAndFollowers, loggedUserId } from './data';
+
+export const MAX_POST_LENGTH = 150;
 
 const Social = () => {
-    // TODO: Add user Id from login
-    const loggedUserId = 'guest';
-
+    // Having this in the data module causes TypeError (TODO: Fix)
     const initialPosts: Post[] = [
         {
             id: '1',
@@ -47,21 +48,6 @@ const Social = () => {
             likes: [],
         },
     ];
-
-    const initialFollowingAndFollowers: FollowingAndFollowers = {
-        [loggedUserId]: {
-            followers: [],
-            following: ['cody'],
-        },
-        cody: {
-            followers: ['guest'],
-            following: [],
-        },
-        elon: {
-            followers: [],
-            following: [],
-        },
-    };
 
     const [selectedView, setSelectedView] = useState<Views>('allPosts');
     const [selectedUser, setSelectedUser] = useState(loggedUserId);
@@ -180,7 +166,6 @@ const Social = () => {
         allPosts: (
             <AllPosts
                 allPosts={posts}
-                loggedUserId={loggedUserId}
                 onCreatePost={handleCreatePost}
                 onShowSelectedUserProfile={handleShowSelectedUserProfile}
                 onToggleLike={handleToggleLike}
@@ -189,7 +174,6 @@ const Social = () => {
         following: (
             <Following
                 followingPosts={getFollowingPosts()}
-                loggedUserId={loggedUserId}
                 onShowSelectedUserProfile={handleShowSelectedUserProfile}
                 onToggleLike={handleToggleLike}
             />
@@ -197,7 +181,6 @@ const Social = () => {
         profile: (
             <Profile
                 followingAndFollowers={followingAndFollowers}
-                loggedUserId={loggedUserId}
                 selectedUserId={selectedUser}
                 userPosts={getSelectedUserPosts(selectedUser)}
                 onDeletePost={handleDeletePost}
@@ -221,11 +204,7 @@ const Social = () => {
             </header>
 
             <div className="flex flex-col md:flex-row p-4 gap-x-40 max-w-[70rem] mx-auto">
-                <Nav
-                    loggedUserId={loggedUserId}
-                    setSelectedUser={setSelectedUser}
-                    setSelectedView={setSelectedView}
-                />
+                <Nav setSelectedUser={setSelectedUser} setSelectedView={setSelectedView} />
 
                 {views[selectedView]}
             </div>

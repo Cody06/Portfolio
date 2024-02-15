@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MAX_POST_LENGTH } from '..';
 
 interface Props {
     onCreatePost: (newPost: string) => void;
@@ -16,8 +17,7 @@ const NewPostInput: React.FC<Props> = ({ onCreatePost }) => {
             <textarea
                 className="p-2 border border-grey-100 rounded-lg"
                 placeholder="What is happening?!"
-                // TODO: move in a global variable
-                maxLength={150}
+                maxLength={MAX_POST_LENGTH}
                 value={newPost}
                 onChange={(e) => setNewPost(e.target.value)}
             />

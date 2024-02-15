@@ -3,14 +3,12 @@ import { Post } from '../types';
 
 interface Props {
     followingPosts: Post[];
-    loggedUserId: string;
     onShowSelectedUserProfile: (selectedUserId: string) => void;
     onToggleLike: (postId: string) => void;
 }
 
 const Following: React.FC<Props> = ({
     followingPosts,
-    loggedUserId,
     onShowSelectedUserProfile,
     onToggleLike,
 }) => {
@@ -30,7 +28,6 @@ const Following: React.FC<Props> = ({
                     <PostContainer
                         key={post.id}
                         post={post}
-                        loggedUserId={loggedUserId}
                         onShowSelectedUserProfile={onShowSelectedUserProfile}
                         onToggleLike={onToggleLike}
                     />

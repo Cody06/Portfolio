@@ -4,7 +4,6 @@ import { Post } from '../types';
 
 interface Props {
     allPosts: Post[];
-    loggedUserId: string;
     onCreatePost: (newPost: string) => void;
     onShowSelectedUserProfile: (selectedUserId: string) => void;
     onToggleLike: (postId: string) => void;
@@ -12,7 +11,6 @@ interface Props {
 
 const AllPosts: React.FC<Props> = ({
     allPosts,
-    loggedUserId,
     onCreatePost,
     onShowSelectedUserProfile,
     onToggleLike,
@@ -27,7 +25,6 @@ const AllPosts: React.FC<Props> = ({
                 {allPosts.map((post) => (
                     <PostContainer
                         key={post.id}
-                        loggedUserId={loggedUserId}
                         post={post}
                         onShowSelectedUserProfile={onShowSelectedUserProfile}
                         onToggleLike={onToggleLike}

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import DeletePostModal from './DeletePostModal';
 import PostContainer from './PostContainer';
 import { FollowingAndFollowers, Post } from '../types';
+import { loggedUserId } from '../data';
 
 interface Props {
     followingAndFollowers: FollowingAndFollowers;
-    loggedUserId: string;
     selectedUserId: string;
     userPosts: Post[];
     onDeletePost: (postId: string) => void;
@@ -18,7 +18,6 @@ interface Props {
 
 const Profile: React.FC<Props> = ({
     followingAndFollowers,
-    loggedUserId,
     selectedUserId,
     userPosts,
     onDeletePost,
@@ -92,7 +91,6 @@ const Profile: React.FC<Props> = ({
                         <PostContainer
                             key={post.id}
                             post={post}
-                            loggedUserId={selectedUserId}
                             onToggleLike={onToggleLike}
                             onOpenDeletePostModal={openModal}
                             onEditPost={onEditPost}

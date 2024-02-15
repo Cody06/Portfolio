@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { Post } from '../types';
+import { MAX_POST_LENGTH } from '..';
+import { loggedUserId } from '../data';
 
 interface Props {
-    loggedUserId: string;
     post: Post;
     onToggleLike: (postId: string) => void;
     onEditPost?: (postId: string, editedContent: string) => void;
@@ -13,7 +14,6 @@ interface Props {
 }
 
 const PostContainer: React.FC<Props> = ({
-    loggedUserId,
     post,
     onToggleLike,
     onEditPost,
@@ -52,8 +52,7 @@ const PostContainer: React.FC<Props> = ({
                 <>
                     <textarea
                         className="w-full border"
-                        // TODO: move in a global variable
-                        maxLength={150}
+                        maxLength={MAX_POST_LENGTH}
                         value={editedContent}
                         onChange={(e) => setEditedContent(e.target.value)}
                     />
