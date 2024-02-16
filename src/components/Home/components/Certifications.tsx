@@ -67,7 +67,7 @@ const Certifications = () => {
     return (
         <section id="certifications" className="pt-16">
             <SectionHeader title="Certifications" />
-            <div className="md:grid grid-cols-2 gap-4 select-text">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 select-text">
                 {certifications.map((certificate) => (
                     <Link
                         key={certificate.id}
