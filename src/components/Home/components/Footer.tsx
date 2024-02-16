@@ -64,7 +64,7 @@ const Footer = () => {
                 </div>
                 <span className="space-x-3">
                     <FontAwesomeIcon icon={faCopyright} />
-                    <span>2023</span>
+                    <span>2024</span>
                 </span>
             </div>
             {reachedBottom && (
