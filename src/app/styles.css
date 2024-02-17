@@ -17,6 +17,12 @@
     ); /* 1900ms + 1s = 2,900ms */
 }
 
+/* Clear browser specific formatting */
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth; /* used when redirecting to an element */
 }
