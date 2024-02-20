@@ -1,4 +1,4 @@
-import ECommerce from '@/components/ECommerce';
+import ECommerce from '@/components/projects/ECommerce';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

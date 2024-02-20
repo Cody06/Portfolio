@@ -1,4 +1,4 @@
-import Social from '@/components/Social';
+import Social from '@/components/projects/Social';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
