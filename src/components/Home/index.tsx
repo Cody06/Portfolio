@@ -13,7 +13,7 @@ const Home = () => {
     });
 
     useEffect(() => {
-        document.body.className = '';
+        document.body.className = 'bg-gradient-to-b from-white to-grey-20';
         const sessionItem = !!sessionStorage.getItem('viewed_animations');
         if (!sessionItem) {
             sessionStorage.setItem('viewed_animations', '1');
@@ -32,14 +32,14 @@ const Home = () => {
     return (
         <>
             <Header showAnimation={!state.viewedAnimations} />
-            <div className="bg-gradient-to-b from-white to-grey-20">
-                <main className="content-max-width mx-auto pb-16 px-4 select-none">
-                    <Projects showAnimation={!state.viewedAnimations} />
-                    <Experience />
-                    <Certifications />
-                </main>
+            <main className="content-max-width mx-auto pb-16 px-4 select-none">
+                <Projects showAnimation={!state.viewedAnimations} />
+                <Experience />
+                <Certifications />
+            </main>
+            <div className="bg-grey-120">
+                <Footer />
             </div>
-            <Footer />
         </>
     );
 };
