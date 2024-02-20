@@ -17,6 +17,12 @@
     ); /* 1900ms + 1s = 2,900ms */
 }
 
+/* Clear browser specific formatting */
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth; /* used when redirecting to an element */
 }
@@ -206,5 +212,16 @@ html {
     }
     to {
         opacity: 0;
+    }
+}
+
+button:hover > .animate-squish,
+button:focus-visible > .animate-squish {
+    animation: squish 200ms ease-in-out;
+}
+
+@keyframes squish {
+    50% {
+        scale: 1.4 0.6;
     }
 }
