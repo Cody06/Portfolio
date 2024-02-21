@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-interface Props {
+type Props = {
     columnId: string;
     onCreateCard: (colId: string, cardText: string) => void;
     setShowCreateCard: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
-const NewCardInput: React.FC<Props> = ({ columnId, onCreateCard, setShowCreateCard }) => {
+export default function NewCardInput({ columnId, onCreateCard, setShowCreateCard }: Props) {
     const [text, setText] = useState('');
     const disabled = text.length === 0;
 
@@ -49,6 +49,4 @@ const NewCardInput: React.FC<Props> = ({ columnId, onCreateCard, setShowCreateCa
             </div>
         </>
     );
-};
-
-export default NewCardInput;
+}

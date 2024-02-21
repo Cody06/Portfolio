@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { CardData } from '../types';
 
-interface Props {
+type Props = {
     card: CardData;
     onEditCard: (cardId: string, cardText: string) => void;
     onDeleteCard: (cardId: string) => void;
     onDrop: (card: CardData) => void;
-}
+};
 
-const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, onDrop }) => {
+export default function Card({ card, onEditCard, onDeleteCard, onDrop }: Props) {
     const [text, setText] = useState(card.text);
     const [isDragging, setIsDragging] = useState(false);
 
@@ -49,6 +49,4 @@ const Card: React.FC<Props> = ({ card, onEditCard, onDeleteCard, onDrop }) => {
             </div>
         </div>
     );
-};
-
-export default Card;
+}

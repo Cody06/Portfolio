@@ -7,7 +7,7 @@ import DeleteColumnModal from './components/DeleteColumnModal';
 import getUniqueId from '@/utils/getUniqueId';
 import { CardData, ColumnData, DropColumn, ColToDelete } from './types';
 
-const Workboard = () => {
+export default function Workboard() {
     const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
     const [isDeleteColumnModalOpen, setIsDeleteColumnModalOpen] = useState(false);
     const [colToDelete, setColToDelete] = useState<ColToDelete>();
@@ -206,6 +206,4 @@ const Workboard = () => {
             />
         </>
     );
-};
-
-export default Workboard;
+}
