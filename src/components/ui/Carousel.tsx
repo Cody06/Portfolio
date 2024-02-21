@@ -7,14 +7,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-interface Props {
+type Props = {
     children: {
         item: JSX.Element;
         title: string;
     }[];
-}
+};
 
-const Carousel: React.FC<Props> = ({ children }) => {
+export default function Carousel({ children }: Props) {
     const [imageIndex, setImageIndex] = useState(0);
 
     const showNextImage = () => {
@@ -84,6 +84,4 @@ const Carousel: React.FC<Props> = ({ children }) => {
             </div>
         </section>
     );
-};
-
-export default Carousel;
+}

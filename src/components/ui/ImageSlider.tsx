@@ -8,11 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useState } from 'react';
 
-interface Props {
+type Props = {
     images: { url: string; alt: string }[];
-}
+};
 
-const ImageSlider: React.FC<Props> = ({ images }) => {
+export default function ImageSlider({ images }: Props) {
     const [imageIndex, setImageIndex] = useState(0);
 
     const showNextImage = () => {
@@ -86,6 +86,4 @@ const ImageSlider: React.FC<Props> = ({ images }) => {
             </div>
         </section>
     );
-};
-
-export default ImageSlider;
+}

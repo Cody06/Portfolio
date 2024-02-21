@@ -1,4 +1,4 @@
-interface Props {
+type Props = {
     id: string;
     label: string;
     maxLength: number;
@@ -8,9 +8,9 @@ interface Props {
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     error?: string;
     required?: boolean;
-}
+};
 
-const Input: React.FC<Props> = ({
+export default function Input({
     id,
     label,
     maxLength,
@@ -20,7 +20,7 @@ const Input: React.FC<Props> = ({
     onChange,
     error,
     required,
-}) => {
+}: Props) {
     /*  Input comes with floating label:
         - label takes the placeholder position when "placeholder is shown" (placeholder is transparent)
         - when placeholder goes away or there's focus, label floats to the top
@@ -72,6 +72,4 @@ const Input: React.FC<Props> = ({
             <p className="pl-2 text-sm text-red">{error}</p>
         </div>
     );
-};
-
-export default Input;
+}
