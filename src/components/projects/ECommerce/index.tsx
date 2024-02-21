@@ -12,7 +12,7 @@ import { Book, Views } from './types';
  - Add search bar
 */
 
-const ECommerce = () => {
+export default function ECommerce() {
     const [selectedView, setSelectedView] = useState<Views>('store');
     const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
 
@@ -69,6 +69,4 @@ const ECommerce = () => {
             {views[selectedView]}
         </>
     );
-};
-
-export default ECommerce;
+}

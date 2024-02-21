@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Book, Views } from '../types';
 
-interface Props {
+type Props = {
     onDeleteItem: (id: number) => void;
     setSelectedView: Dispatch<SetStateAction<Views>>;
     itemsInCart?: Book[];
-}
+};
 
-const Cart: React.FC<Props> = ({ onDeleteItem, setSelectedView, itemsInCart }) => {
+export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Props) {
     let initialValue = 0;
     const total = itemsInCart?.reduce(
         (accumulator, item) => accumulator + item.price,
@@ -63,6 +63,4 @@ const Cart: React.FC<Props> = ({ onDeleteItem, setSelectedView, itemsInCart }) =
             )}
         </div>
     );
-};
-
-export default Cart;
+}
