@@ -4,7 +4,7 @@ import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
 
-interface Props {
+type Props = {
     column: ColumnData;
     onCreateCard: (colId: string, cardText: string) => void;
     onDeleteCard: (cardId: string) => void;
@@ -14,9 +14,9 @@ interface Props {
     setDropCol: React.Dispatch<React.SetStateAction<DropColumn>>;
     setColToDelete: React.Dispatch<React.SetStateAction<ColToDelete | undefined>>;
     setIsDeleteColumnModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
-const Column: React.FC<Props> = ({
+export default function Column({
     column,
     onCreateCard,
     onDeleteCard,
@@ -26,7 +26,7 @@ const Column: React.FC<Props> = ({
     setDropCol,
     setColToDelete,
     setIsDeleteColumnModalOpen,
-}) => {
+}: Props) {
     const [colTitle, setColTitle] = useState(column.title);
     const [showCreateCard, setShowCreateCard] = useState(false);
     const [showEditCol, setShowEditCol] = useState(false);
@@ -140,6 +140,4 @@ const Column: React.FC<Props> = ({
             </div>
         </div>
     );
-};
-
-export default Column;
+}

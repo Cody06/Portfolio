@@ -2,13 +2,13 @@ import { useState } from 'react';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
 
-interface Props {
+type Props = {
     isOpen: boolean;
     onCreateColumn: (colTitle: string) => void;
     requestClose: () => void;
-}
+};
 
-const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClose }) => {
+export default function CreateColumnModal({ isOpen, onCreateColumn, requestClose }: Props) {
     const [title, setTitle] = useState('');
     const disabled = title.length === 0;
 
@@ -48,6 +48,4 @@ const CreateColumnModal: React.FC<Props> = ({ isOpen, onCreateColumn, requestClo
             </ModalBody>
         </Modal>
     );
-};
-
-export default CreateColumnModal;
+}

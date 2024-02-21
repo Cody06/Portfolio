@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 
-const Checkout = () => {
+export default function Checkout() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -67,6 +67,4 @@ const Checkout = () => {
             />
         </form>
     );
-};
-
-export default Checkout;
+}

@@ -5,7 +5,7 @@ import PostContainer from './PostContainer';
 import { FollowingAndFollowers, Post } from '../types';
 import { loggedUserId } from '../data';
 
-interface Props {
+type Props = {
     followingAndFollowers: FollowingAndFollowers;
     selectedUserId: string;
     userPosts: Post[];
@@ -14,9 +14,9 @@ interface Props {
     onFollowUser: (followingUserId: string) => void;
     onToggleLike: (postId: string) => void;
     onUnfollowUser: (followingUserId: string) => void;
-}
+};
 
-const Profile: React.FC<Props> = ({
+export default function Profile({
     followingAndFollowers,
     selectedUserId,
     userPosts,
@@ -25,7 +25,7 @@ const Profile: React.FC<Props> = ({
     onFollowUser,
     onToggleLike,
     onUnfollowUser,
-}) => {
+}: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const [postToDelete, setPostToDelete] = useState<string | null>(null);
     const isLoggedUserProfile = loggedUserId === selectedUserId;
@@ -100,6 +100,4 @@ const Profile: React.FC<Props> = ({
             </main>
         </>
     );
-};
-
-export default Profile;
+}

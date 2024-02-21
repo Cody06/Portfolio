@@ -1,17 +1,17 @@
 import PostContainer from './PostContainer';
 import { Post } from '../types';
 
-interface Props {
+type Props = {
     followingPosts: Post[];
     onShowSelectedUserProfile: (selectedUserId: string) => void;
     onToggleLike: (postId: string) => void;
-}
+};
 
-const Following: React.FC<Props> = ({
+export default function Following({
     followingPosts,
     onShowSelectedUserProfile,
     onToggleLike,
-}) => {
+}: Props) {
     if (followingPosts.length === 0) {
         return (
             <div className="mx-auto text-center text-2xl font-bold">
@@ -35,6 +35,4 @@ const Following: React.FC<Props> = ({
             </section>
         </main>
     );
-};
-
-export default Following;
+}

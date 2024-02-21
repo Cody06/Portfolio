@@ -2,11 +2,11 @@ import Image from 'next/image';
 import books from '../books';
 import { Book } from '../types';
 
-interface Props {
+type Props = {
     onAddToCart: (item: Book) => void;
-}
+};
 
-const Store: React.FC<Props> = ({ onAddToCart }) => {
+export default function Store({ onAddToCart }: Props) {
     const viewBookPage = (id: number) => console.log('view book page:', id);
 
     return (
@@ -56,6 +56,4 @@ const Store: React.FC<Props> = ({ onAddToCart }) => {
             ))}
         </div>
     );
-};
-
-export default Store;
+}

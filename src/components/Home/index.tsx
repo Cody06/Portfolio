@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 
-const Home = () => {
+export default function Home() {
     const [state, setState] = useState({
         loading: true,
         viewedAnimations: false,
@@ -42,6 +42,4 @@ const Home = () => {
             </div>
         </>
     );
-};
-
-export default Home;
+}

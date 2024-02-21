@@ -1,8 +1,8 @@
-interface Props {
+type Props = {
     showAnimation: boolean;
-}
+};
 
-const Logo: React.FC<Props> = ({ showAnimation }) => {
+export default function Logo({ showAnimation }: Props) {
     const parallelogramShape =
         'bg-orange-100 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
 
@@ -38,6 +38,4 @@ const Logo: React.FC<Props> = ({ showAnimation }) => {
             {bottomLayer}
         </div>
     );
-};
-
-export default Logo;
+}

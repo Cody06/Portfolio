@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { MAX_POST_LENGTH } from '..';
 
-interface Props {
+type Props = {
     onCreatePost: (newPost: string) => void;
-}
+};
 
-const NewPostInput: React.FC<Props> = ({ onCreatePost }) => {
+export default function NewPostInput({ onCreatePost }: Props) {
     // Created this component to optimize re-rendering on every keystroke
     const [newPost, setNewPost] = useState('');
 
@@ -35,6 +35,4 @@ const NewPostInput: React.FC<Props> = ({ onCreatePost }) => {
             </button>
         </div>
     );
-};
-
-export default NewPostInput;
+}

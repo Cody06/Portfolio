@@ -2,14 +2,14 @@ import { ColToDelete } from '../types';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
 
-interface Props {
+type Props = {
     isOpen: boolean;
     col: ColToDelete | undefined;
     onDeleteCol: (colId: string) => void;
     requestClose: () => void;
-}
+};
 
-const DeleteColumnModal: React.FC<Props> = ({ isOpen, col, onDeleteCol, requestClose }) => {
+export default function DeleteColumnModal({ isOpen, col, onDeleteCol, requestClose }: Props) {
     if (!col) return;
 
     return (
@@ -41,6 +41,4 @@ const DeleteColumnModal: React.FC<Props> = ({ isOpen, col, onDeleteCol, requestC
             </ModalBody>
         </Modal>
     );
-};
-
-export default DeleteColumnModal;
+}

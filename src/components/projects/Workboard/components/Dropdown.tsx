@@ -7,11 +7,12 @@ type Button = {
     label: string;
     onClick: () => void;
 };
-interface Props {
-    buttonsList: Button[];
-}
 
-const Dropdown: React.FC<Props> = ({ buttonsList }) => {
+type Props = {
+    buttonsList: Button[];
+};
+
+export default function Dropdown({ buttonsList }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
 
@@ -38,6 +39,4 @@ const Dropdown: React.FC<Props> = ({ buttonsList }) => {
             <div className="relative">{isOpen && DropdownList}</div>
         </div>
     );
-};
-
-export default Dropdown;
+}

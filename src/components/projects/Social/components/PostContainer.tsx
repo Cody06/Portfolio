@@ -5,21 +5,21 @@ import { Post } from '../types';
 import { MAX_POST_LENGTH } from '..';
 import { loggedUserId } from '../data';
 
-interface Props {
+type Props = {
     post: Post;
     onToggleLike: (postId: string) => void;
     onEditPost?: (postId: string, editedContent: string) => void;
     onOpenDeletePostModal?: (postId: string) => void;
     onShowSelectedUserProfile?: (selectedUserId: string) => void;
-}
+};
 
-const PostContainer: React.FC<Props> = ({
+export default function PostContainer({
     post,
     onToggleLike,
     onEditPost,
     onOpenDeletePostModal,
     onShowSelectedUserProfile,
-}) => {
+}: Props) {
     const [editingPost, setEditingPost] = useState(false);
     const [editedContent, setEditedContent] = useState(post.content);
     const isCreatorOfPost = post.creator === loggedUserId;
@@ -114,6 +114,4 @@ const PostContainer: React.FC<Props> = ({
             )}
         </div>
     );
-};
-
-export default PostContainer;
+}

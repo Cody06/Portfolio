@@ -1,5 +1,5 @@
-export interface Button {
+export type Button = {
     id: string;
     name: string;
     onClick: () => void;
-}
+};

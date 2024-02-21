@@ -1,14 +1,14 @@
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
 
-interface Props {
+type Props = {
     isOpen: boolean;
     postId: string | null;
     onDeletePost: (postId: string) => void;
     requestClose: () => void;
-}
+};
 
-const DeletePostModal: React.FC<Props> = ({ isOpen, postId, onDeletePost, requestClose }) => {
+export default function DeletePostModal({ isOpen, postId, onDeletePost, requestClose }: Props) {
     if (!postId) return;
 
     return (
@@ -37,6 +37,4 @@ const DeletePostModal: React.FC<Props> = ({ isOpen, postId, onDeletePost, reques
             </ModalBody>
         </Modal>
     );
-};
-
-export default DeletePostModal;
+}

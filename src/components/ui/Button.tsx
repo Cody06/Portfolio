@@ -1,23 +1,23 @@
 import Link from 'next/link';
 import React from 'react';
 
-interface Props {
+type Props = {
     label: string;
     disabled?: boolean;
     href?: string;
     kind?: 'primary' | 'secondary';
     type?: 'button' | 'link';
     onClick?: () => void;
-}
+};
 
-const Button: React.FC<Props> = ({
+export default function Button({
     label,
     onClick,
     disabled = false,
     href,
     kind = 'primary',
     type = 'button',
-}) => {
+}: Props) {
     const kindStyle = {
         primary: `text-white bg-grey-120
             hover:text-grey-120 hover:bg-orange-100
@@ -61,6 +61,4 @@ const Button: React.FC<Props> = ({
         default:
             return ButtonElement(disabled);
     }
-};
-
-export default Button;
+}
