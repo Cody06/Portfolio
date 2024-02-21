@@ -3,11 +3,11 @@ import Button from '../../ui/Button';
 import SectionHeader from './SectionHeader';
 import Carousel from '@/components/ui/Carousel';
 
-interface Props {
+type Props = {
     showAnimation: boolean;
-}
+};
 
-const Projects: React.FC<Props> = ({ showAnimation }) => {
+export default function Projects({ showAnimation }: Props) {
     const projects = [
         {
             id: 1,
@@ -152,6 +152,4 @@ const Projects: React.FC<Props> = ({ showAnimation }) => {
             </div>
         </section>
     );
-};
-
-export default Projects;
+}

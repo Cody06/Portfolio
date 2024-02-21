@@ -2,11 +2,11 @@ import React from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
 
-interface Props {
+type Props = {
     showAnimation: boolean;
-}
+};
 
-const TopNav: React.FC<Props> = ({ showAnimation }) => {
+export default function TopNav({ showAnimation }: Props) {
     const buttonsList: Button[] = [
         {
             id: 'projects-collection',
@@ -67,6 +67,4 @@ const TopNav: React.FC<Props> = ({ showAnimation }) => {
             </div>
         </nav>
     );
-};
-
-export default TopNav;
+}

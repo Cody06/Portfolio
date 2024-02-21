@@ -1,11 +1,11 @@
 import Logo from '@/components/ui/Logo';
 import TopNav from './TopNav';
 
-interface Props {
+type Props = {
     showAnimation: boolean;
-}
+};
 
-const Header: React.FC<Props> = ({ showAnimation }) => {
+export default function Header({ showAnimation }: Props) {
     const technologies = ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Python', 'Django'].join(
         ' | ',
     );
@@ -57,6 +57,4 @@ const Header: React.FC<Props> = ({ showAnimation }) => {
             </div>
         </header>
     );
-};
-
-export default Header;
+}

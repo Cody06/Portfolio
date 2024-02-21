@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import Link from 'next/link';
 
-const Certifications = () => {
+export default function Certifications() {
     const certifications = [
         {
             id: 1,
@@ -92,6 +92,4 @@ const Certifications = () => {
             </div>
         </section>
     );
-};
-
-export default Certifications;
+}

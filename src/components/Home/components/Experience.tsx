@@ -1,6 +1,6 @@
 import SectionHeader from './SectionHeader';
 
-const Experience = () => {
+export default function Experience() {
     const experiences = [
         {
             id: 0,
@@ -44,6 +44,4 @@ const Experience = () => {
             </div>
         </section>
     );
-};
-
-export default Experience;
+}

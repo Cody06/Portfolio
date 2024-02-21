@@ -7,7 +7,7 @@ import { FormEvent, FormEventHandler, useState } from 'react';
 import Input from '@/components/ui/Input';
 import usePageBottom from '@/hooks/usePageBottom';
 
-const Footer = () => {
+export default function Footer() {
     const reachedBottom = usePageBottom();
     const linkButtons = [
         {
@@ -122,6 +122,4 @@ const Footer = () => {
             )}
         </>
     );
-};
-
-export default Footer;
+}

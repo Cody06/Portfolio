@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Button } from '../../types';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
-interface Props {
+type Props = {
     buttonsList: Button[];
-}
+};
 
-const DropdownMenu: React.FC<Props> = ({ buttonsList }) => {
+export default function DropdownMenu({ buttonsList }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
 
@@ -38,6 +38,4 @@ const DropdownMenu: React.FC<Props> = ({ buttonsList }) => {
             <div className="relative">{isOpen && DropdownList}</div>
         </div>
     );
-};
-
-export default DropdownMenu;
+}
