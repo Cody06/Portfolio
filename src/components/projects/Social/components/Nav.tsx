@@ -6,12 +6,12 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Views } from '../types';
 import { loggedUserId } from '../data';
 
-interface Props {
+type Props = {
     setSelectedUser: Dispatch<SetStateAction<string>>;
     setSelectedView: Dispatch<SetStateAction<Views>>;
-}
+};
 
-const Nav: React.FC<Props> = ({ setSelectedUser, setSelectedView }) => {
+export default function Nav({ setSelectedUser, setSelectedView }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
     const buttons = [
@@ -80,6 +80,4 @@ const Nav: React.FC<Props> = ({ setSelectedUser, setSelectedView }) => {
             </ul>
         </nav>
     );
-};
-
-export default Nav;
+}

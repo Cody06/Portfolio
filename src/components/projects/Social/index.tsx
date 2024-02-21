@@ -12,7 +12,7 @@ import { initialFollowingAndFollowers, loggedUserId } from './data';
 
 export const MAX_POST_LENGTH = 150;
 
-const Social = () => {
+export default function Social() {
     // Having this in the data module causes TypeError (TODO: Fix)
     const initialPosts: Post[] = [
         {
@@ -210,6 +210,4 @@ const Social = () => {
             </div>
         </>
     );
-};
-
-export default Social;
+}
