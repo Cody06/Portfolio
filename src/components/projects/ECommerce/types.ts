@@ -9,4 +9,4 @@ export type Book = {
     images: string[];
 };
 
-export type Views = 'cart' | 'checkout' | 'store';
+export type Views = 'cart' | 'checkout' | 'mybooks' | 'store' | 'wishlist';
