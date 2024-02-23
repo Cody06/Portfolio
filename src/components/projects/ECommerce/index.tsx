@@ -82,15 +82,17 @@ export default function ECommerce() {
                     </Link>
                 </div>
             </nav>
-            <main className="flex">
+            <div className="flex">
                 {/* TODO: Implement the side component */}
-                <aside className="border w-[200px]">
-                    <div>Search</div>
-                    <div>Sort by</div>
-                    <div>Category</div>
-                </aside>
+                {selectedView !== 'cart' && selectedView !== 'checkout' && (
+                    <aside className="border w-[200px]">
+                        <div>Search</div>
+                        <div>Sort by</div>
+                        <div>Category</div>
+                    </aside>
+                )}
                 {views[selectedView]}
-            </main>
+            </div>
         </>
     );
 }

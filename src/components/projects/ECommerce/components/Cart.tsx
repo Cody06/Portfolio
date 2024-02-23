@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Book, Views } from '../types';
+import SectionHeader from './SectionHeader';
 
 type Props = {
     onDeleteItem: (id: number) => void;
@@ -15,11 +16,10 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
     );
 
     return (
-        <div className="content-max-width mx-auto">
-            <h2 className="text-lg font-bold">Shopping Cart</h2>
-
+        <section className="content-max-width ml-[30%]">
             {itemsInCart?.length ? (
                 <>
+                    <SectionHeader title="Shopping Cart" />
                     <table className="mb-4">
                         <thead className="border-b-2 border-grey-90">
                             <tr>
@@ -59,8 +59,8 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                     </button>
                 </>
             ) : (
-                <h2>Your cart is Empty</h2>
+                <SectionHeader title="Your cart is empty..." />
             )}
-        </div>
+        </section>
     );
 }
