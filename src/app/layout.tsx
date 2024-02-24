@@ -1,4 +1,4 @@
-import './styles.css';
+import './global.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
