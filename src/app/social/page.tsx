@@ -6,6 +6,10 @@ export const metadata: Metadata = {
     description: 'Social platform to connect with like minded people',
 };
 
-export default function SocialPage() {
-    return <Social />;
+export default function Page() {
+    return (
+        <body>
+            <Social />
+        </body>
+    );
 }

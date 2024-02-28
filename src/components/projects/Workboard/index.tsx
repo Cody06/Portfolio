@@ -18,8 +18,6 @@ export default function Workboard() {
     });
 
     useEffect(() => {
-        document.body.className = 'bg-blue-100';
-
         const savedColumns = localStorage.getItem('columns');
         if (savedColumns) setColumns(JSON.parse(savedColumns));
     }, []);
