@@ -20,7 +20,8 @@
         "firebase-tools": "^12.6.0",
         "next": "latest",
         "react": "latest",
-        "react-dom": "latest"
+        "react-dom": "latest",
+        "zustand": "^4.5.1"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^6.1.4",

@@ -16,39 +16,39 @@ type Props = {
 export default function Nav({ setSelectedUser, setSelectedView }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
-    const buttons = [
-        {
-            id: 'home',
-            icon: <FontAwesomeIcon icon={faHouse} className="w-4" />,
-            name: 'All Posts',
-            onClick: () => setSelectedView('allPosts'),
-        },
-        {
-            id: 'profile',
-            icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
-            name: `Profile: ${loggedUserId}`,
-            onClick: () => {
-                setSelectedUser(loggedUserId);
-                setSelectedView('profile');
-            },
-        },
-        {
-            id: 'following',
-            icon: <FontAwesomeIcon icon={faUserGroup} className="w-4" />,
-            name: 'Following',
-            onClick: () => setSelectedView('following'),
-        },
-        {
-            id: 'more',
-            icon: (
-                <FontAwesomeIcon icon={faCaretDown} className={`w-4 ${isOpen && 'rotate-180'}`} />
-            ),
-            name: 'More',
-            onClick: () => {
-                setIsOpen(!isOpen);
-            },
-        },
-    ];
+    // const buttons = [
+    //     {
+    //         id: 'home',
+    //         icon: <FontAwesomeIcon icon={faHouse} className="w-4" />,
+    //         name: 'All Posts',
+    //         onClick: () => setSelectedView('allPosts'),
+    //     },
+    //     {
+    //         id: 'profile',
+    //         icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
+    //         name: `Profile: ${loggedUserId}`,
+    //         onClick: () => {
+    //             setSelectedUser(loggedUserId);
+    //             setSelectedView('profile');
+    //         },
+    //     },
+    //     {
+    //         id: 'following',
+    //         icon: <FontAwesomeIcon icon={faUserGroup} className="w-4" />,
+    //         name: 'Following',
+    //         onClick: () => setSelectedView('following'),
+    //     },
+    //     {
+    //         id: 'more',
+    //         icon: (
+    //             <FontAwesomeIcon icon={faCaretDown} className={`w-4 ${isOpen && 'rotate-180'}`} />
+    //         ),
+    //         name: 'More',
+    //         onClick: () => {
+    //             setIsOpen(!isOpen);
+    //         },
+    //     },
+    // ];
 
     const navLinks = [
         {
