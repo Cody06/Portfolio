@@ -6,6 +6,10 @@ export const metadata: Metadata = {
     description: 'App to track projects progress',
 };
 
-export default function WorkboardPage() {
-    return <Workboard />;
+export default function Page() {
+    return (
+        <body className="bg-blue-100">
+            <Workboard />
+        </body>
+    );
 }

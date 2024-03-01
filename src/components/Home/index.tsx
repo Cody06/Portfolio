@@ -13,7 +13,6 @@ export default function Home() {
     });
 
     useEffect(() => {
-        document.body.className = 'bg-gradient-to-b from-white to-grey-20';
         const sessionItem = !!sessionStorage.getItem('viewed_animations');
         if (!sessionItem) {
             sessionStorage.setItem('viewed_animations', '1');
