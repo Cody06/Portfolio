@@ -1,4 +1,4 @@
-import Nav from '@/components/projects/Social/components/Nav';
+import Nav from '@/components/projects/Social/Nav';
 import Link from 'next/link';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
