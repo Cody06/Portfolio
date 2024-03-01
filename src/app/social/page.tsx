@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-    return (
-        <body>
-            <Social />
-        </body>
-    );
+    return <Social />;
 }
