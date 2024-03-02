@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-import { Post } from './types';
-import { initialPosts, loggedUserId } from './data';
+import { FollowingAndFollowers, Post } from './types';
+import { initialFollowingAndFollowers, initialPosts, loggedUserId } from './data';
 
 type Store = {
+    followingAndFollowers: FollowingAndFollowers;
     isDeletePostModalOpen: boolean;
     posts: Post[];
     postIdToDelete: string | null;
@@ -14,6 +15,7 @@ type Store = {
 };
 
 const useStore = create<Store>()((set) => ({
+    followingAndFollowers: initialFollowingAndFollowers,
     isDeletePostModalOpen: false,
     posts: initialPosts,
     postIdToDelete: null,
