@@ -20,7 +20,7 @@ export default function NavDropdown() {
     );
 
     return (
-        <li>
+        <li ref={ref}>
             <button
                 className="w-full text-left p-1 rounded-lg space-x-3
                     hover:bg-grey-100 hover:cursor-pointer"
