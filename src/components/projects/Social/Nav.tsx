@@ -29,7 +29,7 @@ export default function Nav() {
 
     return (
         <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
-            <ul className="flex flex-row md:flex-col space-y-2">
+            <ul className="flex flex-row md:flex-col gap-x-4 gap-y-2">
                 {navLinks.map(({ id, icon, name, href }) => (
                     <li key={id}>
                         <Link
@@ -38,7 +38,7 @@ export default function Nav() {
                             href={href}
                         >
                             <span className="text-grey-110">{icon}</span>
-                            <span>{name}</span>
+                            <span className="hidden md:inline">{name}</span>
                         </Link>
                     </li>
                 ))}

@@ -32,7 +32,7 @@ export default function NavDropdown() {
                         className={`text-grey-110 w-4 ${isOpen && 'rotate-180'}`}
                     />
                 </span>
-                <span>More</span>
+                <span className="hidden md:inline">More</span>
             </button>
             <div className="relative">{isOpen && Dropdown}</div>
         </li>
