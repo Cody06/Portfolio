@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { MAX_POST_LENGTH } from '../data';
 import { BodyProps, EditFormProps } from './types';
+import useStore from '../Store';
 
-function EditForm({ content, setIsEditingPost }: EditFormProps) {
+function EditForm({ content, postId, setIsEditingPost }: EditFormProps) {
     const [editedContent, setEditedContent] = useState(content);
+    const { editPost } = useStore();
 
     return (
         <div>
@@ -17,8 +19,7 @@ function EditForm({ content, setIsEditingPost }: EditFormProps) {
                 <button
                     className="px-2 text-blue-100 border rounded-lg hover:text-blue-110"
                     onClick={() => {
-                        // TODO: Add store function
-                        console.log('onEditPost(post.id, editedContent);');
+                        editPost(postId, editedContent);
                         setIsEditingPost(false);
                     }}
                 >
@@ -38,11 +39,11 @@ function EditForm({ content, setIsEditingPost }: EditFormProps) {
     );
 }
 
-export default function PostBody({ content, isEditingPost, setIsEditingPost }: BodyProps) {
+export default function PostBody({ content, isEditingPost, postId, setIsEditingPost }: BodyProps) {
     return (
         <>
             {isEditingPost ? (
-                <EditForm content={content} setIsEditingPost={setIsEditingPost} />
+                <EditForm content={content} postId={postId} setIsEditingPost={setIsEditingPost} />
             ) : (
                 <p>{content}</p>
             )}

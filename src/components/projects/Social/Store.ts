@@ -8,6 +8,7 @@ type Store = {
     postIdToDelete: string | null;
     createPost: (newPost: string) => void;
     deletePost: () => void;
+    editPost: (postId: string, editedContent: string) => void;
     setIsDeletePostModalOpen: (isOpen: boolean, postId?: string) => void;
     toggleLike: (postId: string) => void;
 };
@@ -33,6 +34,22 @@ const useStore = create<Store>()((set) => ({
     deletePost: () =>
         set((state) => ({
             posts: state.posts.filter((post) => post.id !== state.postIdToDelete),
+        })),
+    editPost: (postId, editedContent) =>
+        set((state) => ({
+            posts: [
+                ...state.posts.map((post) => {
+                    if (post.id === postId) {
+                        return {
+                            ...post,
+                            content: editedContent,
+                            edited: true,
+                        };
+                    } else {
+                        return post;
+                    }
+                }),
+            ],
         })),
     setIsDeletePostModalOpen: (isOpen, postId) =>
         set(() => {

@@ -9,6 +9,7 @@ export type HeaderProps = {
 
 export type EditFormProps = {
     content: string;
+    postId: string;
     setIsEditingPost: Dispatch<SetStateAction<boolean>>;
 };
 

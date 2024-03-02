@@ -20,6 +20,7 @@ export default function PostContainer({ post }: { post: Post }) {
             <PostBody
                 content={post.content}
                 isEditingPost={isEditingPost}
+                postId={post.id}
                 setIsEditingPost={setIsEditingPost}
             />
             <PostFooter
