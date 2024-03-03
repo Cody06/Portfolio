@@ -45,7 +45,7 @@ export default function PostBody({ content, isEditingPost, postId, setIsEditingP
             {isEditingPost ? (
                 <EditForm content={content} postId={postId} setIsEditingPost={setIsEditingPost} />
             ) : (
-                <p>{content}</p>
+                <p className="break-words text-balance">{content}</p>
             )}
         </>
     );

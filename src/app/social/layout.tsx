@@ -1,5 +1,14 @@
-import Nav from '@/components/projects/Social/Nav';
 import Link from 'next/link';
+import { Metadata } from 'next';
+import Nav from '@/components/projects/Social/Nav';
+
+export const metadata: Metadata = {
+    title: {
+        template: 'Social | %s',
+        default: 'Social',
+    },
+    description: 'Social platform to connect with like minded people',
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (

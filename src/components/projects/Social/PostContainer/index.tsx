@@ -10,7 +10,7 @@ export default function PostContainer({ post }: { post: Post }) {
     const [isEditingPost, setIsEditingPost] = useState(false);
     const isPostCreator = post.creator === loggedUserId;
     return (
-        <article className="min-w-[20rem] space-y-4 p-4 rounded-xl shadow-md">
+        <article className="max-w-[40rem] space-y-4 p-4 rounded-xl shadow-md">
             <PostHeader
                 creator={post.creator}
                 date={post.date}
