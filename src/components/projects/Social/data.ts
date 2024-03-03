@@ -1,7 +1,7 @@
 import { FollowingAndFollowers, Post } from './types';
 
 // TODO: Retreive from DB
-export const MAX_POST_LENGTH = 150;
+export const MAX_POST_LENGTH = 200;
 
 export const loggedUserId = 'guest';
 
@@ -34,23 +34,24 @@ export const initialPosts: Post[] = [
         id: '4',
         date: new Date('2023-12-02').toDateString(),
         creator: 'guest',
-        content: 'This is my first post',
+        content:
+            'The longest word in any of the major English language dictionaries is pneumonoultramicroscopicsilicovolcanoconiosis, a word that refers to a lung disease contracted from the inhalation of very fine silica particles, specifically from a volcano; medically, it is the same as silicosis.',
         edited: false,
         likes: [],
     },
-];
+].reverse();
 
 export const initialFollowingAndFollowers: FollowingAndFollowers = {
     [loggedUserId]: {
-        followers: [],
         following: ['cody'],
+        followers: [],
     },
     cody: {
-        followers: ['guest'],
         following: [],
+        followers: [loggedUserId],
     },
     elon: {
-        followers: [],
         following: [],
+        followers: [],
     },
 };
