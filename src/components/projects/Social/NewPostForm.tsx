@@ -1,18 +1,16 @@
+'use client';
 import { useState } from 'react';
-import { MAX_POST_LENGTH } from '..';
+import { MAX_POST_LENGTH } from './data';
+import useStore from './Store';
 
-type Props = {
-    onCreatePost: (newPost: string) => void;
-};
-
-export default function NewPostInput({ onCreatePost }: Props) {
-    // Created this component to optimize re-rendering on every keystroke
+export default function NewPostForm() {
     const [newPost, setNewPost] = useState('');
+    const { createPost } = useStore();
 
     return (
         <div
             className="flex flex-col gap-y-4 mb-4 p-2
-        border border-grey-100 rounded-xl"
+                border border-grey-100 rounded-xl"
         >
             <textarea
                 className="p-2 border border-grey-100 rounded-lg"
@@ -27,7 +25,7 @@ export default function NewPostInput({ onCreatePost }: Props) {
                 }`}
                 disabled={!newPost}
                 onClick={() => {
-                    onCreatePost(newPost);
+                    createPost(newPost);
                     setNewPost('');
                 }}
             >

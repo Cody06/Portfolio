@@ -1,11 +1,12 @@
-import Social from '@/components/projects/Social';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: 'Social',
-    description: 'Social platform to connect with like minded people',
-};
+import AllPosts from '@/components/projects/Social/AllPosts';
+import NewPostForm from '@/components/projects/Social/NewPostForm';
 
 export default function Page() {
-    return <Social />;
+    return (
+        <main className="min-w-[20rem]">
+            <h1 className="text-lg text-center mb-4">All Posts</h1>
+            <NewPostForm />
+            <AllPosts />
+        </main>
+    );
 }
