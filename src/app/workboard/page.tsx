@@ -1,15 +1,11 @@
-import Workboard from '@/components/projects/Workboard';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: 'Workboard',
-    description: 'App to track projects progress',
-};
+import CreateBoard from '@/components/projects/Workboard/CreateBoard';
+import BoardsCollection from '@/components/projects/Workboard/BoardsCollection';
 
 export default function Page() {
     return (
-        <body className="bg-blue-100">
-            <Workboard />
-        </body>
+        <main className="space-y-8 w-[25rem] mx-auto">
+            <CreateBoard />
+            <BoardsCollection />
+        </main>
     );
 }
