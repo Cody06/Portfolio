@@ -14,7 +14,14 @@ export type ColToDelete = {
     text: string;
 };
 
-export type DropColumn = {
-    newColId?: string;
-    nextCardId?: string;
+export type ColumnToDropCard = {
+    newColId: string | null;
+    nextCardId: string | null;
+};
+
+export type Board = {
+    id: string;
+    title: string;
+    creationDate: Date;
+    columns: ColumnData[];
 };
