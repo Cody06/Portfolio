@@ -1,15 +1,17 @@
-import { ColToDelete } from '../types';
+import { ColToDelete } from '../../types';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
     isOpen: boolean;
     col: ColToDelete | undefined;
-    onDeleteCol: (colId: string) => void;
     requestClose: () => void;
 };
 
-export default function DeleteColumnModal({ isOpen, col, onDeleteCol, requestClose }: Props) {
+export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }: Props) {
+    const { deleteColumn } = useStore();
     if (!col) return;
 
     return (
@@ -24,7 +26,7 @@ export default function DeleteColumnModal({ isOpen, col, onDeleteCol, requestClo
                         className="w-full p-1 text-white bg-red border border-red rounded-md
                             hover:brightness-90 active:brightness-75"
                         onClick={() => {
-                            onDeleteCol(col.id);
+                            deleteColumn(boardId, col.id);
                             requestClose();
                         }}
                     >
