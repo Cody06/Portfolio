@@ -10,16 +10,20 @@ type Button = {
 
 type Props = {
     buttonsList: Button[];
+    elipsisStyle: string;
 };
 
-export default function Dropdown({ buttonsList }: Props) {
+export default function Dropdown({ buttonsList, elipsisStyle }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
 
     const DropdownList = (
-        <ul className="absolute right-0 w-max bg-white rounded-b-md rounded-tl-md shadow-md">
+        <ul className="absolute z-10 right-0 w-max shadow-md rounded-b-md">
             {buttonsList.map((btn) => (
-                <li key={btn.label} className="p-2 hover:text-blue-100b hover:bg-grey-90">
+                <li
+                    key={btn.label}
+                    className="bg-white first:rounded-tl-md last:rounded-b-md p-2 hover:bg-grey-90"
+                >
                     <button className="text-left w-full" onClick={btn.onClick}>
                         {btn.label}
                     </button>
@@ -30,10 +34,7 @@ export default function Dropdown({ buttonsList }: Props) {
 
     return (
         <div ref={ref}>
-            <button
-                className="w-8 h-8 text-grey-100 hover:text-blue-100b"
-                onClick={() => setIsOpen(!isOpen)}
-            >
+            <button className={`w-8 h-8 ${elipsisStyle}`} onClick={() => setIsOpen(!isOpen)}>
                 <FontAwesomeIcon icon={faEllipsis} />
             </button>
             <div className="relative">{isOpen && DropdownList}</div>
