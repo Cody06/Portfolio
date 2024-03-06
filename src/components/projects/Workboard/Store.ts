@@ -19,31 +19,49 @@ type Store = {
     insertCardBeforeAnother: (boardId: string, dropCard: CardData) => void;
 };
 
+function getSavedBoards() {
+    const savedBoards = localStorage.getItem('boards');
+    return savedBoards ? JSON.parse(savedBoards) : [];
+}
+
+function saveToLocalStorage(boards: Board[]) {
+    localStorage.setItem('boards', JSON.stringify(boards));
+}
+
+function saveBoards(updatedBoards: Board[]) {
+    saveToLocalStorage(updatedBoards);
+    return {
+        boards: updatedBoards,
+    };
+}
+
 const useStore = create<Store>()((set) => ({
-    boards: [],
+    boards: getSavedBoards(),
     columnToDropCard: {
         newColId: null,
         nextCardId: null,
     },
     createBoard: (title) =>
-        set((state) => ({
-            boards: [
+        set((state) => {
+            const updatedBoards = [
                 ...state.boards,
                 {
                     id: Date.now().toString(),
                     title: title,
-                    creationDate: new Date(),
+                    creationDate: new Date().toDateString(),
                     columns: [],
                 },
-            ],
-        })),
+            ];
+            return saveBoards(updatedBoards);
+        }),
     deleteBoard: (boardId) =>
-        set((state) => ({
-            boards: state.boards.filter((board) => board.id !== boardId),
-        })),
+        set((state) => {
+            const updatedBoards = state.boards.filter((board) => board.id !== boardId);
+            return saveBoards(updatedBoards);
+        }),
     editBoard: (boardId, title) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -52,11 +70,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     createColumn: (boardId, title) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     const newColumn = {
                         id: `col-${getUniqueId(title)}`,
@@ -70,11 +89,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     deleteColumn: (boardId, colId) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -83,11 +103,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     editColumn: (boardId, colId, title) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -105,11 +126,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     createCard: (boardId, colId, text) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -131,11 +153,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     editCard: (boardId, colId, cardId, text) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -162,11 +185,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     deleteCard: (boardId, colId, cardId) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -184,15 +208,16 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     setColumnToDropCard: (colToDrop) =>
         set(() => ({
             columnToDropCard: colToDrop,
         })),
     appendCard: (boardId, dropCard) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -217,11 +242,12 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
     insertCardBeforeAnother: (boardId, dropCard) =>
-        set((state) => ({
-            boards: state.boards.map((board) => {
+        set((state) => {
+            const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
@@ -250,8 +276,9 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return board;
                 }
-            }),
-        })),
+            });
+            return saveBoards(updatedBoards);
+        }),
 }));
 
 export default useStore;
