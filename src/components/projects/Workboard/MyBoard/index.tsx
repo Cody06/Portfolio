@@ -1,7 +1,7 @@
 'use client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Column from './components/Column';
 import CreateColumnModal from './components/CreateColumnModal';
 import DeleteColumnModal from './components/DeleteColumnModal';
@@ -10,6 +10,7 @@ import useStore from '../Store';
 import Link from 'next/link';
 import Dropdown from './components/Dropdown';
 import DeleteBoardModal from './components/DeleteBoardModal';
+import TitleInput from './components/TitleInput';
 
 type Props = {
     boardId: string;
@@ -19,6 +20,7 @@ export default function MyBoard({ boardId }: Props) {
     const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
     const [isDeleteBoardModalOpen, setIsDeleteBoardModalOpen] = useState(false);
     const [isDeleteColumnModalOpen, setIsDeleteColumnModalOpen] = useState(false);
+    const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [colToDelete, setColToDelete] = useState<ColToDelete>();
     const { boards } = useStore();
 
@@ -37,7 +39,7 @@ export default function MyBoard({ boardId }: Props) {
     const titleExtraButtons = [
         {
             label: 'Edit title',
-            onClick: () => console.log('editing title'),
+            onClick: () => setIsEditingTitle(true),
         },
         {
             label: 'Delete board',
@@ -56,11 +58,21 @@ export default function MyBoard({ boardId }: Props) {
                         icon={faCircleLeft}
                     />
                 </Link>
-                <h1 className="text-2xl text-white font-bold">{selectedBoard?.title}</h1>
-                <Dropdown
-                    buttonsList={titleExtraButtons}
-                    elipsisStyle="text-white hover:text-orange-100"
-                />
+                {isEditingTitle ? (
+                    <TitleInput
+                        boardId={boardId}
+                        boardTitle={selectedBoard.title}
+                        setIsEditingTitle={setIsEditingTitle}
+                    />
+                ) : (
+                    <>
+                        <h1 className="text-2xl text-white font-bold">{selectedBoard?.title}</h1>
+                        <Dropdown
+                            buttonsList={titleExtraButtons}
+                            elipsisStyle="text-white hover:text-orange-100"
+                        />
+                    </>
+                )}
             </header>
             <main className=" p-4">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-x-2 gap-y-6 flex-wrap">

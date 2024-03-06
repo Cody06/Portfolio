@@ -11,6 +11,7 @@ type Store = {
     deleteBoard: (boardId: string) => void;
     deleteCard: (boardId: string, colId: string, cardId: string) => void;
     deleteColumn: (boardId: string, colId: string) => void;
+    editBoard: (boardId: string, title: string) => void;
     editCard: (boardId: string, colId: string, cardId: string, title: string) => void;
     editColumn: (boardId: string, colId: string, title: string) => void;
     setColumnToDropCard: (colToDrop: ColumnToDropCard) => void;
@@ -39,6 +40,19 @@ const useStore = create<Store>()((set) => ({
     deleteBoard: (boardId) =>
         set((state) => ({
             boards: state.boards.filter((board) => board.id !== boardId),
+        })),
+    editBoard: (boardId, title) =>
+        set((state) => ({
+            boards: state.boards.map((board) => {
+                if (board.id === boardId) {
+                    return {
+                        ...board,
+                        title: title,
+                    };
+                } else {
+                    return board;
+                }
+            }),
         })),
     createColumn: (boardId, title) =>
         set((state) => ({

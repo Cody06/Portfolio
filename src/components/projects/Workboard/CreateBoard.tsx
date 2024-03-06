@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import useStore from './Store';
 import Input from '@/components/ui/Input';
+import { MAX_BOARD_TITLE_LENGTH } from './data';
 
 export default function CreateBoard() {
     const [boardTitle, setBoardTitle] = useState('');
@@ -12,7 +13,7 @@ export default function CreateBoard() {
             <Input
                 id="title"
                 label="Title"
-                maxLength={20}
+                maxLength={MAX_BOARD_TITLE_LENGTH}
                 name="title"
                 type="text"
                 value={boardTitle}
