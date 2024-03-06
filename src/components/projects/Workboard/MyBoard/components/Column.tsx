@@ -91,7 +91,10 @@ export default function Column({
                 ) : (
                     <>
                         <span className="font-bold my-auto overflow-hidden">{column.title}</span>
-                        <Dropdown buttonsList={colExtraButtons} />
+                        <Dropdown
+                            buttonsList={colExtraButtons}
+                            elipsisStyle="text-grey-100 hover:text-orange-100"
+                        />
                     </>
                 )}
             </div>
@@ -116,7 +119,7 @@ export default function Column({
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="p-1 text-grey-110 mt-auto hover:text-blue-100b"
+                        className="p-1 text-grey-110 mt-auto hover:text-orange-100"
                     >
                         + Add card
                     </button>
