@@ -1,3 +1,4 @@
+'use client';
 import { create } from 'zustand';
 import { Board, CardData, ColumnToDropCard } from './types';
 import getUniqueId from '@/utils/getUniqueId';
