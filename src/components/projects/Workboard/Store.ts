@@ -8,6 +8,7 @@ type Store = {
     createBoard: (title: string) => void;
     createCard: (boardId: string, colId: string, text: string) => void;
     createColumn: (boardId: string, title: string) => void;
+    deleteBoard: (boardId: string) => void;
     deleteCard: (boardId: string, colId: string, cardId: string) => void;
     deleteColumn: (boardId: string, colId: string) => void;
     editCard: (boardId: string, colId: string, cardId: string, title: string) => void;
@@ -34,6 +35,10 @@ const useStore = create<Store>()((set) => ({
                     columns: [],
                 },
             ],
+        })),
+    deleteBoard: (boardId) =>
+        set((state) => ({
+            boards: state.boards.filter((board) => board.id !== boardId),
         })),
     createColumn: (boardId, title) =>
         set((state) => ({
