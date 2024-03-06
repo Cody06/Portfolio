@@ -1,26 +1,32 @@
 import { useState } from 'react';
-import { CardData } from '../types';
+import { CardData } from '../../types';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
+    colId: string;
     card: CardData;
-    onEditCard: (cardId: string, cardText: string) => void;
-    onDeleteCard: (cardId: string) => void;
-    onDrop: (card: CardData) => void;
 };
 
-export default function Card({ card, onEditCard, onDeleteCard, onDrop }: Props) {
+export default function Card({ boardId, colId, card }: Props) {
     const [text, setText] = useState(card.text);
     const [isDragging, setIsDragging] = useState(false);
-
-    const handleChange = (ev: React.ChangeEvent<HTMLDivElement>) => {
-        setText(ev.target.innerHTML);
-    };
+    const { columnToDropCard, appendCard, deleteCard, editCard, insertCardBeforeAnother } =
+        useStore();
 
     const handleClickOutside = () => {
         if (text.length === 0) {
-            onDeleteCard(card.id);
+            deleteCard(boardId, colId, card.id);
         } else {
-            onEditCard(card.id, text);
+            editCard(boardId, colId, card.id, text);
+        }
+    };
+
+    const handleDrop = (dropCard: CardData) => {
+        if (columnToDropCard.nextCardId) {
+            insertCardBeforeAnother(boardId, dropCard);
+        } else {
+            appendCard(boardId, dropCard);
         }
     };
 
@@ -34,7 +40,7 @@ export default function Card({ card, onEditCard, onDeleteCard, onDrop }: Props) 
             onDragStart={() => setIsDragging(true)}
             onDragEnd={() => {
                 setIsDragging(false);
-                onDrop(card);
+                handleDrop(card);
             }}
             onBlur={handleClickOutside}
         >
@@ -42,7 +48,7 @@ export default function Card({ card, onEditCard, onDeleteCard, onDrop }: Props) 
                 className="w-full p-2"
                 contentEditable
                 suppressContentEditableWarning
-                onInput={handleChange}
+                onInput={(e) => setText(e.currentTarget.innerHTML)}
             >
                 {/* Use the prop and NOT the text state value */}
                 {card.text}

@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
     columnId: string;
-    onCreateCard: (colId: string, cardText: string) => void;
     setShowCreateCard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function NewCardInput({ columnId, onCreateCard, setShowCreateCard }: Props) {
+export default function NewCardInput({ boardId, columnId, setShowCreateCard }: Props) {
     const [text, setText] = useState('');
-    const disabled = text.length === 0;
-
-    const handleChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => setText(ev.target.value);
+    const { createCard } = useStore();
 
     const clearAndCloseTextInput = () => {
         setText('');
@@ -24,16 +23,16 @@ export default function NewCardInput({ columnId, onCreateCard, setShowCreateCard
                 className="w-full p-2 rounded-md shadow-md mb-1"
                 placeholder="Type here..."
                 value={text}
-                onChange={handleChange}
+                onChange={(e) => setText(e.target.value)}
             />
             <div className="flex gap-x-2">
                 <button
                     className={`w-full text-white bg-blue-100b rounded-md ${
-                        disabled ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
+                        !text ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
                     }`}
-                    disabled={disabled}
+                    disabled={!text}
                     onClick={() => {
-                        onCreateCard(columnId, text);
+                        createCard(boardId, columnId, text);
                         clearAndCloseTextInput();
                     }}
                 >

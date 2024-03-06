@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { CardData, ColumnData, DropColumn, ColToDelete } from '../types';
+import { ColumnData, ColToDelete } from '../../types';
 import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
     column: ColumnData;
-    onCreateCard: (colId: string, cardText: string) => void;
-    onDeleteCard: (cardId: string) => void;
-    onDrop: (card: CardData) => void;
-    onEditCard: (cardId: string, cardText: string) => void;
-    onEditColumn: (colId: string, colTitle: string) => void;
-    setDropCol: React.Dispatch<React.SetStateAction<DropColumn>>;
     setColToDelete: React.Dispatch<React.SetStateAction<ColToDelete | undefined>>;
     setIsDeleteColumnModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function Column({
+    boardId,
     column,
-    onCreateCard,
-    onDeleteCard,
-    onDrop,
-    onEditCard,
-    onEditColumn,
-    setDropCol,
     setColToDelete,
     setIsDeleteColumnModalOpen,
 }: Props) {
@@ -31,6 +22,7 @@ export default function Column({
     const [showCreateCard, setShowCreateCard] = useState(false);
     const [showEditCol, setShowEditCol] = useState(false);
     const [container, setContainer] = useState<Element | null>();
+    const { editColumn, setColumnToDropCard } = useStore();
 
     const colExtraButtons = [
         {
@@ -46,10 +38,8 @@ export default function Column({
         },
     ];
 
-    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setColTitle(ev.target.value);
-
     const handleClickOutside = () => {
-        onEditColumn(column.id, colTitle);
+        editColumn(boardId, column.id, colTitle);
         setShowEditCol(false);
     };
 
@@ -61,7 +51,7 @@ export default function Column({
         if (!container) return;
         ev.preventDefault();
         const nextCard = getDragAfterElement(container, ev.clientY);
-        setDropCol({ newColId: column.id, nextCardId: nextCard?.id });
+        setColumnToDropCard({ newColId: column.id, nextCardId: nextCard?.id });
     };
 
     const getDragAfterElement = (container: any, mousePosY: number) => {
@@ -96,12 +86,15 @@ export default function Column({
                         type="text"
                         value={colTitle}
                         onBlur={handleClickOutside}
-                        onChange={handleChange}
+                        onChange={(e) => setColTitle(e.target.value)}
                     />
                 ) : (
                     <>
                         <span className="font-bold my-auto overflow-hidden">{column.title}</span>
-                        <Dropdown buttonsList={colExtraButtons} />
+                        <Dropdown
+                            buttonsList={colExtraButtons}
+                            elipsisStyle="text-grey-100 hover:text-orange-100"
+                        />
                     </>
                 )}
             </div>
@@ -112,27 +105,21 @@ export default function Column({
                 onDragOver={handleDragOver}
             >
                 {column.cards.map((card) => (
-                    <Card
-                        key={card.id}
-                        card={card}
-                        onEditCard={onEditCard}
-                        onDeleteCard={onDeleteCard}
-                        onDrop={onDrop}
-                    />
+                    <Card key={card.id} boardId={boardId} colId={column.id} card={card} />
                 ))}
             </div>
 
             <div className="text-center p-1">
                 {showCreateCard ? (
                     <NewCardInput
+                        boardId={boardId}
                         columnId={column.id}
-                        onCreateCard={onCreateCard}
                         setShowCreateCard={setShowCreateCard}
                     />
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="p-1 text-grey-110 mt-auto hover:text-blue-100b"
+                        className="p-1 text-grey-110 mt-auto hover:text-orange-100"
                     >
                         + Add card
                     </button>

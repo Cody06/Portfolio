@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
     isOpen: boolean;
-    onCreateColumn: (colTitle: string) => void;
     requestClose: () => void;
 };
 
-export default function CreateColumnModal({ isOpen, onCreateColumn, requestClose }: Props) {
+export default function CreateColumnModal({ boardId, isOpen, requestClose }: Props) {
     const [title, setTitle] = useState('');
-    const disabled = title.length === 0;
+    const { createColumn } = useStore();
 
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value);
 
@@ -33,12 +34,10 @@ export default function CreateColumnModal({ isOpen, onCreateColumn, requestClose
                     />
                     <button
                         className={`w-max p-2 text-white bg-blue-100b rounded-md
-                            ${
-                                disabled ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
-                            } `}
-                        disabled={disabled}
+                            ${!title ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'} `}
+                        disabled={!title}
                         onClick={() => {
-                            onCreateColumn(title);
+                            createColumn(boardId, title);
                             clearInputAndClose();
                         }}
                     >

@@ -1,22 +1,24 @@
-import { ColToDelete } from '../types';
+import { ColToDelete } from '../../types';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
+import useStore from '../../Store';
 
 type Props = {
+    boardId: string;
     isOpen: boolean;
-    col: ColToDelete | undefined;
-    onDeleteCol: (colId: string) => void;
+    col?: ColToDelete;
     requestClose: () => void;
 };
 
-export default function DeleteColumnModal({ isOpen, col, onDeleteCol, requestClose }: Props) {
+export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }: Props) {
+    const { deleteColumn } = useStore();
     if (!col) return;
 
     return (
         <Modal isOpen={isOpen} title="Delete column" requestClose={requestClose}>
             <ModalBody>
                 <h1 className="mb-5">
-                    Are you sure you want to delete: <br />
+                    Are you sure you want to delete column: <br />
                     <strong>{col.text}</strong>
                 </h1>
                 <div className="flex gap-x-4">
@@ -24,11 +26,11 @@ export default function DeleteColumnModal({ isOpen, col, onDeleteCol, requestClo
                         className="w-full p-1 text-white bg-red border border-red rounded-md
                             hover:brightness-90 active:brightness-75"
                         onClick={() => {
-                            onDeleteCol(col.id);
+                            deleteColumn(boardId, col.id);
                             requestClose();
                         }}
                     >
-                        Yes, delete
+                        Delete column
                     </button>
                     <button
                         className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
