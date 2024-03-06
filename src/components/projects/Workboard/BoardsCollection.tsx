@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import useStore from './Store';
+import { useRetrieveBoards } from './useRetrieveBoards';
 
 type BoardCardProps = {
     id: string;
@@ -24,6 +25,8 @@ function BoardCard({ id, title, creationDate }: BoardCardProps) {
 
 export default function BoardsCollection() {
     const { boards } = useStore();
+    useRetrieveBoards();
+
     return (
         <section className="flex flex-col w-full bg-grey-90 rounded-xl p-4">
             <h2 className="text-2xl font-bold mb-4 text-center">My boards</h2>

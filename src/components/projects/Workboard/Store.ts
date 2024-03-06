@@ -1,4 +1,3 @@
-'use client';
 import { create } from 'zustand';
 import { Board, CardData, ColumnToDropCard } from './types';
 import getUniqueId from '@/utils/getUniqueId';
@@ -18,12 +17,8 @@ type Store = {
     setColumnToDropCard: (colToDrop: ColumnToDropCard) => void;
     appendCard: (boardId: string, dropCard: CardData) => void;
     insertCardBeforeAnother: (boardId: string, dropCard: CardData) => void;
+    setBoards: (boards: Board[]) => void;
 };
-
-function getSavedBoards() {
-    const savedBoards = localStorage.getItem('boards');
-    return savedBoards ? JSON.parse(savedBoards) : [];
-}
 
 function saveToLocalStorage(boards: Board[]) {
     localStorage.setItem('boards', JSON.stringify(boards));
@@ -37,7 +32,7 @@ function saveBoards(updatedBoards: Board[]) {
 }
 
 const useStore = create<Store>()((set) => ({
-    boards: getSavedBoards(),
+    boards: [],
     columnToDropCard: {
         newColId: null,
         nextCardId: null,
@@ -280,6 +275,10 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
+    setBoards: (boards) =>
+        set(() => ({
+            boards: boards,
+        })),
 }));
 
 export default useStore;

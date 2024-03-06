@@ -1,7 +1,7 @@
 'use client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Column from './components/Column';
 import CreateColumnModal from './components/CreateColumnModal';
 import DeleteColumnModal from './components/DeleteColumnModal';
@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Dropdown from './components/Dropdown';
 import DeleteBoardModal from './components/DeleteBoardModal';
 import TitleInput from './components/TitleInput';
+import { useRetrieveBoards } from '../useRetrieveBoards';
 
 type Props = {
     boardId: string;
@@ -23,18 +24,9 @@ export default function MyBoard({ boardId }: Props) {
     const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [colToDelete, setColToDelete] = useState<ColToDelete>();
     const { boards } = useStore();
+    useRetrieveBoards();
 
     const selectedBoard = boards.filter((board) => board.id === boardId)[0];
-
-    // TODO: Re-enable in the future
-    // useEffect(() => {
-    //     const savedColumns = localStorage.getItem('columns');
-    //     if (savedColumns) setColumns(JSON.parse(savedColumns));
-    // }, []);
-    // const saveColumns = (cols: ColumnData[]) => {
-    //     setColumns(cols);
-    //     localStorage.setItem('columns', JSON.stringify(cols));
-    // };
 
     const titleExtraButtons = [
         {
