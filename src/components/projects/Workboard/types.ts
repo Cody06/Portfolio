@@ -22,6 +22,6 @@ export type ColumnToDropCard = {
 export type Board = {
     id: string;
     title: string;
-    creationDate: Date;
+    creationDate: string;
     columns: ColumnData[];
 };

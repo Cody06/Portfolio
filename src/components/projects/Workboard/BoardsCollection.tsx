@@ -30,12 +30,7 @@ export default function BoardsCollection() {
             {boards.length > 0 ? (
                 <div className="space-y-2">
                     {boards.map(({ id, title, creationDate }) => (
-                        <BoardCard
-                            key={id}
-                            id={id}
-                            title={title}
-                            creationDate={creationDate.toDateString()}
-                        />
+                        <BoardCard key={id} id={id} title={title} creationDate={creationDate} />
                     ))}
                 </div>
             ) : (
