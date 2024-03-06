@@ -6,7 +6,7 @@ import useStore from '../../Store';
 type Props = {
     boardId: string;
     isOpen: boolean;
-    col: ColToDelete | undefined;
+    col?: ColToDelete;
     requestClose: () => void;
 };
 
@@ -18,7 +18,7 @@ export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }
         <Modal isOpen={isOpen} title="Delete column" requestClose={requestClose}>
             <ModalBody>
                 <h1 className="mb-5">
-                    Are you sure you want to delete: <br />
+                    Are you sure you want to delete column: <br />
                     <strong>{col.text}</strong>
                 </h1>
                 <div className="flex gap-x-4">
@@ -30,7 +30,7 @@ export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }
                             requestClose();
                         }}
                     >
-                        Yes, delete
+                        Delete column
                     </button>
                     <button
                         className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
