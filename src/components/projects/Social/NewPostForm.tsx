@@ -8,12 +8,12 @@ export default function NewPostForm() {
     const { createPost } = useStore();
 
     return (
-        <div
-            className="flex flex-col gap-y-4 mb-4 p-2
-                border border-grey-100 rounded-xl"
+        <section
+            className="flex flex-col gap-y-4 mb-4 p-2 w-full max-w-[40rem]
+                rounded-xl shadow-md"
         >
             <textarea
-                className="p-2 border border-grey-100 rounded-lg"
+                className="p-2 border border-blue-100 rounded-lg"
                 placeholder="What is happening?!"
                 maxLength={MAX_POST_LENGTH}
                 value={newPost}
@@ -31,6 +31,6 @@ export default function NewPostForm() {
             >
                 Post
             </button>
-        </div>
+        </section>
     );
 }

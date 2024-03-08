@@ -23,7 +23,7 @@ export default function Profile({ profileId }: Props) {
         <>
             <DeletePostModal />
             <section className="text-center mb-4">
-                <h1 className="text-lg inline mr-4">{profileId}&apos;s posts</h1>
+                <h1 className="text-lg font-bold inline mr-4">{profileId}&apos;s posts</h1>
                 {!isLoggedUserProfile &&
                     (isUserFollowed ? (
                         <button
