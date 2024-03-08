@@ -27,8 +27,12 @@ export default function Nav() {
         },
     ];
 
+    const centerElement = 'left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0';
+
     return (
-        <nav className="p-3 md:p-6 w-max h-max mx-auto md:mx-0 mb-6 rounded-xl shadow-lg whitespace-nowrap">
+        <nav
+            className={`fixed z-10 top-16 ${centerElement} md:p-6 w-max h-max rounded-xl shadow-md bg-white p-3 whitespace-nowrap`}
+        >
             <ul className="flex flex-row md:flex-col gap-x-4 gap-y-2">
                 {navLinks.map(({ id, icon, name, href }) => (
                     <li key={id}>
