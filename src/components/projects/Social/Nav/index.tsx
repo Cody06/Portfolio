@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUser, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'next/link';
-import { loggedUserId } from './data';
+import { loggedUserId } from '../data';
 import NavDropdown from './NavDropdown';
 
 export default function Nav() {
