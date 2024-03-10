@@ -1,7 +1,7 @@
 'use client';
-import PostContainer from './PostContainer';
 import useStore from './Store';
 import { loggedUserId } from './data';
+import PostsCollection from './PostsCollection';
 
 export default function Following() {
     const { followingAndFollowers, posts } = useStore();
@@ -17,11 +17,5 @@ export default function Following() {
         );
     }
 
-    return (
-        <section>
-            {followingPosts.map((post) => (
-                <PostContainer key={post.id} post={post} />
-            ))}
-        </section>
-    );
+    return <PostsCollection posts={followingPosts} />;
 }

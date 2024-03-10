@@ -1,6 +1,6 @@
 'use client';
 import DeletePostModal from './DeletePostModal';
-import PostContainer from './PostContainer';
+import PostsCollection from './PostsCollection';
 import useStore from './Store';
 import { loggedUserId } from './data';
 
@@ -55,11 +55,7 @@ export default function Profile({ profileId }: Props) {
                 </h2>
             </section>
 
-            <section>
-                {userPosts.map((post) => (
-                    <PostContainer key={post.id} post={post} />
-                ))}
-            </section>
+            <PostsCollection posts={userPosts} />
         </>
     );
 }
