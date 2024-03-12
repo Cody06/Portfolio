@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
 
@@ -30,9 +30,35 @@ export default function TopNav({ showAnimation }: Props) {
         },
     ];
 
+    const headerRef = useRef<HTMLElement>(null);
+    useEffect(() => {
+        let prevScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const headerElement = headerRef.current;
+
+            if (!headerElement) return;
+
+            if (prevScrollY > currentScrollY) {
+                headerElement.style.transform = 'translateY(0)';
+            } else {
+                headerElement.style.transform = 'translateY(-100px)';
+            }
+            prevScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <nav
-            className={`fixed z-10 w-full p-4 bg-grey-120 shadow-lg select-none ${
+            ref={headerRef}
+            className={`fixed z-10 w-full p-4 bg-grey-120 shadow-lg select-none ease-in-out duration-500 ${
                 showAnimation && 'animate-navbar'
             }`}
         >
