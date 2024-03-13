@@ -219,3 +219,16 @@ button:focus-visible > .animate-squish {
         scale: 1.4 0.6;
     }
 }
+
+.alert-animation {
+    animation: show 200ms linear;
+}
+
+@keyframes show {
+    from {
+        top: -4rem;
+    }
+    to {
+        top: 2.5rem;
+    }
+}
