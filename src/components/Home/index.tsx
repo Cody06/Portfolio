@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import { AlertProvider } from '../context/alertContext';
+import AlertBox from '../ui/AlertBox';
 
 export default function Home() {
     const [state, setState] = useState({
@@ -29,7 +31,7 @@ export default function Home() {
     if (state.loading) return;
 
     return (
-        <>
+        <AlertProvider>
             <Header showAnimation={!state.viewedAnimations} />
             <main className="content-max-width mx-auto pb-16 px-4 select-none">
                 <Projects showAnimation={!state.viewedAnimations} />
@@ -39,6 +41,7 @@ export default function Home() {
             <div className="bg-grey-120">
                 <Footer />
             </div>
-        </>
+            <AlertBox />
+        </AlertProvider>
     );
 }
