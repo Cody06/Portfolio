@@ -69,7 +69,8 @@ export default function Input({
                     {label}
                 </label>
             </div>
-            <p className="pl-2 text-sm text-red">{error}</p>
+            {/* Add height as placeholder to not move elements when there is an error */}
+            <p className="pl-2 h-[1.375rem] text-sm text-red">{error}</p>
         </div>
     );
 }
