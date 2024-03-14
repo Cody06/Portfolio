@@ -7,8 +7,10 @@ import Input from '@/components/ui/Input';
 import usePageBottom from '@/hooks/usePageBottom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useAlertContext } from '@/components/context/alertContext';
 
 export default function Footer() {
+    const { onOpen } = useAlertContext();
     const reachedBottom = usePageBottom();
     const linkButtons = [
         {
@@ -30,7 +32,8 @@ export default function Footer() {
             message: '',
         },
         onSubmit: (values) => {
-            console.log(values);
+            // TODO add proper route
+            onOpen('success', 'Message sent!');
         },
         validationSchema: Yup.object({
             name: Yup.string().required('Name is required'),
