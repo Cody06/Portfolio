@@ -73,7 +73,7 @@ export default function Footer() {
                         ))}
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
                     <Input
                         id="name"
                         type="text"
@@ -101,7 +101,7 @@ export default function Footer() {
                     <input
                         type="submit"
                         value="SUBMIT"
-                        className={`px-4 py-2 font-bold rounded-lg ease-in duration-200 ${
+                        className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
                             isDisabled
                                 ? 'bg-grey-100 text-grey-110'
                                 : 'bg-white text-grey-120 hover:bg-orange-100 hover:cursor-pointer'
