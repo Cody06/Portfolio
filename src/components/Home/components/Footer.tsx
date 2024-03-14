@@ -41,6 +41,12 @@ export default function Footer() {
         }),
     });
 
+    const isDisabled = !(
+        getFieldProps('name').value &&
+        getFieldProps('email').value &&
+        getFieldProps('message').value
+    );
+
     return (
         <>
             <footer
@@ -92,8 +98,13 @@ export default function Footer() {
                     <input
                         type="submit"
                         value="SUBMIT"
-                        className="px-4 py-2 font-bold rounded-lg ease-in duration-200
-                            bg-white text-grey-120 hover:bg-orange-100 hover:cursor-pointer"
+                        className={`px-4 py-2 font-bold rounded-lg ease-in duration-200 ${
+                            isDisabled
+                                ? 'bg-grey-100 text-grey-110'
+                                : 'bg-white text-grey-120 hover:bg-orange-100 hover:cursor-pointer'
+                        }
+                                     `}
+                        disabled={isDisabled}
                     />
                 </form>
                 <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 text-center">
