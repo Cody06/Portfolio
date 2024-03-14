@@ -113,7 +113,7 @@ export default function Footer() {
                         disabled={isDisabled}
                     />
                 </form>
-                <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 text-center">
+                <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 pt-8 md:pt-0 text-center">
                     <span className="space-x-3">
                         <FontAwesomeIcon icon={faLocationPin} className="fa-xl" />
                         <span>Based in Montreal</span>
