@@ -23,7 +23,7 @@ export default function Footer() {
         },
     ];
 
-    const { getFieldProps, handleSubmit } = useFormik({
+    const { errors, getFieldProps, handleSubmit } = useFormik({
         initialValues: {
             name: '',
             email: '',
@@ -79,6 +79,7 @@ export default function Footer() {
                         type="text"
                         label="Name"
                         maxLength={50}
+                        error={errors.name}
                         {...getFieldProps('name')}
                     />
                     <Input
@@ -86,6 +87,7 @@ export default function Footer() {
                         type="email"
                         label="Your email"
                         maxLength={50}
+                        error={errors.email}
                         {...getFieldProps('email')}
                     />
                     <Input
@@ -93,6 +95,7 @@ export default function Footer() {
                         type="textarea"
                         label="Message"
                         maxLength={300}
+                        error={errors.message}
                         {...getFieldProps('message')}
                     />
                     <input
