@@ -3,11 +3,14 @@ import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { faCircleArrowUp, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
-import { FormEvent, FormEventHandler, useState } from 'react';
 import Input from '@/components/ui/Input';
 import usePageBottom from '@/hooks/usePageBottom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useAlertContext } from '@/components/context/alertContext';
 
 export default function Footer() {
+    const { onOpen } = useAlertContext();
     const reachedBottom = usePageBottom();
     const linkButtons = [
         {
@@ -22,20 +25,30 @@ export default function Footer() {
         },
     ];
 
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
+    const { errors, getFieldProps, handleSubmit } = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        onSubmit: (values) => {
+            // TODO add proper route
+            onOpen('success', 'Message sent!');
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required('Name is required'),
+            email: Yup.string().email('Invalid email').required('Email is required'),
+            message: Yup.string()
+                .min(5, 'Must be at least 5 characters')
+                .required('Message is required'),
+        }),
     });
 
-    const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-        setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
-
-    // TODO: Create email contact form
-    const submitForm: FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault();
-        console.log(formData);
-    };
+    const isDisabled = !(
+        getFieldProps('name').value &&
+        getFieldProps('email').value &&
+        getFieldProps('message').value
+    );
 
     return (
         <>
@@ -63,45 +76,44 @@ export default function Footer() {
                         ))}
                     </div>
                 </div>
-                <form onSubmit={submitForm} className="space-y-4">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
                     <Input
                         id="name"
                         type="text"
                         label="Name"
-                        name="name"
                         maxLength={50}
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
+                        error={errors.name}
+                        {...getFieldProps('name')}
                     />
                     <Input
                         id="email"
                         type="email"
                         label="Your email"
-                        name="email"
                         maxLength={50}
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
+                        error={errors.email}
+                        {...getFieldProps('email')}
                     />
                     <Input
                         id="message"
                         type="textarea"
                         label="Message"
-                        name="message"
                         maxLength={300}
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
+                        error={errors.message}
+                        {...getFieldProps('message')}
                     />
                     <input
                         type="submit"
                         value="SUBMIT"
-                        className="px-4 py-2 bg-white text-grey-120 font-bold rounded-lg
-                                    hover:bg-orange-100 hover:cursor-pointer ease-in duration-200"
+                        className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
+                            isDisabled
+                                ? 'bg-grey-100 text-grey-110'
+                                : 'bg-white text-grey-120 hover:bg-orange-100 hover:cursor-pointer'
+                        }
+                                     `}
+                        disabled={isDisabled}
                     />
                 </form>
-                <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 text-center">
+                <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 pt-8 md:pt-0 text-center">
                     <span className="space-x-3">
                         <FontAwesomeIcon icon={faLocationPin} className="fa-xl" />
                         <span>Based in Montreal</span>
