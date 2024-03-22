@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link className="font-bold" href="/workboard">
                     Workboard
                 </Link>
-                <Link href="/" className="hover:text-orange-100" scroll={false}>
+                <Link href="/" className="hover:text-amber-500" scroll={false}>
                     Back to Portfolio
                 </Link>
             </nav>

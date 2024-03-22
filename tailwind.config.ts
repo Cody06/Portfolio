@@ -22,12 +22,12 @@ const config: Config = {
                 90: '#F2F2F2',
                 20: '#F0F0F0',
             },
-            orange: {
-                100: '#F1A541',
-            },
             red: '#D80032',
             black: '#000000',
             white: '#FFFFFF',
+            amber: {
+                500: '#f59e0b',
+            },
         },
         extend: {},
     },

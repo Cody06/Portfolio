@@ -35,7 +35,7 @@ export default function Store({ onAddToCart }: Props) {
 
                         <section className="flex flex-col items-center gap-y-2 mb-2">
                             <button
-                                className="font-bold hover:text-orange-100"
+                                className="font-bold hover:text-amber-500"
                                 onClick={() => viewBookPage(book.id)}
                             >
                                 {book.title}
@@ -52,7 +52,7 @@ export default function Store({ onAddToCart }: Props) {
                         </section>
 
                         <button
-                            className="mt-auto px-4 py-2 w-max bg-orange-100 rounded-xl
+                            className="mt-auto px-4 py-2 w-max bg-amber-500 rounded-xl
                                                     hover:brightness-90 active:brightness-75"
                             onClick={() => onAddToCart(book)}
                         >

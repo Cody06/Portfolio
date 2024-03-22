@@ -20,10 +20,10 @@ export default function Button({
 }: Props) {
     const kindStyle = {
         primary: `text-white bg-grey-120
-            hover:text-grey-120 hover:bg-orange-100
+            hover:text-grey-120 hover:bg-amber-500
             active:brightness-75`,
-        secondary: `border border-orange-100
-            hover:text-white hover:bg-orange-100
+        secondary: `border border-amber-500
+            hover:text-white hover:bg-amber-500
             active:brightness-75`,
     };
 

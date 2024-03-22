@@ -46,19 +46,19 @@ export default function ECommerce() {
                 <span className="font-bold">E-Commerce</span>
                 <div className="space-x-5">
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('store')}
                     >
                         Store
                     </button>
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('mybooks')}
                     >
                         My Books
                     </button>
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('wishlist')}
                     >
                         Wishlist
@@ -66,7 +66,7 @@ export default function ECommerce() {
                 </div>
                 <div>
                     <button
-                        className="relative hover:text-orange-100 mr-5"
+                        className="relative hover:text-amber-500 mr-5"
                         onClick={() => setSelectedView('cart')}
                         title="View cart"
                     >
@@ -77,7 +77,7 @@ export default function ECommerce() {
                             </div>
                         )}
                     </button>
-                    <Link href="/" className="hover:text-orange-100">
+                    <Link href="/" className="hover:text-amber-500">
                         Back to Portfolio
                     </Link>
                 </div>

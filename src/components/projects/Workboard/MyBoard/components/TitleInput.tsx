@@ -37,13 +37,13 @@ export default function TitleInput({ boardId, boardTitle, setIsEditingTitle }: P
                 }}
             >
                 <FontAwesomeIcon
-                    className="text-white h-6 group-hover:text-orange-100"
+                    className="text-white h-6 group-hover:text-amber-500"
                     icon={faCheck}
                 />
             </button>
             <button onClick={clearInputAndClose}>
                 <FontAwesomeIcon
-                    className="text-white h-6 group-hover:text-orange-100"
+                    className="text-white h-6 group-hover:text-amber-500"
                     icon={faXmark}
                 />
             </button>

@@ -64,7 +64,7 @@ export default function TopNav({ showAnimation }: Props) {
         >
             <div className="flex justify-between content-max-width m-auto">
                 <button
-                    className="text-orange-100 hover:animate-bounce"
+                    className="text-amber-500 hover:animate-bounce"
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
                     &lt; cody &gt;
@@ -81,7 +81,7 @@ export default function TopNav({ showAnimation }: Props) {
                         {buttonsList.map((button) => (
                             <li key={button.id}>
                                 <button
-                                    className="text-white hover:text-orange-100"
+                                    className="text-white hover:text-amber-500"
                                     onClick={button.onClick}
                                 >
                                     {button.name}

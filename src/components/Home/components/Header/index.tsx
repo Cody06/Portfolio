@@ -26,7 +26,7 @@ export default function Header({ showAnimation }: Props) {
                         >
                             Software Developer
                         </span>
-                        <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>
+                        <span className={`text-amber-500 ${showAnimation && 'animate-drop'}`}>
                             .
                         </span>
                     </h1>

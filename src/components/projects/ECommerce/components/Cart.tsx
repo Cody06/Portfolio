@@ -51,7 +51,7 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                         </tfoot>
                     </table>
                     <button
-                        className="px-4 py-2 bg-orange-100 rounded-xl
+                        className="px-4 py-2 bg-amber-500 rounded-xl
                                     hover:brightness-90 active:brightness-75"
                         onClick={() => setSelectedView('checkout')}
                     >
