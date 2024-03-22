@@ -14,7 +14,6 @@ const config: Config = {
                 110: '#0F4C75',
                 '100b': '#007bff',
                 100: '#3282B8',
-                90: '#BBE1FA',
             },
             grey: {
                 120: '#2F3337',
@@ -24,7 +23,6 @@ const config: Config = {
                 20: '#F0F0F0',
             },
             orange: {
-                110: '#774709',
                 100: '#F1A541',
             },
             red: '#D80032',
