@@ -38,7 +38,7 @@ export default function Home() {
                 <Experience />
                 <Certifications />
             </main>
-            <div className="bg-grey-120">
+            <div className="bg-neutral-800">
                 <Footer />
             </div>
             <AlertBox />

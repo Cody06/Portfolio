@@ -13,7 +13,7 @@ export default function DropdownMenu({ buttonsList }: Props) {
     const ref = useOutsideClick(() => setIsOpen(false));
 
     const DropdownList = (
-        <ul className="absolute -right-3 bg-grey-120 p-3 space-y-2 rounded-b-md shadow-lg">
+        <ul className="absolute -right-3 bg-neutral-800 p-3 space-y-2 rounded-b-md shadow-lg">
             {buttonsList.map((button) => (
                 <li key={button.id}>
                     <button

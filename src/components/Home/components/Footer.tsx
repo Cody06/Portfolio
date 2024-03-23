@@ -107,7 +107,7 @@ export default function Footer() {
                         className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
                             isDisabled
                                 ? 'bg-neutral-500 text-neutral-600'
-                                : 'bg-white text-grey-120 hover:bg-amber-500 hover:cursor-pointer'
+                                : 'bg-white text-neutral-800 hover:bg-amber-500 hover:cursor-pointer'
                         }
                                      `}
                         disabled={isDisabled}

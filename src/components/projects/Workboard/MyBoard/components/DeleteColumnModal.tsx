@@ -33,7 +33,7 @@ export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }
                         Delete column
                     </button>
                     <button
-                        className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
+                        className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md
                             hover:bg-neutral-500 hover:bg-opacity-20"
                         onClick={requestClose}
                     >

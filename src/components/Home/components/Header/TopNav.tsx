@@ -58,7 +58,7 @@ export default function TopNav({ showAnimation }: Props) {
     return (
         <nav
             ref={headerRef}
-            className={`fixed z-10 w-full p-4 bg-grey-120 shadow-lg select-none ease-in-out duration-500 ${
+            className={`fixed z-10 w-full p-4 bg-neutral-800 shadow-lg select-none ease-in-out duration-500 ${
                 showAnimation && 'animate-navbar'
             }`}
         >
