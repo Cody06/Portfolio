@@ -19,15 +19,15 @@ export default function Button({
     type = 'button',
 }: Props) {
     const kindStyle = {
-        primary: `text-white bg-grey-120
-            hover:text-grey-120 hover:bg-orange-100
+        primary: `text-white bg-neutral-800
+            hover:text-neutral-800 hover:bg-amber-500
             active:brightness-75`,
-        secondary: `border border-orange-100
-            hover:text-white hover:bg-orange-100
+        secondary: `border border-amber-500
+            hover:text-white hover:bg-amber-500
             active:brightness-75`,
     };
 
-    const disabledStyle = 'text-grey-100 bg-grey-90';
+    const disabledStyle = 'text-neutral-500 bg-neutral-100';
 
     // Need isBtnDisabled arg for when we want to disable if it's a link and no href
     const ButtonElement = (isBtnDisabled: boolean) => (

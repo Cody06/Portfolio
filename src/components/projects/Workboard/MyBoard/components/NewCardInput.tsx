@@ -27,7 +27,7 @@ export default function NewCardInput({ boardId, columnId, setShowCreateCard }: P
             />
             <div className="flex gap-x-2">
                 <button
-                    className={`w-full text-white bg-blue-100b rounded-md ${
+                    className={`w-full text-white bg-blue-500 rounded-md ${
                         !text ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
                     }`}
                     disabled={!text}
@@ -39,8 +39,8 @@ export default function NewCardInput({ boardId, columnId, setShowCreateCard }: P
                     Save
                 </button>
                 <button
-                    className="w-full p-1 text-grey-120 border border-grey-120 rounded-md 
-                        hover:bg-grey-100 hover:bg-opacity-20"
+                    className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md 
+                        hover:bg-neutral-500 hover:bg-opacity-20"
                     onClick={clearAndCloseTextInput}
                 >
                     Cancel

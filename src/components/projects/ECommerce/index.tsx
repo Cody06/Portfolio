@@ -42,23 +42,23 @@ export default function ECommerce() {
 
     return (
         <>
-            <nav className="flex justify-between p-4 text-white bg-blue-110">
+            <nav className="flex justify-between p-4 text-white bg-sky-900">
                 <span className="font-bold">E-Commerce</span>
                 <div className="space-x-5">
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('store')}
                     >
                         Store
                     </button>
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('mybooks')}
                     >
                         My Books
                     </button>
                     <button
-                        className="hover:text-orange-100"
+                        className="hover:text-amber-500"
                         onClick={() => setSelectedView('wishlist')}
                     >
                         Wishlist
@@ -66,18 +66,18 @@ export default function ECommerce() {
                 </div>
                 <div>
                     <button
-                        className="relative hover:text-orange-100 mr-5"
+                        className="relative hover:text-amber-500 mr-5"
                         onClick={() => setSelectedView('cart')}
                         title="View cart"
                     >
                         <FontAwesomeIcon icon={faCartShopping} className="fa-lg" />
                         {itemsInCart.length > 0 && (
-                            <div className="absolute -top-2 -right-2 text-sm text-white bg-red px-1 rounded-full">
+                            <div className="absolute -top-2 -right-2 text-sm text-white bg-red-500 px-1 rounded-full">
                                 {itemsInCart.length >= 100 ? '99+' : itemsInCart.length}
                             </div>
                         )}
                     </button>
-                    <Link href="/" className="hover:text-orange-100">
+                    <Link href="/" className="hover:text-amber-500">
                         Back to Portfolio
                     </Link>
                 </div>

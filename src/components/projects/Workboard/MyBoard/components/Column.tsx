@@ -77,8 +77,8 @@ export default function Column({
     };
 
     return (
-        <div className="bg-grey-90 w-[18.75rem] rounded-lg">
-            <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
+        <div className="bg-neutral-100 w-[18.75rem] rounded-lg">
+            <div className="flex justify-between p-2 bg-neutral-100 brightness-95 rounded-t-lg">
                 {showEditCol ? (
                     <input
                         autoFocus
@@ -93,7 +93,7 @@ export default function Column({
                         <span className="font-bold my-auto overflow-hidden">{column.title}</span>
                         <Dropdown
                             buttonsList={colExtraButtons}
-                            elipsisStyle="text-grey-100 hover:text-orange-100"
+                            elipsisStyle="text-neutral-500 hover:text-amber-500"
                         />
                     </>
                 )}
@@ -119,7 +119,7 @@ export default function Column({
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="p-1 text-grey-110 mt-auto hover:text-orange-100"
+                        className="p-1 text-neutral-500 mt-auto hover:text-amber-500"
                     >
                         + Add card
                     </button>

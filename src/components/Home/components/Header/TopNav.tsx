@@ -58,13 +58,13 @@ export default function TopNav({ showAnimation }: Props) {
     return (
         <nav
             ref={headerRef}
-            className={`fixed z-10 w-full p-4 bg-grey-120 shadow-lg select-none ease-in-out duration-500 ${
+            className={`fixed z-10 w-full p-4 bg-neutral-800 shadow-lg select-none ease-in-out duration-500 ${
                 showAnimation && 'animate-navbar'
             }`}
         >
             <div className="flex justify-between content-max-width m-auto">
                 <button
-                    className="text-orange-100 hover:animate-bounce"
+                    className="text-amber-500 hover:animate-bounce"
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
                     &lt; cody &gt;
@@ -81,7 +81,7 @@ export default function TopNav({ showAnimation }: Props) {
                         {buttonsList.map((button) => (
                             <li key={button.id}>
                                 <button
-                                    className="text-white hover:text-orange-100"
+                                    className="text-white hover:text-amber-500"
                                     onClick={button.onClick}
                                 >
                                     {button.name}

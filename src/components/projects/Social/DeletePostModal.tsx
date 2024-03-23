@@ -12,7 +12,7 @@ export default function DeletePostModal() {
                 <h1 className="mb-5">Are you sure you want to delete your post?</h1>
                 <div className="flex gap-x-4">
                     <button
-                        className="w-full p-1 text-white bg-red border border-red rounded-md
+                        className="w-full p-1 text-white bg-red-500 border border-red-500 rounded-md
                             hover:brightness-90 active:brightness-75"
                         onClick={() => {
                             deletePost();
@@ -22,8 +22,8 @@ export default function DeletePostModal() {
                         Yes, delete
                     </button>
                     <button
-                        className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
-                            hover:bg-grey-100 hover:bg-opacity-20"
+                        className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md
+                            hover:bg-neutral-500 hover:bg-opacity-20"
                         onClick={requestClose}
                     >
                         Cancel

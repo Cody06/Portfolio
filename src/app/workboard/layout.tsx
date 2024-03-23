@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <body className="bg-blue-100">
-            <nav className="flex justify-between mb-8 bg-blue-110 p-4 text-white">
+        <body className="bg-sky-600">
+            <nav className="flex justify-between mb-8 bg-sky-900 p-4 text-white">
                 <Link className="font-bold" href="/workboard">
                     Workboard
                 </Link>
-                <Link href="/" className="hover:text-orange-100" scroll={false}>
+                <Link href="/" className="hover:text-amber-500" scroll={false}>
                     Back to Portfolio
                 </Link>
             </nav>

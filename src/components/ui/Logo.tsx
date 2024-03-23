@@ -4,7 +4,7 @@ type Props = {
 
 export default function Logo({ showAnimation }: Props) {
     const parallelogramShape =
-        'bg-orange-100 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
+        'bg-amber-500 w-[6rem] h-[7rem] skew-y-[30deg] rotate-[-60deg] rounded-3xl';
 
     const topLayer = (
         <div

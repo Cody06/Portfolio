@@ -129,7 +129,7 @@ export default function Projects({ showAnimation }: Props) {
                                 {project.tools.map((tool) => (
                                     <div
                                         key={tool}
-                                        className="p-1 w-max rounded-md text-sm text-grey-110 bg-grey-90"
+                                        className="p-1 w-max rounded-md text-sm text-neutral-500 bg-neutral-100"
                                     >
                                         {tool}
                                     </div>

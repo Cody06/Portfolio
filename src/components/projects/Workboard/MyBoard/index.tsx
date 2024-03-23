@@ -46,7 +46,7 @@ export default function MyBoard({ boardId }: Props) {
             <header className="flex gap-x-4 items-center px-4">
                 <Link href="/workboard" className="group">
                     <FontAwesomeIcon
-                        className="text-white h-6 group-hover:text-orange-100"
+                        className="text-white h-6 group-hover:text-amber-500"
                         icon={faCircleLeft}
                     />
                 </Link>
@@ -61,7 +61,7 @@ export default function MyBoard({ boardId }: Props) {
                         <h1 className="text-2xl text-white font-bold">{selectedBoard?.title}</h1>
                         <Dropdown
                             buttonsList={titleExtraButtons}
-                            elipsisStyle="text-white hover:text-orange-100"
+                            elipsisStyle="text-white hover:text-amber-500"
                         />
                     </>
                 )}
@@ -79,7 +79,7 @@ export default function MyBoard({ boardId }: Props) {
                     ))}
                     <button
                         className="text-white min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg
-                            ease-in duration-200 hover:bg-blue-110 hover:border-solid"
+                            ease-in duration-200 hover:bg-sky-900 hover:border-solid"
                         onClick={() => setIsCreateColumnModalOpen(true)}
                     >
                         + Add column

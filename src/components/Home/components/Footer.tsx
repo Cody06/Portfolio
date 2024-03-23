@@ -69,7 +69,7 @@ export default function Footer() {
                                 key={href}
                                 href={href}
                                 title={title}
-                                className="hover:text-orange-100"
+                                className="hover:text-amber-500"
                             >
                                 {label}
                             </Link>
@@ -106,8 +106,8 @@ export default function Footer() {
                         value="SUBMIT"
                         className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
                             isDisabled
-                                ? 'bg-grey-100 text-grey-110'
-                                : 'bg-white text-grey-120 hover:bg-orange-100 hover:cursor-pointer'
+                                ? 'bg-neutral-500 text-neutral-600'
+                                : 'bg-white text-neutral-800 hover:bg-amber-500 hover:cursor-pointer'
                         }
                                      `}
                         disabled={isDisabled}
@@ -126,7 +126,7 @@ export default function Footer() {
             </footer>
             {reachedBottom && (
                 <button
-                    className="fixed text-orange-100 text-[3rem] bottom-20 right-8"
+                    className="fixed text-amber-500 text-[3rem] bottom-20 right-8"
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
                     <FontAwesomeIcon icon={faCircleArrowUp} />

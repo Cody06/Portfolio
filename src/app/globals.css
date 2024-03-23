@@ -31,7 +31,7 @@ html {
     border-image: linear-gradient(
             to right,
             transparent 30%,
-            theme('colors.grey.100'),
+            theme('colors.neutral.500'),
             transparent 70%
         )
         10;
@@ -54,7 +54,7 @@ html {
     color: #0000;
     /* 1st linear-gradinet -> caret, 2nd linear-gradient -> text */
     background:
-        linear-gradient(-90deg, theme('colors.orange.100') 5px, #0000 0) 10px 0,
+        linear-gradient(-90deg, theme('colors.amber.500') 5px, #0000 0) 10px 0,
         linear-gradient(black 0 0) 0 0;
     background-size: calc(var(--title-num-of-chars) * 1ch) 200%;
     -webkit-background-clip: padding-box, text;

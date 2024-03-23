@@ -60,7 +60,7 @@ export default function Checkout() {
                 onChange={handleChange}
             />
             <input
-                className="px-4 py-2 w-max bg-orange-100 rounded-xl
+                className="px-4 py-2 w-max bg-amber-500 rounded-xl
                             hover:brightness-90 active:brightness-75"
                 type="submit"
                 value="Place Your Order"

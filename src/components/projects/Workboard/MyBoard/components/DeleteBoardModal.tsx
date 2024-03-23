@@ -39,7 +39,7 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                     </label>
                     <input
                         id="titleInput"
-                        className="border border-grey-120 rounded-md px-2"
+                        className="border border-neutral-800 rounded-md px-2"
                         type="text"
                         value={titleInput}
                         onChange={(e) => setTitleInput(e.target.value)}
@@ -48,8 +48,8 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                         <button
                             className={`w-full p-1 rounded-md ${
                                 disabled
-                                    ? 'text-grey-120 bg-grey-100'
-                                    : 'text-white bg-red border border-red hover:brightness-90 active:brightness-75'
+                                    ? 'text-neutral-800 bg-neutral-500'
+                                    : 'text-white bg-red-500 border border-red-500 hover:brightness-90 active:brightness-75'
                             }`}
                             disabled={disabled}
                             onClick={() => {
@@ -61,8 +61,8 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                             Delete board
                         </button>
                         <button
-                            className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
-                            hover:bg-grey-100 hover:bg-opacity-20"
+                            className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md
+                            hover:bg-neutral-500 hover:bg-opacity-20"
                             onClick={clearInputAndClose}
                         >
                             Cancel

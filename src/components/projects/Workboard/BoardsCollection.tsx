@@ -28,7 +28,7 @@ export default function BoardsCollection() {
     useRetrieveBoards();
 
     return (
-        <section className="flex flex-col w-full bg-grey-90 rounded-xl p-4">
+        <section className="flex flex-col w-full bg-neutral-100 rounded-xl p-4">
             <h2 className="text-2xl font-bold mb-4 text-center">My boards</h2>
             {boards.length > 0 ? (
                 <div className="space-y-2">

@@ -26,7 +26,7 @@ export default function Header({ showAnimation }: Props) {
                         >
                             Software Developer
                         </span>
-                        <span className={`text-orange-100 ${showAnimation && 'animate-drop'}`}>
+                        <span className={`text-amber-500 ${showAnimation && 'animate-drop'}`}>
                             .
                         </span>
                     </h1>
@@ -35,8 +35,8 @@ export default function Header({ showAnimation }: Props) {
                             showAnimation && 'animate-fade-in-up'
                         }`}
                     >
-                        <h2 className="text-grey-100">{technologies}</h2>
-                        <h2 className="text-grey-100">{secondaryTechnologies}</h2>
+                        <h2 className="text-neutral-500">{technologies}</h2>
+                        <h2 className="text-neutral-500">{secondaryTechnologies}</h2>
                     </div>
                 </div>
 

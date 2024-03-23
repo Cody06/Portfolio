@@ -32,12 +32,12 @@ export default function Carousel({ children }: Props) {
     };
 
     const prevAndNextStyle = `absolute p-2 top-0 bottom-0
-        hover:bg-grey-120 hover:bg-opacity-30
-        focus-visible:bg-grey-120 focus-visible:bg-opacity-30
+        hover:bg-neutral-800 hover:bg-opacity-30
+        focus-visible:bg-neutral-800 focus-visible:bg-opacity-30
         ease-in-out duration-200`;
 
     return (
-        <section aria-label="Carousel" className="relative max-w-max h-full text-grey-120">
+        <section aria-label="Carousel" className="relative max-w-max h-full text-neutral-800">
             <div className="flex w-full h-full overflow-hidden">
                 {children.map(({ item, title }) => (
                     <div

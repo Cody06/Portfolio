@@ -29,7 +29,7 @@ export default function Input({
     return (
         // pt to prevent clipping with other elements
         <div className="pt-3">
-            <div className="relative border-2 bg-white border-grey-110 rounded-lg">
+            <div className="relative border-2 bg-white border-neutral-500 rounded-lg">
                 {type === 'textarea' ? (
                     <textarea
                         id={id}
@@ -60,7 +60,7 @@ export default function Input({
                 {/* label needs to be after input for peer selector to work */}
                 <label
                     htmlFor={id}
-                    className="absolute left-1 -top-3.5 text-sm p-1 text-grey-110 
+                    className="absolute left-1 -top-3.5 text-sm p-1 text-neutral-500 
                         bg-white rounded-t-md
                         peer-placeholder-shown:top-2 peer-placeholder-shown:text-base
                         peer-focus:-top-3.5 peer-focus:text-sm

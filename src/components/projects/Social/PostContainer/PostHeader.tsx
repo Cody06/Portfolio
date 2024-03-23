@@ -8,13 +8,13 @@ export default function PostHeader({ creator, date, edited, isPostCreator }: Hea
                 <span className="font-bold">{creator}</span>
             ) : (
                 <Link
-                    className="font-bold text-blue-100 hover:text-blue-110"
+                    className="font-bold text-sky-600 hover:text-sky-900"
                     href={`/social/profile/${creator}`}
                 >
                     {creator}
                 </Link>
             )}
-            <span className="text-grey-100 space-x-2">
+            <span className="text-neutral-500 space-x-2">
                 {edited && (
                     <>
                         <em className="text-xs">Edited</em>

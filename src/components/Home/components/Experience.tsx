@@ -35,7 +35,7 @@ export default function Experience() {
                     >
                         <h3 className="flex justify-between font-bold">
                             {experience.position}
-                            <span className="text-grey-110">{experience.date}</span>
+                            <span className="text-neutral-500">{experience.date}</span>
                         </h3>
                         <span>{experience.company}</span>
                         <p className="mt-4">{experience.description}</p>

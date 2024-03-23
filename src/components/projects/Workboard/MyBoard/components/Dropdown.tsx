@@ -22,7 +22,7 @@ export default function Dropdown({ buttonsList, elipsisStyle }: Props) {
             {buttonsList.map((btn) => (
                 <li
                     key={btn.label}
-                    className="bg-white first:rounded-tl-md last:rounded-b-md p-2 hover:bg-grey-90"
+                    className="bg-white first:rounded-tl-md last:rounded-b-md p-2 hover:bg-neutral-100"
                 >
                     <button className="text-left w-full" onClick={btn.onClick}>
                         {btn.label}
