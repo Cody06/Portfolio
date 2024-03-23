@@ -26,7 +26,7 @@ function EditForm({ content, postId, setIsEditingPost }: EditFormProps) {
                     Save
                 </button>
                 <button
-                    className="px-2 text-grey-100 border rounded-lg hover:text-grey-120"
+                    className="px-2 text-neutral-500 border rounded-lg hover:text-grey-120"
                     onClick={() => {
                         setIsEditingPost(false);
                         setEditedContent(content);

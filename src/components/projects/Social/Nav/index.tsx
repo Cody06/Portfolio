@@ -38,7 +38,7 @@ export default function Nav() {
                     <li key={id}>
                         <Link
                             className="block text-left p-1 rounded-lg space-x-3
-                                hover:bg-grey-100 hover:cursor-pointer"
+                                hover:bg-neutral-500 hover:cursor-pointer"
                             href={href}
                         >
                             <span className="text-grey-110">{icon}</span>

@@ -11,7 +11,7 @@ export default function PostFooter({
 }: FooterProps) {
     const { setIsDeletePostModalOpen, toggleLike } = useStore();
     return (
-        <div className="space-x-4 text-grey-100">
+        <div className="space-x-4 text-neutral-500">
             <button
                 className="space-x-2 hover:text-red"
                 title="Like"

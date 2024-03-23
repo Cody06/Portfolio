@@ -93,7 +93,7 @@ export default function Column({
                         <span className="font-bold my-auto overflow-hidden">{column.title}</span>
                         <Dropdown
                             buttonsList={colExtraButtons}
-                            elipsisStyle="text-grey-100 hover:text-amber-500"
+                            elipsisStyle="text-neutral-500 hover:text-amber-500"
                         />
                     </>
                 )}

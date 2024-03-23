@@ -48,7 +48,7 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                         <button
                             className={`w-full p-1 rounded-md ${
                                 disabled
-                                    ? 'text-grey-120 bg-grey-100'
+                                    ? 'text-grey-120 bg-neutral-500'
                                     : 'text-white bg-red border border-red hover:brightness-90 active:brightness-75'
                             }`}
                             disabled={disabled}
@@ -62,7 +62,7 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                         </button>
                         <button
                             className="w-full p-1 text-grey-120 border border-grey-120 rounded-md
-                            hover:bg-grey-100 hover:bg-opacity-20"
+                            hover:bg-neutral-500 hover:bg-opacity-20"
                             onClick={clearInputAndClose}
                         >
                             Cancel

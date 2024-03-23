@@ -20,10 +20,7 @@ export default function Store({ onAddToCart }: Props) {
                         className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
                     >
                         {book.images[0] && (
-                            <button
-                                className="bg-grey-100 mb-2"
-                                onClick={() => viewBookPage(book.id)}
-                            >
+                            <button className="mb-2" onClick={() => viewBookPage(book.id)}>
                                 <Image
                                     src={`/assets/books/${book.images[0]}`}
                                     width={200}

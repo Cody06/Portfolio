@@ -106,7 +106,7 @@ export default function Footer() {
                         value="SUBMIT"
                         className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
                             isDisabled
-                                ? 'bg-grey-100 text-grey-110'
+                                ? 'bg-neutral-500 text-grey-110'
                                 : 'bg-white text-grey-120 hover:bg-amber-500 hover:cursor-pointer'
                         }
                                      `}

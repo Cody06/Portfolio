@@ -27,7 +27,7 @@ export default function Button({
             active:brightness-75`,
     };
 
-    const disabledStyle = 'text-grey-100 bg-neutral-100';
+    const disabledStyle = 'text-neutral-500 bg-neutral-100';
 
     // Need isBtnDisabled arg for when we want to disable if it's a link and no href
     const ButtonElement = (isBtnDisabled: boolean) => (

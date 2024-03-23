@@ -14,7 +14,7 @@ export default function PostHeader({ creator, date, edited, isPostCreator }: Hea
                     {creator}
                 </Link>
             )}
-            <span className="text-grey-100 space-x-2">
+            <span className="text-neutral-500 space-x-2">
                 {edited && (
                     <>
                         <em className="text-xs">Edited</em>
