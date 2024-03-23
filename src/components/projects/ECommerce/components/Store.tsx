@@ -43,7 +43,7 @@ export default function Store({ onAddToCart }: Props) {
                             <span className="text-grey-110 text-sm">by {book.author}</span>
                             {/* @TODO: Add reviews section */}
                             <button
-                                className="text-blue-110"
+                                className="text-sky-900"
                                 onClick={() => console.log('view reviews')}
                             >
                                 {book.rating} / 5

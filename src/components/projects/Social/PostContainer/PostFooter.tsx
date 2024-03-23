@@ -22,12 +22,12 @@ export default function PostFooter({
             </button>
             {isPostCreator && (
                 <>
-                    <button className="hover:text-blue-110" onClick={() => setIsEditingPost(true)}>
+                    <button className="hover:text-sky-900" onClick={() => setIsEditingPost(true)}>
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
 
                     <button
-                        className="hover:text-blue-110"
+                        className="hover:text-sky-900"
                         onClick={() => setIsDeletePostModalOpen(true, postId)}
                     >
                         <FontAwesomeIcon icon={faTrashCan} />
