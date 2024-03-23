@@ -72,7 +72,7 @@ export default function ECommerce() {
                     >
                         <FontAwesomeIcon icon={faCartShopping} className="fa-lg" />
                         {itemsInCart.length > 0 && (
-                            <div className="absolute -top-2 -right-2 text-sm text-white bg-red px-1 rounded-full">
+                            <div className="absolute -top-2 -right-2 text-sm text-white bg-red-500 px-1 rounded-full">
                                 {itemsInCart.length >= 100 ? '99+' : itemsInCart.length}
                             </div>
                         )}

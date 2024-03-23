@@ -23,7 +23,7 @@ export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }
                 </h1>
                 <div className="flex gap-x-4">
                     <button
-                        className="w-full p-1 text-white bg-red border border-red rounded-md
+                        className="w-full p-1 text-white bg-red-500 border border-red-500 rounded-md
                             hover:brightness-90 active:brightness-75"
                         onClick={() => {
                             deleteColumn(boardId, col.id);

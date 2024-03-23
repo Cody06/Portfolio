@@ -49,7 +49,7 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                             className={`w-full p-1 rounded-md ${
                                 disabled
                                     ? 'text-neutral-800 bg-neutral-500'
-                                    : 'text-white bg-red border border-red hover:brightness-90 active:brightness-75'
+                                    : 'text-white bg-red-500 border border-red-500 hover:brightness-90 active:brightness-75'
                             }`}
                             disabled={disabled}
                             onClick={() => {
