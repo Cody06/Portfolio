@@ -21,13 +21,13 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                 <>
                     <SectionHeader title="Shopping Cart" />
                     <table className="mb-4">
-                        <thead className="border-b-2 border-grey-90">
+                        <thead className="border-b-2 border-neutral-100">
                             <tr>
                                 <th>Book</th>
                                 <th>Price</th>
                             </tr>
                         </thead>
-                        <tbody className="border-b-2 border-grey-90">
+                        <tbody className="border-b-2 border-neutral-100">
                             {itemsInCart.map((item) => (
                                 <tr key={item.id}>
                                     <td className="space-x-2">

@@ -77,8 +77,8 @@ export default function Column({
     };
 
     return (
-        <div className="bg-grey-90 w-[18.75rem] rounded-lg">
-            <div className="flex justify-between p-2 bg-grey-90 brightness-95 rounded-t-lg">
+        <div className="bg-neutral-100 w-[18.75rem] rounded-lg">
+            <div className="flex justify-between p-2 bg-neutral-100 brightness-95 rounded-t-lg">
                 {showEditCol ? (
                     <input
                         autoFocus

@@ -17,7 +17,7 @@ export default function Store({ onAddToCart }: Props) {
                 {books.map((book) => (
                     <article
                         key={book.id}
-                        className="flex flex-col w-[300px] p-2 items-center border border-grey-90"
+                        className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
                     >
                         {book.images[0] && (
                             <button

@@ -27,7 +27,7 @@ export default function Profile({ profileId }: Props) {
                 {!isLoggedUserProfile &&
                     (isUserFollowed ? (
                         <button
-                            className="text-sm p-1 rounded-md bg-grey-90 shadow-md"
+                            className="text-sm p-1 rounded-md bg-neutral-100 shadow-md"
                             title={`Unfollow ${profileId}`}
                             onClick={() => unfollowUser(profileId)}
                         >

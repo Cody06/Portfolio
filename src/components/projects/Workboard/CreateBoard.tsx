@@ -8,7 +8,7 @@ export default function CreateBoard() {
     const [boardTitle, setBoardTitle] = useState('');
     const { createBoard } = useStore();
     return (
-        <section className="flex flex-col w-full bg-grey-90 rounded-xl p-4">
+        <section className="flex flex-col w-full bg-neutral-100 rounded-xl p-4">
             <h2 className="text-2xl font-bold text-center">Start a new project</h2>
             <Input
                 id="title"

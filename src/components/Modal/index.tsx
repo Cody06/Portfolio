@@ -43,7 +43,7 @@ const Modal: ModalComponent = ({ children, isOpen, title, requestClose }) => {
             className="fixed inset-0 z-50 flex justify-center pt-10 md:pt-0 md:items-center
                 bg-black bg-opacity-50 animate-modal-fade-in"
         >
-            <div ref={ref} className="content-max-width h-max p-5 bg-grey-90 rounded-2xl">
+            <div ref={ref} className="content-max-width h-max p-5 bg-neutral-100 rounded-2xl">
                 <ModalHeader title={title} requestClose={fadeOut} />
                 <ModalBody>{children}</ModalBody>
             </div>
