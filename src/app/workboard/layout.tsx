@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <body className="bg-blue-100">
+        <body className="bg-sky-600">
             <nav className="flex justify-between mb-8 bg-blue-110 p-4 text-white">
                 <Link className="font-bold" href="/workboard">
                     Workboard

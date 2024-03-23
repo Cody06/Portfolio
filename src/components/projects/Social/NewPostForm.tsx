@@ -12,14 +12,14 @@ export default function NewPostForm() {
         <CardContainer>
             <div className="flex flex-col gap-y-4">
                 <textarea
-                    className="border border-blue-100 rounded-lg px-3 py-2"
+                    className="border border-sky-600 rounded-lg px-3 py-2"
                     placeholder="What is happening?!"
                     maxLength={MAX_POST_LENGTH}
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}
                 />
                 <button
-                    className={`w-max m-auto p-2 text-white bg-blue-100 rounded-lg ${
+                    className={`w-max m-auto p-2 text-white bg-sky-600 rounded-lg ${
                         !newPost ? 'opacity-25' : 'hover:bg-opacity-80'
                     }`}
                     disabled={!newPost}

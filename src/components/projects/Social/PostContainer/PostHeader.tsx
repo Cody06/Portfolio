@@ -8,7 +8,7 @@ export default function PostHeader({ creator, date, edited, isPostCreator }: Hea
                 <span className="font-bold">{creator}</span>
             ) : (
                 <Link
-                    className="font-bold text-blue-100 hover:text-blue-110"
+                    className="font-bold text-sky-600 hover:text-blue-110"
                     href={`/social/profile/${creator}`}
                 >
                     {creator}

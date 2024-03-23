@@ -33,7 +33,7 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                                     <td className="space-x-2">
                                         <span>{item.title}</span>
                                         <button
-                                            className="text-xs text-blue-100"
+                                            className="text-xs text-sky-600"
                                             onClick={() => onDeleteItem(item.id)}
                                         >
                                             Delete

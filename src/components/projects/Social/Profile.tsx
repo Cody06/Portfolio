@@ -35,7 +35,7 @@ export default function Profile({ profileId }: Props) {
                         </button>
                     ) : (
                         <button
-                            className="text-sm p-1 rounded-md bg-blue-100 text-white shadow-md"
+                            className="text-sm p-1 rounded-md bg-sky-600 text-white shadow-md"
                             title={`Follow ${profileId}`}
                             onClick={() => followUser(profileId)}
                         >
