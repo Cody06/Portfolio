@@ -41,7 +41,7 @@ export default function Nav() {
                                 hover:bg-neutral-500 hover:cursor-pointer"
                             href={href}
                         >
-                            <span className="text-grey-110">{icon}</span>
+                            <span className="text-neutral-500">{icon}</span>
                             <span className="hidden md:inline">{name}</span>
                         </Link>
                     </li>

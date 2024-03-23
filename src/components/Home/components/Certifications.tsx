@@ -81,7 +81,7 @@ export default function Certifications() {
                         <div className="flex flex-col">
                             <h3 className="font-bold">{certificate.title}</h3>
                             <span>{certificate.issuer}</span>
-                            <span className="text-grey-110">{certificate.date}</span>
+                            <span className="text-neutral-500">{certificate.date}</span>
                             <span>
                                 <strong>Skills: </strong>
                                 {certificate.skills.join(' \u00B7 ')}

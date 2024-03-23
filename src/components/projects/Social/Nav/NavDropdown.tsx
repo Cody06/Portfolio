@@ -29,7 +29,7 @@ export default function NavDropdown() {
                 <span>
                     <FontAwesomeIcon
                         icon={faCaretDown}
-                        className={`text-grey-110 w-4 ${isOpen && 'rotate-180'}`}
+                        className={`text-neutral-500 w-4 ${isOpen && 'rotate-180'}`}
                     />
                 </span>
                 <span className="hidden md:inline">More</span>

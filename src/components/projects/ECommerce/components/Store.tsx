@@ -37,7 +37,7 @@ export default function Store({ onAddToCart }: Props) {
                             >
                                 {book.title}
                             </button>
-                            <span className="text-grey-110 text-sm">by {book.author}</span>
+                            <span className="text-neutral-500 text-sm">by {book.author}</span>
                             {/* @TODO: Add reviews section */}
                             <button
                                 className="text-sky-900"

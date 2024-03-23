@@ -119,7 +119,7 @@ export default function Column({
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="p-1 text-grey-110 mt-auto hover:text-amber-500"
+                        className="p-1 text-neutral-500 mt-auto hover:text-amber-500"
                     >
                         + Add card
                     </button>
