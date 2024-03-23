@@ -27,7 +27,7 @@ export default function NewCardInput({ boardId, columnId, setShowCreateCard }: P
             />
             <div className="flex gap-x-2">
                 <button
-                    className={`w-full text-white bg-blue-100b rounded-md ${
+                    className={`w-full text-white bg-blue-500 rounded-md ${
                         !text ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
                     }`}
                     disabled={!text}

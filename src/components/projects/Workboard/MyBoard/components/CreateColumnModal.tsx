@@ -33,7 +33,7 @@ export default function CreateColumnModal({ boardId, isOpen, requestClose }: Pro
                         onChange={handleChange}
                     />
                     <button
-                        className={`w-max p-2 text-white bg-blue-100b rounded-md
+                        className={`w-max p-2 text-white bg-blue-500 rounded-md
                             ${!title ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'} `}
                         disabled={!title}
                         onClick={() => {

@@ -20,7 +20,7 @@ export default function CreateBoard() {
                 onChange={(e) => setBoardTitle(e.target.value)}
             />
             <button
-                className="mt-2 bg-blue-100b rounded-md p-2 font-bold text-white"
+                className="mt-2 bg-blue-500 rounded-md p-2 font-bold text-white"
                 disabled={!boardTitle}
                 onClick={() => {
                     createBoard(boardTitle);
