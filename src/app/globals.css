@@ -31,7 +31,7 @@ html {
     border-image: linear-gradient(
             to right,
             transparent 30%,
-            theme('colors.grey.100'),
+            theme('colors.neutral.500'),
             transparent 70%
         )
         10;
