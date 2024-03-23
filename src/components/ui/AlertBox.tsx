@@ -7,15 +7,14 @@ export default function AlertBox() {
     setTimeout(() => onClose(), 3000);
 
     const typeStyle = {
-        success: { backgroundColor: 'lightgreen', color: 'green', border: '2px solid green' },
-        error: { backgroundColor: 'orange', color: 'darkred', border: '2px solid darkred' },
-        warning: { backgroundColor: 'lightyellow', color: 'orange', border: '2px solid orange' },
+        success: 'bg-green-400 text-green-950 border border-green-950',
+        error: 'bg-red-400 text-red-950 border border-red-950',
+        warning: 'bg-yellow-400 text-yellow-950 border border-yellow-950',
     };
 
     return (
         <div
-            className="fixed z-50 top-10 left-[50%] -translate-x-[50%] px-4 py-3 rounded-md alert-animation"
-            style={typeStyle[type]}
+            className={`fixed z-50 top-10 left-[50%] -translate-x-[50%] px-4 py-3 rounded-md alert-animation ${typeStyle[type]}`}
         >
             {message}
         </div>
