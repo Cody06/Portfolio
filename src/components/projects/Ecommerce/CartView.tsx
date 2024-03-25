@@ -1,23 +1,18 @@
-import { Dispatch, SetStateAction } from 'react';
-import { Book, Views } from '../types';
+'use client';
+import Link from 'next/link';
+import useStore from './Store';
 import SectionHeader from './SectionHeader';
 
-type Props = {
-    onDeleteItem: (id: number) => void;
-    setSelectedView: Dispatch<SetStateAction<Views>>;
-    itemsInCart?: Book[];
-};
-
-export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Props) {
-    let initialValue = 0;
-    const total = itemsInCart?.reduce(
+export default function CartView() {
+    const { cartItems, removeFromCart } = useStore();
+    const initialValue = 0;
+    const totalPrice = cartItems?.reduce(
         (accumulator, item) => accumulator + item.price,
         initialValue,
     );
-
     return (
         <section className="content-max-width ml-[30%]">
-            {itemsInCart?.length ? (
+            {cartItems?.length ? (
                 <>
                     <SectionHeader title="Shopping Cart" />
                     <table className="mb-4">
@@ -28,13 +23,13 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                             </tr>
                         </thead>
                         <tbody className="border-b-2 border-neutral-100">
-                            {itemsInCart.map((item) => (
+                            {cartItems.map((item) => (
                                 <tr key={item.id}>
                                     <td className="space-x-2">
                                         <span>{item.title}</span>
                                         <button
                                             className="text-xs text-sky-600"
-                                            onClick={() => onDeleteItem(item.id)}
+                                            onClick={() => removeFromCart(item.id)}
                                         >
                                             Delete
                                         </button>
@@ -46,17 +41,18 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                         <tfoot>
                             <tr>
                                 <td>Subtotal:</td>
-                                <td>${total}</td>
+                                <td>${totalPrice}</td>
                             </tr>
                         </tfoot>
                     </table>
-                    <button
+
+                    <Link
+                        href="/ecommerce/cart/checkout"
                         className="px-4 py-2 bg-amber-500 rounded-xl
                                     hover:brightness-90 active:brightness-75"
-                        onClick={() => setSelectedView('checkout')}
                     >
                         Proceed to Checkout
-                    </button>
+                    </Link>
                 </>
             ) : (
                 <SectionHeader title="Your cart is empty..." />
