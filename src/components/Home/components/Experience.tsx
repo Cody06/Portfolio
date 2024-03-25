@@ -3,16 +3,16 @@ import SectionHeader from './SectionHeader';
 export default function Experience() {
     const experiences = [
         {
-            id: 0,
+            id: 1,
             position: 'Software Developer',
             company: 'Freelance',
             companyLogo: null,
-            date: 'Aug 2023 - Present',
+            date: 'Oct 2023 - Present',
             description:
                 'Design and build web applications using JavaScript, TypeScript, React, HTML, CSS and Tailwind.',
         },
         {
-            id: 1,
+            id: 0,
             position: 'Full-Stack Developer',
             company: 'Moozoom',
             companyLogo: null,
