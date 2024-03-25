@@ -1,5 +1,5 @@
 export type Book = {
-    id: number;
+    id: string;
     title: string;
     author: string;
     edition: string;
@@ -7,6 +7,5 @@ export type Book = {
     price: number;
     rating: number;
     images: string[];
+    inCart: boolean;
 };
-
-export type Views = 'cart' | 'checkout' | 'mybooks' | 'store' | 'wishlist';
