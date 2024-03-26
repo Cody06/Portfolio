@@ -40,7 +40,7 @@ export default function Page() {
                 </section>
             </section>
             <button
-                className="block mt-auto px-4 py-2 w-max mx-auto bg-amber-500 rounded-xl font-bold
+                className="block mt-auto px-4 py-2 w-max mx-auto bg-amber-500 rounded-md font-medium
                             hover:brightness-90 active:brightness-75"
                 onClick={handleCheckout}
             >
