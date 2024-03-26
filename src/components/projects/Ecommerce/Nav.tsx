@@ -7,7 +7,7 @@ import useStore from './Store';
 export default function Nav() {
     const { cartItems } = useStore();
     return (
-        <nav className="content-max-width mx-auto flex justify-between p-4 text-white">
+        <nav className="content-max-width mx-auto flex justify-between p-4 font-medium text-white">
             <span className="font-bold">E-Commerce</span>
             <div className="space-x-5">
                 <Link href="/ecommerce" className="hover:text-amber-500">

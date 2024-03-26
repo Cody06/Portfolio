@@ -10,7 +10,7 @@ type Props = {
 export default function AddToCartButton({ item }: Props) {
     const { addToCart } = useStore();
 
-    const btnStyle = `mt-auto bg-amber-500 rounded-xl px-4 py-2 w-max font-bold
+    const btnStyle = `mt-auto bg-amber-500 rounded-lg px-4 py-2 w-max font-medium
                         hover:brightness-90 active:brightness-75`;
 
     return (
