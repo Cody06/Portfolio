@@ -6,7 +6,8 @@ import SectionHeader from './SectionHeader';
 import AddToCartButton from './AddToCartButton';
 
 export default function StoreView() {
-    const { storeItems } = useStore();
+    const { storeItems, myBooks } = useStore();
+    const ownedBooksIds = myBooks.map((myBook) => myBook.id);
 
     return (
         <section>
@@ -35,11 +36,20 @@ export default function StoreView() {
                                 {item.title}
                             </Link>
                             <span className="text-neutral-500 text-sm">by {item.author}</span>
-                            <span className="text-sky-900">{item.rating} / 5</span>
+                            <span className="font-bold text-sky-900">{item.rating} / 5</span>
                             <span className="font-bold">${item.price}</span>
                         </section>
 
-                        <AddToCartButton item={item} />
+                        {ownedBooksIds.includes(item.id) ? (
+                            <Link
+                                href="/ecommerce/my-books"
+                                className="mt-auto bg-sky-900 rounded-xl px-4 py-2 text-white font-bold"
+                            >
+                                Owned
+                            </Link>
+                        ) : (
+                            <AddToCartButton item={item} />
+                        )}
                     </article>
                 ))}
             </div>

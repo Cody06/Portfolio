@@ -10,23 +10,17 @@ type Props = {
 export default function AddToCartButton({ item }: Props) {
     const { addToCart } = useStore();
 
+    const btnStyle = `mt-auto bg-amber-500 rounded-xl px-4 py-2 w-max font-bold
+                        hover:brightness-90 active:brightness-75`;
+
     return (
         <>
             {item.inCart ? (
-                <Link
-                    href="/ecommerce/cart"
-                    className="mt-auto px-4 py-2 w-max bg-amber-500 rounded-xl
-            hover:brightness-90 active:brightness-75"
-                >
+                <Link href="/ecommerce/cart" className={btnStyle}>
                     In Cart
                 </Link>
             ) : (
-                <button
-                    className="mt-auto px-4 py-2 w-max bg-amber-500 rounded-xl
-                            hover:brightness-90 active:brightness-75"
-                    // TODO: implement addToCart()
-                    onClick={() => addToCart(item)}
-                >
+                <button className={btnStyle} onClick={() => addToCart(item)}>
                     Add to Cart
                 </button>
             )}
