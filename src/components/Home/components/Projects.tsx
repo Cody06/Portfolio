@@ -36,7 +36,7 @@ export default function Projects({ showAnimation }: Props) {
             tools: ['React', 'TypeScript'],
             description: `This is an e-commerce platform where users can post items for auction and bid on posted ones. A comment
                 section is also implemented.`,
-            href: '',
+            href: '/ecommerce',
             thumbnail: ['commerce.png', 'commerce-mobile.png'],
         },
     ];
@@ -142,7 +142,6 @@ export default function Projects({ showAnimation }: Props) {
                                     label={`Visit ${project.name.split(' ')[0]}`}
                                     type="link"
                                     kind="primary"
-                                    disabled={project.id !== 1}
                                     href={project.href}
                                 />
                             </div>
