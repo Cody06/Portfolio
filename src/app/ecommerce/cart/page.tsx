@@ -48,7 +48,7 @@ export default function Page() {
 
                     <Link
                         href="/ecommerce/cart/checkout"
-                        className="block w-max mx-auto px-4 py-2 bg-amber-500 rounded-lg font-bold
+                        className="block w-max mx-auto px-4 py-2 bg-amber-500 rounded-lg font-medium
                                     hover:brightness-90 active:brightness-75"
                     >
                         Proceed to Checkout
