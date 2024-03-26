@@ -4,16 +4,56 @@ import Link from 'next/link';
 import useStore from './Store';
 import SectionHeader from './SectionHeader';
 import AddToCartButton from './AddToCartButton';
+import { useState } from 'react';
 
 export default function StoreView() {
     const { storeItems, myBooks } = useStore();
     const ownedBooksIds = myBooks.map((myBook) => myBook.id);
 
+    const [selectedSortOrder, setSelectedSortOrder] = useState('relevance');
+    let filteredItems = storeItems;
+
+    switch (selectedSortOrder) {
+        case 'relevance':
+            filteredItems = storeItems.sort((a, b) => Number(a.id) - Number(b.id));
+            break;
+        case 'priceDesc':
+            filteredItems = storeItems.sort((a, b) => b.price - a.price);
+            break;
+        case 'priceAsc':
+            filteredItems = storeItems.sort((a, b) => a.price - b.price);
+            break;
+        case 'ratingDesc':
+            filteredItems = storeItems.sort((a, b) => b.rating - a.rating);
+            break;
+        case 'newest':
+            filteredItems = storeItems.sort((a, b) => b.publicationDate - a.publicationDate);
+        default:
+            break;
+    }
+
     return (
         <section>
             <SectionHeader title="Programming books" />
+            <div>
+                <label htmlFor="sortBy" className="font-bold mr-2">
+                    Sort by:
+                </label>
+                <select
+                    id="sortBy"
+                    className="p-1 rounded-md hover:cursor-pointer"
+                    value={selectedSortOrder}
+                    onChange={(e) => setSelectedSortOrder(e.target.value)}
+                >
+                    <option value="relevance">Relevance</option>
+                    <option value="priceDesc">Price High to Low</option>
+                    <option value="priceAsc">Price Low to High</option>
+                    <option value="ratingDesc">Rating</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
             <div className="flex flex-wrap gap-4">
-                {storeItems.map((item) => (
+                {filteredItems.map((item) => (
                     <article
                         key={item.id}
                         className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
