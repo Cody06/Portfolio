@@ -4,13 +4,16 @@ import books from './books';
 
 type Store = {
     cartItems: Book[];
+    myBooks: Book[];
     storeItems: Book[];
     addToCart: (item: Book) => void;
+    checkout: () => void;
     removeFromCart: (id: string) => void;
 };
 
 const useStore = create<Store>()((set) => ({
     cartItems: [],
+    myBooks: [],
     storeItems: books,
     addToCart: (item) =>
         set((state) => ({
@@ -38,6 +41,17 @@ const useStore = create<Store>()((set) => ({
                 } else {
                     return storeItem;
                 }
+            }),
+        })),
+    checkout: () =>
+        set((state) => ({
+            myBooks: state.cartItems,
+            cartItems: [],
+            storeItems: state.storeItems.map((storeItem) => {
+                return {
+                    ...storeItem,
+                    inCart: false,
+                };
             }),
         })),
 }));
