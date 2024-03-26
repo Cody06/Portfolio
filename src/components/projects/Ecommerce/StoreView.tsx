@@ -5,55 +5,68 @@ import useStore from './Store';
 import SectionHeader from './SectionHeader';
 import AddToCartButton from './AddToCartButton';
 import { useState } from 'react';
+import SearchInput from './SearchInput';
 
 export default function StoreView() {
     const { storeItems, myBooks } = useStore();
     const ownedBooksIds = myBooks.map((myBook) => myBook.id);
 
     const [selectedSortOrder, setSelectedSortOrder] = useState('relevance');
-    let filteredItems = storeItems;
+    const [filteredItems, setFilteredItems] = useState(storeItems);
+    let sortedItems = filteredItems;
 
     switch (selectedSortOrder) {
         case 'relevance':
-            filteredItems = storeItems.sort((a, b) => Number(a.id) - Number(b.id));
+            sortedItems = filteredItems.sort((a, b) => Number(a.id) - Number(b.id));
             break;
         case 'priceDesc':
-            filteredItems = storeItems.sort((a, b) => b.price - a.price);
+            sortedItems = filteredItems.sort((a, b) => b.price - a.price);
             break;
         case 'priceAsc':
-            filteredItems = storeItems.sort((a, b) => a.price - b.price);
+            sortedItems = filteredItems.sort((a, b) => a.price - b.price);
             break;
         case 'ratingDesc':
-            filteredItems = storeItems.sort((a, b) => b.rating - a.rating);
+            sortedItems = filteredItems.sort((a, b) => b.rating - a.rating);
             break;
         case 'newest':
-            filteredItems = storeItems.sort((a, b) => b.publicationDate - a.publicationDate);
+            sortedItems = filteredItems.sort((a, b) => b.publicationDate - a.publicationDate);
         default:
             break;
     }
 
+    const handleSubmit = (input: string) => {
+        setFilteredItems(
+            storeItems.filter((item) => {
+                return item.title.toLowerCase().includes(input.toLowerCase());
+            }),
+        );
+    };
+
     return (
         <section>
             <SectionHeader title="Programming books" />
-            <div>
-                <label htmlFor="sortBy" className="font-bold mr-2">
-                    Sort by:
-                </label>
-                <select
-                    id="sortBy"
-                    className="p-1 rounded-md hover:cursor-pointer"
-                    value={selectedSortOrder}
-                    onChange={(e) => setSelectedSortOrder(e.target.value)}
-                >
-                    <option value="relevance">Relevance</option>
-                    <option value="priceDesc">Price High to Low</option>
-                    <option value="priceAsc">Price Low to High</option>
-                    <option value="ratingDesc">Rating</option>
-                    <option value="newest">Newest</option>
-                </select>
+            <div className="flex items-center gap-x-4 mb-4">
+                <div>
+                    <label htmlFor="sortBy" className="font-bold mr-2">
+                        Sort by:
+                    </label>
+                    <select
+                        id="sortBy"
+                        className="px-4 py-2 rounded-md hover:cursor-pointer"
+                        value={selectedSortOrder}
+                        onChange={(e) => setSelectedSortOrder(e.target.value)}
+                    >
+                        <option value="relevance">Relevance</option>
+                        <option value="priceDesc">Price High to Low</option>
+                        <option value="priceAsc">Price Low to High</option>
+                        <option value="ratingDesc">Rating</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+                <SearchInput onSubmit={handleSubmit} />
             </div>
             <div className="flex flex-wrap gap-4">
-                {filteredItems.map((item) => (
+                {sortedItems.map((item) => (
                     <article
                         key={item.id}
                         className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
