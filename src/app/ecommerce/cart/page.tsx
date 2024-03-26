@@ -1,40 +1,35 @@
-import { Dispatch, SetStateAction } from 'react';
-import { Book, Views } from '../types';
-import SectionHeader from './SectionHeader';
+'use client';
+import SectionHeader from '@/components/projects/Ecommerce/SectionHeader';
+import useStore from '@/components/projects/Ecommerce/Store';
+import Link from 'next/link';
 
-type Props = {
-    onDeleteItem: (id: number) => void;
-    setSelectedView: Dispatch<SetStateAction<Views>>;
-    itemsInCart?: Book[];
-};
-
-export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Props) {
-    let initialValue = 0;
-    const total = itemsInCart?.reduce(
+export default function Page() {
+    const { cartItems, removeFromCart } = useStore();
+    const initialValue = 0;
+    const totalPrice = cartItems?.reduce(
         (accumulator, item) => accumulator + item.price,
         initialValue,
     );
-
     return (
-        <section className="content-max-width ml-[30%]">
-            {itemsInCart?.length ? (
+        <main>
+            {cartItems?.length ? (
                 <>
                     <SectionHeader title="Shopping Cart" />
-                    <table className="mb-4">
-                        <thead className="border-b-2 border-neutral-100">
+                    <table className="mb-4 mx-auto">
+                        <thead className="border-b-2 border-neutral-200">
                             <tr>
                                 <th>Book</th>
                                 <th>Price</th>
                             </tr>
                         </thead>
-                        <tbody className="border-b-2 border-neutral-100">
-                            {itemsInCart.map((item) => (
+                        <tbody className="border-b-2 border-neutral-200">
+                            {cartItems.map((item) => (
                                 <tr key={item.id}>
-                                    <td className="space-x-2">
+                                    <td className="space-x-2 p-4">
                                         <span>{item.title}</span>
                                         <button
                                             className="text-xs text-sky-600"
-                                            onClick={() => onDeleteItem(item.id)}
+                                            onClick={() => removeFromCart(item.id)}
                                         >
                                             Delete
                                         </button>
@@ -44,23 +39,24 @@ export default function Cart({ onDeleteItem, setSelectedView, itemsInCart }: Pro
                             ))}
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td>Subtotal:</td>
-                                <td>${total}</td>
+                            <tr className="font-bold">
+                                <td>Subtotal</td>
+                                <td>${totalPrice}</td>
                             </tr>
                         </tfoot>
                     </table>
-                    <button
-                        className="px-4 py-2 bg-amber-500 rounded-xl
+
+                    <Link
+                        href="/ecommerce/cart/checkout"
+                        className="block w-max mx-auto px-4 py-2 bg-amber-500 rounded-xl font-bold
                                     hover:brightness-90 active:brightness-75"
-                        onClick={() => setSelectedView('checkout')}
                     >
                         Proceed to Checkout
-                    </button>
+                    </Link>
                 </>
             ) : (
                 <SectionHeader title="Your cart is empty..." />
             )}
-        </section>
+        </main>
     );
 }

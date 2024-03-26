@@ -1,0 +1,58 @@
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import useStore from './Store';
+import SectionHeader from './SectionHeader';
+import AddToCartButton from './AddToCartButton';
+
+export default function StoreView() {
+    const { storeItems, myBooks } = useStore();
+    const ownedBooksIds = myBooks.map((myBook) => myBook.id);
+
+    return (
+        <section>
+            <SectionHeader title="Programming books" />
+            <div className="flex flex-wrap gap-4">
+                {storeItems.map((item) => (
+                    <article
+                        key={item.id}
+                        className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
+                    >
+                        {item.images[0] && (
+                            <Link href={`/ecommerce/item/${item.id}`} className="mb-2">
+                                <Image
+                                    src={`/assets/books/${item.images[0]}`}
+                                    width={200}
+                                    height={300}
+                                    alt="Book cover image"
+                                />
+                            </Link>
+                        )}
+                        <section className="flex flex-col items-center gap-y-2 mb-2">
+                            <Link
+                                href={`/ecommerce/item/${item.id}`}
+                                className="font-bold hover:text-amber-500"
+                            >
+                                {item.title}
+                            </Link>
+                            <span className="text-neutral-500 text-sm">by {item.author}</span>
+                            <span className="font-bold text-sky-900">{item.rating} / 5</span>
+                            <span className="font-bold">${item.price}</span>
+                        </section>
+
+                        {ownedBooksIds.includes(item.id) ? (
+                            <Link
+                                href="/ecommerce/my-books"
+                                className="mt-auto bg-sky-900 rounded-xl px-4 py-2 text-white font-bold"
+                            >
+                                Owned
+                            </Link>
+                        ) : (
+                            <AddToCartButton item={item} />
+                        )}
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
+}
