@@ -232,3 +232,29 @@ button:focus-visible > .animate-squish {
         top: 2.5rem;
     }
 }
+
+.animate-dropdown {
+    animation: dropdown_slide 200ms ease-in-out forwards;
+}
+
+@keyframes dropdown_slide {
+    from {
+        top: -10rem;
+    }
+    to {
+        top: 4rem;
+    }
+}
+
+.animate-grow {
+    animation: grow 200ms linear;
+}
+
+@keyframes grow {
+    from {
+        scale: 0;
+    }
+    to {
+        scale: 1;
+    }
+}
