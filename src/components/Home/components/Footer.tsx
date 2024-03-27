@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { faCircleArrowUp, faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import Input from '@/components/ui/Input';
 import usePageBottom from '@/hooks/usePageBottom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAlertContext } from '@/components/context/alertContext';
+import MainButton from '@/components/ui/MainButton';
 
 export default function Footer() {
     const { onOpen } = useAlertContext();
@@ -16,12 +17,12 @@ export default function Footer() {
         {
             href: 'https://github.com/Cody06',
             title: 'Visit my GitHub!',
-            label: <FontAwesomeIcon icon={faSquareGithub} className="fa-2xl" />,
+            label: <FontAwesomeIcon icon={faGithub} size="3x" />,
         },
         {
             href: 'https://www.linkedin.com/in/cody-miu/',
             title: 'Visit my Linkedin profile!',
-            label: <FontAwesomeIcon icon={faLinkedin} className="fa-2xl" />,
+            label: <FontAwesomeIcon icon={faLinkedin} size="3x" />,
         },
     ];
 
@@ -44,11 +45,15 @@ export default function Footer() {
         }),
     });
 
-    const isDisabled = !(
+    const isError = !!(errors.name || errors.email || errors.message);
+    const isEmpty = !(
         getFieldProps('name').value &&
         getFieldProps('email').value &&
         getFieldProps('message').value
     );
+    const isDisabled = isError || isEmpty;
+
+    const hoverIconStyle = 'hover:text-amber-500 ease-linear duration-200';
 
     return (
         <>
@@ -65,12 +70,7 @@ export default function Footer() {
                     <h6 className="text-xl font-bold">cody.miu@gmail.com</h6>
                     <div className="space-x-8">
                         {linkButtons.map(({ href, title, label }) => (
-                            <Link
-                                key={href}
-                                href={href}
-                                title={title}
-                                className="hover:text-amber-500"
-                            >
+                            <Link key={href} href={href} title={title} className={hoverIconStyle}>
                                 {label}
                             </Link>
                         ))}
@@ -101,16 +101,13 @@ export default function Footer() {
                         error={errors.message}
                         {...getFieldProps('message')}
                     />
-                    <input
-                        type="submit"
-                        value="SUBMIT"
-                        className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
-                            isDisabled
-                                ? 'bg-neutral-500 text-neutral-600'
-                                : 'bg-white text-neutral-800 hover:bg-amber-500 hover:cursor-pointer'
-                        }
-                                     `}
+                    <MainButton
+                        label="Submit"
+                        style="text-neutral-600 border-neutral-600 bg-white"
+                        hoverStyle="hover:border-amber-500 hover:bg-amber-500"
                         disabled={isDisabled}
+                        rounded
+                        type="submit"
                     />
                 </form>
                 <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 pt-8 md:pt-0 text-center">
@@ -126,10 +123,11 @@ export default function Footer() {
             </footer>
             {reachedBottom && (
                 <button
-                    className="fixed text-amber-500 text-[3rem] bottom-20 right-8"
+                    className={`fixed right-8 bottom-20 text-white shadow-lg animate-grow
+                        ${hoverIconStyle}`}
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
-                    <FontAwesomeIcon icon={faCircleArrowUp} />
+                    <FontAwesomeIcon icon={faCircleArrowUp} size="3x" />
                 </button>
             )}
         </>

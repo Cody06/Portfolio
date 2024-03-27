@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../../types';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
@@ -12,12 +12,25 @@ export default function DropdownMenu({ buttonsList }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useOutsideClick(() => setIsOpen(false));
 
+    useEffect(() => {
+        const hideDropdown = () => {
+            setIsOpen(false);
+        };
+
+        window.addEventListener('scroll', hideDropdown);
+        return () => window.removeEventListener('scroll', hideDropdown);
+    }, []);
+
     const DropdownList = (
-        <ul className="absolute -right-3 bg-neutral-800 p-3 space-y-2 rounded-b-md shadow-lg">
+        <ul
+            className="absolute z-10 top-[4rem] w-[80vw] left-[50%] -translate-x-[50%]
+                    text-center space-y-4 pb-6 bg-neutral-800 rounded-b-md shadow-lg
+                    animate-dropdown"
+        >
             {buttonsList.map((button) => (
                 <li key={button.id}>
                     <button
-                        className="text-white"
+                        className="text-white font-medium"
                         onClick={() => {
                             button.onClick();
                             setIsOpen(false);
@@ -35,7 +48,7 @@ export default function DropdownMenu({ buttonsList }: Props) {
             <button aria-label="Dropdown menu" onClick={() => setIsOpen(!isOpen)}>
                 <FontAwesomeIcon icon={faBars} className="text-white" />
             </button>
-            <div className="relative">{isOpen && DropdownList}</div>
+            {isOpen && DropdownList}
         </div>
     );
 }
