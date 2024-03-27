@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Button from '../../ui/Button';
+import MainButton from '../../ui/MainButton';
 import SectionHeader from './SectionHeader';
 import Carousel from '@/components/ui/Carousel';
 
@@ -12,7 +12,6 @@ export default function Projects({ showAnimation }: Props) {
         {
             id: 1,
             name: 'Workboard',
-            year: 2023,
             tools: ['React', 'TypeScript'],
             description: `Workboard is a project managing application. Users can create project boards with different columns
                 and move their tasks between them.`,
@@ -21,8 +20,7 @@ export default function Projects({ showAnimation }: Props) {
         },
         {
             id: 2,
-            name: 'Social Networking Platform',
-            year: 2023,
+            name: 'Social Networking',
             tools: ['React', 'TypeScript'],
             description: `This platform allows users to create posts and follow other users. An implementation of the "like"
                 button is also present.`,
@@ -31,8 +29,7 @@ export default function Projects({ showAnimation }: Props) {
         },
         {
             id: 3,
-            name: 'E-Commerce Platform',
-            year: 2023,
+            name: 'E-Commerce',
             tools: ['React', 'TypeScript'],
             description: `This is an e-commerce platform where users can post items for auction and bid on posted ones. A comment
                 section is also implemented.`,
@@ -138,11 +135,13 @@ export default function Projects({ showAnimation }: Props) {
                             <p className="mb-6 md:mb-8">{project.description}</p>
 
                             <div className="flex justify-center items-center gap-x-5">
-                                <Button
+                                <MainButton
                                     label={`Visit ${project.name.split(' ')[0]}`}
-                                    type="link"
-                                    kind="primary"
+                                    style="text-white border-neutral-800 bg-neutral-800"
+                                    hoverStyle="hover:border-amber-500 hover:bg-amber-500"
                                     href={project.href}
+                                    rounded
+                                    shadow
                                 />
                             </div>
                         </div>

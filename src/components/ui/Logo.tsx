@@ -27,7 +27,7 @@ export default function Logo({ size = 'sm', showAnimation = false }: Props) {
         },
     };
 
-    const parallelogramShape = `bg-amber-500 skew-y-[30deg] rotate-[-60deg]
+    const parallelogramShape = `bg-amber-500 skew-y-[30deg] rotate-[-60deg] shadow-lg
             ${dimensions.parallelogramShape[size]}`;
 
     const topLayer = (

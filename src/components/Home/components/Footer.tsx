@@ -8,6 +8,7 @@ import usePageBottom from '@/hooks/usePageBottom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAlertContext } from '@/components/context/alertContext';
+import MainButton from '@/components/ui/MainButton';
 
 export default function Footer() {
     const { onOpen } = useAlertContext();
@@ -44,11 +45,13 @@ export default function Footer() {
         }),
     });
 
-    const isDisabled = !(
+    const isError = !!(errors.name || errors.email || errors.message);
+    const isEmpty = !(
         getFieldProps('name').value &&
         getFieldProps('email').value &&
         getFieldProps('message').value
     );
+    const isDisabled = isError || isEmpty;
 
     return (
         <>
@@ -101,16 +104,13 @@ export default function Footer() {
                         error={errors.message}
                         {...getFieldProps('message')}
                     />
-                    <input
-                        type="submit"
-                        value="SUBMIT"
-                        className={`mt-3 px-8 py-2 w-max font-bold rounded-lg ease-in duration-200 ${
-                            isDisabled
-                                ? 'bg-neutral-500 text-neutral-600'
-                                : 'bg-white text-neutral-800 hover:bg-amber-500 hover:cursor-pointer'
-                        }
-                                     `}
+                    <MainButton
+                        label="Submit"
+                        style="text-neutral-600 border-neutral-600 bg-white"
+                        hoverStyle="hover:border-amber-500 hover:bg-amber-500"
                         disabled={isDisabled}
+                        rounded
+                        type="submit"
                     />
                 </form>
                 <div className="col-span-1 md:col-span-2 flex flex-col gap-y-4 pt-8 md:pt-0 text-center">
@@ -126,10 +126,11 @@ export default function Footer() {
             </footer>
             {reachedBottom && (
                 <button
-                    className="fixed text-amber-500 text-[3rem] bottom-20 right-8"
+                    className="fixed right-8 bottom-20 text-white shadow-lg animate-grow
+                        hover:text-amber-500 ease-linear duration-200"
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
-                    <FontAwesomeIcon icon={faCircleArrowUp} />
+                    <FontAwesomeIcon icon={faCircleArrowUp} size="3x" />
                 </button>
             )}
         </>

@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
+import Logo from '@/components/ui/Logo';
 
 type Props = {
     showAnimation: boolean;
 };
 
-export default function TopNav({ showAnimation }: Props) {
+export default function Nav({ showAnimation }: Props) {
     const buttonsList: Button[] = [
         {
             id: 'projects-collection',
@@ -62,12 +63,12 @@ export default function TopNav({ showAnimation }: Props) {
                 showAnimation && 'animate-navbar'
             }`}
         >
-            <div className="flex justify-between content-max-width m-auto">
+            <div className="flex justify-between items-center content-max-width m-auto">
                 <button
-                    className="text-amber-500 hover:animate-bounce"
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
+                    className="z-20"
                 >
-                    &lt; cody &gt;
+                    <Logo />
                 </button>
 
                 {/* Phone and Tablet */}
@@ -81,7 +82,7 @@ export default function TopNav({ showAnimation }: Props) {
                         {buttonsList.map((button) => (
                             <li key={button.id}>
                                 <button
-                                    className="text-white hover:text-amber-500"
+                                    className="text-white font-medium hover:text-amber-500"
                                     onClick={button.onClick}
                                 >
                                     {button.name}

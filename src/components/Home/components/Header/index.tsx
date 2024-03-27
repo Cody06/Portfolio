@@ -1,5 +1,5 @@
 import Logo from '@/components/ui/Logo';
-import TopNav from './TopNav';
+import Nav from './Nav';
 
 type Props = {
     showAnimation: boolean;
@@ -17,7 +17,7 @@ export default function Header({ showAnimation }: Props) {
 
     return (
         <header id="header">
-            <TopNav showAnimation={showAnimation} />
+            <Nav showAnimation={showAnimation} />
             <div className="content-max-width mx-auto px-4">
                 <div className="flex flex-col items-center gap-y-5 pt-32 md:pt-52">
                     <h1 className="text-3xl md:text-5xl text-center">
@@ -51,7 +51,7 @@ export default function Header({ showAnimation }: Props) {
                     </p>
 
                     <div className="hidden md:block pt-4">
-                        <Logo showAnimation={showAnimation} />
+                        <Logo showAnimation={showAnimation} size="lg" />
                     </div>
                 </div>
             </div>
