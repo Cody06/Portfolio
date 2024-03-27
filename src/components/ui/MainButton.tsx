@@ -3,8 +3,7 @@ import React from 'react';
 
 type Props = {
     label: string;
-    primaryStyle?: `text-${string} border-${string} bg-${string}`;
-    secondaryStyle?: `text-${string} border-${string}`;
+    style: `text-${string} border-${string} bg-${string}`;
     hoverStyle?: `hover:border-${string} hover:bg-${string}`;
     disabled?: boolean;
     fullWidth?: boolean;
@@ -17,8 +16,7 @@ type Props = {
 
 export default function MainButton({
     label,
-    primaryStyle,
-    secondaryStyle,
+    style,
     hoverStyle,
     disabled = false,
     fullWidth = false,
@@ -28,23 +26,22 @@ export default function MainButton({
     type = 'button',
     onClick,
 }: Props) {
-    const baseStyle = `border px-4 py-2 font-medium
+    const baseStyle = `border px-4 py-2 font-medium ${style}
         ${fullWidth ? 'w-full' : 'w-max'}
-        ${rounded ? 'rounded-3xl' : 'rounded-lg'}
-        ${primaryStyle ? primaryStyle : `${secondaryStyle} bg-white`}`;
+        ${rounded ? 'rounded-3xl' : 'rounded-lg'}`;
 
-    const style = `${baseStyle}
+    const completeStyle = `${baseStyle}
         ${hoverStyle ? `${hoverStyle} ease-linear duration-200` : 'hover:brightness-90'}
         ${shadow && 'shadow-lg active:shadow-none'}`;
 
     const BtnElement = (
-        <button className={style} type={type} onClick={onClick}>
+        <button className={completeStyle} type={type} onClick={onClick}>
             {label}
         </button>
     );
 
     const LinkElement = href && (
-        <Link href={href} className={style}>
+        <Link href={href} className={completeStyle}>
             {label}
         </Link>
     );
