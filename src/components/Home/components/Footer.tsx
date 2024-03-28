@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAlertContext } from '@/components/context/alertContext';
 import MainButton from '@/components/ui/MainButton';
+import { hoverTextStyle } from '@/components/ui/tailwindStyles';
 
 export default function Footer() {
     const { onOpen } = useAlertContext();
@@ -53,8 +54,6 @@ export default function Footer() {
     );
     const isDisabled = isError || isEmpty;
 
-    const hoverIconStyle = 'hover:text-amber-500 ease-linear duration-200';
-
     return (
         <>
             <footer
@@ -70,7 +69,7 @@ export default function Footer() {
                     <h6 className="text-xl font-bold">cody.miu@gmail.com</h6>
                     <div className="space-x-8">
                         {linkButtons.map(({ href, title, label }) => (
-                            <Link key={href} href={href} title={title} className={hoverIconStyle}>
+                            <Link key={href} href={href} title={title} className={hoverTextStyle}>
                                 {label}
                             </Link>
                         ))}
@@ -124,7 +123,7 @@ export default function Footer() {
             {reachedBottom && (
                 <button
                     className={`fixed right-8 bottom-20 text-white shadow-lg animate-grow
-                        ${hoverIconStyle}`}
+                        ${hoverTextStyle}`}
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
                     <FontAwesomeIcon icon={faCircleArrowUp} size="3x" />

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import useStore from './Store';
 import { useRetrieveBoards } from './useRetrieveBoards';
+import { transitionTiming } from '@/components/ui/tailwindStyles';
 
 type BoardCardProps = {
     id: string;
@@ -11,9 +12,9 @@ type BoardCardProps = {
 
 function BoardCard({ id, title, creationDate }: BoardCardProps) {
     return (
+        // TOOD: Pass the bg the color of the board
         <article
-            className="p-3 text-white rounded-lg shadow-md"
-            style={{ backgroundColor: 'green' }}
+            className={`p-3 text-white rounded-lg shadow-lg bg-sky-600 hover:brightness-90 ${transitionTiming}`}
         >
             <Link href={`/workboard/board/${id}`}>
                 <h3 className="mb-2 text-xl font-bold">{title}</h3>

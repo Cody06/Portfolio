@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MAX_BOARD_TITLE_LENGTH } from '../../data';
 import useStore from '../../Store';
 import useOutsideClick from '@/hooks/useOutsideClick';
+import { opaqueIconStyle } from '../../ui/tailwindStyles';
 
 type Props = {
     boardId: string;
@@ -30,22 +31,16 @@ export default function TitleInput({ boardId, boardTitle, setIsEditingTitle }: P
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
             />
+            <button onClick={clearInputAndClose}>
+                <FontAwesomeIcon className={opaqueIconStyle} icon={faXmark} size="xl" />
+            </button>
             <button
                 onClick={() => {
                     editBoard(boardId, newTitle);
                     setIsEditingTitle(false);
                 }}
             >
-                <FontAwesomeIcon
-                    className="text-white h-6 group-hover:text-amber-500"
-                    icon={faCheck}
-                />
-            </button>
-            <button onClick={clearInputAndClose}>
-                <FontAwesomeIcon
-                    className="text-white h-6 group-hover:text-amber-500"
-                    icon={faXmark}
-                />
+                <FontAwesomeIcon className={opaqueIconStyle} icon={faCheck} size="xl" />
             </button>
         </div>
     );

@@ -26,6 +26,9 @@ export default function Input({
         - when placeholder goes away or there's focus, label floats to the top
     */
 
+    const style = `peer placeholder-transparent w-full px-2 py-3
+        text-black bg-white rounded-lg focus:outline-none`;
+
     return (
         // pt to prevent clipping with other elements
         <div className="pt-3">
@@ -39,8 +42,7 @@ export default function Input({
                         placeholder={label}
                         required={required}
                         onChange={onChange}
-                        className="peer placeholder-transparent w-full px-2 py-3
-                        text-black bg-white rounded-lg focus:outline-none"
+                        className={style}
                         rows={2}
                     />
                 ) : (
@@ -53,8 +55,7 @@ export default function Input({
                         placeholder={label}
                         required={required}
                         onChange={onChange}
-                        className="peer placeholder-transparent w-full px-2 py-3
-                            text-black bg-white rounded-lg focus:outline-none"
+                        className={style}
                     />
                 )}
                 {/* label needs to be after input for peer selector to work */}

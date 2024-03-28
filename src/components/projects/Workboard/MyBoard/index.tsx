@@ -12,6 +12,8 @@ import Dropdown from './components/Dropdown';
 import DeleteBoardModal from './components/DeleteBoardModal';
 import TitleInput from './components/TitleInput';
 import { useRetrieveBoards } from '../useRetrieveBoards';
+import { opaqueIconStyle } from '../ui/tailwindStyles';
+import { transitionTiming } from '@/components/ui/tailwindStyles';
 
 type Props = {
     boardId: string;
@@ -43,12 +45,9 @@ export default function MyBoard({ boardId }: Props) {
 
     return (
         <>
-            <header className="flex gap-x-4 items-center px-4">
-                <Link href="/workboard" className="group">
-                    <FontAwesomeIcon
-                        className="text-white h-6 group-hover:text-amber-500"
-                        icon={faCircleLeft}
-                    />
+            <header className="flex gap-x-4 px-4">
+                <Link href="/workboard" className={opaqueIconStyle}>
+                    <FontAwesomeIcon icon={faCircleLeft} size="xl" />
                 </Link>
                 {isEditingTitle ? (
                     <TitleInput
@@ -57,13 +56,10 @@ export default function MyBoard({ boardId }: Props) {
                         setIsEditingTitle={setIsEditingTitle}
                     />
                 ) : (
-                    <>
+                    <div className="flex gap-x-4 items-center">
                         <h1 className="text-2xl text-white font-bold">{selectedBoard?.title}</h1>
-                        <Dropdown
-                            buttonsList={titleExtraButtons}
-                            elipsisStyle="text-white hover:text-amber-500"
-                        />
-                    </>
+                        <Dropdown buttonsList={titleExtraButtons} elipsisStyle={opaqueIconStyle} />
+                    </div>
                 )}
             </header>
             <main className=" p-4">
@@ -78,8 +74,8 @@ export default function MyBoard({ boardId }: Props) {
                         />
                     ))}
                     <button
-                        className="text-white min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg
-                            ease-in duration-200 hover:bg-sky-900 hover:border-solid"
+                        className={`text-white font-medium min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg
+                            hover:bg-sky-900 hover:border-solid ${transitionTiming}`}
                         onClick={() => setIsCreateColumnModalOpen(true)}
                     >
                         + Add column

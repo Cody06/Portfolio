@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { transitionTiming } from './tailwindStyles';
 
 type Props = {
     label: string;
@@ -26,12 +27,12 @@ export default function MainButton({
     type = 'button',
     onClick,
 }: Props) {
-    const baseStyle = `border px-4 py-2 font-medium ${style}
+    const baseStyle = `border px-4 py-2 font-medium text-nowrap ${style}
         ${fullWidth ? 'w-full' : 'w-max'}
-        ${rounded ? 'rounded-3xl' : 'rounded-lg'}`;
+        ${rounded ? 'rounded-full' : 'rounded-lg'}`;
 
-    const completeStyle = `${baseStyle}
-        ${hoverStyle ? `${hoverStyle} ease-linear duration-200` : 'hover:brightness-90'}
+    const completeStyle = `${baseStyle} ${transitionTiming}
+        ${hoverStyle ? `${hoverStyle}` : 'hover:brightness-90'}
         ${shadow && 'shadow-lg active:shadow-none'}`;
 
     const BtnElement = (
