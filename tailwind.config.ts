@@ -12,6 +12,7 @@ const config: Config = {
             transparent: 'transparent',
             black: '#000000',
             white: '#FFFFFF',
+            'opaque-10': 'rgba(255, 255, 255, 0.1)',
             // Tailwind default colors:
             amber: colors.amber,
             blue: colors.blue,
