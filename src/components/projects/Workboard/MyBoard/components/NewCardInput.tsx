@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import useStore from '../../Store';
+import PrimaryButton from '../../ui/PrimaryButton';
+import CancelButton from '../../ui/CancelButton';
 
 type Props = {
     boardId: string;
@@ -26,25 +28,15 @@ export default function NewCardInput({ boardId, columnId, setShowCreateCard }: P
                 onChange={(e) => setText(e.target.value)}
             />
             <div className="flex gap-x-2">
-                <button
-                    className={`w-full text-white bg-blue-500 rounded-md ${
-                        !text ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'
-                    }`}
+                <CancelButton onClick={clearAndCloseTextInput} />
+                <PrimaryButton
+                    label="Save"
                     disabled={!text}
                     onClick={() => {
                         createCard(boardId, columnId, text);
                         clearAndCloseTextInput();
                     }}
-                >
-                    Save
-                </button>
-                <button
-                    className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md 
-                        hover:bg-neutral-500 hover:bg-opacity-20"
-                    onClick={clearAndCloseTextInput}
-                >
-                    Cancel
-                </button>
+                />
             </div>
         </>
     );

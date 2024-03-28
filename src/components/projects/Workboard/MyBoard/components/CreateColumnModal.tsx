@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
 import useStore from '../../Store';
+import PrimaryButton from '../../ui/PrimaryButton';
+import Input from '@/components/ui/Input';
+import { MAX_BOARD_TITLE_LENGTH } from '../../data';
 
 type Props = {
     boardId: string;
@@ -13,37 +16,31 @@ export default function CreateColumnModal({ boardId, isOpen, requestClose }: Pro
     const [title, setTitle] = useState('');
     const { createColumn } = useStore();
 
-    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value);
-
     const clearInputAndClose = () => {
         setTitle('');
         requestClose();
     };
 
+    const handleSubmit = () => {
+        createColumn(boardId, title);
+        clearInputAndClose();
+    };
+
     return (
         <Modal isOpen={isOpen} title="Add a column" requestClose={clearInputAndClose}>
             <ModalBody>
-                <div className="flex flex-col items-center gap-y-4">
-                    <input
-                        autoFocus
+                <form onSubmit={handleSubmit}>
+                    <Input
+                        id="title"
+                        label="Enter a column title"
+                        maxLength={MAX_BOARD_TITLE_LENGTH}
+                        name="title"
                         type="text"
-                        className="p-2 rounded-md"
-                        placeholder="Enter a column title"
                         value={title}
-                        onChange={handleChange}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
-                    <button
-                        className={`w-max p-2 text-white bg-blue-500 rounded-md
-                            ${!title ? 'opacity-25' : 'hover:brightness-90 active:brightness-75'} `}
-                        disabled={!title}
-                        onClick={() => {
-                            createColumn(boardId, title);
-                            clearInputAndClose();
-                        }}
-                    >
-                        Create column
-                    </button>
-                </div>
+                    <PrimaryButton label="Create column" disabled={!title} type="submit" />
+                </form>
             </ModalBody>
         </Modal>
     );

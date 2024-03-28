@@ -3,6 +3,8 @@ import ModalBody from '@/components/Modal/ModalBody';
 import useStore from '../../Store';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import CancelButton from '../../ui/CancelButton';
+import DeleteButton from '../../ui/DeleteButton';
 
 type Props = {
     boardId: string;
@@ -13,7 +15,7 @@ type Props = {
 
 export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestClose }: Props) {
     const [titleInput, setTitleInput] = useState('');
-    const disabled = titleInput !== boardTitle;
+    const isDisabled = titleInput !== boardTitle;
     const { deleteBoard } = useStore();
     const router = useRouter();
     if (!boardTitle) return;
@@ -39,34 +41,22 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                     </label>
                     <input
                         id="titleInput"
-                        className="border border-neutral-800 rounded-md px-2"
+                        className="border border-neutral-800 rounded-lg p-2"
                         type="text"
                         value={titleInput}
                         onChange={(e) => setTitleInput(e.target.value)}
                     />
                     <div className="flex gap-x-4">
-                        <button
-                            className={`w-full p-1 rounded-md ${
-                                disabled
-                                    ? 'text-neutral-800 bg-neutral-500'
-                                    : 'text-white bg-red-500 border border-red-500 hover:brightness-90 active:brightness-75'
-                            }`}
-                            disabled={disabled}
+                        <CancelButton onClick={clearInputAndClose} />
+                        <DeleteButton
+                            label="Delete board"
+                            disabled={isDisabled}
                             onClick={() => {
                                 clearInputAndClose();
                                 deleteBoard(boardId);
                                 router.push('/workboard');
                             }}
-                        >
-                            Delete board
-                        </button>
-                        <button
-                            className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md
-                            hover:bg-neutral-500 hover:bg-opacity-20"
-                            onClick={clearInputAndClose}
-                        >
-                            Cancel
-                        </button>
+                        />
                     </div>
                 </div>
             </ModalBody>
