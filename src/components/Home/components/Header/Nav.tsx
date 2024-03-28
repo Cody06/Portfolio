@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
 import Logo from '@/components/ui/Logo';
+import { hoverTextStyle } from '@/components/ui/tailwindStyles';
 
 type Props = {
     showAnimation: boolean;
@@ -82,7 +83,7 @@ export default function Nav({ showAnimation }: Props) {
                         {buttonsList.map((button) => (
                             <li key={button.id}>
                                 <button
-                                    className="text-white font-medium hover:text-amber-500"
+                                    className={`text-white font-medium ${hoverTextStyle}`}
                                     onClick={button.onClick}
                                 >
                                     {button.name}

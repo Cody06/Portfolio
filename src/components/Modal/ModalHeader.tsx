@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { iconBgHover } from '../ui/tailwindStyles';
 
 interface Props {
     title: string;
@@ -9,10 +10,7 @@ interface Props {
 const ModalHeader: React.FC<Props> = ({ title, requestClose }) => (
     <div className="flex justify-between items-center font-bold mb-4">
         {title}
-        <button
-            className="w-8 h-8 rounded-full hover:bg-neutral-500 hover:bg-opacity-20"
-            onClick={requestClose}
-        >
+        <button className={`w-8 h-8 rounded-full ${iconBgHover}`} onClick={requestClose}>
             <FontAwesomeIcon icon={faXmark} />
         </button>
     </div>

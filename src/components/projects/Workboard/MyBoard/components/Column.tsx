@@ -4,6 +4,7 @@ import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
 import useStore from '../../Store';
+import { baseIconStyle } from '../../ui/tailwindStyles';
 
 type Props = {
     boardId: string;
@@ -77,8 +78,8 @@ export default function Column({
     };
 
     return (
-        <div className="bg-neutral-100 w-[18.75rem] rounded-lg">
-            <div className="flex justify-between p-2 bg-neutral-100 brightness-95 rounded-t-lg">
+        <article className="bg-neutral-100 w-[18.75rem] rounded-xl">
+            <section className="flex justify-between px-3 py-2 bg-neutral-100 brightness-95 rounded-t-xl">
                 {showEditCol ? (
                     <input
                         autoFocus
@@ -93,23 +94,23 @@ export default function Column({
                         <span className="font-bold my-auto overflow-hidden">{column.title}</span>
                         <Dropdown
                             buttonsList={colExtraButtons}
-                            elipsisStyle="text-neutral-500 hover:text-amber-500"
+                            elipsisStyle={`text-neutral-500 ${baseIconStyle}`}
                         />
                     </>
                 )}
-            </div>
+            </section>
 
-            <div
+            <section
                 id={column.id}
-                className={`flex flex-col gap-y-2 p-1 ${!showCreateCard && 'min-h-[2.5rem]'}`}
+                className={`flex flex-col gap-y-3 mb-2 p-1 ${!showCreateCard && 'min-h-[2.5rem]'}`}
                 onDragOver={handleDragOver}
             >
                 {column.cards.map((card) => (
                     <Card key={card.id} boardId={boardId} colId={column.id} card={card} />
                 ))}
-            </div>
+            </section>
 
-            <div className="text-center p-1">
+            <section className="text-center p-1">
                 {showCreateCard ? (
                     <NewCardInput
                         boardId={boardId}
@@ -119,12 +120,12 @@ export default function Column({
                 ) : (
                     <button
                         onClick={() => setShowCreateCard(!showCreateCard)}
-                        className="p-1 text-neutral-500 mt-auto hover:text-amber-500"
+                        className={`text-neutral-500 font-medium mt-auto ${baseIconStyle}`}
                     >
                         + Add card
                     </button>
                 )}
-            </div>
-        </div>
+            </section>
+        </article>
     );
 }
