@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { iconHoverBg } from '../ui/tailwindStyles';
+import { iconHoverBg } from '../tailwindStyles';
 
 interface Props {
     title: string;

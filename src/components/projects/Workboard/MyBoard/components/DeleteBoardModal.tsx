@@ -1,5 +1,5 @@
-import Modal from '@/components/Modal';
-import ModalBody from '@/components/Modal/ModalBody';
+import Modal from '@/components/ui/Modal';
+import ModalBody from '@/components/ui/Modal/ModalBody';
 import useStore from '../../Store';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';

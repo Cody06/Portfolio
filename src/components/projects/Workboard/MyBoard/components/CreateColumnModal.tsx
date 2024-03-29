@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '@/components/Modal';
-import ModalBody from '@/components/Modal/ModalBody';
+import Modal from '@/components/ui/Modal';
+import ModalBody from '@/components/ui/Modal/ModalBody';
 import useStore from '../../Store';
 import PrimaryButton from '../../ui/PrimaryButton';
 import Input from '@/components/ui/Input';
