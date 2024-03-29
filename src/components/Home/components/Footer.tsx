@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
-import { faCircleArrowUp, faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,11 +10,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAlertContext } from '@/components/context/alertContext';
 import MainButton from '@/components/ui/MainButton';
-import { hoverTextStyle } from '@/components/ui/tailwindStyles';
+import { hoverTextStyle, transitionTiming } from '@/components/ui/tailwindStyles';
 
 export default function Footer() {
     const { onOpen } = useAlertContext();
-    const reachedBottom = usePageBottom();
+    const reachedBottom = usePageBottom(650);
     const linkButtons = [
         {
             href: 'https://github.com/Cody06',
@@ -59,7 +59,8 @@ export default function Footer() {
         <>
             <footer
                 id="contact"
-                className="content-max-width mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-y-14 px-4 py-16 text-white"
+                className="content-max-width mx-auto grid grid-cols-1 px-4 py-16 text-white
+                    md:grid-cols-2 md:gap-y-14"
             >
                 <div className="flex flex-col gap-y-4 items-center mb-10">
                     <h4 className="text-2xl font-bold">Get in touch!</h4>
@@ -126,11 +127,12 @@ export default function Footer() {
             </footer>
             {reachedBottom && (
                 <button
-                    className={`fixed right-8 bottom-20 text-white shadow-lg animate-grow
-                        ${hoverTextStyle}`}
+                    className={`fixed right-8 bottom-20 text-neutral-800 
+                        bg-white rounded-full w-11 h-11 shadow-lg
+                        animate-grow hover:bg-amber-500 ${transitionTiming}`}
                     onClick={() => document.getElementById('header')?.scrollIntoView()}
                 >
-                    <FontAwesomeIcon icon={faCircleArrowUp} size="3x" />
+                    <FontAwesomeIcon icon={faArrowUp} size="2x" />
                 </button>
             )}
         </>
