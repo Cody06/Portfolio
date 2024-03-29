@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cody's Portfolio
 
-## Getting Started
+Welcome to my portfolio! This is a collection of projects I had a lot of fun creating as a software developer. Feel free to explore and learn more about my skills, experiences and what I've built.
 
-First, run the development server:
+-   Live website: [codymiu.com](https://www.codymiu.com/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About Me
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I am passionate about technology and building cool apps. With a diverse career, I have worked on a variety of projects such as freelance front-end apps and full-stack web apps in a start-up environment. I have a bachelor's in IT and Computer Science and I am an advocate for continuous learning new technologies and tackling new challenges.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Portfolio Projects
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Project 1: Project Manager App
 
-## Learn More
+-   Description: A task manager app where users can create project boards and tasks can be organized and moved throughout desired lists.
+-   Focus: Create, edit, delete and move components in an app
+-   Technologies: React.js, TypeScript, HTML5, Tailwind CSS
+-   Demo: [Workboard Demo](https://www.codymiu.com/workboard)
 
-To learn more about Next.js, take a look at the following resources:
+### Project 2: E-Commerce Website
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   Description: An e-commerce website where users can search, filter and sort books they would like to purchase.
+-   Focus: Search, sorting and filtering
+-   Technologies: React.js, TypeScript, HTML5, Tailwind CSS
+-   Demo: [E-Commerce Demo](https://www.codymiu.com/ecommerce)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Project 3: Social Networking App
 
-## Deploy on Vercel
+-   Description: Users can create and like posts, while having their own profile page and the ability to follow other users.
+-   Focus: UX and UI
+-   Technologies: React.js, TypeScript, HTML5, Tailwind CSS
+-   Demo: [Social Networking Demo](https://www.codymiu.com/workboard)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Email: cody.miu@gmail.com
+-   LinkedIn: [Cody Miu](https://www.linkedin.com/in/cody-miu/)
