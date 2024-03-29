@@ -1,10 +1,10 @@
 import Modal from '@/components/ui/Modal';
 import ModalBody from '@/components/ui/Modal/ModalBody';
-import useStore from '../../Store';
+import useStore from '../Store';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import CancelButton from '../../ui/CancelButton';
-import DeleteButton from '../../ui/DeleteButton';
+import CancelButton from '../ui/CancelButton';
+import DeleteButton from '../ui/DeleteButton';
 
 type Props = {
     boardId: string;

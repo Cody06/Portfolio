@@ -1,9 +1,9 @@
-import { ColToDelete } from '../../types';
+import { ColToDelete } from '../types';
 import Modal from '@/components/ui/Modal';
 import ModalBody from '@/components/ui/Modal/ModalBody';
-import useStore from '../../Store';
-import CancelButton from '../../ui/CancelButton';
-import DeleteButton from '../../ui/DeleteButton';
+import useStore from '../Store';
+import CancelButton from '../ui/CancelButton';
+import DeleteButton from '../ui/DeleteButton';
 
 type Props = {
     boardId: string;
