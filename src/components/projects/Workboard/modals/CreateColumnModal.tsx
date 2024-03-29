@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Modal from '@/components/Modal';
-import ModalBody from '@/components/Modal/ModalBody';
-import useStore from '../../Store';
-import PrimaryButton from '../../ui/PrimaryButton';
+import Modal from '@/components/ui/Modal';
+import ModalBody from '@/components/ui/Modal/ModalBody';
+import useStore from '../Store';
+import PrimaryButton from '../ui/PrimaryButton';
 import Input from '@/components/ui/Input';
-import { MAX_BOARD_TITLE_LENGTH } from '../../data';
+import { MAX_BOARD_TITLE_LENGTH } from '../data';
 
 type Props = {
     boardId: string;

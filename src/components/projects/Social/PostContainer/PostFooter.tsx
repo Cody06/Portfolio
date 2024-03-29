@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FooterProps } from './types';
 import useStore from '../Store';
-import { iconBgHover } from '@/components/ui/tailwindStyles';
+import { iconHoverBg } from '@/components/ui/tailwindStyles';
 
 export default function PostFooter({
     isPostCreator,
@@ -11,7 +11,7 @@ export default function PostFooter({
     setIsEditingPost,
 }: FooterProps) {
     const { setIsDeletePostModalOpen, toggleLike } = useStore();
-    const commonStyle = `rounded-full px-2 py-1 ${iconBgHover}`;
+    const commonStyle = `rounded-full px-2 py-1 ${iconHoverBg}`;
 
     return (
         <section className="flex gap-x-4 text-neutral-500">
