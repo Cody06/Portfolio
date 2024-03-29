@@ -1,5 +1,5 @@
 'use client';
-import DeletePostModal from './DeletePostModal';
+import DeletePostModal from './modals/DeletePostModal';
 import PostsCollection from './PostsCollection';
 import useStore from './Store';
 import { loggedUserId } from './data';
@@ -18,16 +18,16 @@ export default function Profile({ profileId }: Props) {
         numOfFollowers: followingAndFollowers[profileId].followers.length,
         numOfFollowing: followingAndFollowers[profileId].following.length,
     };
+    const commonStyle = 'px-2 py-1 rounded-full text-sm font-medium shadow-md hover:brightness-90';
 
     return (
         <>
-            <DeletePostModal />
             <section className="text-center mb-4">
                 <h1 className="text-lg font-bold inline mr-4">{profileId}&apos;s posts</h1>
                 {!isLoggedUserProfile &&
                     (isUserFollowed ? (
                         <button
-                            className="text-sm p-1 rounded-md bg-neutral-100 shadow-md"
+                            className={`bg-neutral-100 text-neutral-600 ${commonStyle}`}
                             title={`Unfollow ${profileId}`}
                             onClick={() => unfollowUser(profileId)}
                         >
@@ -35,7 +35,7 @@ export default function Profile({ profileId }: Props) {
                         </button>
                     ) : (
                         <button
-                            className="text-sm p-1 rounded-md bg-sky-600 text-white shadow-md"
+                            className={`bg-sky-600 text-white ${commonStyle}`}
                             title={`Follow ${profileId}`}
                             onClick={() => followUser(profileId)}
                         >
@@ -56,6 +56,7 @@ export default function Profile({ profileId }: Props) {
             </section>
 
             <PostsCollection posts={userPosts} />
+            <DeletePostModal />
         </>
     );
 }

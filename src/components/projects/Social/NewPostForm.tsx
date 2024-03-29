@@ -1,36 +1,31 @@
 'use client';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import useStore from './Store';
 import { MAX_POST_LENGTH } from './data';
-import CardContainer from './CardContainer';
+import Card from './ui/Card';
+import PrimaryButton from './ui/PrimaryButton';
 
 export default function NewPostForm() {
     const [newPost, setNewPost] = useState('');
     const { createPost } = useStore();
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        createPost(newPost);
+        setNewPost('');
+    };
     return (
-        <CardContainer>
-            <div className="flex flex-col gap-y-4">
+        <Card>
+            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-y-4">
                 <textarea
-                    className="border border-sky-600 rounded-lg px-3 py-2"
+                    className="border border-sky-600 rounded-lg w-full px-3 py-2"
                     placeholder="What is happening?!"
                     maxLength={MAX_POST_LENGTH}
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}
                 />
-                <button
-                    className={`w-max m-auto p-2 text-white bg-sky-600 rounded-lg ${
-                        !newPost ? 'opacity-25' : 'hover:bg-opacity-80'
-                    }`}
-                    disabled={!newPost}
-                    onClick={() => {
-                        createPost(newPost);
-                        setNewPost('');
-                    }}
-                >
-                    Post
-                </button>
-            </div>
-        </CardContainer>
+                <PrimaryButton label="Post" disabled={!newPost} size="sm" type="submit" />
+            </form>
+        </Card>
     );
 }

@@ -1,5 +1,5 @@
 'use client';
-import DeletePostModal from './DeletePostModal';
+import DeletePostModal from './modals/DeletePostModal';
 import PostContainer from './PostContainer';
 import { Post } from './types';
 

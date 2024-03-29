@@ -11,6 +11,7 @@ type Props = {
     href?: string;
     rounded?: boolean;
     shadow?: boolean;
+    size?: 'sm' | 'md';
     type?: 'button' | 'submit' | 'reset';
     onClick?: () => void;
 };
@@ -24,10 +25,16 @@ export default function MainButton({
     href,
     rounded = false,
     shadow = false,
+    size = 'md',
     type = 'button',
     onClick,
 }: Props) {
-    const baseStyle = `border px-4 py-2 font-medium text-nowrap ${style}
+    const sizeStyle = {
+        sm: 'px-3 py-1',
+        md: 'px-4 py-2',
+    };
+
+    const baseStyle = `border font-medium text-nowrap ${sizeStyle[size]} ${style}
         ${fullWidth ? 'w-full' : 'w-max'}
         ${rounded ? 'rounded-full' : 'rounded-lg'}`;
 
