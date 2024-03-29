@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FooterProps } from './types';
 import useStore from '../Store';
+import { iconBgHover } from '@/components/ui/tailwindStyles';
 
 export default function PostFooter({
     isPostCreator,
@@ -10,30 +11,35 @@ export default function PostFooter({
     setIsEditingPost,
 }: FooterProps) {
     const { setIsDeletePostModalOpen, toggleLike } = useStore();
+    const commonStyle = `rounded-full px-2 py-1 ${iconBgHover}`;
+
     return (
-        <div className="space-x-4 text-neutral-500">
-            <button
-                className="space-x-2 hover:text-red"
-                title="Like"
-                onClick={() => toggleLike(postId)}
-            >
-                <FontAwesomeIcon icon={faHeart} />
+        <section className="flex gap-x-4 text-neutral-500">
+            <div className="flex items-center gap-x-2">
+                <button className={commonStyle} title="Like" onClick={() => toggleLike(postId)}>
+                    <FontAwesomeIcon icon={faHeart} />
+                </button>
                 <span>{numOfLikes}</span>
-            </button>
+            </div>
             {isPostCreator && (
                 <>
-                    <button className="hover:text-sky-900" onClick={() => setIsEditingPost(true)}>
+                    <button
+                        className={commonStyle}
+                        title="Edit"
+                        onClick={() => setIsEditingPost(true)}
+                    >
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
 
                     <button
-                        className="hover:text-sky-900"
+                        className={commonStyle}
+                        title="Delete"
                         onClick={() => setIsDeletePostModalOpen(true, postId)}
                     >
                         <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                 </>
             )}
-        </div>
+        </section>
     );
 }
