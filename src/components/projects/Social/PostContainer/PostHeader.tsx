@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { iconBgHover } from '@/components/ui/tailwindStyles';
+import { iconHoverBg } from '@/components/ui/tailwindStyles';
 
 type HeaderProps = {
     creator: string;
@@ -16,7 +16,7 @@ export default function PostHeader({ creator, date, edited, isPostCreator }: Hea
                 <span className={commonStyle}>{creator}</span>
             ) : (
                 <Link
-                    className={`text-sky-600 ${commonStyle} ${iconBgHover}`}
+                    className={`text-sky-600 ${commonStyle} ${iconHoverBg}`}
                     href={`/social/profile/${creator}`}
                 >
                     {creator}

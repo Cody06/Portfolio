@@ -4,7 +4,7 @@ import { faHouse, faUser, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link';
 import { loggedUserId } from '../data';
 import Dropdown from './Dropdown';
-import { iconBgHover } from '@/components/ui/tailwindStyles';
+import { iconHoverBg } from '@/components/ui/tailwindStyles';
 
 export default function Nav() {
     const navLinks = [
@@ -29,7 +29,7 @@ export default function Nav() {
     ];
 
     const centerElement = 'left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0';
-    const commonStyle = `rounded-full px-4 py-1 space-x-3 ${iconBgHover}`;
+    const commonStyle = `rounded-full px-4 py-1 space-x-3 ${iconHoverBg}`;
 
     return (
         <nav

@@ -4,7 +4,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import Link from 'next/link';
 import { useState } from 'react';
-import { iconBgHover, transitionTiming } from '@/components/ui/tailwindStyles';
+import { iconHoverBg, transitionTiming } from '@/components/ui/tailwindStyles';
 
 type Props = {
     style: string;
@@ -16,7 +16,7 @@ export default function Dropdown({ style }: Props) {
 
     const Dropdown = (
         <div className={`absolute right-0 bg-white rounded-b-xl shadow-lg w-[8.125rem]`}>
-            <Link className={`rounded-b-xl block px-4 py-1 ${iconBgHover}`} href="/">
+            <Link className={`rounded-b-xl block px-4 py-1 ${iconHoverBg}`} href="/">
                 Log out
             </Link>
         </div>

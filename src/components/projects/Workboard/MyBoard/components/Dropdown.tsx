@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import { iconBgHover } from '@/components/ui/tailwindStyles';
+import { iconHoverBg } from '@/components/ui/tailwindStyles';
 
 type Button = {
     label: string;
@@ -23,7 +23,7 @@ export default function Dropdown({ buttonsList, elipsisStyle }: Props) {
             {buttonsList.map((btn) => (
                 <li
                     key={btn.label}
-                    className={`first:rounded-tl-lg last:rounded-b-lg px-4 py-2 ${iconBgHover}`}
+                    className={`first:rounded-tl-lg last:rounded-b-lg px-4 py-2 ${iconHoverBg}`}
                     onClick={btn.onClick}
                 >
                     {btn.label}
