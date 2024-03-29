@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import Nav from '@/components/projects/Social/Nav';
+import { hoverTextStyle } from '@/components/ui/tailwindStyles';
 
 export const metadata: Metadata = {
     title: {
@@ -14,9 +15,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <body>
             <header className="fixed w-full bg-sky-600 shadow-md">
-                <div className="flex justify-between max-w-[55rem] mx-auto p-2 text-white">
-                    <span className="text-2xl font-bold">Social</span>
-                    <Link href="/" className="hover:text-amber-500">
+                <div className="flex justify-between items-center max-w-[55rem] mx-auto p-2 text-white">
+                    <Link href="/social" className={`text-xl font-bold ${hoverTextStyle}`}>
+                        Social
+                    </Link>
+                    <Link href="/" className={`font-medium ${hoverTextStyle}`}>
                         Back to Portfolio
                     </Link>
                 </div>

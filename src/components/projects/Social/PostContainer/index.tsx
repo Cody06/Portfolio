@@ -5,13 +5,13 @@ import { loggedUserId } from '../data';
 import PostHeader from './PostHeader';
 import PostBody from './PostBody';
 import PostFooter from './PostFooter';
-import CardContainer from '../CardContainer';
+import Card from '../ui/Card';
 
 export default function PostContainer({ post }: { post: Post }) {
     const [isEditingPost, setIsEditingPost] = useState(false);
     const isPostCreator = post.creator === loggedUserId;
     return (
-        <CardContainer>
+        <Card>
             <article className="space-y-4">
                 <PostHeader
                     creator={post.creator}
@@ -32,6 +32,6 @@ export default function PostContainer({ post }: { post: Post }) {
                     setIsEditingPost={setIsEditingPost}
                 />
             </article>
-        </CardContainer>
+        </Card>
     );
 }

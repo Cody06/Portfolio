@@ -1,14 +1,22 @@
 import Link from 'next/link';
-import { HeaderProps } from './types';
+import { iconBgHover } from '@/components/ui/tailwindStyles';
+
+type HeaderProps = {
+    creator: string;
+    date: string;
+    edited: boolean;
+    isPostCreator: boolean;
+};
 
 export default function PostHeader({ creator, date, edited, isPostCreator }: HeaderProps) {
+    const commonStyle = `border border-neutral-300 rounded-full px-2 font-bold`;
     return (
-        <div className="flex justify-between">
+        <section className="flex justify-between">
             {isPostCreator ? (
-                <span className="font-bold">{creator}</span>
+                <span className={commonStyle}>{creator}</span>
             ) : (
                 <Link
-                    className="font-bold text-sky-600 hover:text-sky-900"
+                    className={`text-sky-600 ${commonStyle} ${iconBgHover}`}
                     href={`/social/profile/${creator}`}
                 >
                     {creator}
@@ -23,6 +31,6 @@ export default function PostHeader({ creator, date, edited, isPostCreator }: Hea
                 )}
                 <span>{date}</span>
             </span>
-        </div>
+        </section>
     );
 }

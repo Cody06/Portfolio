@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link href="/workboard" className={`font-bold ${hoverTextStyle}`}>
                     Workboard
                 </Link>
-                <Link href="/" scroll={false} className={`font-medium ${hoverTextStyle}`}>
+                <Link href="/" className={`font-medium ${hoverTextStyle}`}>
                     Back to Portfolio
                 </Link>
             </nav>
