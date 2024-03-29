@@ -3,6 +3,7 @@ import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { faCircleArrowUp, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
+import Image from 'next/image';
 import Input from '@/components/ui/Input';
 import usePageBottom from '@/hooks/usePageBottom';
 import { useFormik } from 'formik';
@@ -60,13 +61,16 @@ export default function Footer() {
                 id="contact"
                 className="content-max-width mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-y-14 px-4 py-16 text-white"
             >
-                <div
-                    className="flex flex-col gap-y-4 items-center justify-between
-                        mb-10 md:items-start"
-                >
-                    <h4 className="text-2xl font-bold">Get in touch</h4>
-                    <h5>{`Let's work together!`}</h5>
-                    <h6 className="text-xl font-bold">cody.miu@gmail.com</h6>
+                <div className="flex flex-col gap-y-4 items-center mb-10">
+                    <h4 className="text-2xl font-bold">Get in touch!</h4>
+                    <Image
+                        src="/assets/profile-photo.jpeg"
+                        alt="My face"
+                        width={200}
+                        height={200}
+                        className="rounded-full"
+                    />
+                    <p className="text-xl font-bold">cody.miu@gmail.com</p>
                     <div className="space-x-8">
                         {linkButtons.map(({ href, title, label }) => (
                             <Link key={href} href={href} title={title} className={hoverTextStyle}>
