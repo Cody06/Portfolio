@@ -1,6 +1,8 @@
 import Modal from '@/components/Modal';
 import ModalBody from '@/components/Modal/ModalBody';
-import useStore from './Store';
+import useStore from '../Store';
+import CancelButton from '../ui/CancelButton';
+import DeleteButton from '../ui/DeleteButton';
 
 export default function DeletePostModal() {
     const { isDeletePostModalOpen, deletePost, setIsDeletePostModalOpen } = useStore();
@@ -10,24 +12,16 @@ export default function DeletePostModal() {
         <Modal isOpen={isDeletePostModalOpen} title="Delete post" requestClose={requestClose}>
             <ModalBody>
                 <h1 className="mb-5">Are you sure you want to delete your post?</h1>
-                <div className="flex gap-x-4">
-                    <button
-                        className="w-full p-1 text-white bg-red-500 border border-red-500 rounded-md
-                            hover:brightness-90 active:brightness-75"
+                <div className="flex justify-center gap-x-4">
+                    <CancelButton size="sm" onClick={requestClose} />
+                    <DeleteButton
+                        label="Yes, delete"
+                        size="sm"
                         onClick={() => {
                             deletePost();
                             requestClose();
                         }}
-                    >
-                        Yes, delete
-                    </button>
-                    <button
-                        className="w-full p-1 text-neutral-800 border border-neutral-800 rounded-md
-                            hover:bg-neutral-500 hover:bg-opacity-20"
-                        onClick={requestClose}
-                    >
-                        Cancel
-                    </button>
+                    />
                 </div>
             </ModalBody>
         </Modal>
