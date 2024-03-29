@@ -2,51 +2,51 @@ import { useState } from 'react';
 import { MAX_POST_LENGTH } from '../data';
 import { BodyProps, EditFormProps } from './types';
 import useStore from '../Store';
+import PrimaryButton from '../ui/PrimaryButton';
+import CancelButton from '../ui/CancelButton';
 
 function EditForm({ content, postId, setIsEditingPost }: EditFormProps) {
     const [editedContent, setEditedContent] = useState(content);
     const { editPost } = useStore();
 
     return (
-        <div>
+        <>
             <textarea
-                className="w-full border"
+                className="w-full border rounded-lg p-1 mb-2"
                 maxLength={MAX_POST_LENGTH}
+                rows={4}
                 value={editedContent}
                 onChange={(e) => setEditedContent(e.target.value)}
             />
             <div className="space-x-4">
-                <button
-                    className="px-2 text-sky-600 border rounded-lg hover:text-sky-900"
-                    onClick={() => {
-                        editPost(postId, editedContent);
-                        setIsEditingPost(false);
-                    }}
-                >
-                    Save
-                </button>
-                <button
-                    className="px-2 text-neutral-500 border rounded-lg hover:text-neutral-800"
+                <CancelButton
+                    size="sm"
                     onClick={() => {
                         setIsEditingPost(false);
                         setEditedContent(content);
                     }}
-                >
-                    Cancel
-                </button>
+                />
+                <PrimaryButton
+                    label="Save"
+                    size="sm"
+                    onClick={() => {
+                        editPost(postId, editedContent);
+                        setIsEditingPost(false);
+                    }}
+                />
             </div>
-        </div>
+        </>
     );
 }
 
 export default function PostBody({ content, isEditingPost, postId, setIsEditingPost }: BodyProps) {
     return (
-        <>
+        <section>
             {isEditingPost ? (
                 <EditForm content={content} postId={postId} setIsEditingPost={setIsEditingPost} />
             ) : (
                 <p className="break-words text-balance">{content}</p>
             )}
-        </>
+        </section>
     );
 }
