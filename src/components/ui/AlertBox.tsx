@@ -14,7 +14,7 @@ export default function AlertBox() {
 
     return (
         <div
-            className={`fixed z-50 top-10 left-[50%] -translate-x-[50%] px-4 py-3 rounded-md alert-animation ${typeStyle[type]}`}
+            className={`fixed z-50 top-10 center-element px-4 py-3 rounded-md alert-animation ${typeStyle[type]}`}
         >
             {message}
         </div>
