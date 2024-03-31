@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import DropdownMenu from './DropdownMenu';
 import { Button } from '../../types';
 import Logo from '@/components/ui/Logo';
-import { hoverTextStyle } from '@/components/ui/tailwindStyles';
+import MenuMobile from './MenuMobile';
+import MenuDesktop from './MenuDesktop';
 
 type Props = {
     showAnimation: boolean;
@@ -72,26 +72,8 @@ export default function Nav({ showAnimation }: Props) {
                     <Logo />
                 </button>
 
-                {/* Phone and Tablet */}
-                <div className="lg:hidden">
-                    <DropdownMenu buttonsList={buttonsList} />
-                </div>
-
-                {/* Desktop */}
-                <div className="hidden lg:block">
-                    <ul className="flex gap-x-10">
-                        {buttonsList.map((button) => (
-                            <li key={button.id}>
-                                <button
-                                    className={`text-white font-medium ${hoverTextStyle}`}
-                                    onClick={button.onClick}
-                                >
-                                    {button.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <MenuMobile buttonsList={buttonsList} />
+                <MenuDesktop buttonsList={buttonsList} />
             </div>
         </nav>
     );
