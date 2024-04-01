@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <body>
-            <header className="fixed w-full bg-sky-600 shadow-md">
+            <header className="fixed z-20 w-full bg-sky-600 shadow-md">
                 <div className="flex justify-between items-center max-w-[55rem] mx-auto p-2 text-white">
                     <Link href="/social" className={`text-xl font-bold ${hoverTextStyle}`}>
                         Social
