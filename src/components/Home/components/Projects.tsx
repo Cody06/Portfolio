@@ -95,8 +95,7 @@ export default function Projects({ showAnimation }: Props) {
                                             {project.id === 3 ? (
                                                 <div
                                                     className="absolute top-[0.4rem] w-[140px] h-[280px] pt-[50%]
-                                                        left-[50%] -translate-x-[50%]
-                                                        text-center bg-white rounded-lg"
+                                                        center-element text-center bg-white rounded-lg"
                                                 >
                                                     Coming soon
                                                 </div>
@@ -106,8 +105,7 @@ export default function Projects({ showAnimation }: Props) {
                                                     width={140}
                                                     height={290}
                                                     alt="Mobile thumbnail"
-                                                    className="absolute top-[0.4rem]
-                                                        left-[50%] -translate-x-[50%]
+                                                    className="absolute top-[0.4rem] center-element
                                                         border-y-4 border-black rounded-lg"
                                                 />
                                             )}

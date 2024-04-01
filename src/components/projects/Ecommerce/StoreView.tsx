@@ -5,7 +5,9 @@ import useStore from './Store';
 import SectionHeader from './SectionHeader';
 import AddToCartButton from './AddToCartButton';
 import { useState } from 'react';
-import SearchInput from './SearchInput';
+import SearchInput from './components/SearchInput';
+import SortInput from './components/SortInput';
+import SecondaryButton from './ui/SecondaryButton';
 
 export default function StoreView() {
     const { storeItems, myBooks } = useStore();
@@ -43,33 +45,20 @@ export default function StoreView() {
     };
 
     return (
-        <section>
+        <section className="flex flex-col items-center md:items-start">
             <SectionHeader title="Programming books" />
-            <div className="flex items-center gap-x-4 mb-4">
-                <div>
-                    <label htmlFor="sortBy" className="font-bold mr-2">
-                        Sort by:
-                    </label>
-                    <select
-                        id="sortBy"
-                        className="px-4 py-2 rounded-md hover:cursor-pointer"
-                        value={selectedSortOrder}
-                        onChange={(e) => setSelectedSortOrder(e.target.value)}
-                    >
-                        <option value="relevance">Relevance</option>
-                        <option value="priceDesc">Price High to Low</option>
-                        <option value="priceAsc">Price Low to High</option>
-                        <option value="ratingDesc">Rating</option>
-                        <option value="newest">Newest</option>
-                    </select>
-                </div>
+            <div className="flex items-center flex-wrap gap-4 mb-4">
+                <SortInput
+                    selectedSortOrder={selectedSortOrder}
+                    setSelectedSortOrder={setSelectedSortOrder}
+                />
                 <SearchInput onSubmit={handleSubmit} />
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
                 {sortedItems.map((item) => (
                     <article
                         key={item.id}
-                        className="flex flex-col w-[300px] p-2 items-center border border-neutral-100"
+                        className="flex flex-col w-[18.75rem] p-4 items-center border border-neutral-200 rounded-lg"
                     >
                         {item.images[0] && (
                             <Link href={`/ecommerce/item/${item.id}`} className="mb-2">
@@ -93,16 +82,13 @@ export default function StoreView() {
                             <span className="font-bold">${item.price}</span>
                         </section>
 
-                        {ownedBooksIds.includes(item.id) ? (
-                            <Link
-                                href="/ecommerce/my-books"
-                                className="mt-auto bg-sky-900 rounded-xl px-4 py-2 text-white font-bold"
-                            >
-                                Owned
-                            </Link>
-                        ) : (
-                            <AddToCartButton item={item} />
-                        )}
+                        <section className="mt-auto">
+                            {ownedBooksIds.includes(item.id) ? (
+                                <SecondaryButton label="Owned" href="/ecommerce/my-books" />
+                            ) : (
+                                <AddToCartButton item={item} />
+                            )}
+                        </section>
                     </article>
                 ))}
             </div>

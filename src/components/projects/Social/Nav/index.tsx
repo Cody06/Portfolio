@@ -28,12 +28,12 @@ export default function Nav() {
         },
     ];
 
-    const centerElement = 'left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0';
     const commonStyle = `rounded-full px-4 py-1 space-x-3 ${iconHoverBg}`;
 
     return (
         <nav
-            className={`fixed z-10 top-16 ${centerElement} md:p-4 w-max h-max rounded-xl shadow-md bg-white p-3 whitespace-nowrap`}
+            className={`fixed z-10 top-16 center-element w-max h-max rounded-xl shadow-md bg-white p-3 whitespace-nowrap
+                md:p-4 md:left-auto md:translate-x-0`}
         >
             <ul className="flex flex-row md:flex-col gap-x-4 gap-y-2 font-medium">
                 {navLinks.map(({ id, icon, name, href }) => (

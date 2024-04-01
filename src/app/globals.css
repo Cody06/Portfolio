@@ -22,6 +22,11 @@ html {
     scroll-behavior: smooth; /* used when redirecting to an element */
 }
 
+.center-element {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .content-max-width {
     max-width: 87.5rem;
 }
@@ -240,9 +245,6 @@ button:focus-visible > .animate-squish {
 @keyframes dropdown_slide {
     from {
         top: -10rem;
-    }
-    to {
-        top: 4rem;
     }
 }
 

@@ -2,6 +2,11 @@
 import { useRouter } from 'next/navigation';
 import SectionHeader from '@/components/projects/Ecommerce/SectionHeader';
 import useStore from '@/components/projects/Ecommerce/Store';
+import PrimaryButton from '@/components/projects/Ecommerce/ui/PrimaryButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import { iconHoverBg } from '@/components/ui/tailwindStyles';
 
 export default function Page() {
     // For now, checkout will be a simple layout
@@ -16,15 +21,25 @@ export default function Page() {
         router.push('/ecommerce/my-books');
     };
 
+    const commonStyle = 'border border-neutral-200 rounded-lg p-4';
+
     return (
-        <main className="w-max mx-auto">
-            <SectionHeader title={`Checkout (${itemsNumber})`} />
-            <section className="flex flex-col gap-y-4 mb-4 border border-neutral-200 rounded-md p-4">
+        <main className="w-max mx-auto flex flex-col items-center gap-y-4">
+            <header className="flex items-center gap-x-4 w-full">
+                <Link href="/ecommerce/cart" className={`p-2 rounded-lg ${iconHoverBg}`}>
+                    <FontAwesomeIcon icon={faArrowLeft} size="xl" />
+                </Link>
+                <SectionHeader title={`Checkout (${itemsNumber})`} />
+            </header>
+            <section className={`flex flex-col gap-y-4 ${commonStyle}`}>
                 <h2 className="font-bold">Order Summary</h2>
                 <ul>
                     {cartItems.map((item, index) => (
-                        <li key={item.id} className="flex justify-between">
-                            <span className="mr-4">{`${index + 1}. ${item.title}`}</span>
+                        <li
+                            key={item.id}
+                            className="flex justify-between gap-x-4 w-[80vw] max-w-[45rem]"
+                        >
+                            <span>{`${index + 1}. ${item.title}`}</span>
                             <span>${item.price}</span>
                         </li>
                     ))}
@@ -32,20 +47,14 @@ export default function Page() {
                 <span className="font-bold">Order Total: ${totalPrice}</span>
             </section>
 
-            <section className="mb-4 border border-neutral-200 rounded-md p-4">
+            <section className={`w-full ${commonStyle}`}>
                 <h2 className="font-bold mb-4">Payment Details</h2>
                 <p>User: guest</p>
                 <section>
                     <h3>Payment method: Credit card</h3>
                 </section>
             </section>
-            <button
-                className="block mt-auto px-4 py-2 w-max mx-auto bg-amber-500 rounded-md font-medium
-                            hover:brightness-90 active:brightness-75"
-                onClick={handleCheckout}
-            >
-                Checkout
-            </button>
+            <PrimaryButton label="Checkout" onClick={handleCheckout} />
         </main>
     );
 }

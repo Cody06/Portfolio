@@ -68,7 +68,7 @@ export default function ImageSlider({ images }: Props) {
             >
                 <FontAwesomeIcon icon={faChevronRight} className="animate-squish" />
             </button>
-            <div className="absolute bottom-[0.5rem] left-[50%] -translate-x-[50%] flex gap-x-2">
+            <div className="absolute bottom-[0.5rem] center-element flex gap-x-2">
                 {images.map((_, index) => (
                     <button
                         key={_.url}

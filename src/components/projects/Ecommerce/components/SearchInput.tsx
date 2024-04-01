@@ -27,7 +27,8 @@ export default function SearchInput({ onSubmit }: Props) {
             />
             <button
                 type="submit"
-                className="mr-4 border-amber-500 rounded-r-lg bg-amber-500 px-4 py-2 text-white"
+                className="mr-4 border-amber-600 rounded-r-lg bg-amber-600 px-4 py-2 text-white
+                    hover:brightness-90"
             >
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
