@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <body>
+        <>
             <header className="fixed z-20 w-full bg-sky-600 shadow-md">
                 <div className="flex justify-between items-center max-w-[55rem] mx-auto p-2 text-white">
                     <Link href="/social" className={`text-xl font-bold ${hoverTextStyle}`}>
@@ -26,8 +26,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </header>
             <div className="max-w-[55rem] mx-auto p-4">
                 <Nav />
-                <div className="md:mt-16 mt-32 md:ml-[13rem]">{children}</div>
+                <div className="mt-16 md:ml-[13rem]">{children}</div>
             </div>
-        </body>
+        </>
     );
 }

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <body className="bg-sky-600">
+        <div className="bg-sky-600 fixed inset-0 overflow-auto">
             <nav className="flex justify-between mb-8 bg-sky-900 p-4 text-white">
                 <Link href="/workboard" className={`font-bold ${hoverTextStyle}`}>
                     Workboard
@@ -22,6 +22,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
             </nav>
             {children}
-        </body>
+        </div>
     );
 }
