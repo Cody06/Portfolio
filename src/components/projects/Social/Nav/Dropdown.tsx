@@ -15,8 +15,11 @@ export default function Dropdown({ style }: Props) {
     const ref = useOutsideClick(() => setIsOpen(false));
 
     const Dropdown = (
-        <div className={`absolute right-0 bg-white rounded-b-xl shadow-lg w-[8.125rem]`}>
-            <Link className={`rounded-b-xl block px-4 py-1 ${iconHoverBg}`} href="/">
+        <div
+            className={`absolute right-0 bottom-8 md:-bottom-8 bg-white rounded-xl shadow-md-top w-[8.125rem]
+                md:shadow-lg`}
+        >
+            <Link className={`rounded-xl block px-4 py-1 ${iconHoverBg}`} href="/">
                 Log out
             </Link>
         </div>
