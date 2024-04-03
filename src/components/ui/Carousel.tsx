@@ -66,7 +66,7 @@ export default function Carousel({ children }: Props) {
             >
                 <FontAwesomeIcon icon={faChevronRight} className="animate-squish" />
             </button>
-            <div className="absolute bottom-[0.5rem] center-element flex gap-x-2">
+            <div className="flex justify-center gap-x-2">
                 {children.map((_, index) => (
                     <button
                         key={_.title}
