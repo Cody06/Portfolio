@@ -41,7 +41,7 @@ export default function DeleteBoardModal({ boardId, boardTitle, isOpen, requestC
                     </label>
                     <input
                         id="titleInput"
-                        className="border border-neutral-800 rounded-lg p-2"
+                        className="border border-neutral-800 rounded-lg p-2 shadow-lg"
                         type="text"
                         value={titleInput}
                         onChange={(e) => setTitleInput(e.target.value)}
