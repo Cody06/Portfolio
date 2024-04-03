@@ -11,23 +11,19 @@ type Props = {
 export default function Nav({ showAnimation }: Props) {
     const buttonsList: Button[] = [
         {
-            id: 'projects-collection',
-            name: 'Projects',
+            label: 'Projects',
             onClick: () => document.getElementById('projects-collection')?.scrollIntoView(),
         },
         {
-            id: 'work-experience',
-            name: 'Experience',
+            label: 'Experience',
             onClick: () => document.getElementById('work-experience')?.scrollIntoView(),
         },
         {
-            id: 'certifications',
-            name: 'Certifications',
+            label: 'Certifications',
             onClick: () => document.getElementById('certifications')?.scrollIntoView(),
         },
         {
-            id: 'contact',
-            name: 'Contact',
+            label: 'Contact',
             onClick: () => document.getElementById('contact')?.scrollIntoView(),
         },
     ];

@@ -5,13 +5,13 @@ export default function MenuDesktop({ buttonsList }: { buttonsList: Button[] }) 
     return (
         <div className="hidden lg:block">
             <ul className="flex gap-x-10">
-                {buttonsList.map((button) => (
-                    <li key={button.id}>
+                {buttonsList.map(({ label, onClick }) => (
+                    <li key={label}>
                         <button
                             className={`text-white font-medium ${hoverTextStyle}`}
-                            onClick={button.onClick}
+                            onClick={onClick}
                         >
-                            {button.name}
+                            {label}
                         </button>
                     </li>
                 ))}

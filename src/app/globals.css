@@ -42,6 +42,13 @@ html {
         10;
 }
 
+.shadow-md-top {
+    /* similar values to tailwind shadow-md, v-offset is negative */
+    box-shadow:
+        0 -4px 6px -1px rgb(0 0 0 / 0.1),
+        0 -2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
 .animate-navbar {
     animation: move_top_to_position 1s;
 }

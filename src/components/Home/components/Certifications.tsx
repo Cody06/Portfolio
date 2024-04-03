@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import Link from 'next/link';
+import Card from './Card';
 
 export default function Certifications() {
     const certifications = [
@@ -69,32 +70,33 @@ export default function Certifications() {
             <SectionHeader title="Certifications" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 select-text">
                 {certifications.map((certificate) => (
-                    <Link
-                        key={certificate.id}
-                        href={certificate.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex flex-row gap-x-6 px-5 py-10 bg-white rounded-lg shadow-lg
-                            hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
-                    >
-                        <Image
-                            src={certificate.icon.src}
-                            className="mt-auto mb-auto"
-                            width={100}
-                            height={100}
-                            alt={certificate.icon.alt}
-                        />
+                    <Card key={certificate.id}>
+                        <Link
+                            href={certificate.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex flex-row gap-x-6"
+                            title="View certificate page"
+                        >
+                            <Image
+                                src={certificate.icon.src}
+                                className="mt-auto mb-auto"
+                                width={100}
+                                height={100}
+                                alt={certificate.icon.alt}
+                            />
 
-                        <div className="flex flex-col">
-                            <h3 className="font-bold">{certificate.title}</h3>
-                            <span>{certificate.issuer}</span>
-                            <span className="text-neutral-500">{certificate.date}</span>
-                            <span>
-                                <strong>Skills: </strong>
-                                {certificate.skills.join(' \u00B7 ')}
-                            </span>
-                        </div>
-                    </Link>
+                            <div className="flex flex-col">
+                                <h3 className="font-bold">{certificate.title}</h3>
+                                <span>{certificate.issuer}</span>
+                                <span className="text-neutral-500">{certificate.date}</span>
+                                <span>
+                                    <strong>Skills: </strong>
+                                    {certificate.skills.join(' \u00B7 ')}
+                                </span>
+                            </div>
+                        </Link>
+                    </Card>
                 ))}
             </div>
         </section>

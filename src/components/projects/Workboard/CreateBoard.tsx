@@ -25,6 +25,7 @@ export default function CreateBoard() {
                     maxLength={MAX_BOARD_TITLE_LENGTH}
                     name="title"
                     type="text"
+                    shadow
                     value={boardTitle}
                     onChange={(e) => setBoardTitle(e.target.value)}
                 />

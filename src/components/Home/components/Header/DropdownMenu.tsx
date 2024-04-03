@@ -27,16 +27,16 @@ export default function DropdownMenu({ buttonsList }: Props) {
                     text-center space-y-4 pb-6 bg-neutral-800 rounded-b-md shadow-lg
                     animate-dropdown"
         >
-            {buttonsList.map((button) => (
-                <li key={button.id}>
+            {buttonsList.map(({ label, onClick }) => (
+                <li key={label}>
                     <button
                         className="text-white font-medium"
                         onClick={() => {
-                            button.onClick();
+                            onClick();
                             setIsOpen(false);
                         }}
                     >
-                        {button.name}
+                        {label}
                     </button>
                 </li>
             ))}

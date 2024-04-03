@@ -29,7 +29,7 @@ export default function DropdownMenu({ buttonsList }: Props) {
 
     const DropdownList = (
         <ul
-            className="absolute z-10 top-[2rem] w-[80vw] center-element
+            className="absolute z-10 top-[3rem] w-[80vw] center-element
                     text-center space-y-4 pb-6 bg-sky-900 rounded-b-md shadow-lg
                     animate-dropdown"
         >

@@ -9,21 +9,18 @@ import { iconHoverBg } from '@/components/ui/tailwindStyles';
 export default function Nav() {
     const navLinks = [
         {
-            id: 'home',
+            label: 'Home',
             icon: <FontAwesomeIcon icon={faHouse} className="w-4" />,
-            name: 'Home',
             href: '/social',
         },
         {
-            id: 'profile',
+            label: 'Profile',
             icon: <FontAwesomeIcon icon={faUser} className="w-4" />,
-            name: 'Profile',
             href: `/social/profile/${loggedUserId}`,
         },
         {
-            id: 'following',
+            label: 'Following',
             icon: <FontAwesomeIcon icon={faUserGroup} className="w-4" />,
-            name: 'Following',
             href: '/social/following',
         },
     ];
@@ -32,15 +29,15 @@ export default function Nav() {
 
     return (
         <nav
-            className={`fixed z-10 top-16 center-element w-max h-max rounded-xl shadow-md bg-white p-3 whitespace-nowrap
-                md:p-4 md:left-auto md:translate-x-0`}
+            className={`fixed z-10 bottom-0 center-element w-full h-max shadow-md-top bg-white p-3 whitespace-nowrap
+                md:p-4 md:top-16 md:left-auto md:translate-x-0 md:w-max md:rounded-xl md:shadow-md`}
         >
-            <ul className="flex flex-row md:flex-col gap-x-4 gap-y-2 font-medium">
-                {navLinks.map(({ id, icon, name, href }) => (
-                    <li key={id}>
+            <ul className="flex flex-row md:flex-col gap-x-4 gap-y-2 justify-evenly font-medium">
+                {navLinks.map(({ icon, label, href }) => (
+                    <li key={label}>
                         <Link href={href} className={`block ${commonStyle}`}>
                             <span className="text-neutral-500">{icon}</span>
-                            <span className="hidden md:inline">{name}</span>
+                            <span className="hidden md:inline">{label}</span>
                         </Link>
                     </li>
                 ))}

@@ -36,6 +36,7 @@ export default function CreateColumnModal({ boardId, isOpen, requestClose }: Pro
                         maxLength={MAX_BOARD_TITLE_LENGTH}
                         name="title"
                         type="text"
+                        shadow
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />

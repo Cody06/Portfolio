@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { iconHoverBg } from '@/components/ui/tailwindStyles';
+import Input from '@/components/ui/Input';
+import { FormEvent } from 'react';
 
 export default function Page() {
     // For now, checkout will be a simple layout
@@ -16,7 +18,8 @@ export default function Page() {
         cartItems.length > 1 ? `${cartItems.length} items` : `${cartItems.length} item`;
     const totalPrice = cartItems?.reduce((accumulator, item) => accumulator + item.price, 0);
 
-    const handleCheckout = () => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         checkout();
         router.push('/ecommerce/my-books');
     };
@@ -47,14 +50,45 @@ export default function Page() {
                 <span className="font-bold">Order Total: ${totalPrice}</span>
             </section>
 
-            <section className={`w-full ${commonStyle}`}>
-                <h2 className="font-bold mb-4">Payment Details</h2>
-                <p>User: guest</p>
-                <section>
-                    <h3>Payment method: Credit card</h3>
-                </section>
-            </section>
-            <PrimaryButton label="Checkout" onClick={handleCheckout} />
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-y-4">
+                <div className={`w-full ${commonStyle}`}>
+                    <h2 className="font-bold mb-4">Payment Details</h2>
+                    <section>
+                        <h3 className="font-medium mb-4">Payment method: Credit card</h3>
+                        <Input
+                            id="card"
+                            label="Card number"
+                            disabled
+                            maxLength={16}
+                            name="card"
+                            type="number"
+                            value={1234567812345678}
+                            onChange={() => null}
+                        />
+                        <Input
+                            id="expiry"
+                            label="Expiry date"
+                            disabled
+                            maxLength={4}
+                            name="expiry"
+                            type="text"
+                            value="01/30"
+                            onChange={() => null}
+                        />
+                        <Input
+                            id="name"
+                            label="Name on card"
+                            disabled
+                            maxLength={50}
+                            name="name"
+                            type="text"
+                            value="guest"
+                            onChange={() => null}
+                        />
+                    </section>
+                </div>
+                <PrimaryButton label="Place your order" type="submit" />
+            </form>
         </main>
     );
 }

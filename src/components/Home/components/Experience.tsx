@@ -1,3 +1,4 @@
+import Card from './Card';
 import SectionHeader from './SectionHeader';
 
 export default function Experience() {
@@ -28,18 +29,14 @@ export default function Experience() {
 
             <div className="flex flex-col gap-y-10">
                 {experiences.map((experience) => (
-                    <div
-                        key={experience.id}
-                        className="px-5 py-10 bg-white rounded-lg shadow-lg
-                            hover:shadow-xl hover:scale-[1.01] ease-in duration-100"
-                    >
+                    <Card key={experience.id}>
                         <h3 className="flex justify-between font-bold">
                             {experience.position}
                             <span className="text-neutral-500">{experience.date}</span>
                         </h3>
                         <span>{experience.company}</span>
                         <p className="mt-4">{experience.description}</p>
-                    </div>
+                    </Card>
                 ))}
             </div>
         </section>
