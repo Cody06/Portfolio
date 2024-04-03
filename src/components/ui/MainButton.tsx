@@ -9,6 +9,7 @@ type Props = {
     disabled?: boolean;
     fullWidth?: boolean;
     href?: string;
+    loading?: boolean;
     rounded?: boolean;
     shadow?: boolean;
     size?: 'sm' | 'md';
@@ -23,6 +24,7 @@ export default function MainButton({
     disabled = false,
     fullWidth = false,
     href,
+    loading = false,
     rounded = false,
     shadow = false,
     size = 'md',
@@ -54,11 +56,13 @@ export default function MainButton({
         </Link>
     );
 
+    const isDisabled = disabled || loading;
+
     const DisabledBtn = (
-        <button className={`${baseStyle} opacity-50`} disabled={disabled}>
-            {label}
+        <button className={`${baseStyle} opacity-50`} disabled={isDisabled}>
+            {loading ? 'Loading...' : label}
         </button>
     );
 
-    return disabled ? DisabledBtn : href ? LinkElement : BtnElement;
+    return isDisabled ? DisabledBtn : href ? LinkElement : BtnElement;
 }
