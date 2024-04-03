@@ -8,6 +8,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { iconHoverBg } from '@/components/ui/tailwindStyles';
 import Input from '@/components/ui/Input';
+import { FormEvent } from 'react';
 
 export default function Page() {
     // For now, checkout will be a simple layout
@@ -17,7 +18,8 @@ export default function Page() {
         cartItems.length > 1 ? `${cartItems.length} items` : `${cartItems.length} item`;
     const totalPrice = cartItems?.reduce((accumulator, item) => accumulator + item.price, 0);
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         checkout();
         router.push('/ecommerce/my-books');
     };
