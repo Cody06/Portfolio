@@ -7,5 +7,4 @@ export type Book = {
     price: number;
     rating: number;
     images: string[];
-    inCart: boolean;
 };

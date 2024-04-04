@@ -22,7 +22,6 @@ const useStore = create<Store>()((set) => ({
                 if (storeItem.id === item.id) {
                     return {
                         ...storeItem,
-                        inCart: true,
                     };
                 } else {
                     return storeItem;
@@ -36,7 +35,6 @@ const useStore = create<Store>()((set) => ({
                 if (storeItem.id === id) {
                     return {
                         ...storeItem,
-                        inCart: false,
                     };
                 } else {
                     return storeItem;
@@ -50,7 +48,6 @@ const useStore = create<Store>()((set) => ({
             storeItems: state.storeItems.map((storeItem) => {
                 return {
                     ...storeItem,
-                    inCart: false,
                 };
             }),
         })),

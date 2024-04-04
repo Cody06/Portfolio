@@ -11,7 +11,6 @@ const books: Book[] = [
         price: 40.0,
         rating: 4.7,
         images: ['clean-code.jpg'],
-        inCart: false,
     },
     {
         id: '2',
@@ -22,7 +21,6 @@ const books: Book[] = [
         price: 40.0,
         rating: 4.7,
         images: ['pragmatic-programmer.jpg'],
-        inCart: false,
     },
     {
         id: '3',
@@ -33,7 +31,6 @@ const books: Book[] = [
         price: 15.0,
         rating: 4.6,
         images: ['debugging.jpg'],
-        inCart: false,
     },
     {
         id: '4',
@@ -44,7 +41,6 @@ const books: Book[] = [
         price: 20.0,
         rating: 4.7,
         images: ['html-and-css.jpg'],
-        inCart: false,
     },
     {
         id: '5',
@@ -55,7 +51,6 @@ const books: Book[] = [
         price: 35.0,
         rating: 4.5,
         images: ['responsive-web-design.jpg'],
-        inCart: false,
     },
     {
         id: '6',
@@ -66,7 +61,6 @@ const books: Book[] = [
         price: 40.0,
         rating: 4.6,
         images: ['css-the-definitive-guide.jpg'],
-        inCart: false,
     },
 ];
 
