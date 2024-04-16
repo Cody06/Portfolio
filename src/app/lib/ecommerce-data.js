@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 export async function fetchBooks() {
     // Add noStore() here to prevent the response from being cached.
     // This is equivalent to in fetch(..., {cache: 'no-store'}).
+    // This makes the fetching dynamic
     noStore();
 
     try {

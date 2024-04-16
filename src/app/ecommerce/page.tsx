@@ -1,9 +1,11 @@
 import StoreView from '@/components/projects/Ecommerce/StoreView';
+import { fetchBooks } from '../lib/ecommerce-data';
 
-export default function Page() {
+export default async function Page() {
+    const books = await fetchBooks();
     return (
         <main>
-            <StoreView />
+            <StoreView items={books} />
         </main>
     );
 }
