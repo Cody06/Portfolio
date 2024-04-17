@@ -13,6 +13,7 @@ const users = [
 
 const books = [
     {
+        id: 1,
         title: 'Clean Code: A Handbook of Agile Software Craftmanship',
         author: 'Robert Martin',
         edition: '1st',
@@ -22,6 +23,7 @@ const books = [
         image: 'clean-code.jpg',
     },
     {
+        id: 2,
         title: 'Pragmatic Programmer: Your journey to mastery',
         author: 'David Thomas',
         edition: '2nd',
@@ -31,6 +33,7 @@ const books = [
         image: 'pragmatic-programmer.jpg',
     },
     {
+        id: 3,
         title: 'Debugging: The 9 Indispensable Rules for Finding Even the Most Elusive Software and Hardware Problems',
         author: 'David J. Agans',
         edition: 'Illustrated',
@@ -40,6 +43,7 @@ const books = [
         image: 'debugging.jpg',
     },
     {
+        id: 4,
         title: 'HTML and CSS: Design and Build Websites',
         author: 'Jon Duckett',
         edition: '1st',
@@ -49,6 +53,7 @@ const books = [
         image: 'html-and-css.jpg',
     },
     {
+        id: 5,
         title: 'Responsive Web Design with HTML5 and CSS: Develop future-proof responsive websites using the latest HTML5 and CSS techniques',
         author: 'Ben Frain',
         edition: '4th',
@@ -58,6 +63,7 @@ const books = [
         image: 'responsive-web-design.jpg',
     },
     {
+        id: 6,
         title: 'CSS: The Definitive Guide: Visual Presentation for the Web',
         author: 'Eric Meyer, Estelle Weyl',
         edition: '3rd',
