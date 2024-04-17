@@ -37,7 +37,7 @@ export default function Carousel({ children }: Props) {
         ease-in-out duration-200`;
 
     return (
-        <section aria-label="Carousel" className="relative max-w-max max-h-full text-neutral-800">
+        <section aria-label="Carousel" className="relative max-h-full text-neutral-800">
             <div className="flex w-full h-full overflow-hidden">
                 {children.map(({ item, title }) => (
                     <div
