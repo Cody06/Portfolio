@@ -84,6 +84,10 @@ export default function Certifications() {
                                 width={100}
                                 height={100}
                                 alt={certificate.icon.alt}
+                                style={{
+                                    width: 100,
+                                    height: 100,
+                                }}
                             />
 
                             <div className="flex flex-col">
