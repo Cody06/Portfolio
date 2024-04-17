@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormEvent, useState } from 'react';
 
 type Props = {
+    defaultValue?: string;
     onSubmit: (input: string) => void;
 };
 
-export default function SearchInput({ onSubmit }: Props) {
-    const [searchInput, setSearchInput] = useState('');
+export default function SearchInput({ defaultValue, onSubmit }: Props) {
+    const [searchInput, setSearchInput] = useState(defaultValue ?? '');
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,8 +20,7 @@ export default function SearchInput({ onSubmit }: Props) {
             <input
                 type="text"
                 placeholder="Search here"
-                minLength={1}
-                maxLength={50}
+                maxLength={20}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 className="border-y border-l border-neutral-400 rounded-l-lg pl-2"
