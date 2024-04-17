@@ -34,7 +34,7 @@ export default function Projects({ showAnimation }: Props) {
             tools: ['React', 'TypeScript'],
             description: `This is an e-commerce platform where users can filter and sort books. A checkout flow is also implemented.`,
             href: '/ecommerce',
-            thumbnails: ['ecommerce.png', 'commerce-mobile.png'],
+            thumbnails: ['ecommerce.png', 'ecommerce-mobile.png'],
         },
     ];
 
@@ -68,11 +68,11 @@ export default function Projects({ showAnimation }: Props) {
                                                             src={`/assets/thumbnails/${project.thumbnails[0]}`}
                                                             width={520}
                                                             height={300}
+                                                            priority
                                                             alt="Desktop thumbnail"
                                                             className="rounded-t-xl"
                                                             style={{
                                                                 width: '100%',
-                                                                height: '100%',
                                                             }}
                                                         />
                                                     </div>
@@ -80,27 +80,36 @@ export default function Projects({ showAnimation }: Props) {
                                             ),
                                             title: `${project.name}-desktop`,
                                         },
-                                        // {
-                                        //     item: (
-                                        //         <div className="relative max-w-max max-h-[300px] m-auto">
-                                        //             <Image
-                                        //                 src={'/assets/phone.png'}
-                                        //                 width={150}
-                                        //                 height={300}
-                                        //                 alt="Phone image"
-                                        //             />
-                                        //             <Image
-                                        //                 src={`/assets/thumbnails/${project.thumbnails[1]}`}
-                                        //                 width={140}
-                                        //                 height={290}
-                                        //                 alt="Mobile thumbnail"
-                                        //                 className="absolute top-[0.4rem] center-element
-                                        //                     border-y-4 border-black rounded-lg"
-                                        //             />
-                                        //         </div>
-                                        //     ),
-                                        //     title: `${project.name}-mobile`,
-                                        // },
+                                        {
+                                            item: (
+                                                <div className="relative max-w-max mx-auto">
+                                                    <Image
+                                                        src={'/assets/phone.png'}
+                                                        width={200}
+                                                        height={415}
+                                                        alt="Generic phone"
+                                                        style={{
+                                                            width: '70%',
+                                                            marginLeft: 'auto',
+                                                            marginRight: 'auto',
+                                                        }}
+                                                    />
+                                                    <div className="absolute top-[0.4rem] px-[17.4%]">
+                                                        <Image
+                                                            src={`/assets/thumbnails/${project.thumbnails[1]}`}
+                                                            width={200}
+                                                            height={415}
+                                                            alt="Mobile thumbnail"
+                                                            style={{
+                                                                width: '100%',
+                                                            }}
+                                                            className="rounded-xl"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ),
+                                            title: `${project.name}-mobile`,
+                                        },
                                     ]}
                                 </Carousel>
                             </section>
