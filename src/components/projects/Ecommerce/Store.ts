@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { Book } from './types';
-import books from './books';
+import { Book } from '@/app/lib/types';
+import { books } from '@/app/lib/placeholder-data';
 
 type Store = {
     cartItems: Book[];
@@ -8,7 +8,7 @@ type Store = {
     storeItems: Book[];
     addToCart: (item: Book) => void;
     checkout: () => void;
-    removeFromCart: (id: string) => void;
+    removeFromCart: (id: number) => void;
 };
 
 const useStore = create<Store>()((set) => ({
