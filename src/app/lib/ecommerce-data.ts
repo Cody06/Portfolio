@@ -10,9 +10,6 @@ export async function fetchBooks() {
 
     try {
         console.log('Fetching books data...');
-        // Artificial delay for demo purposes (TODO:Don't do in production)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
         const data = await sql<Book>`SELECT * FROM books`;
         console.log('Data fetch completed');
 
