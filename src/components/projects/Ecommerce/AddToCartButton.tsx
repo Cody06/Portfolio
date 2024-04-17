@@ -1,4 +1,4 @@
-import { Book } from './types';
+import { Book } from '@/app/lib/types';
 import useStore from './Store';
 import PrimaryButton from './ui/PrimaryButton';
 

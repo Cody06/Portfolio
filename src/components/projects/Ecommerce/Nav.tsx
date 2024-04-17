@@ -3,8 +3,8 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useStore from './Store';
-import { Book } from './types';
 import DropdownMenu from './DropdownMenu';
+import { Book } from '@/app/lib/types';
 
 const commonStyle = 'border border-transparent rounded-lg p-2 hover:border-white';
 

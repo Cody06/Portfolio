@@ -3,7 +3,6 @@ import SectionHeader from '@/components/projects/Ecommerce/SectionHeader';
 import useStore from '@/components/projects/Ecommerce/Store';
 import SecondaryButton from '@/components/projects/Ecommerce/ui/SecondaryButton';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Page() {
     const { myBooks } = useStore();
@@ -19,7 +18,7 @@ export default function Page() {
                                 border border-neutral-200 rounded-lg p-4"
                         >
                             <Image
-                                src={`/assets/books/${book.images[0]}`}
+                                src={`/assets/books/${book.image}`}
                                 width={200}
                                 height={300}
                                 alt={`Cover ${book.title}`}

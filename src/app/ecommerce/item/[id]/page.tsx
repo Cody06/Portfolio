@@ -8,7 +8,7 @@ import { faCalendarDays, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 export default function Page({ params }: { params: { id: string } }) {
     const { storeItems, myBooks } = useStore();
-    const book = storeItems.filter((item) => item.id === params.id)[0];
+    const book = storeItems.filter((item) => item.id === Number(params.id))[0];
     const ownedBooksIds = myBooks.map((myBook) => myBook.id);
     return (
         <main className="mt-4 flex flex-col gap-y-4">
@@ -21,7 +21,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 <span className="font-bold">${book.price}</span>
             </section>
             <Image
-                src={`/assets/books/${book.images[0]}`}
+                src={`/assets/books/${book.image}`}
                 width={200}
                 height={300}
                 alt="Book cover image"
@@ -39,7 +39,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 <div className="flex flex-col gap-y-1 w-max items-center">
                     Publication date
                     <FontAwesomeIcon icon={faCalendarDays} className="text-neutral-500" />
-                    <span className="font-bold">{book.publicationDate}</span>
+                    <span className="font-bold">{book.publicationYear}</span>
                 </div>
             </section>
             {ownedBooksIds.includes(book.id) ? (
