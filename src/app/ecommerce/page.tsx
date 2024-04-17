@@ -1,8 +1,16 @@
 import StoreView from '@/components/projects/Ecommerce/StoreView';
-import { fetchBooks } from '../lib/ecommerce-data';
+import { fetchBooks, fetchFilteredBooks } from '../lib/ecommerce-data';
+import { Book } from '../lib/types';
+export default async function Page({ searchParams }: { searchParams?: { query?: string } }) {
+    let books: Book[] = [];
+    const query = searchParams?.query ?? '';
 
-export default async function Page() {
-    const books = await fetchBooks();
+    if (query) {
+        books = await fetchFilteredBooks(query);
+    } else {
+        books = await fetchBooks();
+    }
+
     return (
         <main>
             <StoreView items={books} />
