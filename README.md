@@ -10,16 +10,16 @@ I am passionate about technology and building cool apps. With a diverse career, 
 
 ## Portfolio Projects
 
-### Project 1: Project Manager App
+### Project 1: Project Management Tool
 
--   Description: A task manager app where users can create project boards and tasks can be organized and moved throughout desired lists.
+-   Description: A project management tool where users can create project boards and each board has one or more list of tasks. Tasks can be added, edited, deleted and moved throughout lists.
 -   Focus: Create, edit, delete and move components in an app
 -   Technologies: React.js, TypeScript, HTML5, Tailwind CSS
 -   Demo: [Workboard Demo](https://www.codymiu.com/workboard)
 
 ### Project 2: E-Commerce Website
 
--   Description: An e-commerce website where users can search, filter and sort books they would like to purchase.
+-   Description: An e-commerce website where users can browse, search and filter books they would like to purchase.
 -   Focus: Search, sorting and filtering
 -   Technologies: React.js, TypeScript, HTML5, Tailwind CSS
 -   Demo: [E-Commerce Demo](https://www.codymiu.com/ecommerce)
