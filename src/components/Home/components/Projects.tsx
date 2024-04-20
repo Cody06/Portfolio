@@ -14,27 +14,27 @@ export default function Projects({ showAnimation }: Props) {
             id: 1,
             name: 'Workboard',
             tools: ['React', 'TypeScript'],
-            description: `Workboard is a project managing application. Users can create project boards with different columns
+            description: `Workboard is a project management tool. Users can create project boards with different lists
                 and move their tasks between them.`,
             href: '/workboard',
             thumbnails: ['workboard.png', 'workboard-mobile.png'],
         },
         {
             id: 2,
+            name: 'E-Commerce',
+            tools: ['React', 'TypeScript'],
+            description: `This is an e-commerce website where users can browse, search and filter books. A checkout flow is also implemented.`,
+            href: '/ecommerce',
+            thumbnails: ['ecommerce.png', 'ecommerce-mobile.png'],
+        },
+        {
+            id: 3,
             name: 'Social Networking',
             tools: ['React', 'TypeScript'],
             description: `This platform allows users to create posts and follow other users. An implementation of the "like"
                 button is also present.`,
             href: '/social',
             thumbnails: ['social.png', 'social-mobile.png'],
-        },
-        {
-            id: 3,
-            name: 'E-Commerce',
-            tools: ['React', 'TypeScript'],
-            description: `This is an e-commerce platform where users can filter and sort books. A checkout flow is also implemented.`,
-            href: '/ecommerce',
-            thumbnails: ['ecommerce.png', 'ecommerce-mobile.png'],
         },
     ];
 
