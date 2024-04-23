@@ -4,26 +4,26 @@ import useStore from '../../Store';
 
 type Props = {
     boardId: string;
-    colId: string;
+    listId: string;
     card: CardData;
 };
 
-export default function Card({ boardId, colId, card }: Props) {
+export default function Card({ boardId, listId, card }: Props) {
     const [text, setText] = useState(card.text);
     const [isDragging, setIsDragging] = useState(false);
-    const { columnToDropCard, appendCard, deleteCard, editCard, insertCardBeforeAnother } =
+    const { listToDropCard, appendCard, deleteCard, editCard, insertCardBeforeAnother } =
         useStore();
 
     const handleClickOutside = () => {
         if (text.length === 0) {
-            deleteCard(boardId, colId, card.id);
+            deleteCard(boardId, listId, card.id);
         } else {
-            editCard(boardId, colId, card.id, text);
+            editCard(boardId, listId, card.id, text);
         }
     };
 
     const handleDrop = (dropCard: CardData) => {
-        if (columnToDropCard.nextCardId) {
+        if (listToDropCard.nextCardId) {
             insertCardBeforeAnother(boardId, dropCard);
         } else {
             appendCard(boardId, dropCard);
