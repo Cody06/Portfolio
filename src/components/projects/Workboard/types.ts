@@ -3,19 +3,19 @@ export type CardData = {
     text: string;
 };
 
-export type ColumnData = {
+export type ListData = {
     id: string;
     title: string;
     cards: CardData[];
 };
 
-export type ColToDelete = {
+export type ListToDelete = {
     id: string;
     text: string;
 };
 
-export type ColumnToDropCard = {
-    newColId: string | null;
+export type ListToDropCard = {
+    newListId: string | null;
     nextCardId: string | null;
 };
 
@@ -23,5 +23,5 @@ export type Board = {
     id: string;
     title: string;
     creationDate: string;
-    columns: ColumnData[];
+    lists: ListData[];
 };
