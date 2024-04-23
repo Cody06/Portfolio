@@ -5,11 +5,11 @@ import CancelButton from '../../ui/CancelButton';
 
 type Props = {
     boardId: string;
-    columnId: string;
+    listId: string;
     setShowCreateCard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function NewCardInput({ boardId, columnId, setShowCreateCard }: Props) {
+export default function NewCardInput({ boardId, listId, setShowCreateCard }: Props) {
     const [text, setText] = useState('');
     const { createCard } = useStore();
 
@@ -33,7 +33,7 @@ export default function NewCardInput({ boardId, columnId, setShowCreateCard }: P
                     label="Save"
                     disabled={!text}
                     onClick={() => {
-                        createCard(boardId, columnId, text);
+                        createCard(boardId, listId, text);
                         clearAndCloseTextInput();
                     }}
                 />
