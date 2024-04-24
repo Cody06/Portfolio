@@ -11,7 +11,7 @@ export type ListData = {
 
 export type ListToDelete = {
     id: string;
-    text: string;
+    title: string;
 };
 
 export type ListToDropCard = {

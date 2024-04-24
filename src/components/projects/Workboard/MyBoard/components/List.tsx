@@ -28,7 +28,7 @@ export default function List({ boardId, list, setListToDelete, setIsDeleteListMo
         {
             label: 'Delete list',
             onClick: () => {
-                setListToDelete({ id: list.id, text: list.title });
+                setListToDelete({ id: list.id, title: list.title });
                 setIsDeleteListModalOpen(true);
             },
         },
