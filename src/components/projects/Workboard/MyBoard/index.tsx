@@ -2,10 +2,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
-import Column from './components/Column';
-import CreateColumnModal from '../modals/CreateColumnModal';
-import DeleteColumnModal from '../modals/DeleteColumnModal';
-import { ColToDelete } from '../types';
+import List from './components/List';
+import CreateListModal from '../modals/CreateListModal';
+import DeleteListModal from '../modals/DeleteListModal';
+import { ListToDelete } from '../types';
 import useStore from '../Store';
 import Link from 'next/link';
 import Dropdown from './components/Dropdown';
@@ -20,11 +20,11 @@ type Props = {
 };
 
 export default function MyBoard({ boardId }: Props) {
-    const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] = useState(false);
+    const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
     const [isDeleteBoardModalOpen, setIsDeleteBoardModalOpen] = useState(false);
-    const [isDeleteColumnModalOpen, setIsDeleteColumnModalOpen] = useState(false);
+    const [isDeleteListModalOpen, setIsDeleteListModalOpen] = useState(false);
     const [isEditingTitle, setIsEditingTitle] = useState(false);
-    const [colToDelete, setColToDelete] = useState<ColToDelete>();
+    const [listToDelete, setListToDelete] = useState<ListToDelete>();
     const { boards } = useStore();
     useRetrieveBoards();
 
@@ -64,28 +64,28 @@ export default function MyBoard({ boardId }: Props) {
             </header>
             <main className=" p-4">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-x-2 gap-y-6 flex-wrap">
-                    {selectedBoard?.columns.map((column) => (
-                        <Column
-                            key={column.id}
+                    {selectedBoard?.lists.map((list) => (
+                        <List
+                            key={list.id}
                             boardId={boardId}
-                            column={column}
-                            setColToDelete={setColToDelete}
-                            setIsDeleteColumnModalOpen={setIsDeleteColumnModalOpen}
+                            list={list}
+                            setListToDelete={setListToDelete}
+                            setIsDeleteListModalOpen={setIsDeleteListModalOpen}
                         />
                     ))}
                     <button
                         className={`text-white font-medium min-w-[18.75rem] h-[5rem] border border-dashed rounded-lg
                             hover:bg-sky-900 hover:border-solid ${transitionTiming}`}
-                        onClick={() => setIsCreateColumnModalOpen(true)}
+                        onClick={() => setIsCreateListModalOpen(true)}
                     >
-                        + Add column
+                        + Add list
                     </button>
                 </div>
             </main>
-            <CreateColumnModal
+            <CreateListModal
                 boardId={boardId}
-                isOpen={isCreateColumnModalOpen}
-                requestClose={() => setIsCreateColumnModalOpen(false)}
+                isOpen={isCreateListModalOpen}
+                requestClose={() => setIsCreateListModalOpen(false)}
             />
             <DeleteBoardModal
                 boardId={boardId}
@@ -93,11 +93,11 @@ export default function MyBoard({ boardId }: Props) {
                 isOpen={isDeleteBoardModalOpen}
                 requestClose={() => setIsDeleteBoardModalOpen(false)}
             />
-            <DeleteColumnModal
+            <DeleteListModal
                 boardId={boardId}
-                col={colToDelete}
-                isOpen={isDeleteColumnModalOpen}
-                requestClose={() => setIsDeleteColumnModalOpen(false)}
+                list={listToDelete}
+                isOpen={isDeleteListModalOpen}
+                requestClose={() => setIsDeleteListModalOpen(false)}
             />
         </>
     );

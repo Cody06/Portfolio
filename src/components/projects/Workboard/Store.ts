@@ -1,20 +1,20 @@
 import { create } from 'zustand';
-import { Board, CardData, ColumnToDropCard } from './types';
+import { Board, CardData, ListToDropCard } from './types';
 import getUniqueId from '@/utils/getUniqueId';
 
 type Store = {
     boards: Board[];
-    columnToDropCard: ColumnToDropCard;
+    listToDropCard: ListToDropCard;
     createBoard: (title: string) => void;
-    createCard: (boardId: string, colId: string, text: string) => void;
-    createColumn: (boardId: string, title: string) => void;
+    createCard: (boardId: string, listId: string, text: string) => void;
+    createList: (boardId: string, title: string) => void;
     deleteBoard: (boardId: string) => void;
-    deleteCard: (boardId: string, colId: string, cardId: string) => void;
-    deleteColumn: (boardId: string, colId: string) => void;
+    deleteCard: (boardId: string, listId: string, cardId: string) => void;
+    deleteList: (boardId: string, listId: string) => void;
     editBoard: (boardId: string, title: string) => void;
-    editCard: (boardId: string, colId: string, cardId: string, title: string) => void;
-    editColumn: (boardId: string, colId: string, title: string) => void;
-    setColumnToDropCard: (colToDrop: ColumnToDropCard) => void;
+    editCard: (boardId: string, listId: string, cardId: string, title: string) => void;
+    editList: (boardId: string, listId: string, title: string) => void;
+    setListToDropCard: (listToDrop: ListToDropCard) => void;
     appendCard: (boardId: string, dropCard: CardData) => void;
     insertCardBeforeAnother: (boardId: string, dropCard: CardData) => void;
     setBoards: (boards: Board[]) => void;
@@ -33,8 +33,8 @@ function saveBoards(updatedBoards: Board[]) {
 
 const useStore = create<Store>()((set) => ({
     boards: [],
-    columnToDropCard: {
-        newColId: null,
+    listToDropCard: {
+        newListId: null,
         nextCardId: null,
     },
     createBoard: (title) =>
@@ -45,7 +45,7 @@ const useStore = create<Store>()((set) => ({
                     id: Date.now().toString(),
                     title: title,
                     creationDate: new Date().toDateString(),
-                    columns: [],
+                    lists: [],
                 },
             ];
             return saveBoards(updatedBoards);
@@ -69,18 +69,18 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    createColumn: (boardId, title) =>
+    createList: (boardId, title) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
-                    const newColumn = {
-                        id: `col-${getUniqueId(title)}`,
+                    const newList = {
+                        id: `list-${getUniqueId(title)}`,
                         title: title,
                         cards: [],
                     };
                     return {
                         ...board,
-                        columns: [...board.columns, newColumn],
+                        lists: [...board.lists, newList],
                     };
                 } else {
                     return board;
@@ -88,13 +88,13 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    deleteColumn: (boardId, colId) =>
+    deleteList: (boardId, listId) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns.filter((col) => col.id !== colId),
+                        lists: board.lists.filter((list) => list.id !== listId),
                     };
                 } else {
                     return board;
@@ -102,20 +102,20 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    editColumn: (boardId, colId, title) =>
+    editList: (boardId, listId, title) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns.map((col) => {
-                            if (col.id === colId) {
+                        lists: board.lists.map((list) => {
+                            if (list.id === listId) {
                                 return {
-                                    ...col,
+                                    ...list,
                                     title: title,
                                 };
                             } else {
-                                return col;
+                                return list;
                             }
                         }),
                     };
@@ -125,24 +125,24 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    createCard: (boardId, colId, text) =>
+    createCard: (boardId, listId, text) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns.map((col) => {
-                            if (col.id === colId) {
+                        lists: board.lists.map((list) => {
+                            if (list.id === listId) {
                                 const newCard = {
                                     id: `card-${getUniqueId(text)}`,
                                     text: text,
                                 };
                                 return {
-                                    ...col,
-                                    cards: [...col.cards, newCard],
+                                    ...list,
+                                    cards: [...list.cards, newCard],
                                 };
                             } else {
-                                return col;
+                                return list;
                             }
                         }),
                     };
@@ -152,17 +152,17 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    editCard: (boardId, colId, cardId, text) =>
+    editCard: (boardId, listId, cardId, text) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns.map((col) => {
-                            if (col.id === colId) {
+                        lists: board.lists.map((list) => {
+                            if (list.id === listId) {
                                 return {
-                                    ...col,
-                                    cards: col.cards.map((card) => {
+                                    ...list,
+                                    cards: list.cards.map((card) => {
                                         if (card.id === cardId) {
                                             return {
                                                 ...card,
@@ -174,7 +174,7 @@ const useStore = create<Store>()((set) => ({
                                     }),
                                 };
                             } else {
-                                return col;
+                                return list;
                             }
                         }),
                     };
@@ -184,20 +184,20 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    deleteCard: (boardId, colId, cardId) =>
+    deleteCard: (boardId, listId, cardId) =>
         set((state) => {
             const updatedBoards = state.boards.map((board) => {
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns.map((col) => {
-                            if (col.id === colId) {
+                        lists: board.lists.map((list) => {
+                            if (list.id === listId) {
                                 return {
-                                    ...col,
-                                    cards: col.cards.filter((card) => card.id !== cardId),
+                                    ...list,
+                                    cards: list.cards.filter((card) => card.id !== cardId),
                                 };
                             } else {
-                                return col;
+                                return list;
                             }
                         }),
                     };
@@ -207,9 +207,9 @@ const useStore = create<Store>()((set) => ({
             });
             return saveBoards(updatedBoards);
         }),
-    setColumnToDropCard: (colToDrop) =>
+    setListToDropCard: (listToDrop) =>
         set(() => ({
-            columnToDropCard: colToDrop,
+            listToDropCard: listToDrop,
         })),
     appendCard: (boardId, dropCard) =>
         set((state) => {
@@ -217,21 +217,21 @@ const useStore = create<Store>()((set) => ({
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns
-                            .map((oldCol) => {
+                        lists: board.lists
+                            .map((oldList) => {
                                 return {
-                                    ...oldCol,
-                                    cards: oldCol.cards.filter((card) => card.id !== dropCard.id),
+                                    ...oldList,
+                                    cards: oldList.cards.filter((card) => card.id !== dropCard.id),
                                 };
                             })
-                            .map((newCol) => {
-                                if (newCol.id === state.columnToDropCard.newColId) {
+                            .map((newList) => {
+                                if (newList.id === state.listToDropCard.newListId) {
                                     return {
-                                        ...newCol,
-                                        cards: [...newCol.cards, dropCard],
+                                        ...newList,
+                                        cards: [...newList.cards, dropCard],
                                     };
                                 } else {
-                                    return newCol;
+                                    return newList;
                                 }
                             }),
                     };
@@ -247,25 +247,25 @@ const useStore = create<Store>()((set) => ({
                 if (board.id === boardId) {
                     return {
                         ...board,
-                        columns: board.columns
-                            .map((oldCol) => {
+                        lists: board.lists
+                            .map((oldList) => {
                                 return {
-                                    ...oldCol,
-                                    cards: oldCol.cards.filter((card) => card.id !== dropCard.id),
+                                    ...oldList,
+                                    cards: oldList.cards.filter((card) => card.id !== dropCard.id),
                                 };
                             })
-                            .map((newCol) => {
-                                if (newCol.id === state.columnToDropCard.newColId) {
-                                    const nextCardIndex = newCol.cards.findIndex(
-                                        (card) => card.id === state.columnToDropCard.nextCardId,
+                            .map((newList) => {
+                                if (newList.id === state.listToDropCard.newListId) {
+                                    const nextCardIndex = newList.cards.findIndex(
+                                        (card) => card.id === state.listToDropCard.nextCardId,
                                     );
 
                                     return {
-                                        ...newCol,
-                                        cards: newCol.cards.toSpliced(nextCardIndex, 0, dropCard),
+                                        ...newList,
+                                        cards: newList.cards.toSpliced(nextCardIndex, 0, dropCard),
                                     };
                                 } else {
-                                    return newCol;
+                                    return newList;
                                 }
                             }),
                     };

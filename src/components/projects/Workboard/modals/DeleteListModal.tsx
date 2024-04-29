@@ -1,4 +1,4 @@
-import { ColToDelete } from '../types';
+import { ListToDelete } from '../types';
 import Modal from '@/components/ui/Modal';
 import ModalBody from '@/components/ui/Modal/ModalBody';
 import useStore from '../Store';
@@ -8,27 +8,27 @@ import DeleteButton from '../ui/DeleteButton';
 type Props = {
     boardId: string;
     isOpen: boolean;
-    col?: ColToDelete;
+    list?: ListToDelete;
     requestClose: () => void;
 };
 
-export default function DeleteColumnModal({ boardId, isOpen, col, requestClose }: Props) {
-    const { deleteColumn } = useStore();
-    if (!col) return;
+export default function DeleteListModal({ boardId, isOpen, list, requestClose }: Props) {
+    const { deleteList } = useStore();
+    if (!list) return;
 
     return (
-        <Modal isOpen={isOpen} title="Delete column" requestClose={requestClose}>
+        <Modal isOpen={isOpen} title="Delete list" requestClose={requestClose}>
             <ModalBody>
                 <h1 className="mb-5">
-                    Are you sure you want to delete column: <br />
-                    <strong>{col.text}</strong>
+                    Are you sure you want to delete list: <br />
+                    <strong>{list.title}</strong>
                 </h1>
                 <div className="flex gap-x-4">
                     <CancelButton onClick={requestClose} />
                     <DeleteButton
-                        label="Delete column"
+                        label="Delete list"
                         onClick={() => {
-                            deleteColumn(boardId, col.id);
+                            deleteList(boardId, list.id);
                             requestClose();
                         }}
                     />

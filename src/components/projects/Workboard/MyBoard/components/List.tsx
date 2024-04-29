@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ColumnData, ColToDelete } from '../../types';
+import { ListData, ListToDelete } from '../../types';
 import Card from './Card';
 import Dropdown from './Dropdown';
 import NewCardInput from './NewCardInput';
@@ -8,51 +8,46 @@ import { baseIconStyle } from '../../ui/tailwindStyles';
 
 type Props = {
     boardId: string;
-    column: ColumnData;
-    setColToDelete: React.Dispatch<React.SetStateAction<ColToDelete | undefined>>;
-    setIsDeleteColumnModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    list: ListData;
+    setListToDelete: React.Dispatch<React.SetStateAction<ListToDelete | undefined>>;
+    setIsDeleteListModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Column({
-    boardId,
-    column,
-    setColToDelete,
-    setIsDeleteColumnModalOpen,
-}: Props) {
-    const [colTitle, setColTitle] = useState(column.title);
+export default function List({ boardId, list, setListToDelete, setIsDeleteListModalOpen }: Props) {
+    const [listTitle, setListTitle] = useState(list.title);
     const [showCreateCard, setShowCreateCard] = useState(false);
-    const [showEditCol, setShowEditCol] = useState(false);
+    const [showEditList, setShowEditList] = useState(false);
     const [container, setContainer] = useState<Element | null>();
-    const { editColumn, setColumnToDropCard } = useStore();
+    const { editList, setListToDropCard } = useStore();
 
-    const colExtraButtons = [
+    const listExtraButtons = [
         {
-            label: 'Edit column',
-            onClick: () => setShowEditCol(true),
+            label: 'Edit list',
+            onClick: () => setShowEditList(true),
         },
         {
-            label: 'Delete column',
+            label: 'Delete list',
             onClick: () => {
-                setColToDelete({ id: column.id, text: column.title });
-                setIsDeleteColumnModalOpen(true);
+                setListToDelete({ id: list.id, title: list.title });
+                setIsDeleteListModalOpen(true);
             },
         },
     ];
 
     const handleClickOutside = () => {
-        editColumn(boardId, column.id, colTitle);
-        setShowEditCol(false);
+        editList(boardId, list.id, listTitle);
+        setShowEditList(false);
     };
 
     useEffect(() => {
-        setContainer(document.querySelector(`#${column.id}`));
+        setContainer(document.querySelector(`#${list.id}`));
     }, []);
 
     const handleDragOver = (ev: any) => {
         if (!container) return;
         ev.preventDefault();
         const nextCard = getDragAfterElement(container, ev.clientY);
-        setColumnToDropCard({ newColId: column.id, nextCardId: nextCard?.id });
+        setListToDropCard({ newListId: list.id, nextCardId: nextCard?.id });
     };
 
     const getDragAfterElement = (container: any, mousePosY: number) => {
@@ -80,20 +75,20 @@ export default function Column({
     return (
         <article className="bg-neutral-100 w-[18.75rem] rounded-xl">
             <section className="flex justify-between px-3 py-2 bg-neutral-100 brightness-95 rounded-t-xl">
-                {showEditCol ? (
+                {showEditList ? (
                     <input
                         autoFocus
                         className="bg-white w-full p-1"
                         type="text"
-                        value={colTitle}
+                        value={listTitle}
                         onBlur={handleClickOutside}
-                        onChange={(e) => setColTitle(e.target.value)}
+                        onChange={(e) => setListTitle(e.target.value)}
                     />
                 ) : (
                     <>
-                        <span className="font-bold my-auto overflow-hidden">{column.title}</span>
+                        <span className="font-bold my-auto overflow-hidden">{list.title}</span>
                         <Dropdown
-                            buttonsList={colExtraButtons}
+                            buttonsList={listExtraButtons}
                             elipsisStyle={`text-neutral-500 ${baseIconStyle}`}
                         />
                     </>
@@ -101,12 +96,12 @@ export default function Column({
             </section>
 
             <section
-                id={column.id}
+                id={list.id}
                 className={`flex flex-col gap-y-3 mb-2 p-1 ${!showCreateCard && 'min-h-[2.5rem]'}`}
                 onDragOver={handleDragOver}
             >
-                {column.cards.map((card) => (
-                    <Card key={card.id} boardId={boardId} colId={column.id} card={card} />
+                {list.cards.map((card) => (
+                    <Card key={card.id} boardId={boardId} listId={list.id} card={card} />
                 ))}
             </section>
 
@@ -114,7 +109,7 @@ export default function Column({
                 {showCreateCard ? (
                     <NewCardInput
                         boardId={boardId}
-                        columnId={column.id}
+                        listId={list.id}
                         setShowCreateCard={setShowCreateCard}
                     />
                 ) : (

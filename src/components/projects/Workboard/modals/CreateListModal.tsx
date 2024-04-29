@@ -12,9 +12,9 @@ type Props = {
     requestClose: () => void;
 };
 
-export default function CreateColumnModal({ boardId, isOpen, requestClose }: Props) {
+export default function CreateListModal({ boardId, isOpen, requestClose }: Props) {
     const [title, setTitle] = useState('');
-    const { createColumn } = useStore();
+    const { createList } = useStore();
 
     const clearInputAndClose = () => {
         setTitle('');
@@ -22,17 +22,17 @@ export default function CreateColumnModal({ boardId, isOpen, requestClose }: Pro
     };
 
     const handleSubmit = () => {
-        createColumn(boardId, title);
+        createList(boardId, title);
         clearInputAndClose();
     };
 
     return (
-        <Modal isOpen={isOpen} title="Add a column" requestClose={clearInputAndClose}>
+        <Modal isOpen={isOpen} title="Add a list" requestClose={clearInputAndClose}>
             <ModalBody>
                 <form onSubmit={handleSubmit}>
                     <Input
                         id="title"
-                        label="Enter a column title"
+                        label="Enter list title"
                         maxLength={MAX_BOARD_TITLE_LENGTH}
                         name="title"
                         type="text"
@@ -40,7 +40,7 @@ export default function CreateColumnModal({ boardId, isOpen, requestClose }: Pro
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    <PrimaryButton label="Create column" disabled={!title} type="submit" />
+                    <PrimaryButton label="Create list" disabled={!title} type="submit" />
                 </form>
             </ModalBody>
         </Modal>
