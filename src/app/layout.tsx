@@ -7,6 +7,7 @@ config.autoAddCss = false; /* eslint-disable import/first */
 import type { Metadata } from 'next';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
     title: 'Cody Miu',
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body>
                 {children}
+                <SpeedInsights />
                 <Analytics />
             </body>
         </html>
