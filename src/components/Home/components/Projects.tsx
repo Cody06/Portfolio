@@ -13,7 +13,7 @@ export default function Projects({ showAnimation }: Props) {
         {
             id: 1,
             name: 'Workboard',
-            tools: ['React', 'TypeScript'],
+            tools: ['Next.js', 'TypeScript', 'Tailwind'],
             description: `Workboard is a project management tool. Users can create project boards with different lists
                 and move their tasks between them.`,
             href: '/workboard',
@@ -22,7 +22,7 @@ export default function Projects({ showAnimation }: Props) {
         {
             id: 2,
             name: 'E-Commerce',
-            tools: ['React', 'TypeScript'],
+            tools: ['Next.js', 'TypeScript', 'Tailwind', 'SQL'],
             description: `This is an e-commerce website where users can browse, search and filter books. A checkout flow is also implemented.`,
             href: '/ecommerce',
             thumbnails: ['ecommerce.png', 'ecommerce-mobile.png'],
@@ -30,7 +30,7 @@ export default function Projects({ showAnimation }: Props) {
         {
             id: 3,
             name: 'Social Networking',
-            tools: ['React', 'TypeScript'],
+            tools: ['Next.js', 'TypeScript', 'Tailwind'],
             description: `This platform allows users to create posts and follow other users. An implementation of the "like"
                 button is also present.`,
             href: '/social',
@@ -115,20 +115,20 @@ export default function Projects({ showAnimation }: Props) {
                             </section>
 
                             <section className="pt-4 md:pt-0 md:w-1/2">
-                                <h3 className="mb-4 text-2xl text-center font-medium">
+                                <h3 className="mb-4 text-2xl text-center font-bold">
                                     {project.name}
                                 </h3>
-                                <div className="flex gap-x-2 justify-center mb-6 md:mb-8">
+                                <div className="flex gap-x-2 justify-center mb-6 md:mb-12">
                                     {project.tools.map((tool) => (
                                         <div
                                             key={tool}
-                                            className="p-1 w-max rounded-md text-sm text-neutral-500 bg-neutral-100"
+                                            className="p-1 w-max rounded-md text-sm text-neutral-500 font-medium bg-neutral-100"
                                         >
                                             {tool}
                                         </div>
                                     ))}
                                 </div>
-                                <p className="mb-6 md:mb-8">{project.description}</p>
+                                <p className="mb-6 md:mb-12">{project.description}</p>
 
                                 <div className="flex justify-center items-center gap-x-5">
                                     <MainButton
