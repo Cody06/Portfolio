@@ -2,6 +2,9 @@ import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import Link from 'next/link';
 import Card from './Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { transitionTiming } from '@/components/ui/tailwindStyles';
 
 export default function Certifications() {
     const certifications = [
@@ -13,7 +16,7 @@ export default function Certifications() {
                 alt: 'Coursera icon',
             },
             issuer: 'Coursera',
-            date: 'Issued Mar 2024',
+            date: 'Mar 2024',
             skills: ['React.js', 'JavaScript', 'HTML5', 'CSS', 'UX/UI design', 'Version Control'],
             href: 'https://www.coursera.org/professional-certificates/meta-front-end-developer',
         },
@@ -25,7 +28,7 @@ export default function Certifications() {
                 alt: 'HarvardX icon',
             },
             issuer: 'Harvard Online',
-            date: 'Issued Nov 2021',
+            date: 'Nov 2021',
             skills: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQL', 'Git'],
             href: 'https://www.edx.org/certificates/professional-certificate/harvardx-computer-science-for-web-programming',
         },
@@ -37,7 +40,7 @@ export default function Certifications() {
                 alt: 'HarvardX icon',
             },
             issuer: 'Harvard Online',
-            date: 'Issued Nov 2021',
+            date: 'Nov 2021',
             skills: [
                 'HTML',
                 'CSS',
@@ -59,7 +62,7 @@ export default function Certifications() {
                 alt: 'HarvardX icon',
             },
             issuer: 'Harvard Online',
-            date: 'Issued Jun 2021',
+            date: 'Jun 2021',
             skills: ['C', 'Python', 'SQL', 'JavaScript', 'CSS', 'HTML'],
             href: 'https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science',
         },
@@ -68,38 +71,52 @@ export default function Certifications() {
     return (
         <section id="certifications" className="pt-16">
             <SectionHeader title="Certifications" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 select-text">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 select-text">
                 {certifications.map((certificate) => (
                     <Card key={certificate.id}>
-                        <Link
-                            href={certificate.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex flex-row gap-x-6"
-                            title="View certificate page"
-                        >
-                            <Image
-                                src={certificate.icon.src}
-                                className="mt-auto mb-auto"
-                                width={100}
-                                height={100}
-                                alt={certificate.icon.alt}
-                                style={{
-                                    width: 100,
-                                    height: 100,
-                                }}
-                            />
+                        <div className="flex flex-col justify-between h-full">
+                            <div className="flex flex-row gap-x-6">
+                                <Image
+                                    src={certificate.icon.src}
+                                    className="mt-auto mb-auto"
+                                    width={100}
+                                    height={100}
+                                    alt={certificate.icon.alt}
+                                    style={{
+                                        width: 100,
+                                        height: 100,
+                                    }}
+                                />
 
-                            <div className="flex flex-col">
-                                <h3 className="font-bold">{certificate.title}</h3>
-                                <span>{certificate.issuer}</span>
-                                <span className="text-neutral-500">{certificate.date}</span>
-                                <span>
-                                    <strong>Skills: </strong>
-                                    {certificate.skills.join(' \u00B7 ')}
-                                </span>
+                                <section className="flex flex-col gap-y-2">
+                                    <h3 className="text-lg font-bold">{certificate.title}</h3>
+                                    <div className="font-medium">
+                                        {certificate.issuer}
+                                        <span className="text-neutral-500">
+                                            {' - '}
+                                            {certificate.date}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="font-medium">Skills: </span>
+                                        {certificate.skills.join(' \u00B7 ')}
+                                    </div>
+                                </section>
                             </div>
-                        </Link>
+                            <Link
+                                href={certificate.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group ml-auto"
+                                title="View certificate page"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faLink}
+                                    size="xl"
+                                    className={`mt-auto group-hover:text-amber-500 ${transitionTiming}`}
+                                />
+                            </Link>
+                        </div>
                     </Card>
                 ))}
             </div>

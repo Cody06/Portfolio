@@ -12,7 +12,7 @@ export default function Header({ showAnimation }: Props) {
     const secondaryTechnologies = ['HTML', 'CSS', 'Tailwind', 'SQL'].join(' | ');
 
     const headlineParagraph = `This is where code meets creativity and innovation comes to life.
-        \n My name is Cody and I am a passionate software developer with expertise in creating digital solutions that leave a lasting impact.
+        \n My name is Cody and I am a software developer with expertise in creating digital solutions that leave a lasting impact.
         \n Welcome to my Digital Playground!`;
 
     return (
@@ -31,18 +31,18 @@ export default function Header({ showAnimation }: Props) {
                         </span>
                     </h1>
                     <div
-                        className={`text-center max-w-[20rem] md:max-w-[32rem] ${
+                        className={`text-center text-neutral-500 font-medium max-w-[20rem] md:max-w-[32rem] ${
                             showAnimation && 'animate-fade-in-up'
                         }`}
                     >
-                        <h2 className="text-neutral-500">{technologies}</h2>
-                        <h2 className="text-neutral-500">{secondaryTechnologies}</h2>
+                        <h2>{technologies}</h2>
+                        <h2>{secondaryTechnologies}</h2>
                     </div>
                 </div>
 
                 <div className="flex justify-around">
                     <p
-                        className={`md:basis-2/3 mt-14 md:mt-32 mb-4 ${
+                        className={`md:basis-2/3 mt-14 md:mt-32 mb-4 text-center md:text-left text-lg font-medium ${
                             showAnimation && 'animate-fade-in'
                         }`}
                         style={{ whiteSpace: 'pre-line' }}
