@@ -30,12 +30,12 @@ export default function Experience() {
             <div className="flex flex-col gap-y-10">
                 {experiences.map((experience) => (
                     <Card key={experience.id}>
-                        <h3 className="flex justify-between font-bold">
-                            {experience.position}
+                        <h3 className="flex justify-between font-bold mb-2">
+                            <span className="text-lg">{experience.position}</span>
                             <span className="text-neutral-500">{experience.date}</span>
                         </h3>
-                        <span>{experience.company}</span>
-                        <p className="mt-4">{experience.description}</p>
+                        <p className="font-medium mb-4">{experience.company}</p>
+                        <p>{experience.description}</p>
                     </Card>
                 ))}
             </div>
