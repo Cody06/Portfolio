@@ -9,6 +9,18 @@ import { transitionTiming } from '@/components/ui/tailwindStyles';
 export default function Certifications() {
     const certifications = [
         {
+            id: 4,
+            title: 'Meta Back-End Developer Professional Certificate',
+            icon: {
+                src: '/assets/icons/coursera.svg',
+                alt: 'Coursera icon',
+            },
+            issuer: 'Coursera',
+            date: 'May 2024',
+            skills: ['Python', 'Django', 'MySQL', 'REST APIs'],
+            href: 'https://www.coursera.org/professional-certificates/meta-back-end-developer',
+        },
+        {
             id: 3,
             title: 'Meta Front-End Developer Professional Certificate',
             icon: {
